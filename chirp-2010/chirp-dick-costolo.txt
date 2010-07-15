@@ -1,0 +1,198 @@
+dick costolo - 105 million registered users, 180 unique visitors to twitter.com
+
+big aha moment for twitter, when they did a survey "do you consider yourself a twitter user?" and found that the number of people interested in twitter exceeded the number of registered accounts.
+
+the goal of @anywhere is to be able to embed twitter into any site, to make it easy for people to tweet in the context of where they are and what they're doing, without having to go to twitter or a client. this is to reduce friction for users in applying twitter.
+
+@anywhere partners - foursquare, digg, hunch, mashable, etc.
+
+a few lines of JAVASCRIPT to embed into a site, to get basic functionality up and running on the site.
+
+-- what is @anywhere?
+
+when users are signing up for twitter, there's an opportunity for affiliates to promote their accounts of value or interest. this should be a better experience than the suggested-users-list was for people and celebrities.
+
+1. sign-in -> sign in at twitter
+
+2. hovercards -> comes with @anywhere
+
+* use case is to allow a site to allow one-click follow and other actions for users identified from @anywhere without requiring a navigation elsewhere.
+
+3. tweetbox -> see tweets inline
+
+4. Connect -> connect to twitter buttons, links
+
+-- seemless integration to existing sites
+
+more sites integrating twitter and more engaged twitter users both mean more opportunity for developers.
+
+a more relevant and engaging experience for both new and long time users at their favorite sites across the web.
+
+* Cody Simms - Head of Yahoo Developer network, product management for yahoo
+
+Yahoo is trying to build a better experience to merge the user experience from different networks.
+
+Social streams coming for ym! and ymail. Yahoo is looking to help users bring in streams they already have and already use. Merged console with updates through yahoo, twitter, etc.
+
+Status is being integrated heavily into yahoo. This can be linked to ym!. Lots of comments, reviews, Q&A, on yahoo. Integration with @anywhere should allow yahoo users to be able to share their relevant artifacts with others.
+
+YQL allows mashups with twitter data now. Linkage to yahoo IDs is also being done for twitter associations.
+
+* Chloe Sladden, @ChloeS - Director of Media Partnerships at Twitter
+
+Media has fundamentally changed. It is no longer a push-relationship. The @anywhere tools should help media companies build 24/7 connections with their audience.
+
+NYT - new york times has done great work with twitter. curated lists (fort hood), haiti coverage. The relationship their journalists have with their readers has changed thanks to twitter.
+
+* Jacob Harris, Senior Software Architect @ NYTimes
+
+NYT story links are clicked every 4 seconds through twitter, in aggregate. Over 140 staffers at NYT managing twitter and stories through twitter.
+
+@Anywhere prototypes at NYT: 
+
+Bits Blog -- Contributors, Follow us on Twitter, etc. will allow users to stay in-place. Hovercards show up for bloggers, etc.
+
+The Caucus -- Prominent political news on twitter.
+
+Twitter adoption was quick at the NYT. It has become an important tool to augment journalism among staff.
+
+* Chloe - An important key is to convert Page Views into Followers. (!!)
+
+* Jim Ray - Editorial Dev Lead @jimray at MSNBC
+
+Twitter allows us to find people who are connected to the news, better than we ever could in the past. We're able to find people and bring them into the News that we work on and publish.
+
+Rachel Maddow blog - @anywhere integration by MSNBC. Hovercards integrated with guest apperances.
+
+New feature on MSNBC about an hour ago - Social-bar bottom context toolbar in-browser. Social features, such as @anywhere, feature prominently here.
+
+One new feature- able to comment with implicit links direct to twitter.
+
+What if we could improve the context for a story? Show tweets from MSNBC users, and also tweets from people you follow, about stories on MSNBC. Improve engagement by showing related principals that can be followed, via @anywhere.
+
+REF: twitter.msnbc.com
+
+We're moving from pageview measurements to engagement measurements. Adding twitter support allows us to improve our understanding of our readership users and audience.
+
+* back to Chloe
+
+Companies aggressively integrating @anywhere as we speak:
+
+msnbc.com
+citysearch
+gowalla
+the guardian
+the huffington post
+WSJ.COM
+foursquare
+
+Other partners participating in @anywhere launches soon.
+
+The NYTimes
+Yahoo!
+advertising age
+gawker
+mashable
+amazon
+google
+meebo
+microsoft
+digg
+salesforce
+disqus
+ebay
+hunch
+youtube
+
+Case: The Guardian - @anywhere integration over their politics section. Exposing candidates and their twitter accounts with users via @anywhere. UK Elections coming up soon. Integration on their technology site is forthcoming soon.
+
+Case: Citysearch - Integration with local businesses via hovercard.
+
+REF: dev.twitter.com/anywhere
+
+-- Q/A
+
+Q: Why isn't there a fund for investment, an iTwitter fund, if ou will?
+Q: Isn't @anywhere just a solution to avoiding facebook connect media lock-in for partners?
+Q: What are the conditions for full access to the firehouse?
+Q: When is the IPO?
+
+-- Kara Swisher, Panel with VCs - Investing in the Ecosystem
+"Like a dating game, except I'm not interested in any of you. Maybe your wives?"
+
+* Mike Hershelin (sp?) - Investor behind thing labs (brizzly), wordpress, formspring.me
+* David Packman (sp?) - Investor behind media six degrees, social shield, slideshare
+* Bijon ??? Smart Capital - Investor in twitter, tumblr, boxee, OMGPop.
+* Peter Fenton - Investor in twitter, zendesk, lithium
+
+^KS - there has been some friction this week about twitter's moves, vs. developers.
+
+Peter: There's a negative framing, as it though no longer time to fill holes. I think this framing is wrong. I think the opportunities to be able to stop on the work of twitter should stay open. We're looking to make it possible for people to get a bigger audience quicker, and the onus is still on the developers to create value. As twitter, we're just getting started- we only have 100M users. We'd like to have 500M and further. What is the things the platform should provide for everyone?
+
+^KS - How do you look at the people that have invested into building on the twitter platform?
+
+B: There's diversity in applications. The acquisition of tweetie only represents access to a small portion of the overall audience.
+
+@loic, from audience: There's plenty of opportunity, for us.
+
+David Packman: We do want platforms to be adoptable by everyone, all the way down to novice users. There's a huge amount of data being thrown off by social media. Twitter is probably not going to spend a lot of time filtering and screening this data.
+
+Mike H: I'm not buying the feel good/make love vibe. Tension is incumbent in platforms. If you want to be a player in the ecosystem, you gotta go in with your eyes open. You, as a player, need to understand that there is a wide highway that the platform wants to own. The single best thing a platform can do is get acquired.
+
+^KS: What would you like more clarification?
+
+Mike H: We would like to see more from the roadmap. I'm an investor in companies that are deeply involved in the twitter platform. I think people need to understand that twitter is developing a business, and it would be unfair to expect that twitter stays on top of how they are going to make money with their audience.
+
+^KS: How would you view your investments and targets, now?
+
+Peter: Facebook has been owning their applications. Facebook and Zynga could have an interesting conversation about who owns the customer. Twitter, well, has had an API from day one. They've been open all this time. So when we look at the applications we want to invest in, there are two segments. Business, and Consumer. There's an agency business model that exists. Workflow applications are another area where people could make money. Analytics, too. The business terrain is very fertile.
+
+^KS, B are you concerned about anything that twitter might want to own?
+
+B: The platform component was a big draw for me to invest into twitter. The thought for me, investing in the twitter ecosystem, is that we're also on the board of directors. We have to be careful about how we approach this. But we're looking, still, because the platform is more capable now, and applications should continue to show.
+
+David Packman: There is a lot of data that isn't relevant. Things like I bought this, that, and was here, there. There's no application that is allowing me to access this information when i want it (right-time web). All brands have to be present, now, in this ecosystem. They need tools, and I think, they're starting to provide a mechanism for brands to pay to be part of this ecosystem. A lot of the spoils of the advertising competition go to the companies that are best at doing that.
+
+Mike H: Right now we're all experiencing some short-term pain, with decisions twitter is making. However, the long term looks bright- with the value that twitter has provided in their ecosystem. There's so much data that could be put to use. What's most important to me, about twitter, is that the web is shifting from static page views to streams. There's a lot of streams out there: 4sq is one, Twitter, Facebook, etc. There's going to be a lot of opportunity out there for people to make this easier and better.
+
+^KS: What are the valuations for companies in this space? There's a lot of .COM 1.0 web-ish stuff going on in here. How do you look at the valuations, and what should companies be looking at in getting funded?
+
+Peter: We care about the potential for break-out success. When we looked at twitter, we thought- "Does Evan and the Twitter team have the capability to hit a billion users?". Very few companies break out, we overpay for this opportunity. Can it become one of the mainstays of the internet over the next decade? If so, you need to pay to be a part of the action ahead of time. However, you're probably overpaying if there are 5 other firms chasing the same opportunity. I hope I never have to make a decision where valuation determines if I am able to buy.
+
+Mike H: I think right now is a great time to be able to play at this level. In the long run, the difference between a $250M and $280M investment is not a big deal. Playing, chasing after the next big platform is exciting. It's nice to be able to compete in the C class level.
+
+David Packman: I think Peter is right on. Quoting, Marc Andresson, quoting Andy Radcliffe. There are 10-15 companies, started every year, that will eventually hit 100-150M capitalizations. It's our job to find these companies. You have to find, and be able to believe in whether a company has the capability to hit this level of success. The point is that there's pressure, always, on VC and firms, to make investments that show potential for break-out success. It's hard to find a company that has the opportunity to hit 100X. If there is an opportunity (think Facebook, if you could identify it), then you aren't as worried about the up-front valuation.
+
+B: I paid a good price for twitter, and thankful that we were able to be partners on it. Our feeling is similar to what Peter is saying. We don't care about these VC rules... sacred cows, 20% of a company, blah blah. We don't care about those things as much. If we feel like the team, we click with, could be an enormous breakout company; we want to work with them and are willing to be owners with them.
+
+^KS: Of all the investments that you've seen, that's not yours, what have you seen that's exciting, that hasn't gotten as much attention yet?
+
+Peter: The Analytics sector is (Radian 6, for example) underrepresented and should be an area vibrant in M&A activity. I don't know if they will break out, necessarily. We're interest in the mobile/local battle. Yelp, 4SQ, Twitter. One area, that isn't being serviced, is the local phone-book like service. This is an area even google hasn't touched yet.
+
+^KS: Are you worried about 4SQ beating Yelp? A Mobile Yelp, if you will.
+
+Peter: You can't write a review on 4SQ that meets the depth and integrity that you can at Yelp. It's hard to predict how it will work right now. Yelp has 30M people that use it every month. They have critical mass and provide valuable data on locations they've visited.
+
+^KS: Want to tell the crowd why we didn't sell to google?
+
+Peter: :) We know. We always say... it wasn't our decision. :)
+
+^KS: B, what do you think is over-hyped, under-hyped?
+
+B: A lot of the companies getting attention, deserve it. I think this category has always been, in venture/startups, that very good companies always get a very big price.
+
+^KS: Any category you're worried about?
+
+B: Green technology. DNA/Nanotechnology. Way overhyped.
+
+David: If you're a big team of scientists, data analysts; we like companies that look at the data being thrown off by social interaction and have frothy mouths- looking to see how we can apply this data. We don't see a lot of interest in child/guardian protection apps. Net Nanny, etc. This area is underserved.
+
+Mike: Blippy is a pretty cool company, Groupon is pretty cool too. The category, is frothy, but a 1.2B Valuation might not be out of line, someday.
+
+^KS: What competitors do you see to twitter?
+
+Peter: Twitter's mission in the last 12 months has been to build a great management team. Twitter's greatest enemy is itself. The discussion about being facebook being in competition, well, facebook is an application platform, twitter is a platform provider. Not a good comparison.
+
+B: There's definitely a battle for attention.
+
+David: If twitter tries to monetize via search results- they have their work cut out for them. Google, MSFT, Yahoo- these titans are fierce competition. If they monetize through your twitter stream, I'm not sure anyone else can compete.

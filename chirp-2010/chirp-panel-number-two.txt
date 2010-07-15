@@ -1,0 +1,47 @@
+-- Tim O'Reilly
+
+I want to raise the level of dialogue here. With all this talk of monetization, I'd like to also bring up the topic of being a force for greater good. I'd like to share some stories, people I'm working with, of people who have been able to make a real difference.
+
+Katie Stanton - State Department
+Richard Heedy (sp?) - Africa Work (?)
+Anil Dash - 
+
+Tim: How did the government respond to the disaster in Haiti?
+
+Katie: It all started with a few phone calls, and we were able to get a campaign up and running, to txt to 90999 to raise money for Haiti Relief.
+
+Anil Dash: I was amazed that there are organizations in gov, that hunt for shortcodes to be able to launch these programs.
+
+Richard: We have a platform for releasing shortcodes and managing/mapping crisis response. We were able to push a deployment for the Haiti tragedy.
+
+Tim: The real technological sophistication brought to bear, was not just a bunch of geeks- but a bunch of geeks in unison with a number of principals in gov. organizations.
+
+Richard: Yes. We had a team of people parsing, filtering, translating, and managing data coming from text messages in Haiti. We got to the point where we could send and deploy people to the location where people needed help in Haiti.
+
+For the first time, we were able to leverage the knowledge and connections of the Haitian Diaspora, to locate and rescue people in time of crisis.
+
+Tim: Can you tell us about what you're doing at Expert Labs?
+
+Anil: We've been looking at models, for labs, for think tanks. The mission of expert labs, is to help policymakers make better decisions through crowd-sourcing. I'm a startup guy- I didn't really have a concept of who or what the policymakers are. Turns out, there's an enormous number of people in gov, that make decisions to deploy legislation and drive policy to help materialize things in the market. In essence, taking the wireless spectrum and making it possible for me to tweet from a coffeeshop. All the parts in between. The president can't really do this- there's too much noise. The people that are trying to put a message in front of the president, they're basically spammers (lobbyists).
+
+So as an incubator, we're trying to find and promote apps, that can bring together the crowdsource knowledge and leverage them. The challenge is getting answers and getting responses. If justin bieber asks "what pants should I wear tomorrow?", he gets hundreds of thousands of replies. If the gov asks something we don't get anywhere as many.
+
+Tim: How tech saavy are the people at the top?
+
+Katie: (nervous laugh) They're fast learners. They do recognize and respect that there are great platforms on the net, and they grant us the power to be able to use these resources across the face of government.
+
+Anil: One thing I'm worried about, is that we can get them to use technology, but if they don't get a response, they might think it doesn't work.
+
+One of the amazing things twitter has done, is that it's able to bridge the gap in technology in the country. It's a perfect convergence to merge the groups of people and businesses together.
+
+Tim: Can you talk about the difficulty about working in a constrainted environment?
+
+Richard: We have a motto: if it works in africa, it works anywhere. It's been used in a number of places.... 
+
+Anil: I'd like to point out that cutting edge stuff is happening outside of the mainstream. The whitehouse, had a URL shortener before Facebook or Google jumped on the bandwagon. WH.GOV
+
+Tim: Are there any civic apps that you'd like to see?
+
+Katie: I have some ideas. I've been working in gov for a year and a half, and have not met a single software dev who works for the gov. One idea, is to have a location track and means for people to report when bribes are occuring in gov.
+
+Richard: Turksourcing. Can we break down tough real-time geolocation tasks and hand them out to the crowd to digest? A txt from a person in distress in haiti, resolving where they are in haiti in a few minutes time? Etc.

@@ -1,0 +1,106 @@
+ryan sarver
+ - from skyook device. founding member of w3c geolocation spec.
+ - director of platform
+
+75% of updates from 3rd parties
+60% of new tweets from 3rd parties
+
+Twitter is not just a platform, but an ecosystem.
+
+50,000 registered apps w/twitter as of dec 2009.
+100,000 registered apps as of april 2010.
+
+cotweet story - revolutionized how coporations communicate with customers, via twitter.
+
+* Aaron Gotwalt - tried a number of startups. made cotweet when he and his business partner were struggling to share a twitter account. twansmit was the initial name, then cotweet followed. slogan "how business does twitter". raised money in july 2009. moved to SF with founders to push the company in an area "with serendipitous environment"
+
+* Aaron "People are ready to pay for stuff on twitter."
+
+* Aaron - partnership with ExactTarget.
+
+* Aaron - Ask BIGGER questions. [cotweet was an answer to a workflow problem]
+
+* Aaron - iterate VIOLENTLY. 5 major iterations to date. build things that people love, don't worry so much about whether code tests past.
+
+* Aaron - embrace CONSTRUCTIVE TENSION / criticism.
+
+rsarver - ENABLE innvoation. REDUCE friction.
+
+Desire from devs for more certainty.
+
+ROADMAP
+--
+improving reliability
+expanding capabilities
+developer happiness
+
+* improving reliability
+new rewrite of OAuth
+squishing a number of bugs
+maintenance - need a commitment to keep platform stable
+
+* expanding capabilities
+
+GEO - core DNA of twitter is mobile access / location.
+lat/long doesn't add much context to a tweet.
+city/locale support added- but still not enough.
+new GEO support for PLACES. curated database of different places, restaurants, etc. around the world.
+
+USER STREAMS - streaming all relevant information about a user to a desktop app in real-time. no more waiting. no more api / ratelimit. social graph, mentions, tweets, favorites.
+~ favorites have traditionally been a difficult thing to leverage, and hasn't received good coverage in the API. this will now improve with USER STREAMING
+~ retweets will also get a big lift. additional lookups coming for retweets and references therein.
+
+METADATA - 
+application info : search linkage (source: query), discover new apps
+in_reply_to : linking between tweets.
+location : Noam Cohen - wrote an article about fort hood. was able to use search query for killen, TX to look up temporal history for fort hood.
+NEW: annotations : arbitrary metadata for any tweet. tagging, notes, etc.
+
+FIREHOSE - 
+twitter is looking for ways to link twitter's entire stream with providers.
+
+@ANYWHERE - 
+
+* developer happiness
+philosphy: listen, learn, iterate.
+
+dev.twitter.com launch today!
+public call for collaboration. automatic generation of documentation from source code.
+new tools for digging into the API.
+watchmouse (?) integration to keep health of the API known in realtime, alongside documentation.
+unified developer search for API and other data linked to API information.
+
+* recap
+annotations, places, user streams, @anywhere, dev.twitter.com
+
+manta: THINK BIG, BUILD BIG
+
+rsarver@twitter.com
+@rsarver
+
+* Q/A
+
+Q: Will there be a taxonomy for types of annotations?
+A: Still working on this- thinking about namespace + key/value pairs.
+
+Q: What will you do w/the service to increase usage/adoption of geolocation.
+A: We think this will increase as applications emerge that are able to make it useful to users.
+
+Q: Will there be a news channel/communication for dev updates and info?
+A: dev.twitter.com will be the beachhead for this.
+
+Surprise visit by will.i.am at dev conference!!!
+
+* will: i love the world social connectivity, real-time responses and connection; the same thing that crippled the industry that i live in; i'm a fan of. so instead of hanging out w/big producers and execs, i want to hang out with coders and fans. i felt in the future: bands aren't just going to be singers, bass player, guitar players; they're going to include coders. content providers, aggregators of content for people.
+
+* will: it isn't that music is dead, it's that people who housed it, are dead.
+
+* will: to me, twitter is a collective concious. we can access things that people are sharing that would have been stuck in our heads. it just changes cultures, the way people are. now you can surf people's thoughts- it's pretty dope.
+
+* will: when i search myself on twitter: a lot of stuff is coming from brazil, moscow, etc. when you search the black eyed peas- we get all kinds of global content. it really helps us reach our fans and find out what direction and places we need to go.
+
+* will: right now, the companies that are responsible for content- haven't accepted the new way of distributing stuff. there's no easy way to monetize the new intersection of publishing, curation, social connectivity, and content. i'm passionate about trying to figure this puzzle out. i love hanging out w/devs at dipdive. right now it's only a sketch, but i'd like to interact with more people. what would it mean if we could make something that was the best mix of myspace, facebook, and music?
+
+* will: one thing about the internet- it hasn't yet created the next michael jackson. right now it is still the content creators of the past pushing people in the front.
+
+* will: here's what is dope: i'm the only person from the music industry here.

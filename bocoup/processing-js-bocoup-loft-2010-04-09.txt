@@ -1,0 +1,111 @@
+-- Processing.js panel 2010 Bocoup Loft
+
+[Speaker1] Processing.js can be used to do rendering, create objects and controls; usable by other javascript frameworks such as jQuery.
+
+http://askken.heroku.com/ - Demonstration of a processing.js search engine with a relevance user interface.
+
+https://www.cloudkick.com/viz/cloudk1ck/ (?) - Uses processing.js to provide an interface for monitoring and sampling of cloud servers.
+
+http://code.bocoup.com/js-ninja/ - Mini-game demonstrating mouse controls through processing.js
+
+http://asalga.wordpress.com/ - demonstration of processing.js applications and graphics.
+
+Q: Can SVG filters be used against content?
+A: SVG filters can be used against content if supported. SVG filters have no notion of operation until an element is styled with a SVG filter.
+
+Q: What is the origin of Processing?
+A: Basically 2 separate purposes. 1: wanted a way to sketch and prototype work. this was tedious in C++/Java. 2: wanted a way to get more people involved in creating visual things. interested in creating an application that could be used by more people other than devs with design+code background. started under the tutelage of John Maeda, initially providing support for teaching and prototyping. benefits desgired included abstracting away the work of double-buffering, hardware, and other things.
+
+Q: How different is it today from the original draft?
+A: Most of everything is the same. Much of the work has been in trying to make things work better and easier to write. Now there has been a big flood of external and third party support.
+
+Q: How big is the community?
+A: Tough to tell. Right now, our metric is based upon how many people are checking for updates. Right now, that is about 25k uniques a week, and i think that is about 60-70k uniques/month. This is difficult for us to measure because a lot of people work on transient projects. They'll use it for a couple days and then put it to rest for a few months, etc.
+
+Q: What are some surprises you have seen in Processing?
+A: Basically anything outside of what the core devs do. There's nothing that particularly stands out, just these strange moments that happen. Ex: John Resig shows up and ports Processing from Java to Javascript. There are moments like that there are strange. We had, a couple years ago, a firm; motion theory, that did a superbowl ad for budweiser, and it was done in processing. "Here's Jay-Z and Don Shula, pointing at this sketch, and hey- that's processing in the background?". It basically was an offshoot of what we were doing and we didn't have a direction on where to take it. People just started picking it up and using it to solve their own problems. People doing stitching, knitting, 3d printing, etc. We never thought of these applications- we were initially focused on creating a teaching language.
+
+Q: John, why was the reason for porting it?
+A: Basically, the initial reason was for the demos. It was a really easy environment and language that could excite artists into getting involved and creating things. It would be great to bring this to the web. I was chatting with Vlad at mozilla, circa 2008, about 3d work. We were chatting and the topic of processing came up- and we were thinking of ways to port all the demos over to the web. The language isn't that hard- and i wanted to learn how to use canvas, and saw this as an opportunity to bring it to the web, get a lot of demos going, and learn how to use canvas. At that time, not a lot of people were doing interesting things w/canvas, and I was hoping to change that.
+
+Q: Were there issues with using canvas?
+A: Yes. At the start, there were a lot of browser quirks, and incompatibilities, etc. I started out by working on a demo, writing enough code to get it working, and then going from there. It was hodgepodgy, I really just wanted to get the demos going.
+
+Q: How does processing differ from flash/silverlight? How does this relate to the open web?
+A: It's interesting how the web has evolved and how things have grown. I think about the web different from a lot of people- to me, the biggest feature of the web is view-source. A lot of people i've met are self-taught. A lot of interesting people have this background, learning on their own and building things from them. I would say it is a strong improvement over canvas, allowing people to get above primitives and being able to build graphical applications and objects above the canvas element.
+
+A2: Canvas is very primitive. To draw a circle, you have to draw a 360d arc. An ellipse, 4 arcs.
+
+A3: Flash is opaque. Nobody can take it apart and learn how to build things from it. Whereas Javascript, open web, and now processing, people can take things apart and learn.
+
+Q: With the open web, there are a lot of technologies available. What do you see ahead for the open web?
+A: We see a lot of performance improvements. We see new graphic capabilities coming, SVG, languages that can now be improved, hardware acceleration, etc. We see a lot of this showing up in IE9, but we feel we'll ship before them. One thing that came in Mozilla, was being able to take a flat canvas mode, and add a 3d level/support for it. And we are able to support OpenGL, adding the capability for hardware support. People are so interested in this stuff, and taking really difficult to use graphic APIs and languages, and putting them on the web. And now people are mashing them up from all kinds of solutions. And this differs from silverlight/flash, where everything is a closed box.
+A2: Canvas is this simple thing, and people don't realize how crude and low-level it is. With SVG, you more tangible capability. You can respond to mouse events, etc. It is important that we are able to advance both technologies.
+A3: A lot of this is about building adapters, a retained mode API on top of an immediate-mode API. This allows things to be done where objects can be run- faster than even browsers can do them. We are seeing new applications for getting new experiences into the web. Mozilla started adding geolocation, and now applications are starting to take advantage of this. There is support for touch APIs coming about, and there will be a lot of stuff feeding back into the web (audio, too, perhaps), and who knows what the experience will be 10 years from now.
+
+Q: The processing.js project, how does this affect the processing community as a whole?
+A: There are a number of things. One thing is access- how can we get this out to a wider audience? We started on different architectures- each to their own. Community-wise, it is about capturing the new audience quickly. We want to get them up and running quickly, to try and get them operating and working on things that are possible and light in javascript. We have the community itself- we have beginners at one end, advanced at the other: we try to stay in the middle- adding features for the advanced folk, while trying to keep the entry open for beginners. Being able to use javascript, this helps us keep the door open.
+ 
+Q: How does this affect your work? (to professor)
+A: A lot of things have become possible that weren't before. We have disparate locations of team members, people, students. It has been difficult to get projects distributed between all of these people. With Processing, we got a step closer to being able to have people work together. One of my students, has been doing a lot of work with WebGL, and has even built two APIs on top of it. But one problem is that there isn't any code, any demos, anything to run on these. We decided to give processing.js a shot and see if we could bring the project to full completion. We've been able to get extra people on it, we can support processing applications, and it's been great.
+
+Q: What brought (speaker 4, technical lead) to the project?
+A: Well, honestly, I stepped into IRC one day, complaining about a bug- and then eventually ended up as the lead.
+More serious, I had this demo I wanted to show, demonstrating the parts of how a fourier transform works. 
+
+Q: How big is the processing.js community?
+A: Well, there are about 8 students, not as many people in the community. Maybe 4-5 people. Actively, we have about 32 people in the IRC channel. Active members, maybe about 12.
+
+Q: What originally attracted you to come to processing.js (John Resig to Bocoup Founder [al?]), to fix bugs, add projects, etc?
+A: Well, I was doing a lot of web design, and we got to the point where it was great to build applications to interact with the crowd; but how do we build applications to interact with the crowd? From there, we started working with AJAX, to push data and visuals to the audience. When I first heard of processing, I was blown away. It was like being a kid again- being able to make these little apps and games and with such speed.
+
+Q: How similar are processing, and processing.js at the moment?
+A: There are a lot of cases where you can take one and push it out to the other. There are some edge cases we're weeding out, as we are moving towards 1.0. Right now, we use a rather, uh, dumb regex parser, to rewrite Java into Javascript. It's tough for us to put a real tokenizer and parser in, to be able to run things straight up. There are just a few edge cases that we're now discovering as a result of trying to port the parser. But the major problem, is that Javascript is typeless, taking Java objects (ints, floats, chars, strings) and not being able to resolve them the same. Like we can't use the same literals (bytes), and some are different (chars can be single quotes). Depending on what you're doing, you might get different outputs, as a result of Javascript being typeless.
+
+Q: What kind of compromises are necessary to make this project work?
+A: One problem is that so much of everything is synchrous. Well, the web is not. The web is now asynchronous. So for us- if we want to support what people do, we have to come up with ways to meet expectations, and it's been tricky. My students have found it unpleasant to port Java to Javascript in... not so much bad, but different ways. So some of these kinds of things, make it different on the front end. But in the back (source) end, it is much the same. But things are moving along- one demo (substrate?) is now able to run straight up without modification. But it is great that with Javascript, there are greater things beyond that- that we can now do.
+A: One tradeoff in the parser (John Resig) was being able to support Javascript being able to get access to the internals. And being able to intermix some bits of Javascript in Processing code. And sadly we have had to turn down some submits, to be able to retain some of the easy parts.
+A: A lot of it is about being able to support artists. We don't want to ever make it hard for them to write content in processing, especially on the web. They're not coders.
+
+Q: Chris, when people think about stuff they've ported to Javascript, they often thing "well, now it is going to be slow". Can you tell us about performance and how it is going to improve in the browser?
+A: We have much better performance now. Traditionally, an untyped language is much slower and has to handle a lot of cases, which are not really problems in Java and especially not in C/C++. But, a lot of times, functions don't change types very much. This is something we've used a lot in a JIT, being able to reuse code paths and such. One thing on the outcome side, we have a lot of javascript script engines that are now much faster, with the support of JIT. We even have support to observe code and trying to anticipate being able to run loops faster. Sometimes we lose against the competition though. But we do try to get better support for hot inner loops and make use of speed. The big thing is now being able to support things we haven't been able to do- such as games. We can now write code that is only 2-3 times slower than C, which sounds slow but is actually surprisingly good- we can now write games. This allows us to start approaching graphical work with good speed. I think the web is going to look different, 4-5 years from now, for sure.
+A: One of the things (other speaker) I want to say to people- One of the things I've been working is in optimization. I'm interested in fixing, and improving things. Mozilla cares about making these things faster. I've filed a lot of bugs. Crash bugs, all kinds of bugs. They don't go into the void- these things get fixed. Don't be afraid to tell Mozilla that this is slow. We want to fix these things. Is it slow? Tell us it is slow!
+A (audience): Also file bugs with webkit, IE. It's open and we want to get bugs solved in public, where mozilla, IE, webkit, etc.
+ 
+Q (audience): Are you going to try and push more processing.js knowledge and visibility on processing.com?
+A: Yes. We're slowly getting there. We're working on an intro book, and we hope to be able to support all of these examples on processing.js, maybe even starting them on it. We recently visited a girls' school in NYC, and they are learning processing.js as part of their cirriculum.
+
+Q: What is the fastest environment for running processing.js, that you've tested?
+A: (mozilla) I can honestly tell you some things are faster in one browser, and some in another (audience yells chrome).
+
+Q: Have you tested it on chromium OS? Has it been explored?
+A: No, not yet. Great question, would be interested to see how it performs.
+
+Q: Does it work on linux?
+A: Yes? But it really depends on your video card.
+
+Q: Is there brand support for processing/WebGL support?
+A: Mozilla is visiting NVidia, to see if we can drum up support. It could be really good to have a baseline experience that people can go to.
+
+Q: As Mozilla or Processing rep?
+A: As Mozilla. One thing we foresee is being able to do more casual gaming on the web, with HTTP as the root. We are interested in getting better support, and seeing if chip drivers will tune for better support for web apps.
+
+Q: Is there a plan or strategy to prevent people from stumbling on bugs between Java and Javascript code, such as dealing with floats where ints are received, etc?
+A: Well, we want to try and keep it possible to make hybrid apps. This, we feel, will help us drive adoption. It isn't so much about enforcing habits, we want to be able to support people who keep asking us "How do I talk to jQuery from my processing code".
+
+Q: Are there plugins or IDEs for processing? I've been off development for a few years and would like to see how to get back in.
+A: The processing IDE doesn't yet support exporting to processing.js. I guess the question is also how do people support writing processing.js.
+A: I use a text editor for doing js. There is hascanvas, where you can go and edit code.
+
+http://hascanvas.com/
+
+Some people in the processing crowd are looking how to support it for syntax highlighting and other IDE feature.
+
+Q: Is there a way to rename or namespace or otherwise separate symbols from global variables and namespace?
+A: John Resig - Unless you use an explicit API, everything is done with an internal eval(). You can rename or remap explicit creation if you like.
+
+Q: What is the biggest competitor or threat to processing.js?
+A: Well, this isn't as much of an issue to us. Microsoft has released Raphael, but things tend to work themselves out on the web.
+A: John Resig - One thing is that processing is enroaching on a crowd where the source hasn't been viewable. Everything has always been closed- like all captured in flash, etc. One problem, is that games may have difficulty thriving. Games rely on obfuscation, closed systems, to protect their internals and prevent cheating.
+
+Announcement: Mozilla sponsored contest coming up for processing.js; and a formal announcement will be forthcoming. We're hoping to get people who have done processing, people who have done web stuff, to come over and try processing.js.

@@ -1,0 +1,92 @@
+--- too many secrets but never enough - raffi krikorian & taylor singletary
+
+OAuth is a dance.
+
+OAuth Libraries don't always work right or won't bend to your will easily.
+Sometimes you've got to get your hands dirty and fix them.
+
+-- common oauth library issues
+* try to calculate signatures in post with json or xml
+* handling oauth token secrets poorly
+
+All OAuth requests are similar at their core. The rules don't really change.
+
+The signature base string.
+
+httpMethod + "&" +
+url_encode(base_uri) + "&" +
+sorted_query_params.each {| k, v | url_encode(k) + "%3D" + url_encode(v)}.join("%26")
+-> %3D is equals sign
+-> %26 is ampersand
+
+OAuth Parameters + Query Parameters must be merged together. Sort by name, then sort by values.
+
+-- signing requests
+Signing an OAuth request is easier than you think.
+Take that signature request, sign it with the proper signing key.
+
+The proper signing key is a pain point.
+
+The access token step, and any resource requests on a user's behalf users OAuth tokens and secrets to create a composite signing key.
+
+Two-legged OAuth requests are requests that don't require a user or oauth_token.
+
+Asking for a request token is actually a two-legged OAuth request.
+
+The algorithm for determining what your "signing key" is:
+
+url_encode(consumer_secret) + "&" + url_encode(oauth_token_secret || nil)
+
+Make sure that the "&" is present, even if the token secret is not present.
+
+With an oauth_token_secret:
+signing_key = "abcd&efgh"
+
+Without an oauth_token_secret:
+signing_key = "abcd&"
+
+the OAuth 1.0A Request Cycle
+
+Only on the request token step, can a oauth_callback be provided.
+
+-- xAuth & OAuth Echo
+
+Do not store usernames/passwords.
+xAuth allows username/password for token exchange.
+Prior permission from twitter is required for xAuth.
+
+OAuth Echo = OAuth Identity & Delegation
+Allows 3rd parties to delegate off an existing OAuth credentials.
+Twitpic, yfrog, tweetphoto moving to OAuth Echo soon.
+
+Working with OAuth Libraries.
+
+Most OAuth Libraries are similar.
+
+Q: The xAuth flow is in the OAuth 2.0 spec, are you planning to move to OAuth 2.0?
+A: Yes, we'll talk about that in a bit. We're definitely moving towards implementing it.
+
+The current OAuth gem for Ruby is near perfect- does the right thing for almost all scenarios.
+
+-- Truth & Reconciliation
+Internal project to rewrite OAuth features at twitter.
+A supplemental header can be added to existing OAuth requests to enable new support and debugging hints.
+This will fix error trapping for NONCEs, Time Drift, and other quirks.
+
+-- When things go wrong, the OAuth dancer, an open source tool for debugging OAuth
+
+http://github.com/oauth-dancer
+
+* nearly complete solution for testing REST-based API requests with OAuth 1.0A authentication
+* examine the signature base string, authorization headers, and oodles more information about requests
+* support xAuth and two-legged OAuth
+* out-of-band (PIN) support coming soon.
+* under perpetual development. OAuth 2.0 support on the way.
+* very useful for creating comparative examples, testing internal OAuth implementations, and more.
+
+Q: What happens if we want to handle user/pass from SMS? Can a web app handle this with xAuth?
+A: In general, web apps are only allowed xAuth on bulk conversion. We need to inspect this use case more carefully.
+
+Q: Is there an API to provision new applications?
+A: We've thought about this, but right now we need to inspect and decide how to delegate trust for this scenario. It's definitely something on our minds.
+

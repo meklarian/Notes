@@ -1,0 +1,240 @@
+-- foley hoag - incorporating your startup
+-- presentation to masschallenge global startup competition may 25th, 2010
+
+REF: emergingenterprisecenter.com - table of events for emerging companies / legal issues
+
+-- Presenting Partners: gil arie, mark a. haddad, david r. pierson, paul w. sweeney
+
+*** Paul
+
+Incorporation
+  * what is it?
+  * reasons for incorporating
+  * choosing a form of legal entity
+  * deciding when to incorporate
+
+From a legal perspsective:
+- creates a legal entity, separate and distinct from its owners
+  * can own assets (including other corporations) and incur liabilities
+  * can enter into contracts (w/rights & obligations)
+  * can sue and be sued
+  * can be convicted of criminal offenses (fraud/manslaughter)
+
+- Existence based on corporate law on the state level
+  * created by filing cert. of incorporation w/the secretary of state
+  
+- In most cases, duration of the entity is perpetual
+
+From a practical perspective:
+- state laws require fees and formalities
+- capital is provided to the corporation in return for equity, membership interests, etc.) or debt.
+
+Why incorporate?
+- protect yourself and assets from personal liability
+  * liability limited to invested capital
+- establish ownership rights in assets of business (e.g. IP)
+- issuing equity ("founder stock") to founders
+- equity incentives for employees
+- required in order to raise capital
+- easier to sell / liquidate
+- helps to avoid unintended problems
+  * discussions of who does what and who gets what might inadvertently form a "general partnership"
+  * avoids the forgotten founder problem, where ownership rights are unclear
+
+Which form of entity?
+- majority of startups are formed as:
+  * C corporations - simple corporation
+  * S corporations - simple corporation
+  * LLCs
+C vs. S corporations have tax distinctions
+
+- Key considerations
+  * limitation of liability
+  * tax treatment (passthrough/double tax)
+    S-corp/LLCs are passthrough, taxed at membership level
+    C-corp subject to double tax, dividends may be taxed at membership level
+  * ownership (stockholders)
+    limitation on # of stakeholders on S-corp (100), must be living US citizens, perm residents, taxpayers
+    LLCs are generally setup so that membership interests can't be transferred as easily
+  * raising capital
+    can't issue more than 1 type of stock in a S-corp
+      ex: investors may wish for preferred stock
+    tough to issue options under LLCs
+  * employee equity incentives
+  * appetite for complexity/legal expenses
+    LLCs can have a very complex internal structure.
+LLCs are rarely the correct choice for a startup
+
+Which state to incorporate in?
+-- The vast majority of startups aspiring to be venture funded should be set up as delaware corporations (C or S)
+-- Why Delaware?
+  * investors often insist on it
+  * well developed case law
+  * board/officer protections
+  * flexibility of structure
+  * ease of corporate filings
+-- Don't over think it, but get it right the first time
+
+When to incorporate?
+-- two or more founders
+  huge factor, because if there two or more people, the risk of disagreement can only get worse over time
+  incorporation forces this question to be handled early on
+-- creation of IP or other material assets
+-- signing agreements (lease)
+-- hiring employees or contractors
+  be sure that IP is owned by the corporation
+  for protection vs. other parties
+-- issuing stock and/or options
+  for early state startups/founders; a lot of people have verbal agreements, which can get people in deep trouble, especially with statements such as "come board, we'll grant you x%".
+-- conducting business / launching product
+-- visa considerations
+-- starting the clock - capital gains holding period
+-- raising capital
+
+*** Mark
+
+What is involved?
+-- Reserve the name early in DE and MA (or other resident state)
+  * reservation before incorporation is ok
+-- Certificate of Incorporation (DE)
+  * key document filed w/state that sets out # of shares authoratized, etc.
+-- By-laws
+  * not filed w/state, governing document that dictates rules of operation, etc.
+-- Initial consent of sole incorporator
+-- Initial consent of director(s)
+-- Stock Certificates, receipt, and ledger
+-- Qualification to do business in MA (or other resident state)
+-- S corporation election, if applicable 
+  * needs to be filed with IRS, limited amount of time to do this once corporation is created
+  * 10-year window for certain transfer benefits if S corp is created from C corp. get S corp done early
+-- Founder agreements, including restricted stock agreements
+
+-- Certificate of incorporation
+  * very simple at incorporation
+  * gets complicated when you get VC funding (preferred stock)
+-- Key questions
+  * what is the name of the company
+  * how many shares to authorize
+    should ideally be a divisible number
+    can have aesthetic value via # of shares
+    half of stock is authorized for future activities, half among founders
+    when delaware calculates franchise tax, 2 ways
+      1. based on # of shares authorized - can be expensive
+      2. assumed par value
+  * what is par value?
+    presumed minimum stock price, holdover from old practices. $0.01 is sufficient
+-- Bylaws - generally track the corporate statute
+  * sets officers, directors, who is responsible for day-to-day operations, etc.
+
+*** Gil
+
+Dividing the Pie
+-- Define group of "founders" to receive stock - keep it small and exclusive
+  * try to keep this group as small as possible.
+  * these are the owners, only owners should get stock
+  * for everyone else, options are preferable
+  * in delaware corp, minority stakeholders do have limited rights- options holders don't have the same rights nor required visibility into board operations
+-- Consider past and future relative contributions of co-founders, and what feels "fair"
+-- "Sweat Equity" - incentivize founders by allocating enough equity for their sweat.
+-- "Vesting" - incentivize founders by subjecting their equity to reverse vesting
+  * how does one prevent a founder from exiting operations and taking a free ride in operations?
+  * for tax reasons, founders should receive 100% of shares on day 1
+  * if they leave, then use reverse vesting to clawback shares
+  * remember that it is the company that buys back shares, not the remaining founders
+  * founders may try to adjust bylaws so that founders buy back shares in case of departure
+-- Cannot divide more or less than 100%
+  * reserved/preauthorized shares should never be considered as part of an ownership tally
+
+Reverse Vesting
+-- 100% of founder shares are issued from day one, but the company has the right to purchase at the price paid by the founder (usually nominal) if the founder leaves the company for any reason
+-- restricted stock agreements
+  * restricted stock agreement between the company and founder
+  * typically, the repurchase right is with the company
+  * in addition to vesting, restrictions on transfer
+-- shares vest over time
+  * typically 4 years on east coast
+  * 5 years on west coast
+-- try to keep vesting schedule simple and linear
+-- consider vesting for past activities
+  * ex: founder who has been working prior to point should not necessarily be imposed to vesting
+-- when to impose restrictions? early on: benefits co-founders
+-- venture investors will require it anyway
+-- critical tax consideration - 83(b) election(!) [needs REF]
+  * when receiving restricted stock: stock can be subject to forfeiture
+  
+83(b) Election
+-- tax benefits
+  * can make initial issue a taxable event, avoiding increased expense in the future if shares are worth more
+-- strict deadline for filing, within 30 days after the date of grant of the unvested equity interest; no procedure to  extend
+-- proof of timely is important
+-- all required information must be included on the election
+-- must be filed with correct IRS service center and included with personal tax return
+
+** David
+
+Founder "NDA"s
+-- what's covered
+  * confidentiality
+  * non-competition
+  * non-solicitation
+  * invention assignment
+
+Confidentiality
+-- Scope
+  * IP and other tech info
+  * business and financial info
+  * marketing info
+  * third-party confidential info
+
+-- Duration
+  * during employment
+  * post-employment
+
+Non-Competition
+-- Subject Matter Scope
+  * Defined in relation to company's business
+Q: How does this apply to independent contractors?
+A: It varies. If it is too broad, it may not make it worthwhile for third-parties to work with you. However, it is not unreasonable to have the developer's work become ownership of the company.
+-- Duration
+  * during employment
+  * post-employment
+    standard is usually a year around MA
+-- Geographical area scope
+-- Enforceability Limitation
+  * reasonableness of restrictions
+  * variation among different jurisdictions
+  * california employees
+    California does not allow straight-non-compete agreements.
+  * judicial discretion
+  
+Q: Who owns the IP if there is no agreement in place between a business / contractor?
+A: The ownership is in the hands of the contractor.
+A2: It can be legally treacherous to designate someone an 'independent contractor'. Suppose you have someone that works for you 50% of their time, and you direct project decisions that require this party to be available or on-call. Legally, this may qualify them as a full-time employees, opening more 
+A3: All employees must be paid salary or compensation. If a party qualifies as an employee, they can qualify for back pay, regardless of actual compensation.
+
+Q: Can founders choose not to be paid?
+A: Yes, but they can cause legal headaches. You can be sued for this.
+Scenario: Two founders create a company. Both opt out of being paid. One founder quits, then sues successfully for not having been paid.
+
+Non-Solicitation
+-- Scope
+  * Customers
+  * Employees
+-- Duration
+  * During employment
+  * Post-employment
+
+Invention Assignment
+-- Scope
+  * Any intellectual property developed by founder, alone or with others, during employment and in any way relating to company's business or products or to tasks assigned to founder
+  * carve-out for specifically identified previous inventions
+
+*** Q&A
+
+Q: When is it appropriate not to incorporate in DE?
+A: If you own a service business, other business that throws off a lot of cash, or don't have plans to expand out of state.
+
+Q: Can I, as an individual, enforce an NDA with another party?
+A: Simply: if you can enter into a contract, you can issue a NDA. Also good is to setup the NDA to be transferable to your startup/corporation in the future.
+
+david@masschallenge.org - $100 discount on May 25th.

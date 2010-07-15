@@ -1,0 +1,45 @@
+--- API Policy Team led by @delbius (Del Harvey)
+
+-- ground rules for developers
+
+don't surprise users in a bad way
+don't create or distribute spam
+respect user privacy
+adhere to our trademark and display guidelines
+reach out to us with questions and suggestions
+adhere to our terms of service and twitter rules
+be awesome
+* twitter team will look at apps and test-drive
+
+-- what led to those ground rules, anyways
+
+horrible things, what, you wanted details? fine.
+misleading descriptions of app functions resulted in unsettled and upset users
+spam sucks and creates a bad user experience
+ * autofollow not really allowed
+ * autofollow-back should be used sparingly
+ * no auto-unfollow
+privacy is important and users care a lot about it (and they should!)
+ * robme.com example. users implicitly trust app makers
+ * rules against mangling or auto-editing tweets - see ustream hashtag issues
+guidelines help us ensure things are rendered accurately
+awesomeness is awesome
+
+-- so, what do you want to talk about?
+
+are developers allowed to store permanent copies of tweets? (My Question!! via Google Moderator)
+* if it is necessary to cache a timeline- but don't permanently store a tweet, unless the user is fully aware their tweets are being stored
+* can a developer download a long stream of data? generally not 
+* plans to liberate all tweets and at some point there will no longer be a cap at 3200
+* make sure you're not crawling and just storing corpus of data
+
+what is twitter doing to ensure it does not abuse the power it has over api devs and users at twitter?
+* twitter tries to do it's best not to get in the way
+* ex: OAuth tokens don't get checked right away. developers are allowed to use the tokens right away upon request.
+
+can my tweets say they're from me & my blog, instead of my app?
+* yes, if you apply for a source parameter
+* do not offer services that require a consumer secret/token from a user
+
+if somebody is not showing in search, what's happening w/that?
+* search algorithmically filters out spammy updates. if your app is sending out lots of dupe messages, it may get filtered out from search.

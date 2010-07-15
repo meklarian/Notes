@@ -1,0 +1,337 @@
+-- Rob Larsen - Front End Performance for the Common Man - Practical Strategies to Speed up your site
+
+-- Intro
+Fast sites mean users do more stuff
+REF: http://dfst.us/2c
+"Whatever the key action is on your site, if your site is fast, users will do more of it."
+
+Milliseconds Matter
+10x100ms improvements = 1 second
+"The optimal human-computer interaction is about 100ms. If you're not paying attention to this, you've no chance of making the ideal."
+
+Front End Performance is a State of Mind
+"If you're in an organization, you need to build this into everything that you do."
+"Always be thinking about this."
+
+If you need to sell this stuff to clients/managers/stakeholders
+http://www.phpied.com/the-performance-business-pitch
+
+-- Specifics
+
+* YSlow rules
+
+Make Fewer HTTP Requests
+Use a CDN (Content Delivery Network)
+Add Expires or Cache-Control Header
+GZip Components
+Reduce DNS lookups
+Minifiy Javascript and CSS
+Put Stylesheets at Top
+Put Scripts at Bottom
+Avoid CSS Expressions
+Make JavaScript and CSS External
+Avoid Redirects
+
+Preload Components
+Postload Components
+Split Components across Domains
+Remove duplicate scripts
+configure etags
+make ajax cachable
+flush buffer early
+use GET for ajax requests (if possible)
+
+use cookie-free domains for components
+reduce cookie size
+minimize DOM access
+develop smart event handlers
+choose <link> over @import
+avoid filters
+optimize images
+optimize CSS sprites
+do not scale images in HTML
+make favicon.ico small and cacheable
+
+avoid empty image source
+
+* PageSpeed Rules
+
+avoid bad requests
+avoid CSS expressions
+combine external CSS
+combine external javascript
+defer loading of javascript
+enable compression
+leverage browser caching
+leverage proxy caching
+Minify CSS
+Minify HTML
+Minify Javascript
+
+minimize request size
+minimize dns lookups
+minimize redirects
+opimitze images
+optimise the order of styles and scripts
+parallelize downloads across hostnames
+put CSS in the document head
+
+specify a character set early
+specify image dimensions
+use efficient CSS selectors
+
+* the big ones
+Make fewer HTTP Requests
+combine external CSS, Javascript
+use CSS sprites
+
+* build scripts
+
+use a build script to polish up files before deployment
+useful tasks
+- concatenate compatible JS files
+- YUI compressor
+  - removes whitespace
+  - other optimizations
+  - generally 40-60% improvement in size
+use build-version-number to stay ahead of cache changes
+
+http://ant.apache.org/
+http://dfst.us/build
+
+* over the wire
+
+PHP
+  - minify
+  - combine
+  - smartoptimizer
+
+DJANGO
+  - django static management
+  - django compressor
+  
+NET
+  - YUI compressor for .NET
+  - Packer for .NET
+
+RUBY
+  - juicer
+  - jammit
+  - assetpackager
+
+* manual optimization
+
+work in single files
+minify by hand on the command line or online http://yui.2clics.net
+rev file names by hand (revision control)
+leverage google/yahoo ajax CDN if you want to keep library/app code separate
+
+* YUI Compressor
+does CSS/Javascript for one JAR
+handles conditional compilation
+
+other alternatives:
+  /packer/
+  Dojo shrinksafe
+  Closure Compiler (supposedly better than YUI, missing CSS and other items)
+  CSSMin* (alphabetizes CSS properties, groups patterns, etc)
+  
+-- Sprites
+build them as you go
+  - 8 bit PNG
+    watch the colors in the palette as you go. as you get close to 256, start checking up on originals
+  - jpg or 32bit pngs
+  - watch not just file size, but also target memory footprint. 1500x1500 x 32bit = you're doing it wrong
+
+alternative:
+  http://spriteme.org/
+
+horizontal is better than vertical sprites
+combine similar colors
+keep overall pixel count down. 2000x2000 means you're doing it wrong. 100x100 is 10,000 pixels. 1000x1000 is 1M pixels. compressed, file size improvements is one thing. the memory footprint after transfer, is another thing entirely.
+
+-- Use a Content Delivery Network
+
+the big solutions are expensive
+Amazon CloudFront to the rescue
+* API Access
+* Cloudberry Explorer
+* Bucket Explorer
+"You can serve interface images off of cloudfront for $1.25/month. 2,000 uniques a month... you can do it too."
+Downside
+* CSS/Javascript are tricky to serve GZipped
+* headers have to be set manually
+
+sprite, served off app server (tested via pingdom)
+  - avg. response time 233ms
+  - slowest response time 270ms
+  - fastest avg. time 211ms
+
+sprite, served off CDN (Amazon Cloudfront)
+  - avg. response time 144ms (shaves 40%)
+  - slowest response time 243ms
+  - fastest avg.response time 122ms
+
+big players average response times around 90-100ms
+
+* add expires/cache-control header
+
+page speed rules
+set expiration from visit date if possible
+leverage proxy caching
+
+* on cloudfront/s3
+
+http://www.drunkenfist.com/304/2007/12/26/setting-far-future-expires-headers-for-images-in-amazon-s3/
+
+* gzip components
+this can be tricky depending on your level of control and your host's idea of what's cool (legit for use)
+in wordpress, use wp-super-cache and turn on super cache compression
+
+* domain sharding
+
+YSlow Rules
+  - Reduce DNS Lookups
+  - Split Components across Domains
+  - Use Cookie-free domains for components
+
+PageSpeed Rules
+  - Parallize downloads across domains
+
+main domain servers CSS/JS
+images via Cloudfront
+content images from media.drunkenfist.com
+google beats up page speeds with analytics and ad code
+
+parallized requests matter less than in the past
+older browsers: 2 connections/site
+newer: 4-6/site
+
+* serve static content from a cookieless domain
+if your domain is www.example.org, you can host your static components on a subdomain like static.example.org; so long as you do not set a domain-level cookie
+
+postload components
+* pagespeed rule, defer loading of javascript
+no easy answers:
+  analyze your application to see if you may be able to split up your code
+  the profile deferrable javascript option in pagespeed might help
+  LABjs
+
+* Preload Components
+you can do it old-school, with javascript
+use REL=prefetch
+
+-- optimize images
+
+choose the right image formats
+JPG for photos, paintings
+8bit PNG for interface images, or other images with limited # of colors
+use 32bit PNG for images with special transparency/opacity needs
+use fireworks (to optimize images)
+use SMUSH.it to optimize images observed on sites
+
+-- specify a character set early
+
+http://www.kylescholz.com/blog/2010/01/performance_implications_of_charset.html
+use a meta tag, early as possible
+*** PS - not sure this is wise to set alternates other than UTF-8, due to UTF-7 security exploit in older IE
+
+-- optimize the order of styles and scripts
+JS and CSS should be in the head tag. CSS before JS to prevent delays in download time
+http://code.google.com/speed/page-speed/docs/rtt.html#PutStylesBeforeScripts
+
+-- Use Efficient CSS Selectors
+"Writing efficient CSS selectors for Mozilla" - 10 yr old article on Mozilla site
+
+engine evaluates each rule from right to left, starting with the "key" selector, and moving through each one until it finds a match or gives up
+less rules = better
+be as specific as possible
+avoid unnecessary redundancy
+don't waste time with rules that don't apply
+
+BAD SELECTORS
+Universals
+>>> BODY *
+Rules with tag selector as key
+>>> UI LI A
+For every element that matches the key, the browser must go up the DOM tree testing every ancestor element until it matches or hits the root.
+
+POOR SELECTORS
+child/adjacents
+BODY > * {...}
+.hide-scrollbars > * {...}
+tag selector as key
+UL > LI > A
+
+WEAK SELECTORS
+NAV#nav {...}
+FORM#login {...}
+
+ID selectors are unique by definition, adding a class just adds useless overhead
+
+rules that apply :hover to non-links (bad)
+
+With JavaScript, this applies too.
+  - Sizzle (jQuery)
+  - QuerySelectorAll
+  - YUI3
+
+-- other notes
+
+write faster javascript
+test your javascript
+prepare for empty-cache situations
+
+* faster javascript
+libraries are awesome
+but sometimes convenience methods exposed by libraries can slow your site down
+this convenience is provided by code separating you from plain-old-simple javascript
+
+example:
+each/foreach provided by libraries - this can be 8x slower (in practice) than just a regular loop
+normally not a big deal, but something to keep an eye on in terms of performance (ie. 1000 elements to scan... avoid library loops)
+why?: creates, executes, destroys a new function object per iteration. may introduce new closures. etc.
+
+http://www.jibbering.com/faq/notes/closures
+
+http://blogs.sun.com/greimer/entry/best_way_to_code_a
+
+http://blog.stevenlevithan.com/archives/faster-trim-javascript
+
+http://www.stevesouder.com/blog/
+
+-- Cache
+never assume the user will have anything in their cache
+if yahoo users have an empty cache 40-60% of the time, then what chance do we mortals have?
+don't plan for the second page view at the expense of the first
+
+caches can be tiny!
+
+Default Sizes
+IE: 8-50Mb
+Firefox: 50Mb
+Safari: ????
+Chrome: < 80Mb
+Opera: 20Mb
+
+-- Tools
+
+YSlow
+Page Speed
+Hammerhead
+MSFast
+PageTest - Can load pages from locations around the world, and display latency
+Fiddler
+Pingdom - paid, but worth to check timing
+dynaTrace AJAX Edition
+Google Speed Tracer
+
+Audience Suggestion: Nicole Sullivan (SMUSH.it) has a CSS framework OOCSS? supposedly solves problem of writing efficient CSS. stubbornella.com
+
+Audience Comment: At this time, google pagerank for page speed is rated negatively. Slower pages get penalties. Faster pages don't change in rank.
+
+Audience: http://desandro.com/articles/opera-logo-css
+All CSS3 layout/images.
+
+Powerpoint Slides:
+http://dfst.us/fast

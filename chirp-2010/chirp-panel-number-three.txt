@@ -1,0 +1,138 @@
+Founders Panel
+@ev, @rsarver, jason goldman, dick costolo, @biz
+
+Q: What about an Android App?
+
+A: Yes. Definitely. @ev - We have an app in the works.
+
+Q: Acquisition? Partnership w/Google? How?
+
+A: Can't say.
+
+Q: Regarding your ad... legitimate sponsors... are you going to have to put in a hashtag, so that the user knows it is a promoted tweet (due to regulatory concerns), or not?
+
+A: First Q is there's all this regulation about disclosing conflict-of-interest in a tweet, will there be a solution for this? Second Q how are developers going to be able to participate in establishing a platform and the rules for this situation?
+
+Dick: The promoted tweet has a different color background, and will have an attribution: "promoted by @account". No need to use a hashtag or anything else. When we roll out syndication, there will be clear guidelines for how these tweets are displayed, if you're participating in the program.
+
+Q: What's the prohibition for using the firehosing?
+
+RSarver: Right now the big issue is partnerships. There's a big backlog to be able to sign deals. It's currently a manual process. Email partnerships@twitter or me rsarver@twitter.
+
+Dick: Also there are subsets to the firehose, sliced different ways, keyword by keyword.
+
+Ev: Our goal is to get the firehose to as many people as possible. The price we're charging for it- is tough to figure out, it's about how much value twitter gives to the organization using it. We want to somehow make it possible for two-man teams to be able to get access.
+
+Q: Regarding firehose, is GEO included?
+
+RSarver: We have a GEO-hose now, it's not well known, released just a while ago. It allows you to put in bounding-boxes, and that only takes explicitly geo-coded tweets.
+
+Q: Is twitter going to host rich-media?
+
+Ev: We can't make promises yet. It's great that people have provided functionality, and it's great, but we think it could be a lot easier. Photos are a big part of the experience now on twitter. Twitter for the iPhone will be enabling access to a number of media providers.
+
+RSarver: We've been working on a spec that would allow brokering of media to different providers.
+
+Ev: We're definitely going to make it easier for developers. We don't know what direction we'll take.
+
+Q: Do you lose sleep over facebook and other competition?
+
+Jason: There's a lot of space for partners to compete. But I'd like to point out- I used to blog a lot, and now I tweet. So I worry about people who are able to drive human expression better.
+
+Ev: One thing I'd like to point out- there's no lines anymore. Where we're at, a lot of that is thrown out the window. Ex: FriendFeed came out, worked with twitter, people asked- is it a competitor? And there's going to be a lot more of these coming up.
+
+Q: What direction should developers take?
+
+Ev: I like to say, create the thing you want to see in the world. Definitely make something you love. If you try to make the choice by market dynamics, you may end up fooling yourself.
+
+Q: @pistachio - Will the events of the last week have a chilling effect on the developers working on apps in the space? Will this dry up the money coming into the space?
+
+Ev: I'm curious, let's take the temperature on this topic from the room. How many people are more excited to dev on the twitter platform?
+
+(1 in 5 hands up)
+
+How many people are less excited now, to dev on the platform?
+
+(no hands up).
+
+Biz: I'm personally more excited about what the new crop of applications will bring up. We've embraced this unknown at twitter- an informal motto is "if we ever think we've figured this all out, we're screwed".
+
+Q: Are devs going to have fair access to this stuff?
+
+Jason (interrupts): Isn't it already imbalanced already? 75% of tweets and activity come from the ecosystem.
+
+RSarver: Example- we're offering user streams to api developers first.
+
+Q: What is twitter's international censorship policy?
+
+Jason: China's a really difficult situation. We're interested in localization into Chinese, we don't know if we would open an office or operations in China.
+
+Biz: I do feel we need to translate and make available, twitter as much as we can in as many languages as we can.
+
+Ev (?): In short, we support the open exchange of data, and would like to open up access as best we can in China.
+
+Q: Ryan from Hootsuite asks: In terms of content-sharing, enhancements, is that going to be free-for-all for everyone? What about link-shorteners?
+
+RSarver: We're just looking to make it open to everyone. As long as the API is supported, anyone can use it.
+
+Ev: We need to solve it on twitter.com, and it won't be done on twitter.com for 3rd parties. Users can use other clients.
+
+Q: How is the conflict of interest going to be resolved between a number of parties overlapping in promoted tweets.
+
+Dick: Short answer is there will be only 1 at the top. We're still trying to work this out.
+
+Q: Should devs go on their own, or try to get hired at twitter?
+
+Ev stands up. Jokes about "YOU ALL HAVE A JOB!" and "LOOK UNDER YOUR CHAIR" abound.
+
+Ev: I think we're in a really sweet spot. We're less than 200 people... exciting sweet spot to be in. Small number of people, really big impact.
+
+Dick: So there's an enormous opportunity to come in, take ownership, you're the woman or guy- take it over and figure it out.
+
+Q: What's the path to acquisition?
+
+Dick: The path to acquisition is wearing a black jacket and jeans.
+
+Jason: There's all kinds of ways. The summize acquisition was basically a merger... we weren't much bigger. We found out about them on twitter. It was a one man shop... launched a great product, we found them, used their product and wanted to bring them abord.
+
+I guess one of the virtues is... have you used the product? is it awesome? For me, it's a matter of personal delight.
+
+Q: @Jazzychaz - Could we get clarity about how smaller apps can compete with large apps? What's the path to getting into the application promotion box.
+
+Jason: One way to understand the promotion box, like the suggested user list, we editorialize. We didn't have a formal method in the past- didn't work, had to go to another approach. But now, we'll have a way to do it- via promoted tweets.
+
+Q: So how is the world going to find this?
+
+Ev: App friction is one of the points of friction that we see. People that use API apps are definitely more engaged. But we can do much much better for you. We should definitely find a way.
+
+Q: jolie o'dell: How are you guys going to give even more clarity on the roadmap in the future? And what happens next post-chirp? Will there be a guide?
+
+RSarver: We started, and want to do more town-hall things, where we give quarterly updates. We can't always give little updates, the changes could happen week by week. But we want to try and give people a better idea on bigger issues and changes as best we can.
+
+Jason: We also have a history of trying to pre-announce features on the dev list. So we try to put these changes in front of the users, at least before the users of twitter.com do. Also we would like to point that we are working on a decoupling strategy- for example, m.twitter.com. If it's not available on the API, we can't use it there.
+
+Q: What would you like to see built? What problems aren't being solved right now? Where would you like to see energy directed?
+
+Jason: Usability and friction-free. These are the objectives that drive our internal goals and development, and we think the dev community could benefit from doing this too.
+
+Q: @Orian - What did you learn in the past week? Also, in the past, you rolled out stuff to all devs. But now, with user streams, only a couple dev groups got access to preview new features. What do you say to new devs that didn't get a chance to get a first look?
+
+RSarver: Some of these things are based on trust. Signup-API, is a difficult thing to roll out because there are a number of bad people trying to do bad things to us. There are some things, innocuous, that we can roll out to everyone. But there are things that we can't ever roll out to everyone at once.
+
+Jason: Maybe the question is, how can we get perspective from the dev community to measure how to do it. 
+
+Ev: Scalability is a factor too.
+
+RSarver: User streams are also an issue- we haven't decided how to scale them yet. We do need to work on our own practices of how we grant access or information to new technologies.
+
+Q: So what'd you learn?
+
+RSarver: The best thing we can do is improve communication. We do work on this internally, but also we need to work on this externally.
+
+Ev: We do stuff in our own company, and thing i've learned, time after time; people don't have visibility- the natural reaction is to think "it's nefarious and bad". While there's some tension, we definitely could work on this better and hopefully that maybe we can improve this through conferences like this.
+
+Jason: I think this is the best week in the company- not just from announcements, but to be able to have the right conversations with the community. We sortof had our startup-childhood stolen from us- and didn't get to do all the stuff we wanted to make it awesome.
+
+chirp@twitter.com - will be active at twitter for more questions. we'll try to answer more questions as we can.
+
+Ryan Sarver - Closeout

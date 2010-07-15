@@ -1,0 +1,271 @@
+-- 10 Things I Learned from the jQuery Source - Paul Irish
+
+[speaker] jQuery is like a black box. there is a lot of use of it, but most people don't look under the hood. ... 
+
+-- v1.4.2 - Outer Frame
+
+(function(window, undefined) { 
+...
+})(window);
+
+Self-Executing Anonymous function, that is passed in the global window variable.
+
+When passed through a minifier, (window, undefined) => (a, b). Without the undefined parameter, the window argument would stay intact.
+
+(function(window, document, undefined){
+...
+})(this, this.document);
+
+The aformentioned block has become popular in javascript circles, due to the benefits retained when passed through a minifier, and also protecting the inner block from outer scope.
+
+(function(window, undefined)){
+var x= 5,
+y = 6;
+window.sum = x + y;
+console.log(sum);
+})(window)
+
+The code in the inner block stays out of the global namespace, due to this protection mechanism.
+
+(function myfunc(){
+...
+myfunc();
+...
+})()
+
+Causes recursion.
+
+/// A
+(function myfunc(){
+...
+setTimeout(myfunc, 1000);
+...
+})()
+
+/// B
+setInterval(function(){...}, 1000);
+
+Exhibit B, will run every second (or so), without stopping.
+Exhibit A, will run on each available second, but not the next; until it has called setTimeout(). This is a more reliable pattern of setting up  recurring function calls.
+If exhibit B runs over 1 second, it will run again immediately.
+
+(function myfunc(){
+$.ajax({url: url, async; false});
+})()
+
+Bad form, this will block everything.
+
+(function myfunc(){
+$.ajax({url: url, 
+success: function() { console.log('win!!!');},
+complete: function() { console.log('ding~!'); setTimeout(myfunc, 20000);}
+});
+})()
+
+John Resig suggests using success/complete in ajax() method, to handle successful reception; and to handle end-of-call, whether or not the ajax call actually succeeded.
+
+(function() { ... } ())
+
+Outside parenthesis recommended on ref via Doug Crockford.
+
+-- Hint - To locate a jQuery function, search for a functionname + colon mark.
+
+Example: noConflict()
+
+jQuery.extend({
+  noConflict: function(deep) {
+    window.$ = _$;
+    if(deep){
+      window.jQuery = _jQuery;
+      return jQuery;
+      }
+    return window.jQuery;
+    }
+  });
+  
+Example: props
+
+jQuery.props = {
+  "for" : "htmlFor",
+  "class" : "className",
+  readonly: "readOnly",
+  ...
+  };
+
+jQuery props is a map to translate function names and elements that conflict with existing DOM and browser symbol names.
+
+$(elem).attr('class') ends up accessing className, where appropriate.
+
+[audience members] Potential exists to modify the jQuery props table. One suggestion is to also fix names with difficult to remember casing or awkward names.
+
+$.extend(jQuery.props, {jQuery.props.a = 'aria-enabled-by';});
+
+This adds a moniker 'a' that points to 'aria-enabled-by' in the props map.
+
+Example: speeds
+
+Associated with the speed method. It is possible to also add another custom setting, similar to modifying props, to define new values.
+
+The default speed could also be changed too.
+
+jQuery.fx.speeds._default = '1000';
+
+IE6 patch to fix jerky animation.
+
+jQuery.fx.speeds._default = ($.browser.msie && $.browser.version >= 6) ? 800 : 400;
+
+http://javascript.nwbox.com/IEContentLoaded
+
+Has a useful hack to get the first ready event from the IE DOM.
+
+doScroll() becomes active in IE, once the document is ready.
+
+try {
+if(jQuery.isReady) {
+return;
+}
+
+try {
+document.documentElement.doScroll("left");
+} catch(error) {
+setTimeout(doScrollCheck, 1);
+return;
+}
+
+jQuery.ready();
+}
+
+The aforementioned block is how document.ready is prepared ASAP in IE.
+
+-- Shorthand Methods
+
+$.getScript()
+$.getJSON()
+
+etc.
+
+Example: Extracting $.getScript() to 1st class getScript()
+
+function getScript(url, callback)
+{
+var head = document.getElementsByTagName("head")[0] || document.documentElement;
+var script = document.createElement("script");
+script.src = url;
+var done = false;
+script.onload = script.onreadystatechange = function()
+  {
+    if(!done(!this.readyState || this.readyState === "loaded" || this.readyState === "complete")) {
+      done = true;
+      callback();
+      script.onload = script.onreadystatechange = null;
+    }
+  }
+  
+  head.insertBefore(script, head.firstChild);
+}
+
+getScript('http://cornify.com/js/cornify.js',function(){var times = 37;
+while(--times) cornify_add();
+}
+
+-- show() / hide()
+
+[Speaker] by comparison, prototype.js (jQuery competitor) only does flat CSS change, to perform show/hide toggles. This is bad because the CSS rule in an external stylesheet can take precedent.
+
+[Speaker] jQuery averts this by using the data cache to store the prior value of the display CSS attribute. hide() will then clear display, and show() will then read from the data cache to restore all the proper values.
+
+NOTE: This is only inside the page lifetime. This does not survive between page loads.
+
+-- Selector Performance
+
+$('p:first'); // 1.2ms
+$('p').first(); // .6ms -- This is about 2x as fast
+
+As demonstrated by firebug plugin in firefox.
+
+$('p') maps to getElementsByTagName()
+$('p:first') maps to jQuery sizzle() to resolve the semantics first.
+
+// related
+$('p:lt(4)');
+$('p').slice(0,4);
+
+$('#myelementid').bind() is very fast, due to priority regex hit.
+$('div#myelementid').bind() is not as fast, as it breaks order of regexes that can match it.
+
+REF: https://developer.mozilla.org/en/Writing_Efficient_CSS
+~ good resource for learning about making CSS fast.
+
+$(':password').fadeOut().fadeIn();
+$('*:password').fadeOut().fadeIn();
+
+This is a bad pattern, because it must check every single element on the page. (Universal Selector)
+
+$('input:password') ... is much faster. But this is not cached, and the consumer should cache this set if they need to use it several times.
+
+-- parseJSON
+
+IE8, FF 3.5, Safari -> jQuery uses native methods. json.Parse()... ?
+
+Internal logic is borrowed from http://json.org/json2.js to maintain the same result (deterministic) for native/non-native.
+
+[Question from Audience] Why isn't there a check for window.JSON / window.JSON.parse at the head?
+[Speaker] Don't know.
+
+return window.JSON && window.JSON.parse ? window.JSON.parse(data) : (new Function("return " + data))();
+// Similar to
+return eval('('+ data +')');
+
+[John Resig] The former is preferable because variables cannot be minified in order to be sanitary for eval(). window.eval() also runs at global scope. new Function("return " ...) will not execute the contents and just returns the constructed result.
+
+-- jQuery.unique()
+http://paulirish.com/2010/duck-punching-with-jquery/
+
+This is a patch to update unique() so that it has new behavior that supports more collection/array types.
+
+On the page, a set of elements gets mapped to the old function.
+
+A set of strings/numbers, the set of elements will get mapped to new code to use grep-syntax to reduce the array to unique items only.
+
+-- delay()
+http://blindsignals.com/index.php/2009/07/jquery-delay/
+
+delay() uses the animation (fx) queue, but is not usable for deferred actions in other contexts.
+
+-- jQuery.support = {};
+
+div.innerHTML = "   <link/><table></table> ... ";
+
+jQuery uses a hidden div to check for browser quirks to fix/override.
+
+jQuery.support.boxModel
+
+[Speaker] This is a great way to do feature detection, as it can be checked at runtime in the client browser by jQuery when needed.
+
+-- jQuery dev structure
+
+Component features and tests are all split into module files. Each module file maps 1:1 between a component file and test file.
+
+A makefile is used to merge all the items.
+
+NOTE: Rhino Javascript engine is used to test pieces of jQuery and components.
+
+qunit and sizzle are used to perform tests and merge pieces.
+
+The makefile also does minification to reduce output file size.
+
+The initial output file just contains the outer hull, as mentioned in the first topic.
+
+(function(window, undefined) { 
+})(window);
+
+REF: http://bit.ly/jqsource
+Shortlink to the jQuery source, to allow quick access to internals.
+
+-- Audience Questions
+
+Q: Should we escape magic quotes?
+Don't escape single quotes in JSON, don't escape magic quotes. These can break JSON support in some platforms. Example: flic.kr api has an issue with data returned in this method. Only double quotes need to be fixed.
+
+Q: Is there information on porting other javascript libraries into the jQuery style?
+A: No. But a good example is to look at jQuery plugins and the src as a reference. The plugin guide is also a good way to learn how to form syntax that is friendly and common to most jQuery consumers.

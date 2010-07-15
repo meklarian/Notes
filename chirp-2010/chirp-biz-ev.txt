@@ -1,0 +1,105 @@
+@Biz - biz stone.
+
+Gave intro about how twitter was started.
+
+2006 - founded
+2007 - sxsw story - twitter inc founded
+2008 - explosion in growth. egypt story.
+2009 - scheduled maintenance story- iran protests.
+2010 - 175 employees
+
+300k/new users a day
+105M Known accounts
+
+internal system that does analytics is called 'birdbrain'
+
+@ev - evan williams
+
+2006 twitter api launched
+twitterrific - first desktop mac app for twitter
+twittervision - twitter 
+3 billion requests a day - API traffic alone
+almost as much traffic as yahoo, according to comScore
+1500% growth per year since 2006
+1 year ago - growing pains
+ex. ashton kutcher races cnn to 1M followers
+oprah - requests someone from twitter for taping
+35 employees
+says twitter is looking to give better guidance for developers
+@ev - "the open exchange of information has a positive impact on the world"
+priorities
+0 - infrastructure
+
+building out our infrastructure means 3 things to us
+- scalability
+#FlockDB - graph DB custom built to improve follow-relationship data and storage; stores 13B edges, services up to 100k reads/second at peak
+Snowbird > Cassandra - Tweet Storage
+- quality of service
+reduced error rates
+reduced delivery failure
+less than a minute to get tweets out to 1M users
+killed a number of bugs
+- rapid development
+goal is to enable twitter's team to build on twitter as fast as possible without losing scale.
+release infrastructure has improved.
+Murder - "killer" improvement in deployment.
+releases could occur multiple times a day.
+pre-murder: 2500 seconds
+post-murder: 12 seconds
+uses bitorrent for release
+
+1 - friction-free
+
+Concerned about twitter being too hard to use. big priority for twitter.
+#2 in search suggest in google for "i don't get..."
+Core Concepts: Fast, Obvious, Easy
+homepage has been revamped for new users
+mobile is a big concern for twitter. 30% of active users use it on their phones.
+100% is a goal for twitter.
+4B phones, 1B internet capable
+65 carriers - for twitter to ally w/for SMS
+
+Mary Meeker - "the desktop internet ramp was just a warm-up act for what we're seeing happen on the mobile internet."
+
+Addressed concerns about twitter's acquisition of atebits / Loren. Twitter was concerned about underserving users on Mobile. 
+
+Showing user test video. New User, Stanford Grad, 24y F. Trying to get twitter app for her iPhone. 4-5 minutes, still unable to decide on a client. (missing branding?).
+
+7-8% of new users are now arriving through the blackberry app.
+
+Goal: Serve More Users
+
+2 - Relevance
+
+55M new tweets a day. Vast majority of this data is public and open to anyone. Average user reads ~100 tweets or less a day. Power users, perhaps ~1000 tweets.
+
+600M search queries a day. Vast majority is through the API. Twitter is looking to build relevance in this area.
+
+Top Tweets - release recently. [for this query, are there recent tweets that are noteworthy? if so, bring them to the top]. Lady Gaga features prominently in Top Tweets. On Google, no relevance on searching Lady Gaga tweets.
+
+More Geo-integration features added. Cities, Neighborhoods.
+
+New Launch: Points of Interest - Able to see where people are, and to be able to see whom else is at a location associated with a tweet.
+
+Goal: Keep things relevant, make twitter a better tool for connecting people with desired information.
+
+3 - Revenue
+
+Caption: It's not just ABOUT US.
+
+Close:
+
+Twitter is evolving
+The goal is to serve users
+There is much left to invent
+
+Q: Will there be a check-in feature for twitter, now that points of interest are being integrated?
+A: Looking more for "what's happening" at a location, not "who's at" a location.
+
+Q: Do you have more data on what % of tweets are RT?
+A: We'll try to answer this later in the day.
+
+Q: Can you make acquisitions without alienating your user base?
+A: There's always a level of tension between platform developers and providers. It's not just acquisitions, it's about what you're trying to build. We hope that when we acquire out of the developer pool, that this is a good sign for developers that we value their contribution.
+
+-- Break

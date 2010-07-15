@@ -1,0 +1,255 @@
+-- rick waldron @ bocoup loft, boston 2010-05-05
+
+web workers - poorly understood, has nothing to do with xmlhttprequests, sockets, etc.
+
+web workers are an execution environment that run concurrently in your browser.
+
+web workers... WTF?
+
+The workers API is originally based on the now deprecated Gears WorkerPool API.
+
+Workers allow web applications to run non-blocking scripts in parallel to the main page.
+
+Creates a thread-like environment that uses serialized messaging for worker/client communication.
+
+Allows long-running processes to execute uninterrupted, while keeping the main page responsive.
+
+* We're at the dawning of a new era. WebOS, ChromeOS, technologies that will behave as people expect desktop applications to behave.
+
+The worker API creates real OS-level threads which are capable of scaling across multiple cores.
+
+Workers are not intended to be used in large numbers.
+
+Workers can only pass data in and out of a thread through the postMessage() API and onMessage Event.
+
+Workers cannot access non-thread safe content (DOM elements) or any part of the DOM directly.
+
+Workers provide a simplified means for web applications to run logic in the background.
+
+Workers replace the need for breaking up execution with recursive timer hacks.
+
+var worker = new Worker()
+
+worker.terminate()
+worker.postMessage()
+worker.onmessage = function(event){}
+
+AbstractWorker {
+  void terminate();
+  void postMessage();
+  
+  attribute function onmessage();
+  };
+  
+inside the worker...
+
+self = this - [WorkerGlobelScope]
+self.importScripts()
+self.postMessage()
+self.onmessage = function (event) {}
+
+// pseudo spec
+
+WorkerGlobalScope {
+  WorkerGlobalScope self;
+  WorkerLocation location;
+  
+  ...
+}
+
+
+Workers also support
+
+set/clear Interval
+set/clear Timeout
+
+XMLHttpRequest
+
+* Bad practice isn't cool
+
+Gnarly inconsistency between webkit and gecko implementations
+
+// Gecko:
+postMessage( mixed [string, array, json, bool])
+
+// WebKit:
+postMessage( string )
+
+All examples ignore the addEventListener / removeEventListener pattern
+
+worker.message = function() {}
+self.onmessage = function() {}
+
+importScripts() allow developers to include reusable libraries
+
+importScripts('jquery.js');
+importScripts('dojo.js'); 
+...
+all of these fail since window is not defined
+
+* Let's do it Right! (or better)
+
+Compatibility looks like...
+
+// Native
+postMessage(JSON.stringify([message]0)
+onmessage = function(e) {var message = JSON.parse(e.data);}
+
+Take advantage of addEventListener / removeEventListener
+
+Multiple handlers afford us modular logic delegation
+
+A Thread-safe reusable library
+
+Concise Syntax
+Shallow Learning Curve
+Open Source, community support
+
+* Enter the jQuery.Hive - Writing less and doing more
+
+Simplify the client/main page worker setup API
+Wrap Worker constructor and functions in syntax that jQuery developers are familiar with
+Normalize cross-implementation inconsistencies; message serialization/deserialization
+
+Feed Workers with Pollen
+
+Provides a lightweight, reusable library for:
+
+  AJAX, Worker2Worker Direct Messaging, Worker memoization
+  Object, Array, String Manipulation
+  Query JSON with JSONPath
+  Variable evaluation and logic control flow utilities
+
+A syntax that jQuery developers will understand
+
+Native vs. jQuery.Hive
+
+var msgObj = {foo: "bar"};
+
+var worker = new Worker('worker.js');
+worker.onmessage = function(e) { var message=JSON.parse(e.data); console.dir(message);}
+worker.postMessage(JSON.stringify(msgObj));
+
+jQuery.Hive
+
+var msgObj = {foo:"bar"};
+$.Hive.create({worker: 'worker.js',receive: function (message) { console.dir(message);}});
+$.Hive.get(0).send(msgObj);
+
+// Hive contains a list of created objects
+
+Q: What is worker.js?
+A: This is a file required in execution of workers. (Opaque?)
+
+* Native vs. Pollen
+
+self.onmessage = function(e) {
+var message = JSON.parse(e.data);
+this.postMessage(JSON.stringify(message));};
+
+importScripts('hive.pollen.js');
+// $() inside of a worker is an alias for onmessage=function() {} ...
+$(function(data){$.send(data);});
+
+// or...
+
+Pollen(function(data){Pollen.send(data);});
+
+// self/this/window conceptually the same. inside a worker, you only have 'self'
+
+On the Client, w/jQuery.Hive
+
+Setting up your workers
+
+$(function() {
+  function receiveHandler(msgObj) {
+    // msg is ready to use
+    // this fires anytime the worker calls $.send()
+    }
+  function createdHandler(threads) {
+    // only fired once, after workers have been created
+    // threads == array of currently active workers
+  }
+  $.Hive.create({
+    worker: 'worker-script-file.js',
+    receive: receiveHandler,
+    created: createHandler,
+    count: 1
+    });
+});
+
+Send a message to delegate a workload
+
+$(function() {
+  $.Hive.create({
+    worker: 'worker-script-file.js',
+    receive: function(msgObj) {
+      // msgObj is ready to use as expected
+      $.Hive.created();
+      },
+    created: function(workers){
+    ...
+    },
+  ...
+  });
+});
+
+// Filtering a huge data set
+importScripts('hive.pollen.js');
+$(function(msg){
+$.ajax.get({
+  url: msg.file,
+  dataType: 'json',
+  success: function(jsonObj) {
+    $.send(
+      $.query('?' + msg.filterKey + '~' + msg.filterVal, jsonObj)
+      )
+    }
+  });
+);
+
+Q: Are these ajax calls subject to the same connection limitation as the browser?
+A: Yes and no. Think of this as opening a new tab- same limitations as a separate tab would have.
+
+$(function() {
+  $.Hive.create({
+    worker: 'worker-script-file.js',
+    receive: function()
+    {
+    },
+    ...
+  });
+});
+
+* Less Talk, More Rock
+
+Uses?
+  Anywhere long polling for server data exists
+  Anytime a process causes response hiccups
+  Anywhere that a timer hack has been used to fake concurrency
+
+Ideas?
+  Preloading/caching data or information the app will need later
+  Web IDE code syntax checking
+  spelling/grammar checking
+  live coding syntax highlighter
+  filtering large datasets form AJAX payloads
+  analyzing image or video meta and/or pixel data
+  writing and synthesizing audio data in the upcoming enhanced audio data API
+    REF: See (https://wiki.mozilla.org/Audio_Data_API)
+
+** my ideas
+  Preroll data in the background for a page
+  Transformations (XML + XSLT), (JSON => HTML), etc.
+  Encrypting/Decrypting Streams in the Background
+  Subpage preparation / management (prepare large document fragments for display)
+
+* Fin.
+
+Git it: (awesome new starter kit is now available as well)
+http://github.com/rwldrn/jquery-hive
+Twitter: @rwaldron, @bocoup
+
+Special Thanks to: 
+  Mike Taylor @miketaylr | miketaylr.com
+  Ben Alman @cowboy | benalman.com

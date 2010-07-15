@@ -1,0 +1,345 @@
+Windows Azure Platform
+----
+
+Worker Role
+* May be used to run background tasks.
+
+Web Role
+* Website front end
+
+MSFT Scaling History
+1 billion windows live ID auths/day
+3-4 billion emails filtered by forefront for ~6M mailboxes
+2 billion queries/month on Bing
+450 million hotmail users (15 years)
+100 million users on windows update (12 years)
+20 million xbox live users (9 years)
+400k sq ft of new datacenter space
+
+on-premises servers
+* bring your own machines, connectivity, software
+* complete control
+* complete responsibility
+* static capabilities
+* upfront capital costs for the infrastructure
+
+hosted servers
+* renting machines, connectivity, software
+* less control
+* fewer responsibilities
+* lower capital costs
+* more flexible
+* pay for fixed capacitcty even if idle
+
+cloud platform
+* shared, multi-tenant infrastructure
+* virtualized & dynamic
+* scalable & available
+* abstracted from the infrastructure
+* higher-level services
+* pay as you go
+
+Q: Do we have to manage instances?
+A: Yes, there is an API, though, but in general, most people do this manually.
+
+Q: What happens if the web application needs 3rd party components?
+A: Yes, full deployment environment.
+
+IaaS - Infrastructure as a Service
+  Infrastructure > Servers, Storage, Network
+PaaS - Platform as a Service (Azure)
+  Infrastructure > Servers, Storage, Network
+  Platform > OS & Application Stack
+SaaS - Software as a Service
+  Infrastructure > Servers, Storage, Network
+  Platform > OS & Application Stack
+  Software > Applications and Services
+  
+Driving Forces
+* ISV & SaaS Applications
+* Mid-Market Enterprise
+* Enterprise Application Migration
+* Start-ups & Experimental Initiatives
+* Cloud Seen as a Fastlane to get to market quicker
+* Seasonal Businesses
+* Under Pressure to Dramatically Reduce IT costs
+* Cloud seen as a competitive edge
+
+Case Study: Domino's Pizza
+Domino's Pizza is experimenting with Azure to handle peak-overload.
+Their entire web application is written in Java.
+[Speaker] We support everything. PHP, Ruby, Java, etc.
+
+Other examples of services that can benefit:
+  Restaurant Ordering Services
+  Tax Services
+  Persistent Access Services
+  Peak Access Services
+
+Not suitable for (Due to cost):
+  Personal Blogs
+  Club Sites
+  Community Group
+  Random Low-Bandwidth Access
+
+General Starting Cost: $90/month
+Hurdle is higher due to SLA, Bandwidth, Server Allocation, Uptime, etc.
+
+Q: Is there a sandbox or test mode for Azure?
+A: Only in Dev Mode, Local testing.
+
+Q: Do development tools support non .NET apps on local workstation development?
+A: Yes. More information shortly.
+
+Q: Is there a test or dev container for local server environments?
+A: No. Can only test localmachine or in-cloud.
+
+Q: Are there caps available?
+A: No, not yet.
+
+Locations - Ireland, Switzerland, Hong Kong, Singapore, Austin TX, Chicago IL.
+Containerized Server Cells - Factory Issued Containers with prebuilt racks of servers
+
+Windows Azure
+* Fabric - Service Management Infrastructure
+* Hosting - Applications, Web Services, Workers
+* Storage - Blobs, Queues, Tables, Drives
+* Frictionless Upgrades
+
+Platform
+  Compute
+  Storage
+  Management
+SQL Azure
+  Relational data
+  Management
+  SQL 2008 Subset
+AppFabric (Not Release Candidate Yet)
+  Connectivity
+  Access Control
+
+SQLAzure
+* Core DB Functionality, Subset of SQL Server
+* Database available in limited sizes 1gb, 10gb, 50gb
+* Management
+* SQL Data Sync (Replication, Backup Model)
+
+Azure AppFabric
+* Service Bus
+* Access Control Service
+* Management
+
+AppFabric is the hosting environment for applications, akin in architecture to Tomcat or Websphere for Java Apps.
+
+AppFabric for Windows Server released recently, spawned from codename projects Velocity and Dublin. Assists in hosting WCF services.
+
+See Don Box episode (??) on DotNetRocks for more information about windows app-fabric frameworks in general.
+
+Cloud Fabric
+* Like an IIS server
+* Multiple Virtual Instances
+* Easily provision applications
+* Detect Failures
+* Spin up new instances to replace failed ones
+* How many instances and decide what role they play
+* Load balancing and DNS available
+* Elasticity of the service, scale up/down the number of instances
+
+Dev Fabric (Local Developer Simulation of Cloud Fabric)
+* Like Cassini (the .NET web server used for debugging)
+* Simulated "Cloud Experience" for Development
+* Routes cloud requests to local machine
+* Simulates data storage with local SQL server database
+* Azure SQL simulated with local SQL Server database
+
+There is no local development version of SQL Azure. Use SQL Express instead.
+
+Q: How does licensing work? Is there a requirement to license windows server instances?
+A: No. Completely consumption based.
+
+Q: Is data in SQL Azure securable?
+A: Data is locked down by firewall, with user account restrictions, etc.
+
+Service Management
+
+Fabric
+* Automated Service Management - Provisioning, Patching, Upgrades
+Management Portal
+* ???
+
+Getting Started
+
+The Windows Azure SDK
+http://www.microsoft.com/windowsazure/developers/
+Works on 2008, 2010RC, and 2010 final coming in April.
+2010 Beta 2 does not work with this SDK.
+
+SDK Features
+
+???
+
+Windows Azure Roles
+
+Web Role
+* A web role is used for web application programming in ASP.NET or PHP
+
+Worker Role
+* A worker role is used for performing work on behalf of the web role
+* In addition to .NET languages, worker roles may be written in Ruby or Java, etc.
+* Worker Roles are used to improve scalability by increasing parallelism and asynchronicity
+* Often used for background work
+
+Binary-Formatted communication is available between Web <-> Worker Role.
+
+ASP.NET Web Role
+WCF Service Web Role
+CGI Web Role - PHP / FastCGI application
+Worker Role
+
+Code Instrumentation and Tracing is more important for cloud apps. Cannot attach a debugger to a cloud instance. Only logging/instrumentation data is available to monitor cloud activity.
+
+Q: Does Azure also have its own instrumentation API?
+A: Yes, in addition to .NET, WCF, etc.
+
+Local Dev Fabric is durable- will retain new storage between debugging sessions.
+
+Development Fabric UI can be used to examine instances and data. Has console output to allow observation of Trace information.
+
+Developer Experience
+* Leverage Existing Skills in .NET, SQL Server, WCF
+* User Familiar Tools - Visual Studio, SSMS
+* RESTful HTTP cloud services, supports PHP, Python
+* Cloud apps can be developed locally / offline
+* SDK Clouod Simulator - Dev Fabric, Dev Storage
+
+Application Concerns - Hardware
+* Server Instances
+** Plan for peak usage scenarios
+** Plan for redundancy to reduce down time
+** Make up-front capital expenditures
+*** servers
+*** software
+*** other
+
+Conclusion (Session 1)
+
+Azure Platform Data Storage Options
+
+SQL Azure
+* Relational data storage
+
+Windows Azure DAta Storage
+* Blobs
+** Unstructured data storage
+* Tables
+** Semi-structured or tabular data storage
+* Queues
+** Buffered delivery data storage
+** Queues can also autoforward
+* Drives
+** Durable NTFS volumes that windows azure applications can use.
+** See: http://microsoftpdc.com/Sessions/SVC14
+
+SQL Azure Features
+* Supported
+  - Tables, Indexes, Views
+  - Stored Procedures
+  - Triggers
+  - Constraints
+  - Table Variables
+  - Temp Tables (#Name)
+  - Profiling (??)
+* Not Supported
+  - Physical Server Access
+  - Catalog DDL
+  - Common Language Runtime
+  - Service Broker
+  - Reporting Services
+  - Analysis Services
+  - Distributed Transactions and Queries
+
+Q: Does SQL Azure support profiling/traces?
+A: Local versions, yes. Will also support (due to design) azure as a result of observing queries over connection.
+
+SQL Azure Databases are partitioned automatically, and the TX log is also on a separate volume.
+
+Q: If I have a large dataset that has been split across physical databases, can I access this dataset without using a distributed transaction?
+A: Yes. The distributed transaction semantic limitations are removed.
+Example: Order in NYC, Inventory in Chicago. An insert  at NYC would require an update at Chicago. But because the database is not bound to a location, this sort of query no longer requires knowledge of separate locations and databases.
+
+Q: Are nested transactions supported?
+A: ???
+
+Q: How does SQL Azure handle failover and standby operations?
+A: TBD.
+
+Initial Services
+  - Database - Core SQL Server database capabilities
+
+Future Services
+  - Data Sync - Enables the Sync Framework
+  - Additional SQL Server capabilities available as a service:
+    Business Intelligence
+    Reporting
+  - New Services
+    Reference Data
+    Secure Data Hub
+
+In terms of size, most databases to date do not exceed 10gb, per citation of Microsoft Market Research.
+
+SQL Azure TDS - Tabular Data Stream is the data model for SQL Azure.
+There are always at least 3 instances of data somewhere in the cloud.
+No management of tempDB concerns.
+
+Working assumption is that replication is perfect mirroring granular to the instruction.
+No living backups for SQL Azure. Auto-provisioning handles backups/mirroring.
+
+Access rules may be setup by IP/Filter.
+
+Database Migrations
+Scripts
+- Transfer Schema
+BCP
+- Transfer Data
+SSIS (SQL Server Integration Service)
+- Transfer Schema / Data
+
+sqlazuremw.codeplex.com - SQL Azure Migration Wizard
+requires SQL Server 2008 R2
+
+SQL Azure login requires fully-qualified name. USER@AZURENAME.
+
+Affinity Regions are available to allow grouping of servers and datas in the same datacenter region.
+
+Endpoints are REST URLs for various services.
+
+Blob Storage
+- unstructured storage
+- partitioned by container
+- unlimited containers
+
+Cloud streams don't behave much differently from .NET streams.
+
+Azure Data Storage - Tables
+- Windows Azure Table provides scalable, available, and durable structured storage in the form of tables.
+- the tables contain entities, and the entities contain properties.
+- the tables are scalable to billions of entities and terabytes of data, and the data may be partitioned acrosss thousands of servers.
+- the tables support ACID transactions over single entities and rich queries over the entire table.
+- simple and familiar .NET and REST programming interfaces ae provided via ADO.NET data services
+- REF: http://go.microsoft.com/fwlink/?LinkId=153401 (whitepaper)
+
+Table Storage Terms
+- ???
+
+Table Comparison
+SQL Azure Tables
+- Fully structured
+- strongly typed
+- relational (RDMS)
+- highly scalable
+windows azure tables
+- semi-structured
+- loosely typed
+- nonrelational
+
+

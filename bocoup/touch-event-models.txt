@@ -1,0 +1,178 @@
+** touch event models Jim R. Wilson - jimbojw@github 7/14/2010
+
+REF: http://jimbojw.com/mobile-events
+
+* wild west
+not a lot of standards yet for mobile events
+
+version 2.0 targets
+
+- desktop with mouse
+- iProducts
+- android (1.x, 2.x)
+- Firefox
+- everything else
+
+mouse events (traditional DOM support)
+
+- mousedown
+- mouseup
+- mouseclick
+- mousemove
+- mouseover
+- mouseout
+
+mouse event properties
+
+- event.type
+- event.pageX (*)
+- event.pageY (*)
+- event.clientX
+- event.clientY
+
+webkit touch events
+
+- touchstart - first contact
+- touchmove - movement by fingers
+- touchend - release by fingers
+- touchcancel - ??? reputedly happens when a touch becomes a gesture, such as multi-touch rotate
+
+These events precede mouse events. After a sequence of touch events occurs, then mouse events occur if the chain of handlers hasn't been canceled.
+
+Q: are these solely webkit-specific? is this the emergent standard?
+A: These are webkit events, but they behave a little different on android over iProducts. Android isn't multi-touch yet, so they have a feel more like mouse events.
+
+webkit event properties
+
+caveat: fewer events in iProduct, because they coalesce events into changed/target lists
+
+- event.touches - list of all touch points, each one has a pageX/pageY
+- event.changedTouches - list of all touch points that changed. best way to get a list of things that are currently changing
+- event.targetTouches - targets that are in scope for each touch point
+
+// ex.
+var touch = event.changedTouches[0];
+
+- touch.pageX
+- touch.pageY
+
+Q: So there is no event that encapsulates pinch-zoom or other similar gestures?
+A: There is some support, but not necessarily in the same grain as touch events.
+
+webkit gesture events
+- gestureStart
+- gestureChange
+- gestureEnd
+
+event quirks
+- event.touches.length
+- event.preventDefault()
+
+Caveat: change touches- say if you put two fingers on, then pull them off, the touches list can be empty, but the changed will have two items listed.
+
+Caveat: If you set, say, var x = event... it should still have the same values in it (scope closure?). However, IE recycles the same event. And other browsers don't.
+
+mozilla touch events
+- MozTouchDown
+- MozTouchMove
+- MozTouchRelease
+
+Q: Is there an ID or any identifier to key the touches that are happening on a given page?
+A: See following.
+
+mozilla event properties
+- event.streamId
+
+Note: Each touch point/instance gets a unique streamId.
+
+Q: As an app developer, do I want to assume the presentation is of limited size, or use stretched/expanded layout?
+A: There isn't a one-sized fits all solution for this problem. When you intercept touch events and alter the chain of events by handling preventDefault(); you cause interception of native handlers. Also another issue is that things like CSS-fixed stick only where they were originally presented. Changing view (mobile browsers) to landscape or portrait from landscape, doesn't reorient these CSS-pinned items because the change in presentation doesn't count as a resize to the browser.
+
+* common problems
+
+technical
+ - positions
+ - gestures
+
+philosophical
+ - hover
+ - plurality (multiple touch points)
+
+// mouse position logic
+
+if (event.pageX !== undefined 
+    && event.pageY !== undefined) {
+        x = event.pageX;
+        y = event.pageY;
+} else if (event.clientX !== undefined
+    && event.clientY !== undefined) {
+        x = event.clientX
+            + document.body.scrollLeft
+            + document.documentElement.scrollLeft;
+        y = event.clientY 
+            + document.body.scrollTop 
+            + document.documentElement.scrollTop;
+}
+
+// versus
+
+var touch, x, y;
+
+if (event.touches
+    && event.touches.length) {
+        touch = event.touches[0];
+        x = touch.pageX;
+        y = touch.pageY;
+} else if (event.changedTouches
+    && event.changedTouches.length) {
+        touch = event.changedTouches[0];
+        x = touch.pageX;
+        y = touch.pageY;
+} else if (event.pageX ...
+
+* cross environment hacking
+ - multiply attached handlers
+ - event detection (touch? gesture? click?)
+
+Note: it is advisable to use a first-event-capture flag to allow redetection of events that may have multiple recurrences through a given chain of events after-touch.
+
+// handler declaration
+var trigger = null;
+
+function contact(event) {
+    
+    // detect trigger type
+    if (!trigger) {
+        trigger = event.type;
+    }
+    
+    // only interact with triggered events
+    if (trigger === event.type) {
+        // ... handle
+    }
+    
+}
+
+Note: Now that a flag is active, you can bind safely to multiple events that may occur through the touch-to-click chain.
+
+// bind handlers
+addEvent($wrapper[0])
+    ('mousedown', contact)
+    ('touchstart', contact)
+    ('MozTouchDown', contact)
+    ('mousemove', move)
+    ('touchmove', move)
+    ('MozTouchMove', move);
+addEvent(document)
+    ('mouseup', release)
+    ('touchend', release)
+    ('MozTouchRelease', release);
+
+Note: on some android devices, items may occur out of order or exhibit other faulty behavior. Currying these events and directing them to the same handler with a repetition trap is a safe way to ensure that a behavior isn't missed.
+
+Q: When is a gesture type computed?
+A: Most of these happen on the 2nd touch-move. Once a 2nd touch point has been registered, this is the minimum required for a browser to decide that a gesture is in action. If you don't want this behavior, you can always preventDefault() away the items that would cause registration of a gesture.
+
+REF: http://hexlib.com/
+
+Handles certain touch events, but abstracts things into tile-oriented events. Tile Touch, Tile Untouch (?), Tile Tap.

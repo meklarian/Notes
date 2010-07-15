@@ -1,0 +1,156 @@
+--- Big Data at Twitter #chirpdata - @kevinweil Kevin Weil / Twitter Analytics
+
+-- Three Challenges
+* collecting data
+* large-scale storage & analysis
+* rapid learning over big data
+
+-- collecting data - Data, Data Everywhere
+* you guys generate a lot of data
+* anybody want to guess?
+  7 TB/day, 2PB/year = 10,000 CDs/day, 225mb/hour
+
+-- syslog?
+* started with syslog-ng
+* as our volume grew, it didn't scale
+* resources overwhelmed
+* lost data
+
+-- scribe
+* Surprise! FB had the same problem, built and open-sourced Scribe
+* Log collection framework over Thrift
+* You write log lines, with categories
+* it does the rest
+* runs locally; reliable in network outage
+* nodes only know a downstream writer; hierarchical, scalable
+* pluggable outputs
+
+-- scribe at twitter
+* solved our problem, opened new vistas
+* current 30 different categories logged from javascript, RoR, Scala, etc.
+* we improved logging, monitoring, writing to hadoop, compression
+  intensive logging during twitter login process, to be used to improve understanding of the signup flow
+* continuing to work with FB
+* Google Summer of Code project! Help make it more awesome
+
+-- How do you store 7TB/day?
+* single machine? 
+* What's HD write speed?
+* 80 Mb/s = 24.3hrs to write 7TB
+
+-- Where do I put 7TB/day?
+* need a cluster of machines
+* which adds new layers of complexity
+
+-- Hadoop
+* Distributed file system
+  * automatic replication, fault tolerance
+* mapreduce-based parallel computation
+  * key-value pair based computation interface allows for wide applicability
+~ generating tiles for google maps is done in hadoop
+* open-source: top-level apache project
+* scalable: y! has a 4000 node cluster
+* powerful: sorted 1TB random integers in 62 seconds
+* easy packaging: free cloudera RPMs
+
+-- Two Analysis Challenges
+1. Compute friendships in twitter's social graph
+  * grep, awk? no way
+  * data is in mysql, self join on an n-billion row table?
+  * n,000,000,000 x n,000,000,000 = ???
+2. Large-scale grouping and counting
+  * select count(*) from users? maybe
+  * select count(*) from tweets? uh...
+  * imagine joining them
+  * then grouping
+  * then sorting
+
+-- Back to hadoop
+* didn't we have a cluster of machines?
+* hadoop makes it easy to distribute the calculation
+* purpose-built for parallel calculation
+* just a slight mindset adjustment
+* Map Stage > Calculation Stage > Data Aggregation stage
+
+-- Analysis at Scale
+* Now we're rolling
+* Count all tweets: 12 Billion >> 5 Minutes
+* hit FlockDB in parallel to assemble social graph aggregates
+* run pageruank across users to calculate reputations
+
+-- But...
+* analysis is one in java
+* single-input, two-stage data flow is rigid
+* projections, filters: custom code
+* joins lengthy, error-prone
+* n-stage jobs: hard to manage
+* exploration requires compilation
+
+-- Pig
+* high level language
+* transformations on sets of records
+* process data one step at a time
+* easier than SQL?
+
+-- Why pig? 
+* because i bet you can read the following script (script omitted here)
+* 5% of the code, by comparison, to other languages (Java)
+* 5% of the dev time
+* within 25% of the ideal running time
+* apache project
+
+-- one thing i've learned
+* it's easy to answer questions
+* it's hard to ask the right questions
+* value the system that promotes innovation and iteration
+* more minds contributing = more value from your data
+
+-- counting big data
+* how many requests per day?
+** count
+** correlate
+** research
+* average latency? 95% latency?
+* response code distribution per hour?
+* searches per day?
+* unique users searching, unique queries?
+
+-- Correlating Big Data
+* usage differences for mobile users?
+* ... users on desktop clients?
+* Cohort analyses
+* what features get users hooked?
+
+-- Research on big data
+* what can we tell from a user's tweets?
+* ... from the tweets of their followers?
+* ... from the tweets of those they follow?
+* what influences retweet tree depth?
+* duplicate detection, language detection
+* machine learning
+
+-- if we had more time...
+* hBase backing namesearch
+* LZO compressionan i
+* protocol buffers and hadoop
+* our open source: hadoop-lzo, elephant-bird
+* realtime analytics with cassandra
+
+-- Q/A
+Q: are you thinking about doing an analytics api?
+A: I don't think there are specific plans for that, but it is a good idea and should be raised w/the platform team.
+
+Q: How long do you keep your data around?
+A: there are different timeframes for different types of data. it depends on the category of data.
+
+Q: can you talk a little bit about what to log in the first place?
+A: ideally, if you have a lot of data, log as much context as you can
+
+Q: What are the tradeoffs between cassandra and hBase?
+A: There was a good blog post recently, just by looking at their DNA. Hadoop was never meant to be low-latency. hBase tends to be great for low-latency for batch jobs; we won't connect hBase to a live system, though, because Hadoop has single point of failure at the name-server. On the other hand, it is harder to do mapreduce jobs on cassandra.
+
+Q: What can we learn from tweets?
+A: I would say, it's something we're focusing on a lot right now... but at the same time, a lot of this has been a progression. We're just at the stage of being able to understand stuff- we spent a lot of time on infrastructure up to now.
+
+Q: What's the use of birdbrain? and is that something that will go open-source? and are there any geo-hadoop libraries that you use?
+A: Birdbrain is just a Ruby-on-Rails analytics dashboard... but not that great. The underlying systems behind it are where there is interest. Mister-Geo? Not available yet, though.

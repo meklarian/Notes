@@ -1,0 +1,172 @@
+-- @ev talking monetization
+
+In all fairness, we've gotten a lot of flak over the years, for lack of having a business model. Takes a lot of money to run twitter, to build on top of twitter, etc. Making money on the web, though, is a solved model. There's a lot of ways for people to do that. How much, though, is in question. We want to make a whole lot more money than that, if we can.
+
+We've had to make choices, whether a new feature would help bring new users, versus a feature that could make us money. Up until recent, the choice to do things for the user has taken precedence.
+
+So yesterday, we've released promoted tweets, and this has an opportunity to make us money.
+
+-- dick costolo - chief operating officer
+
+The concept behind promoted tweets, didn't take us long to conceive.
+
+Requirements:
+1. had to be organic to the platform, of twitter
+2. had to be a monetization that works only on twitter.com, but to everywhere that tweets go
+
+This kindof made it easy for us, in that the monetization platform would have to be built on tweets.
+
+In november, when I first pre-announced it, i mentioned and said it would be: "Fascinating, Non-Traditional, Awesome" and "You're gonna love it".
+
+First of all, it's not ads. It's only tweets. All that exists, is a tweet. A promoted tweet, is a tweet.
+
+Demo of promoted tweets.
+
+Account can only select their own tweets. Can't select tweets from unrelated accounts. Picks associated keywords, and the tweet shows up at the top, in search, with other tweets with matching keywords.
+
+The folks who work on conversational media, and paid media, are now going to have to spend a lot of time talking to each other. This is going to be about doing what you can with the conversational exchange in twitter.
+
+You can do anything you can do to a tweet, to a promoted tweet. Reply, Favorite, Retweet.
+
+The next most important thing, is that promoted tweets allow a company to engage with their audience in real-time.
+
+On slide: CREATIVE, ANALYTICS, INTERACTION
+
+There was a study, a few weeks ago by a company that does studies, that said "Twitter is a good indicator about whether a movie will do well on opening. A movie with more tweets will do better than those with fewer. A linear relation."
+
+If you're a movie studio- you want more than just your account and followers, to be able to interact with the people related to them and with related interests.
+
+For a company (best buy, for example), a tweet about charging your iPad battery, can be pinned to the top of search results to the benefit of users and the audience; instead of dropping off after it has escaped the timeline.
+
+Slide: SEARCH, SYNDICATION, EXPANDED DELIVERY
+
+Only on search, only on twitter.com; at this time. The platform is new, just launched, we have hypothesis about how it will work; the companies we work with here- use twitter in a number of different ways. After we get this working with our partners, this will get rolled out to everyone. There will be no first citizen, second citizen, in syndication. There is one class of citizens, we're all equal citizens. We will eventually expand delivery of promoted tweets, beyond search.
+
+Slide: RESONANCE - Multiple axes of engagement
+
+So, we've come up w/this term, Resonance. It measures multiple axises of engagement with a tweet. We didn't want to force a square peg into a round hole, making it difficult to get access to people in tweets. Resonance will measure retweets, impressions, replies, favorites, #tag clicks, avatar clicks, link clicks, and views after RTs, etc.
+
+Since promoted tweets can only be used by companies with sponsorship accounts- we will only allow companies with good resonance to use the program.
+
+Tweets that don't resonante w/Users, will disappear as promotedo tweets and downgrade to regular tweets.
+
+We will stop showing promotions that people don't like.
+
+Slide: Interest graph (?!)
+
+The cool thing about twitter, is that it represents this visible, public, one to many interest model. All public and visible. It also, because of the things that people follow, the kinds of accounts that people follow, through this 1-N relationship, becomes an interest graph. You can start to paint this interesting model of interest. And we think, that for companies, that are going to use this promoted tweets model, there's a very compelling opportunity; to target this interest graph in real time.
+
+How we're price these promotions? Initially, we'll do something like a CPM model, but eventually a ROI model. We still need to measure and understand how these promoted tweets interact with the overal audience.
+
+Slide: It's not just about TWITTER.COM making money.
+
+As we've said, it's not about TWITTER.COM making money. It's about the entire ecosystem making money. Once we have worked this out- we'll open it out to everyone in the ecosystem. It will be 50/50 between us and the ecosystem partner- transparent. We're saying this today, we're saying this to everyone. It will be for everyone. If you don't want to use this model, you don't have to display promoted tweets. We are going to enforce, at some point soon, terms of service; what we will and won't be ok with in a stream, regarding ad service programs. This is not meant to pick on anyone or anything, just to point out things we can conceive of, and would dislike. We don't want to harm the overall value of the platform, and don't want to cause confusion for the user.
+
+Introductions for discussion about promoted tweets.
+
+Brad from Starbucks.
+
+* Brad - Starbucks
+
+It's been live for 24 hours. The one campaign we've been running, (thursday), is the bring a tumbler/mug and get free coffee. This fits with what tweets we send out anyways. We see it as a realtime device.
+
+Q: Have you started to make decisions about what tweets you promote and what you don't? Do your teams fight over what gets promoted and what doesn't?
+
+It's been live for a day. We want to see how tweets resonate with people. We don't want this to be an ad, we want it to be a way to break through the noise.
+
+One thing we see a lot of, is people tweeting "I'm at starbucks". We would like to find a way to work with this somehow.
+
+* back to Dick Costolo
+
+We want to work with folks that really, already, understood twitter; and used it in ways that can really engage with the audience. The april fool's day, about micra and plenta, was an organic tweet. It was retweeted hundreds of times.
+
+Q: This concept of resonance.. the search geek in me starts to think about secret sauces. The concept of promoted tweets, falling off, is an interesting idea. Most marketers, have the concept that when they pay for something, that it will definitely get seen.
+
+Dick: If there's no impression and it drops off, there's no payment. Once you promote a tweet, it's pegged to the top automatically. If there's no resonance, it will drop off.
+
+Q: How does this compare with adwords? Google's very secretive about the algorithms behind them. Is Twitter going to be more open about this?
+
+Dick: What we'll do, is provide resonance scores with companies, to see how their tweets are doing. One thing about coming after google, youtube, etc... is being able to make better decisions about spam.
+
+* back to Brad
+
+Q: What have you learned, in experience, in creating a sense of engagement?
+
+Brad: It's about creating a relationship with people. For example, we have tweets where we talk about "How do you like your barista?", etc. This is better than just talking about ourselves. It opens up conversations with people about us and how we're doing.
+
+Q: What is interesting, is that you (starbucks) train people to make appropriate tweets, instead of dedicating people to craft tweets. How has this worked out for starbucks?
+
+Brad: We like to say that we take an embassy approach. We let people speak once we have trained them.
+
+Q: Do you have a policy?
+
+Brad: A social media policy? We're working on that. It's an interesting thing- people like to tweet on the job. Our lawyers are working on that. (audience laughs).
+
+* back to dick
+
+Q: Realtime interest graph, can you explain more about that?
+
+Dick: So as I mentioned, twitter is this interesting 1 to N interest graph. I follow the SF giants, I'm into SF baseball. etc. It's not just a ... one of the things that raises the hair on @biz and @ev's heads is when we think of twitter only as a social media platform. One thing that is overlooked is how accessible it is to discover interests of people on twitter.
+
+It's our obligation, to prevent companies from damaging the relationship between users and twitter.
+
+Q: Private interest graph, as opposed to public social graph?
+
+Dick: We're trying to draw distinction, between this environment, and the other kinds of things people do.
+
+Q: When promoted tweet, after this phase now, becomes syndicated and becomes part of the stream; your goal is to allow, say, starbucks, is to go back and see what tweets measure up high on resonance.
+
+Dick: I don't know that's how, exactly, we'll do that. We want to roll this out slowly and be very careful about how this affects our users. For example, we want to see if we can make this compelling and focused. Geo comes to mind. A user is at lollapalooza, and an advertiser in the area has something of interest to the user; and perhaps a promoted tweet is shown to the user.
+
+Q: Is there something you couldn't do before, that you couldn't do before?
+
+Brad: So, Geo, is huge for us. You can't make a cup of coffee on the internet. Not yet. Get somebody on the tubes working on it. We're interested in doing targetted and short term promotions... like "Hey, there's a store on XYZ street that has a special sample of ABC. Only 10 available, go try now!".
+
+Q: Can third parties, curate out, promoted tweets?
+
+Dick: I don't think they'll have to.
+
+Dick (Q from other): "If a third party client doesn't want to take promoted tweets, can they block them?"
+
+Dick: You don't have to. It will be up to the third party client.
+
+Q: How many engaged, active users, do you have at twitter, and how do you measure them?
+
+Dick: We don't know. We aren't able to measure it at this time. Example: Tweets go out to another site, and get viewed, and this interaction cannot be measured by us.
+
+Q: As a pct of the 105M, how many tweet actively?
+
+Dick: It's a consumption environment, but we do know this. One of the things I'd seen the other day, that struck me as funny, was an article that said "only 30% of active users tweet". This is silly, like saying only 0.0001% of TV Viewers make programs. It's a consumption environment, and it's not going to be a world where we have to have people tweet.
+
+Q: Got a timeline?
+
+Dick: No. We're going to work on improving our measurement and readings of resonance. We're going to be building syndication now, but we won't syndicate until we understand this better.
+
+Q: Could this be as late as next week?
+
+Dick: Nah, it won't take that long.
+
+Q: Can you imagine, an ecosystem, that you've thought of, layers to it, regarding third parties; agencies that would like to create promoted tweets?
+
+Dick: This might not be a yes. We might say, that you've had to have been an account for X period of time, Y followers, etc.. to get access to self-service tools.
+
+Audience Q: Earlier you've said that a paid tweet, without resonance will drop off. Yet it will appear at the top at the start anyways. How is this valuable to a customer, will it just cost them money?
+
+Dick: There will be a budget cap. If a tweet drops off, they stop getting charged.
+
+Audience Q: How are you going to separate the price differential for tweets showing up in syndication vs. those in twitt
+er.com? In adwords vs adsense, this is wide and very expensive.
+
+Dick: We don't know yet. We want to avoid making two classes of advertising.
+
+Audience Q: What's the split for 50/50 derived from? Would somebody get paid extra for retweeting a promoted tweet?
+
+Dick: There are obvious, and sophisticated things to fight spam on twitter. They won't get paid in that particular scenario, but overall we're still working on this. We don't want to add fuel to the fire here. One gray case, is if, for example- someone tweets something great about starbucks. Then starbucks retweets that as a promoted tweet. What happens there, we haven't decided yet. Right now, starbucks can't promote it.
+
+Audience Q: Is this a response to a market demand for a model? Or will this be a long-term focus for twitter to make money?
+
+Dick: Not really a response to market demand. We are also working on commercial accounts. There will also be some, threading together, of the two things. Commercial accounts will also have resellers, we expect. We won't be the only seller for those in the marketplace.
+
+Audience Q: How are you dealing with forbidden tweets and forbidden links?
+
+Dick: I don't know. We have a big trust/safety team- they're the biggest component of the company, and the do a great job of handling this. We're going to keep working on improving this.
