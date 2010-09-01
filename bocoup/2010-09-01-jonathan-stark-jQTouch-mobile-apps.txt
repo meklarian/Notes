@@ -1,0 +1,64 @@
+--- jQTouch: Building Mobile Apps with HTML, CSS, and JavaScript by Jonathan Stark
+
+Opening Statement
+
+The proliferation of mobile devices that are web enabled is one of the greatest potential benefits that has been available to mankind.
+
+-- Huge & Growing
+
+* 5 billion cell phone subscriptions
+* Smart phone share at 15%
+* 56% of public Wi-Fi connections were from mobile devices
+
+In 2009, more than half of WiFi connections were from mobile devices. Not just phones, but gaming devices such as PSPs, Sidekicks, etc.
+
+-- Types of Mobile Apps
+
+* Native Apps
+* Web Apps
+* SMS Apps
+
+-- Drawbacks
+
+* Native Apps - Fragmentation
+  Have to make BB versions, iPhone versions, etc.
+* Web Apps - Sandboxing
+* SMS Apps - Discoverability
+  Tough to reach new people. Quite like a command-line interface.
+  
+The approach that is best for you depends on your goals and target market.
+
+-- Native vs. Web Apps
+
+* Considerations
+
+Native Strengths: Cosmetics, Functionality
+  Ex. If this is an app for a snowboard company, needs immersion, cinematics; this needs to be a native app.
+  Ex. Has to have access to camera, mic, GPS, etc.
+  
+  Often, firms don't have native app developers in house.
+  
+Web Strengths: Testing, Distribution, Support
+  Testing is straightforward and easier on the web.
+  Ex. iPhone apps are limited to 100 testers.
+  
+Varies: Development, Payment
+
+Q: In regards to native apps, are you biased towards iPhone? As opposed to Android? Are these limitations strictly based against iPhones?
+A: Generally, if someone builds a native app, it is almost certain that they're going to target an iPhone; as it is the most restrictive yet has the most customers. In general, people demand iPhone apps too.
+
+-- Personal Opinion: Web Apps Win
+
+* Cheapest to produce
+* Most standardized
+* Easiest to distribute
+
+Opinion: 75% of apps in the iPhone app store could have been done just as easily as a web app.
+
+-- jQTouch Announcement
+
+* jQuery plugin
+* created by @DavidKaneda
+* Native CSS3 Animations
+* And much more
+
