@@ -62,3 +62,138 @@ Opinion: 75% of apps in the iPhone app store could have been done just as easily
 * Native CSS3 Animations
 * And much more
 
+Example:
+
+<html>
+<head>
+<style>@import "jqtouch/jqtouch/jqtouch.css";</style>
+<style>@import "jqtouch/themes/apple/theme.css";</style>
+<script src="jqtouch/jqtouch/jquery-1.4.2.js"></script>
+<script src="jqtouch/jqtouch/jqtouch.js"></script>
+<script>
+var jqt = new $.jQTouch();
+// See also the full constructor for jQTouch
+// addGlossTBoutton - iPhone only, for homescreen
+// icon - set bookmark icon for homescreen (and other?)
+// fadeSelector, statusBar, etc.
+</script>
+</head>
+<body>
+<div id="home">
+<div class="toolbar">
+<h1>Home</h1>
+<a class="back">Back</a>
+<!-- cube class sets cube animation (!!) -->
+<a href="#settings" class="button slideup">Settings</a>
+</div>
+<ul class="rounded">
+<li class="arrow"><a href="#about">About</a></li>
+<li class="arrow"><a href="#blog">Blog</a></li>
+<li class="arrow"><a href="#contact">Contact</a></li>
+</ul>
+</div>
+<div id="about">
+  <div class="toolbar">
+    <h1>About</h1>
+    <a class="back" href="#">Back</a>
+  </div>
+  <p class="info">Hello from the About panel!</p>
+</div>
+<div id="blog">
+  <div class="toolbar">
+    <h1>Blog</h1>
+    <a class="back" href="#">Back</a>
+  </div>
+  <p class="info">Hello from the Back panel!</p>
+</div>
+<div id="contact">
+  <div class="toolbar">
+    <h1>Contact</h1>
+    <a class="back" href="#">Back</a>
+  </div>
+  <p class="info">Hello from the Contact panel!</p>
+</div>
+<div id="settings">
+  <div class="toolbar">
+    <h1>Settings</h1>
+    <!-- Cancel makes a squared-off button in iPhone -->
+    <a class="cancel" href="#">Back</a>
+  </div>
+  <p class="info">Hello from the Settings panel!</p>
+</div>
+</body>
+
+Q: If you do choose to make it blend in with the user's device/environment, are there User-Agent checks so that you can match by theme?
+A: TBD
+
+Q: Can you switch things around so that the screen always animates the same way?
+A: No. There are only default animations in general. These are made to fit certain predefined formations.
+
+The goal for jQTouch, is to make it incredibly simple for average, newbie developers, for those who just know a little html and CSS to be able to make a reasonably good app on the iPhone.
+
+Right now, iPhone/webkit is the main target. Eventually the android will be included too.
+
+The upcoming jQuery mobile has a more ambitious target base (which you should stay tuned).
+
+The goal for jQTouch is to make it super simple, for weaker developers to be able to make webpage apps.
+
+Caveat: This is not entirely supported on the iPad. There are some strange behaviors that crop up in various places. It isn't supported, but largely it still works.
+
+A project of mine is in the works to be able to add the capability to automatically recognize the screen size.
+
+Q: Is it possible to pin the top bar?
+A: Right now that is the #1 requested feature. We're working on it. There's an extension model setup that may be able to take care of this. There are some extensions already that have made changes and added value to the environment.
+
+There are other libraries: iScroll, Glovebox. These have some problems though. It is desired to make something simple to implement, looks good, nothing tricky, and easy to code.
+
+Q: Is this really an advantage over native apps?
+A: The main issue is that you would have to capture every single event that isn't handled by the browser. Thus you'd have to write code for everything, all events, every click, touch, and drag. This is something outside of the scope of jQTouch.
+
+Q: Are we limited only to anchor fragments for jQTouch?
+A: No. You may use any number of pages. I used local anchors just for the sake of demonstration.
+
+-- Hybrid Apps
+
+PhoneGap gives developers the best of both worlds.
+REF: http://www.phonegap.com/
+
+So PhoneGap, there's a lot of confusion about it.
+
+* Open Source
+* Created by @Nitobi
+* Native app wrapper
+* Multiple Platforms
+
+You still have to do all the normal native app maintenance, creation, development activities; but PhoneGap only has to be written once for all platforms. In addition, PhoneGap also encapsulates features common to all phones, via javascript.
+
+Ex: Capture Snapshot/Image/Picture - PhoneGap triggers an event and you can handle this in a web page as if you were a native app. [Needs Citation?]
+
+http://www.phonegap.com/roadmap
+
+This shows all the features that are available in PhoneGap for this type of development. They have an excellent plugin architecture, and if you'd like to make a feature for yourself that isn't supported; you can add it yourself (device specific features, especially).
+
+Web+PG Strengths: Development, Testing, Distribution, Payment, Support
+
+Web+PG weaknesses: Functionality
+
+-- Conclusion
+
+"If you can build your app with HTML, CSS, and JavaScript, you probably should." - Jonathan Stark
+
+-- More Info
+
+REF: http://jonathanstark.com/books
+REF: http://jonathanstark.com/contact
+REF: http://jonathanstark.com/jquery-boston
+
+Q: At my organization, we have a divide between a group of iPhone app developers and web developers. Frequently we have divisions of work that cannot be supported by other team. PhoneGap seems great for this, should we migrate?
+A: It depends on the situation, of course. If you're loren brichter, for example, you'd probably just build a native app. That's what you do when you're the guy. But if you're an organization, that is trying to achieve a goal and get something out soon; it is much better to make a web app.
+
+REF: http://building-android-apps.labs.oreilly.com
+
+http://building-android-apps.labs.oreilly.com/apa.html
+This contains all the information you'd need to be able to distinguish nearly all known mobile browsers in existence.
+
+REF: http://github.com/senchalabs/jQTouch
+
+REF: jqueryboston on twitter, jqueryboston on freenode #IRC
