@@ -1,0 +1,188 @@
+*** adam j sontag - charlie and the widget factory - jQuery UIwidgets
+
+widget factory created out of commonalities in jQuery UI
+
+// jquery plugins are awesome
+
+the jquery plugin architecture makes it really easy to create reusable functions that work on any elements.
+
+(function($){
+fn
+
+but if you have bigger dreams, things can get pretty hairy, pretty quickly.
+
+reverse what your plugin did?
+interact with your plugin afterword?
+
+when you write a jQuery plugin, you only occupy one slot on the $.fn. object
+
+** a world of imagination
+
+* statefulness?
+
+in order to interact with a plugin, you need to manage state
+
+respond to different interactions
+allow users of your plugin to respond to events
+invoke plugin actions programmatically
+temporarily disable or permanently undo plugin's effect
+neatly normalize around quirks
+
+* achieving statefulness
+
+REF: a plugin development pattern, 2007 article/post on writing plugins by Mike Alsup
+
+the problem is that this doesn't scale. if you want to immediately start working on such a plugin, you need to examine all of the arguments passed in, need to connect to other objects, store references, data, context, etc.
+
+NOTE: $(this).data() best for arbitrary data, best for plugins
+
+EX: $("foo")[0].bar = "hi"
+
+NOTE: avoid adding arbitrary data to elements because you can collide with other elements, overwrite properties, etc. Hence, use jQuery.data() to store this data.
+
+EX: $("#foo").data("bar")
+
+jQueryUI provides convenience methods for class-based animations.
+
+manual plugins:
+* good
+occupies a single namespace
+undos
+access to internal methods via .wonkafy("pulse") // missing demo item here
+
+* bad
+doesn't  take advantage of scope
+no concept of (this) object
+can't change options
+excessive infrastructure, leading to inefficiencies
+
+instead, use constructor object
+
+when you use a constructor to develop plugins (ref: see autocomplete plugin by bjorn safr(sp?))
+REF: foo.autocomplete()
+
+example pattern
+
+$.fn.wonkafy = function(opts) {
+return this.each(function() {
+// ??? if not set already, then set.
+});
+}
+
+Note: remember, you can store anything in jQuery.data, so you can store objects and call methods, or store functions
+
+good: 
+less infrastructure, 
+encapsulation, 
+access to internal methods via .data("pluginname").someMethod()
+
+bad: 
+still a bunch of manual data- and options-based infrastructure
+can't change options
+aww, but i thought plugin("").someMethod() was convenient
+
+REF: Viget Labs - jQuery Presentation Plugin
+
+but then, look at the source. avoid storing data on elements, jquery objects
+
+Ex: $("foo").each(function() { $(this).whatever();});
+Ex: the inner jQuery object has nothing to do with the outer scope.
+
+Ex: AVOID THIS $("foo").each(function() { $(this).whatever(); $(this);});
+If you try to use $(this) again inside, then "foo" will not be defined on the inner scope.
+
+thus, this requires caching a jQuery object for a very long time, passing it around excessively, creating more problems. in addition, this causes problems in using child selectors... this leads to neverending duplicate references that must be created going deeper and deeper in for child selectors and scope.
+
+if i wanted to programmatically invoke actual plugin methods, i'd have to look and inspect the DOM to find the UI/other object in front, and then call primitives -> .click() to get program flow in.
+
+Ex: This leads to things like this -> $("submit").click(function() {... do stuff here ...});
+Ex: this is wasteful, spending time to fetch elements, disorganized (not first class), etc.
+
+the golden ticket i have for you tonight is the jQuery UI Widget factory
+
+jquery.ui.widget.js
+
+it does the boring work for you (kinda like oompa loompas)
+
+encapsulated instances
+extends jQuery.fn
+merges defaults with user-supplied options
+storage in .data()
+methods accessible via string -> plugin("foo") or directly -> .foo()
+prevents against multiple instantiation
+event structure to handle setup, teardown, option changes
+  - if someone changes a property, you'd like to be able to respond to it to change state, alter UI, etc.
+easily expose callbacks
+sane default scoping
+  - helps relieve the burden of managing the scope of the (this) object
+  - (this) is always the instance of the plugin in question
+free pseudoselectors
+  - $(":visible").Length
+  - $(":presentation") << plugin instances
+standalone from jQuery UI (?? really?)
+  Note: a lot of people have a perceived problem with jQueryUI because they claim it is too big. Thus, you can just use the factory to create items you need/want.
+  
+Q: That's like 100 lines of code, right?
+A: Yes.
+
+Note: $.expr is the root for all pseudoselectors in jQuery
+
+$.widget("ww.wonkafy", {
+options: {
+nickname:"dawg",
+pulsated: $.noop // jquery util function for do-nothing
+},
+_create: function { ... } // called on first invocation
+// this.element -- available default scope for the jQuery object of the element where the widget was instantiated
+// this.options -- merged copy of options hash
+// this._trigger -- execute a callback or event
+_setOption: function { ... } // use this to respond to changes to options
+_destroy: function { ... } // called on cleanup
+// $.Widget.prorotype.destroy.call(this); -- does nice things like unbind all namespaced events
+
+q: what is up with the ww.+ nonsense?
+a: jQuery.ui is where all these plugins live, but jQuery.ui is the namespace for jQueryUI. You should use your own namespace. so, the ww.+ prefix allows you to get (for free) a namespace scope
+
+the convention is that _methods (prefixed with an underscore) are considered private.
+
+change an option: $("#omg4").wonkafy("option", "nickname" /* name of option */ , "Rick!" /* value */);
+
+so, without having to dig deep into the DOM, we can alter properties and values on the plugin.
+
+Q: is there any reason why this can't cleanup items automatically?
+A: this should be handled in the destroy method. there are some shortcomings, but these are tough to resolve. but remember, destroy automatically handles a lot of things, like namespaces, etc.
+
+the thing that is challenging in dealing with option changes is that you need to write code to do things when there are alterations. when you're planning to respond to changes, you need to write infrastructure to handle default and modified states.
+
+** advantages
+central storage location
+dom element <-> widget instance
+separation between user input and plugin logic
+  no more .trigger("click")
+just start coding
+  don't worry about infrastructure!
+themeroller support!
+
+you don't have to be a widget factory plugin (or JS at all) to support themeroller and vice versa
+you don't have to support themeroller if you are a widget
+  but it is pretty baller if you do
+REF: see jQuery UI CSS Framework
+NOTE: just emits CSS for you. interaction states, widget containers, etc.
+
+** example case - how i fixed the presentation plugin
+
+programmatic invocation of slide navigation
+scriptable slides
+themeroller support
+cut down on DOM interrogation
+
+dev:
+1. start with a closure, pass jQuery in. This allows me to use $ whether defined local or global.
+2. added setup things that i want to keep private.
+3. added infrastructure so that slides can have the same setup/teardown but contain their own instances
+  init()
+  open()
+  close()
+
+when you are responding to things in an event-ful way, you have a lot of latitude to handle things the way you want. (REF: setOption)
+
