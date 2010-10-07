@@ -183,6 +183,63 @@ dev:
   init()
   open()
   close()
+4. added plumbing and code to generate slides, etc.
 
 when you are responding to things in an event-ful way, you have a lot of latitude to handle things the way you want. (REF: setOption)
 
+REF: see UI accordion, has things like slider event callback, etc.
+REF: _ui method is a method used to prepare data before calling a callback in user code.
+
+** bonus content
+
+* inheiritance
+widgets can inherit from other widgets
+just pass a reference to another widget as the second argument to $.widget
+jQuery UI Draggable inheirits from the UI Mouse plugin
+
+$.widget("ui.draggable", $.ui.mouse, {/*hash of options*/});
+
+jQuery UI now aims to deliver an extensible base.
+original autocomplete candidate (1.6 RC phase) had 21 options! (wtf?)
+jQuery UI 1.8+ Autocomplete, just 4 options (!)
+those four are : delay, minLength (minimum length before trigger), disabled, source (data)
+
+q: what about /some feature that i want/ ??
+a: use a callback
+
+Ex: why doesn't jQuery support maxLength??
+Ex: a lot of people don't use maxLength or don't even care about it.
+Note: use the source function callback to take a reference to the data array, read through, then filter items that are longer than 5 (or whatever value).
+
+the source function allows you to transform the data to do whatever you want.
+
+// Example
+source: function(...) {
+var l = this.element.attr("maxlength") || 5;
+response($.ui.autocomplete.filter(
+  $.grep(data, function(v) {
+    return v.length <= l;
+    }), request.term)
+  );
+}
+
+Caveat: maxlength is not the same in all browsers
+IE, Opera == undefined
+FF = -1
+Webkit = some very large number (52488+)
+
+hence you may wish to handle this in _response instead.
+
+$(".backstreet").last().awesomecomplete("option", "maxlength", 8);
+
+* drawbacks
+
+anyone can see your privates
+is this bad? probably not.
+
+* random negative thoughts
+
+jQuery UI is so big!
+if plugins are namespaced, but $.fn["foo"] isn't, who gets it?
+access to "super" methods isn't exactly "super" (can't call parent overrides?)
+other syntaxes that don't exist might be nicer than .foo("bar")
