@@ -241,5 +241,36 @@ is this bad? probably not.
 
 jQuery UI is so big!
 if plugins are namespaced, but $.fn["foo"] isn't, who gets it?
+  there is a concession that only one item can take precedence here
 access to "super" methods isn't exactly "super" (can't call parent overrides?)
 other syntaxes that don't exist might be nicer than .foo("bar")
+
+Ex: people like to do this -> $("#foo").myPlugin.bar()
+Note: not really possible, because you don't have a reference to the original (this) or scope.
+
+Ex: real method is $("#slides").data("presentation");
+Ex: this can work, but risky. $("#slides").presentation("widget");
+
+Q: as far as chaining concerned
+A: (other) .namespace.function() doesn't allow this, because it isn't an implicit getter (properties don't have context)... so i made my own thing, where the namespace function returned a new instance of a class from the jQuery prototype, that had new methods on it. this wasn't particularly great, though. jQuery is quite elegant with chaining, but if you try to mess with the chaining, then you will limit how you can use jQuery and cause confusion with what you are calling. (ex: messing with .end()). it is better to just use a pattern like $("foo").myPlugin("foo") so that context changes are well-labeled.
+
+* more resources
+jQuery Presentation Plugin UI-ified
+developer's guide
+tips for developing UI widgets
+coding your first jQuery UI plugin
+jQuery UI planning wiki
+yayQuery podcast
+
+Q: is there any effort being made to make it easy to make simple extensions? like your example with autocomplete.
+A: one problem that a lot of people have, is that you have to really hack into things, and for some people, this is burdensome; on principle they are either annoyed or just don't want to do it. one obstacle that jUI has is that things are not very well documented. part of it is just making sure we can educate people. if UI releases autocomplete, then people release a compendium of modified or extended versions, this is probably better for people.
+
+Q: what is the most elegant/best way to bring this framework without having to add another script tag? i can think of instances where people only want one include (CDN, perhaps?); and want to also know if things are available or loaded yet.
+A: (other, "well, of course, include jQuery first. ((laughter))") if you're distributing a plugin.. how do you inform  users that there are references that need to be included first? this is probably a documentation issue, since you will have users that don't realize jQuery needs to be defined or setup first. [ed: advised against this? didn't really answer the question]
+
+Q: what new things are coming? how do i include something i've made?
+A: in 1.9... tooltip, menu, ... it takes some work for people to bring their work up to the point where their work can formally be introduced into the base. things like unit tests, etc. see Ref: wiki.jquery.com . things spend a lot of time "in planning" which is a long nebulous period of time. recommend specing it out on forum/IRC, then see about editing the wiki, etc.
+
+Note: part of the fundamental idea for the widget factory is to be able to make things without including all of the other things in jQueryUI.
+
+fin.
