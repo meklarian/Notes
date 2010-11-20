@@ -1,0 +1,154 @@
+joshua corman - the 451 group - research director, enterprise security
+
+*** from the era of vulnerabiquity... ... to the rugged age
+
+background
+
+12 years in security & networks
+
+outline:
+* vulnerabiquity defined
+* the state of the industry (a microcosm)
+* the zombie pocalypse (a defensibility index)
+* rugged defined
+
+*** VULNERABIQUITY DEFINED
+
+vulnerability: a bug or feature of a system that exposes it to possible attack, a flaw in the system's security. a weakness.
+
+ubiquity: a state of being everywhere
+
+vulnerabiquity: a state of seemingly infinite or pervasive weakness and vulnerability of a system that exposes it to possible attack.
+
+software has become infrastructure, just like what is in your car, coffee maker, air control systems. it has become more mebedded and embedded like steel and concrete in a building.
+
+the more places we put it, the bigger the surface of attack for people who wish to do us harm.
+
+*** state of the industry (a microcosm)
+
+growing security ecosystems in a culture of insecurity
+
+how can we grow security ecosystems, when the culture (petri dish) is insecure or security-agnostic.
+
+"Security is a process, not a product." -- Bruce Schneier.
+
+What is a process that can lead to good security? We wish to make a culture that can lead to good security.
+
+There are some... 10 million programmers in the world, a larger number of apps.
+
+Let's say there are 100 devs, 100 applications, 100 companies.
+
+83 of exploitable vulnerabilities.
+72 are vulnerable to XSS
+40 (or more?) have SQL injection vulnerabilities - SQL injection turned 10 years old recently. 10 years. Not a particularly tough problem to solve, but still prevalent.
+1 developer has had any security training.
+100 apps have code of unknown origin.
+90 apps use libraries that are known to be vulnerable or unpatched.
+5 have had some scan or assessment from one of the pool of app-sec tools/vendors.
+1 app has had a manual security code review. possibly generous, based on surveys, much less.
+it is a common belief that maybe 50% of all flaws can be detected by a security tool.
+0 apps provide any visibility into security.
+
+information security is a lemon market. like a used-car salesman.
+the person selling the service knows more information than the buyer.
+trust is a necessary part of any industry.
+the security industry is one of the most asymmetric when it comes to this differential.
+
+"don't hate the playa, hate the game" - ice T
+
+Ex: New vulnerability found in Adobe. Should we blame Adobe? Should we admonish Adobe for taking action against the developer who found it?
+
+Sometimes, as an industry, we are very judgemental towards new people who are trying to increase their understanding of security.
+
+We trust, then we hide.
+
+Like fight club, we like to hide. First rule- don't talk about security. We have been trying to hide our dirty secrets.
+
+The combination of we trust, we blame, we hide; as a cycle, we keep those levels of asymmetry very high. This is not good for our industry.
+
+Sometimes, we get into a cycle of making promises; "we'll fix it next time"; over and over. Mainframe-Client; Desktop. Virtualization. Web 1.0, Web 2.0, etc.
+
+Crypto seems to get better and better, though, unlike these application development cycles.
+
+The competitive and collaborative processes of crypto-development has made it very good; with clear improvement year over year; generation over generation.
+
+Concept: Security in Sunshine.
+REF: David Rice - book on economics / security.
+
+The nice thing about articulating the rugged index, the security level of applications; we can improve visible indicators and improve the economics of the industry.
+
+Concept: Security Facts "Nutrition Label"
+List 3rd party components
+Compliance with OWASP top 10
+List systems that speak with the solution.
+Published SDLC.
+etc.
+
+Visibility is a strong part of this security cyce.
+
+Q: When it comes to security requirements; regular stakeholders often have no voice or visibility in the project. Define their role?
+A: It depends on the solution. It's a variable term; but part of the process is determining whom they all are. It can be the customer, the clients of the custom, the public domain; etc.
+
+We should reward those who are transparent.
+
+Microsoft: Blue Hat Conference; designed as a reward and organic effort to reach developers and researchers who take the time to work with Microsoft and the public in security.
+
+Adobe: Similar program. Sponsored classes, you get a 'belt' based on participation and attendance.
+
+We want to create a culture that will foster better knowledge and sharing within the community.
+
+Also, security training is a huge benefit in employment. Remember, at this time, only 1 in 100 developers has had any security training.
+
+*** Rugged Software
+REF: RuggedSoftware.org - A means to empower purchasers of softwares 
+
+Right now: security has the reputation of being expensive, prohibitive "You can't do X, Y, Z"; etc.
+We're trying to solve this by educating them in measuring the quality of products; Security included.
+
+"Trustworthy  Computing is computing that is as available, reliable and secure as electricity, water services and telephony." - Bill Gates
+
+*** The Zombie Apocalypse
+
+Most people admit to a bell curve. This is not the case for security.
+
+Most are doing nothing. Not many in the average "the bell", and a decent group at the high end of the market.
+
+It's all about zombies - Smart & Fast ones.
+
+If there was a zombie apocalypse; would you want to stash your friends and relatives? Not in a straw house.
+
+There's a relative sense of defensability, like the 3 pigs... Lots of straw, not many wood houses, and a small group of brick.
+
+How do we push from where we are, to where we need to be?
+
+I would like to come up with automated means to evaluate the defensibility index of a product. We can't handle all risks, but we can mitigate them and raise the bar.
+
+We're trying our best to fill in all the cracks and gaps. This is kind of a relay race and group game between vendors and clients.
+
+There may be some factor of complexity, generation of code, virtual / physical domains; that contributes to the complexity.
+
+$4B on identity
+$5B on infosec (sec/antivirus)
+$600M on appsec
+$10B on host protection
+$20B on network protection
+
+Cloud computing threatens to screw all of this up. You give up network/host access in the cloud; this should shift spending up into app security.
+
+Q: Should we trust Cloud providers, then?
+A. The really simple answer- almost none of the cloud providers are thinking about security. Some are allowing you to do it; but they aren't really proactive at it.
+
+*** Rugged Software Defined
+
+We spend a lot of time patching, shielding for vulnerabilities; yet like fighting a Hydra, we can't strike at the heart of the problem to kill it.
+
+Concept: Evolution of dealing with pollution is like the evolution of handling with security.
+A 4 stage process of handling evolution:
+1. Dealing with Pollution
+2. Dealing with Polluters
+3. Dealing with Clients, Taxing it
+4. Proactivity in Pollution
+
+"What is missing from software security?"
+
+Security is failing: "Use an iPad, cloud app? Can't! Not Secure!" is the current message.
