@@ -1,0 +1,142 @@
+Andrew Gronosky, Michael Atighetchi - Raytheon BBN Technologies
+agronosk@bbn.com
+matighet@bbn.com
+Charles Payne - Adventium Labs LLC
+
+A crumple zone for Service-Oriented Architectures
+
+Outline
+* Introduction & Background
+* Design of the Crumple Zone
+Performance Considerations
+
+
+The Crumple Zone Concept
+
+* A layer of server-side proxies that 
+ - protects a service by absorbing and containing damage
+ - goes beyond packet inspection to partially process untrusted data in a sandbox
+ - automatically recovers from damage and adapts to attacks
+
+the need for a crumple zone
+
+* policy-based firewalls are great: if you have the right policies
+  - zero-day exploits are a fact of life
+  - as systems become more inter-connected, policy management becomes more complex
+* we recognize that attackers have the initiative: the logical response is to expect some attacks to succeed
+  - try to constrain the scope of the attack
+
+the context of crumple zone research
+
+* we have a number of current and recent gov funded research projects inIT security
+  - focused on tolerating, surviving attacks
+  - strategic concepts include containment and adaptive behavior
+* the advanced protected services (APS) project is sponsored by the U.S. Airforce Research Labratory
+  - objective: develop concepts and design techniques for survivable SOAs for DoD systems
+  - for APS, developed prototype crumple zone for EJB over RMI
+  - End product is a prototype that will undergo "red team" ie. Penetration-Testing in a lab.
+
+Crumple Zone vis-a-vis web application firewalls
+
+Concept of Operations:
+WAF: Boundary protection in DMZ
+Crumple Zone: Second and deeper line of defense for individual services
+
+How it works
+WAF: Inspection
+Crumple Zone: Inspection and Partial Processing in a sandbox
+
+Deployment Platform
+WAF: Dedicated or commodity hardware, distributed if needed
+Crumple Zone: Commodity Hardware; enterprise/airborne networks; can be distributed
+
+Protocols
+WAF: Mainly HTTP/HTTPs
+Crumple Zone: Various our prototype is for EJB over RMI
+
+Maturity
+WAF: Commercially Available
+Crumple Zone: Early Prototype
+
+*** Perserving Data Integrity
+
+* challenge: traffic must be protected to provide assurance guarantees (confidentiality, integrity, authentication) but must also be subject to full inspection
+* Service Layer Virtual Private Groups (sIVPGs) unlock protected traffic for inspection while preserving the protection's guarantees
+  - split protected stream into two copies
+  - capture and share encryption keys
+  - unlock and inspect only one copy; keep the other in escrow
+
+** sIVPG benefits
+* remains transparent to the client
+  - enables inspection of data from clients we don't control
+* can support any connection-oriented protocol
+  - used in RMI proto
+  - have designed with real use in RMI frameworks
+  
+Splits:
+
+Client -> Firewall -> Splitter -> A. Mechanism Proxy with Neighborhoods -> Termination Proxy -> Service
+Client -> Firewall -> Splitter -> B. Straight to Termination Proxy -> Service
+
+At the escrow point in the Termination Proxy; traffic resumes after processing of data.
+
+** Termination Proxy
+* it's main role is to hold data in escrow until it passes security checks (performed elsewhere)
+* exposes a service endpoint to which clients connect
+* terminates the client's SSL connection and is responsible for key negotiation and sharing
+* a watchdog automatically restarts proxy if there is a failure
+
+** Firewall Component
+* the firewall is used to actively control data flow as well as to filter packets
+  - protects the termination proxy
+  - splitter relies on firewall rules to split data
+* we use IP tables firewall
+
+** firewall: single packet authorization
+* the crumple zone itself is an obvious target for an attacker
+* SPA firewall starts with a deny-all policy to minimize attack surface
+  1. client sends a special crypto packet requesting a port be opened
+  2. daemon adds a firewall rule allowing limited-time connection from client's IP address
+  3. Client connects through firewall to termination proxy
+* we use an open-source implementation called KnockKnock
+  - http://www.thoughtcrime.org/software/knockknock
+* protects against port-scanning
+
+** firewall: splitting SSL traffic
+1. a client connects to the termination proxy; the splitter is listening to (but not decrypting) the client's stream
+2. termination proxy signals the splitter to allow forwarding
+3. the splitter loads iptables rules per connection to direct traffic to a designated netfilter queue (NFQ)
+4. the NFQ captures and copies the stream as original packets (no decryption yet)
+
+** mechanism proxy collection
+* the split ssl data stream goes to a distributed collection of mechanism proxies
+  - MPs send authorization signal to termination proxy
+  - Termination proxy releases data from escrow only if it is authorized within a timeout period
+
+** security checks: mechanism proxies
+  - each mechanism proxy is designed to be small and simple
+  - proxies are expected to occasionally die
+  - we have implemented the following in our prototype:
+~ via inspection
+  RMI object size check
+  RMI invocation rate check
+  Java class whitelist
+~ via emulation
+  Java deserialization "canary" proxy
+  
+** an emulation-based proxy: the "canary"
+* There are JEE vulnerabilities based on (lack of) type safety in Java deserialization (REF: Schoenefeld 2006)
+* "Canary in a coal mine" deserializes RMI objects into a safe(r) JVM to protect against attacks for which we have no /a priori/ signature
+  - JVM may have extended monitoring, restricted class composition, restricted class instantiation
+
+Q: What is the cost of adding all these layers? Do you have performance data?
+A: This is somewhat a burden on machine-level time; not so much on user time.
+
+Q: Does some level of hardware use improve latency?
+A: We think so. If we tried, we could.
+
+** Proxy Groups
+* Mechanism proxies collaborate in groups
+* Proxies can execute sequentially or in parallel
+* Each SSL connection is checked by its own associated proxy group
+

@@ -158,7 +158,7 @@ A: Yes, but this requires further research.
 * no permission required before allowing a site to create an application cache in chrome or safari
 * any file can be cached, including a root file "/"
 * the catch: even if a root resource is cached normally and on refresh, the normal cache is updated but not the application cache
-* read: http://blog.andlabs.com/2010/06/ ...
+* read: http://blog.andlabs.org/2010/06/chrome-and-safari-users-open-to-stealth.html
 
 *** Cross-Origin JavaScript Requests
 * not directly part of html5 but introduced by W3C
