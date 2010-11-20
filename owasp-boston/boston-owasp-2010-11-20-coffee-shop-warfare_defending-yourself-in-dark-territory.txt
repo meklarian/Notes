@@ -1,0 +1,76 @@
+john carimichael
+director of product management
+Safelight Security Advisors
+
+*** Coffee Shop Warefare: Defending Yourself in Dark Territory
+
+** Who is this guy? (background)
+* seasoned security engineer and trainer providing expertise to companies large and small all over the world.
+* leads safelight's computer-based training product team
+* longtime software developer, tester
+
+** Mission Objectives
+* Infiltrade
+* Refuel
+* Gather Intel
+* Extract
+
+All without getting hacked.
+
+** The Threats
+
+** Lost or Stolen Laptops
+* This happens, people often target laptops
+ - easy to sell
+ - personal data
+* data breach concerns (~$200/record depending on record)
+
+Q: Why are companies allowed to have data walk off-site in the first place?
+A: They probably shouldn't. In my case, should I have live data for testing? Likely not. But in the case of the TSA breach, it was someone who walked in and walked out with a thumbdrive. No public loss.
+
+* hard drive encryption use has gone up
+* a lot of times, we can't solve the problem, but we can help improve it.
+
+Q: Today, the data you're handling, would have to be encrypted under Massachusetts law, correct?
+A: Correct.
+
+* The consequences of losing personal data are going up.
+* It is tougher to attack organizations, but less effort to target users in public areas.
+
+STAT: 12,000 laptops lost or stolen in US Airports every week.
+STAT: 53% of biz travelers have sensitive data on their laptops.
+STAT: 65-70% of those laptops lost/stolen were never reclaimed.
+STAT: 65% of bizz travelers had no data/laptop protection
+STAT: 42% of these users had no backup.
+STAT: $49,256 cost to org from each laptop loss or theft.
+
+** protection from theft
+* frequently stolen from cars
+* frequently stolen from libraries
+* use in-room safe.
+* 50% chance of hotel mag-stripe keys matching wrong rooms.
+* mag-stripe hacking is simple.
+
+Survey: How many people lock their consoles when walking away from a workstation.
+Response: About 2/3rds of the room
+
+* If there is a data-breach from your machine; who gets blamed for it? You.
+
+** Connecting to Wi-Fi hotspots
+* always ask what network you should use.
+
+Q: Does it matter if you are using a public network if you are using HTTPS?
+A: Yes. SSL is only point-to-point security, not end-to-end. Man-in-the-Middle attacks are possible over public wifi.
+
+Q: What about VPN clients?
+A: VPN clients are safer.
+
+Q: I'm curious how an evil network owner would circumvent HTTPS protection?
+A: Certificate substitution, though you would see errors.
+
+** Mitigating Settings
+* Personal Firewalls
+* Turn off sharing (file/printer/drive/etc)
+* Use VPN for private connections
+* Turn off Wifi when not in use.
+* Bluetooth
