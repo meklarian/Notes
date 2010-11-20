@@ -138,3 +138,78 @@ A: It was in a response from the server- so before it is received at the client,
 * Cross-platform framework for HTML/JS widgets
   - WinMo, Android, etc.
 * Custom permissions restricted us from sending messages (intents) to the widget runtime
+* But, other (malicious) apps canclobber widget content
+  - CWE-276 Incorrect Default Permissions
+  - So we wrote a malicious app to do just that :)
+
+** Case Study: Embedded Device #1
+* Mix of HTTP/HTTPS external content
+  - Strict SSL Validation
+  - MITM'd HTTP traffic
+  - injected HTML to enable hidden admin functionality
+
+* Ultimate Pwn: CWE-78
+  - Command Injection in Wireless SSID
+  - Enable Telnetd, change root password
+  - game over
+
+** Case Study: Embedded Device #2
+* Excellent input validation throughout the web app
+  - except fo the command injection vulnerability in one parameter
+  - enable telnetd
+  - toor/<blank>
+  - web server then runs as root
+  - game over
+
+** Brew picture upload
+* brew application designed to backup data from the phone
+* brew != smartphone
+  - no wifi
+* application directed SMS - Automation of applications via SMS
+  - SMS Clients can parse messages, and identify specific control messages for distinct applications
+  - Debug code: SMS to change target server
+* configured the client to talk to our MITM on the internet
+  - traffic was plaintext http/soap
+  - auth requests
+  - cookies, etc
+  - weak hashes
+* wrote python script to impersonate the client, for malicious client development
+* post-mortem
+no SSL
+no real authentication
+etc.
+
+** RIM Picture Upload
+REF: BBSAK - useful tool on blackberries
+hacked due to a caveat in older blackberries
+Any chunk of SSL traffic over a certain size, could get severed
+application used logic based on application data, got rerouted then hacked by making their own crypto routine
+XML injection flaws
+etc.
+Lax permission set (wanted every permission)
+lack of input validation
+
+*** Conclusion
+in mobile space, still nascent
+lack of guidance, standards, practices makes devs reinvent the wheel
+or just make them think they need to
+neglecting the security lessons learned with traditional and web applications
+client-side trust
+access control issues
+and all of the other "basic" problems and mistakes of yore.
+
+OWASP Mobile Security Project
+aims to provide resources for mobile app developers to build and deploy secure mobile apps
+just like OWASP does for web applications
+mailing list:
+https://lists.owasp.org/mailman/subscribe/owasp-mobile-security-project
+
+Q: Have you seen malicious apps out there that are trying to take over other apps?
+A: We looked into an issue we found; on android there are ways to install applications without the user's permissions. Normally, the user gets notification. There are ways to sidestep this; averting alerting the user of knowing an app was installed. This happens via an authorization token that can just be pushed to the mobile. We did a test app that would then download three more applications (all fake, but just proof-of-concept). The whole point is that you can be tricked into downloading apps that you want (that look like the real app). Google pulled 25-30 fake banking apps some time ago that were phishing for user data; from the android market.
+
+Q: Are there any good ways to store login credentials on a phone?
+A: On iOS there's the KeyStore; I'm not an iOS dev, but there is a KeyStore where you may securely store credentials. There are also browser mechanisms. Android; shared preferences or use a private SQLite database. Also, they can just use session tokens; and not store this data on the device.
+
+Q: Given what you've mentioned about malicious apps; is there any way to tell if you have suspicious activity going on your phone?
+A: There's an app called "lookout" that has virus scanning and malware scanning abilities. There was a project by some intel (princeton?) researches called "taintDroid" that would be able to mark incoming data as tainted and determine where it would propagate onto the internet.
+
