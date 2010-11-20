@@ -3,31 +3,29 @@ agronosk@bbn.com
 matighet@bbn.com
 Charles Payne - Adventium Labs LLC
 
-A crumple zone for Service-Oriented Architectures
+*** A crumple zone for Service-Oriented Architectures
 
-Outline
+*** Outline
 * Introduction & Background
 * Design of the Crumple Zone
-Performance Considerations
+* Performance Considerations
+* Next Steps
+* Summary
 
-
-The Crumple Zone Concept
-
+** The Crumple Zone Concept
 * A layer of server-side proxies that 
  - protects a service by absorbing and containing damage
  - goes beyond packet inspection to partially process untrusted data in a sandbox
  - automatically recovers from damage and adapts to attacks
 
-the need for a crumple zone
-
+** The need for a crumple zone
 * policy-based firewalls are great: if you have the right policies
   - zero-day exploits are a fact of life
   - as systems become more inter-connected, policy management becomes more complex
 * we recognize that attackers have the initiative: the logical response is to expect some attacks to succeed
   - try to constrain the scope of the attack
 
-the context of crumple zone research
-
+** the context of crumple zone research
 * we have a number of current and recent gov funded research projects inIT security
   - focused on tolerating, surviving attacks
   - strategic concepts include containment and adaptive behavior
@@ -166,3 +164,48 @@ A: We think so. If we tried, we could.
 * we considered using a hash for correspondence; but this doesn't necessarily protect you from attacks
   - doesn't mean anything if a correspondence check fails by hash
   - packet loss would cause unauthorized data anyways (NOTE: is this for sure? what about TCP reliability?)
+
+** performance considerations
+* the proxy layers do introduce overhead: is the cost justified?
+* latency is affected by the following factors
+  - every MP must process every byte of data, though this can be done distributed and in parallel
+  - setup time required for each connection
+* thoroughput is affected by flow control exercised by the termination proxy
+  - by reading/escrowing client data, TP controls data flow from client
+  - buffer size should exceed bandwidth-delay production
+
+Preliminary Latency Measurements
+JB.1 - Median 83ms
+Crumple-Zone Enhanced JB - Median 152ms
+
+This crumple zone contains 4 MPs
+  - Java class whitelist
+  - RMI rate check
+  - RMI size check
+  - Canary Proxy
+
+** next steps for crumple zone R&D
+* support for additional protocols to further exercise the design concepts (WS is under development)
+* replication / fault tolerance: eliminate TP as single point of failure (requires voting)
+* More dynamic adaptation within proxy groups
+* Outbound protection; current prototype is exclusively oriented towards inbound protection
+* could be useful to add additional filters, MPs as attack granularity changes
+
+** Summary
+* the crumple zone is a flexible design that can support various RPC mechanisms and threats
+  - we have implemented a working proto for RMI based EJBs
+* emulation is a key strategy for dealing with zero-day exploits
+* containment and recovery to mitigate DOS attacks
+* there are interesting directions for further development
+
+Q: Are there ways to subvert this design by intentionally causing MPs to fail via bad data?
+A: That would really be a criticism of the MPs that we have implemented. I know that the ... the MPs are mainly in laboratory use at the moment. The WS one I mentioned, is just looking at POST, GET; could have false positive if various strings appear in the body of a message. The Canary Proxy has a low false positive rate?
+
+Q: If I put a load on these, won't these be prohibitively expensive? Each item gets a process.
+A: Proxy Groups at this time are loaded at startup, but we can also work on how we bring them online during startup of the service.
+
+Q: How would you construct and deploy this solution?
+A: We designed this to run on commodity hardware, and to be distributed within. You need to trust what is in the crumple zone, and need network protections to establish trust in the crumple zone.
+
+Q: Where would you deploy this at the physical layer?
+A: This could be placed on the control aircraft; but mainly this is intended to be at the control station on ground. One has to figure out what trust boundaries there are; even if you were doing joint operations, you might not trust all communication with the other parties.
