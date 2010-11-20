@@ -74,3 +74,38 @@ A: Certificate substitution, though you would see errors.
 * Use VPN for private connections
 * Turn off Wifi when not in use.
 * Bluetooth
+
+Security is like being chased in the woods by a bear; you don't necessarily have to outrun the bear- if you can outrun your friends. Hackers typically pick the easiest targets.
+
+** Harddrive Encryption
+
+Survey: How many people have gotten a new computer to replace an old one?
+Response: Everyone
+
+Comment: There are hardware shredders that can eat hard drives. There are also software means of overwriting data.
+Comment: Some laptop harddrives are made with glass platters. Use eyewear if you are breaking them.
+
+** Using the web
+* sessions are stored in cookies
+* attackers that can access your cookies can impersonate and take control of your identity
+
+** Firesheep
+* Monitors what is going on, on the network around it
+* Can be used to hijack other users' sessions
+
+** Blacksheep / Firesheperd
+* Blacksheep actively monitors and tries to detect if someone is using firesheep.
+* Firesheperd actively floods the network around it with fake activity, to make it tougher for humans to analyze connections.
+  - Signal to Noise
+  - Not a great idea, implicity a DDoS attack
+
+** Old Attacks, new Toys
+* ettercap
+* wireshark
+
+The problem isn't how do we stop the tools, instead, how do we fix the problem?
+
+** Everyone can play.
+
+** Better Protection
+* SSL - one of the few ways; start encrypting data as it moves.
