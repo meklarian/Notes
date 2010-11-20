@@ -109,3 +109,27 @@ The problem isn't how do we stop the tools, instead, how do we fix the problem?
 
 ** Better Protection
 * SSL - one of the few ways; start encrypting data as it moves.
+  - Use SSL if you're providing credentials
+  - (Firefox Only Plugin) HTTPS Everywhere Preferences
+  - (Firefox Only Plugin) ForceTLS Settings
+
+** Old Standbys
+* Antivirus
+* Software Updates
+* Be careful with USB drives
+
+** Smartphones
+* A new big problem.
+* 55,000 smartphones to 3,000 laptops
+
+** Mobile Data Protection
+* Passcode?
+* Password to email?
+* Sensitive Data?
+
+Phones are almost as capable as laptops at accessing your data. They should be treated as such in regards to safeguarding data.
+
+All vulnerabilities that exist on laptops also exist on mobile phones.
+
+Q: Does anonymous browsing help?
+A: No, only for your session. This removes your trail. But, you can use things like Tor and other private networks to keep private.

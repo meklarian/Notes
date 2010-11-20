@@ -1,0 +1,88 @@
+Zach Lanier - Mobile Application Security - Intrepidous
+
+** Broad Observations
+
+* the web pushed content to the browser
+  - centralization of apps & data
+  - always a push for MORE (ActiveX, applets, flash)
+* Now, everyone gets their own app!
+  - Code (not HTML) gets pushed to the endpoint
+  - XKCD Viewer
+* AuthC / AuthZ
+  - Carrier Applications
+    "We trust you because you're on our network"
+  - Third-Party Applications
+    Sometimes better than carrier apps
+    Incomplete support of open standards
+  - Client-side data trust issues
+    admin=1 type bugs (hardcoded privilege)
+* HyperGlobalMegaCloudDataMeshStore
+  - Many apps for syncing data between device and CLOUD
+  - Full AuthC, AuthZ bugs
+
+Often has holes whereby they make assumptions that can be false- impersonation of another person's phone number or carrier network. Applications may blindly trust the data received under these assumptions.
+
+** Platform Security
+
+* Many disparate platforms
+  - Android, RIM, iPhoneOS, WinMo, Brew, Symbian, WebOS
+* Controls
+  - Network Hardening
+  - Application Sandboxing
+  - Managed Code
+  - Code Signing
+* Concerns
+  - Shared User Accounts
+  - Native Code (Obj-C, JNI)
+  - Certificate Validation
+      SSL, Code Signing
+  - Support for Emerging Technologies
+      Flash, WebKit, HTML5
+
+Watch out for instances of WebKit where they use a self-created build/implementation; not an official build issued by Google / Apple.
+
+** Testing Techniques
+* Whitebox Source Code Review
+  - Sometimes, it's trivial to get app source code
+* Black Box
+  - Acquiring Application Binaries
+  - Reverse Engineering
+      Disassembly / Decompilation
+  - Network Analysis
+      Protocol Analysis, fuzzing
+      MITM
+
+Q: How do you MITM on a phone?
+A: Stay tuned.
+
+* undx, dex2jar, coddec, JAD
+  - decompilation tools
+* smali / baksmali
+  - assembler / disassembler, patching
+* native code
+  - IDA with ARM support
+  - Strings
+
+Q: For decompilation, do you find customers obfuscating their code?
+A: No, not typically, but there are some automated tools for doing this. So, for example, on android; you will sometimes get multiple outputs from undx that require further disassembly due to obfuscation with AES.
+
+For MITM, we can look for SSL signatures / endpoints where SSL libraries are called, and recompile the output to talk to our own servers.
+
+dalvik VM is register-based, whereas the reference Java VM is stack-based.
+
+* Not everyone can be a Binary RE ninja
+  - and project timelines don't allow for on-the-job training
+* Sometimes the easiest way to understand an application is to look at its TRAFFIC
+* Become the MITM
+  - Just like WAPT, Burp, WebScarab, Mallory (On BitBucket, GUI-like version of netsed functions), netsed (sed for network traffic)
+  
+* MAPT MITM Challenges!
+  - Run the app in an emulator (boring)
+  - Connect the phone to your own WAP
+      Upling your WAP to your laptop with internet sharing enabled
+      Then turn on wireshark
+  - WiFi not always an option
+      Handset might not support WiFi
+      Application might require carrier network
+        Modify the Application, changing server.carrier.com to testsite.com
+
