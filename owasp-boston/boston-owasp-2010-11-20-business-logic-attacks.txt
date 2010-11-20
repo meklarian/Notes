@@ -1,0 +1,245 @@
+Paul Schofield - Business Logic Layer and Business Logic Bots - iMPERVA
+
+*** Agenda
+
+* the challenge of business logic bots
+  - business logic attacks
+  - business process automation
+    not a traditional attack
+
+** business logic attack - example
+* the problem
+  - traffic light designed to wait for a gap in traffic on the frameway
+  - if a gap occurs and a car on the feeder, at the light, turns green, and lets the cars on the feeder road out
+  but the gap never comes during rush hour
+* the solution
+  - throw a large plate of metal over the sensor (triggers car sensor)
+  - the result, the light stays green for the feeder road
+* assumption
+  - light assumes it should stay green even if the input never changes
+
+** business logic attacks (BATs)
+* compared to syntactic attacks
+
+Technical: malformed requests
+Business Logic: normal requests
+
+Technical: invalid input value
+Business Logic: legitimate input values
+
+Technical: change functionality
+Business Logic: abuse functionality
+
+Technical: attack the application and only indirectly the business
+Business Logic: directly attack the business
+
+Technical: usually a single request
+Business Logic: frequently multiple attacks
+
+If an attacker is looking for a syntactical attack, such as SQL injection, any surface point is a target. For a BLT, we care about getting a point where we can abuse it the most.
+
+** Web Automation
+* google
+  - good automation, crawls the web for public index consumption
+* the fact is that web automation is in wide use
+  - online form automation
+  - tracking competition
+  - personal and institutional stock trading
+  - indexing services
+  - comparative shopping
+  - web services and other APIs
+
+Bottom line is that business level automation may or may not be defined as an attack based on the vector.
+
+Born to be bad: Business Logic Bots (BLBs)
+
+What are BLBs used for
+* Brute force
+  - cracking login credentials
+  - guessing session identifiers, file and directory names
+* denial of service
+  - locking resources
+  - abuse resource-sensitive functions
+* web spam
+  - abusive SEO
+  - comment spam
+* click fraud
+  - referrer click fraud
+  - CSRF click fraud
+
+Some of these are based on padding-Oracle attacks; probing service returns that check hash values.
+Case Study: Yahoo recently had to shut down a service that provided login checking- and would report which field was wrong (bad practice); instead of just 'invalid authentication'.
+Lot of abuse of SEO to outrank walmart on web search results.
+
+** Hardcore robotics
+* Queue Jumping
+  - ticketmaster has confessed fighting queue jumping "like the dickens".
+  - travel agents known to automate airline ticketing systems
+* auction sniping
+  - watching a timed online auction and placing a winning bid at the last possible moment giving other bidders no time to outbid the sniper.
+* poll skewing
+
+Case Study: Victoria's Secret PINK COLLEGIATE collection.
+Users had to vote to get their school in the top rankings.
+Competition became who could write the fastest script to place the most fake votes, classic example of Poll Skewing.
+Broken Assumption: not just students voting
+
+** Gaming Bots
+* MUDs, virtual worlds, second life bots
+  - gain wealth, turn it into money in second life
+  - scripted clients
+  - GUI bots
+* poker bots
+  - share information between several bots at one table
+  - monitor tables to choose the weak ones
+  - play better than non-bots
+* real life gaming bots
+
+** information harvesting
+* harvest
+  - email and personal information
+  - competitive information
+
+*** solutions
+* two separate problems
+  - detection
+  - mitigation
+Case: job board - tons of exclusive listings.
+** detection
+* detect automation (absolute)
+* flag unauthorized use of automation (subjective)
+** mitigation
+* needs to be effective
+* can't block application use
+
+** detection - basic tools
+* black listing:
+  - IP Addresses (IP Reputation) - Anonymous Proxies, TOR exit nodes, highly active bots
+  - User Agents
+  - Customize Response to
+    - attack vector pattern
+    - comment spam patterns
+* request structure
+  - missing / mismatch Host header
+  - Irregular header combinations
+* naive, will not block everything, could eliminate the masses
+
+** detection - proactive techniques
+* introduce extra content into the response
+  - this extra content is interpreted in a different manner by a human driven browser vs. automated tool
+* positive detection
+  - human
+* negative detection
+  - bot
+
+** detection - frequency measurement
+* count frequency of events within some scope in a given time frame
+* challenges 
+  - what is an event
+  - what is an intrusion
+  - what isn't?
+
+** detection - flow
+* some attacks bypass normalapplication flow
+* not easy to implement
+  - referer can be forged
+  - flows are hard to define and track
+* requires guided configuration and learning algorithms
+* can detect some types of forceful browsing and man in the browser attacks
+
+** detection - click rate
+* humans take time to respond (Even fast ones)
+* some observations
+  - clickable events (need some minimal paddingtime)
+  - within a session, these are slow
+* can detect general script attacks as well as man in the browser attack
+
+** detection - summary
+* will a single method do the trick?
+  - no
+* will there be false positives?
+  - yes
+  do we care?
+   - no
+   
+** attacks are automated
+  - i can't prevent the attack from going on
+  - i can try to defuse its effects
+example
+  - slow down brute force
+  - reduce speed of ddos
+
+** Mitigation - blocking
+* dropping requests can only occur in very specific cases
+  - ip blacklists
+  - user-agent blacklists
+* strongly enforced flow (through a nonce)
+* dropping request that fail to answer the following challenges
+
+** mitigation - that which makes us human
+* turing test that only a human can solve
+  - CAPTCHA
+  - Other methods exist
+  - Choose the correct description of an image
+* there are automated tools that can solve CAPTCHAs of various types
+* if a brute login program solves one CAPTCHA/second, it is ineffective (easy to identify)
+  - slowing down an attack is often the best way to make it ineffective
+* beware: server side throttling may have severe impact on a server
+
+* example - client side intensive processing, server side low
+
+** MITB 
+
+* newer type of attack
+  - man in the middle
+  - man in the browser
+
+* browser vs. infrastructure
+  - infrastructure manipulation - MITM
+  - browser manipulation = MITB
+
+* in a MITB attack, what the user sees in their browser is not sent by the web server they expected to contact
+
+** Mitigation - Adaptive Authentication
+
+* when you detect a transaction that contains unusual or suspicious business logic
+  - paid comcast bill
+  - transferred $2 to a site in Ukraine
+
+* mitigate by asking for additional authentication
+  - repeat password
+  - previously recorded questions
+
+* makes an attack apparent to a victim
+
+* use out-of-band verification
+
+** migigation - disinformation
+
+* feed the client with bogus information
+
+* a client follows a hidden link
+  - respond to the request with a page that includes a large number of server distinguishable random links
+  - whenever one is requested, generate yet another random page
+
+* a client follows a hidden link generated by a script
+  - respond with a page that includes a script that runs for a long time before generating another random link
+
+* mitigation - summary
+  - mitigation methods should take into consideration the possibility of false positives
+  - most often the system's reaction to a suspected automation attempt should be blocking out a user
+ 
+*** summary
+
+* automated business layer attacks are proliferating today and expected to grow in number and sophistication
+* detecting these require sophisticated tools
+* some of the issues have nothing to do with the way application code is written
+* bound to be a cat/mouse game
+* use multiple defenses in conjunction
+
+Q: What do you think of reputation enhancement services, where you try to lookup information and get back tons of  nearly identifical results? How would you defeat that?
+A: We haven't looked deeply into this. We try to look at correlation; but this is quite vague. Definitely something worth investigating.
+
+Q: On one slide, you showed a complicated worded-logic captcha. How often do you see other people using that?
+A: What we're doing is putting these in just a handful at a time. Just testing at this time; if someone wanted to use it across the board, we would implement it tomorrow if they really wanted.
+NOTE: Not very user friendly. Probably will not be popular.

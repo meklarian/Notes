@@ -175,28 +175,27 @@ A: It was in a response from the server- so before it is received at the client,
   - weak hashes
 * wrote python script to impersonate the client, for malicious client development
 * post-mortem
-no SSL
-no real authentication
-etc.
+  - no SSL
+  - no real authentication
+  - etc.
 
 ** RIM Picture Upload
 REF: BBSAK - useful tool on blackberries
-hacked due to a caveat in older blackberries
-Any chunk of SSL traffic over a certain size, could get severed
-application used logic based on application data, got rerouted then hacked by making their own crypto routine
-XML injection flaws
-etc.
-Lax permission set (wanted every permission)
-lack of input validation
+* hacked due to a caveat in older blackberries
+  - Any chunk of SSL traffic over a certain size, could get severed
+  - application used logic based on application data, got rerouted then hacked by making their own crypto routine
+* XML injection flaws, etc.
+* Lax permission set (wanted every permission)
+* lack of input validation
 
 *** Conclusion
-in mobile space, still nascent
-lack of guidance, standards, practices makes devs reinvent the wheel
-or just make them think they need to
-neglecting the security lessons learned with traditional and web applications
-client-side trust
-access control issues
-and all of the other "basic" problems and mistakes of yore.
+* in mobile space, still nascent
+* lack of guidance, standards, practices makes devs reinvent the wheel
+* or just make them think they need to
+* neglecting the security lessons learned with traditional and web applications
+* client-side trust
+* access control issues
+* and all of the other "basic" problems and mistakes of yore.
 
 OWASP Mobile Security Project
 aims to provide resources for mobile app developers to build and deploy secure mobile apps
