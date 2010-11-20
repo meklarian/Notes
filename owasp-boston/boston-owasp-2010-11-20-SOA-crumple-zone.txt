@@ -209,3 +209,20 @@ A: We designed this to run on commodity hardware, and to be distributed within. 
 
 Q: Where would you deploy this at the physical layer?
 A: This could be placed on the control aircraft; but mainly this is intended to be at the control station on ground. One has to figure out what trust boundaries there are; even if you were doing joint operations, you might not trust all communication with the other parties.
+
+Q: Would you consider a full-crumple zone on a VM?
+A: We would probably run neighborhoods on a VM. I think that distributing these across multiple physical hosts is important.
+
+Q: Have you considered spawning additional termination proxies by load?
+A: I've thought about it myself; my teammates are unsure about this. This is a bootstrap problem; and they have to be there first before a client can connect first. There is a lot of orchestration. You can pool them, and if one goes down; swap one in; but it gets tricky. Note that the splitter doesn't have an IP address; it is part of the firewall.
+
+Q: Have you considered adding logging and other non-security activities in these layers?
+A: I like this already; there are already products that do this for compliance testing. But we haven't determined a direction for this sort of design. You can certainly add layers to the service-level handler group to do this work.
+
+Q: Do you ever see this rolling into commercial services? Such as transmission of health records?
+A: The dept of homeland security is very interested in these concepts. This idea could be another tool in our toolbox to be used in conjunction with that. It would be great if vendors who provide OTS products, could develop this idea and add it to their offerings. Do I see this happening? I don't see my company entering the arena, but we are definitely interested in promoting and discussing the idea with the public. We like an open design and discussion.
+
+Q: How many MPs can be generated within a group? Dozens? Hundreds?
+A: I envision small numbers. Certainly not more than dozens. In our prototype, we have 4; this is not enough for production use. Perhaps, my gut says, a dozen or so. The real question is how many do you wish to have?
+Qp2: We need a means to measure this if we are to select a product for implementation. Suppose we had the country of india signing up- we have to service thousands of potential clients. Wouldn't this create an issue of roving targets?
+A: We're trying to capture a large number of attacks with as few checks as possible. Getting away from knowledge based defense to anticipation and manner of handling things on a zero-day basis.
