@@ -139,4 +139,30 @@ A: We think so. If we tried, we could.
 * Mechanism proxies collaborate in groups
 * Proxies can execute sequentially or in parallel
 * Each SSL connection is checked by its own associated proxy group
+* assigned an instance to each incoming connection
 
+** proxy neighborhoods
+* proxy groups are grouped into neighborhoods
+* each neighborhood:
+  - shares SSL keys with Temrination Proxy
+  - contains proxy groups for multiple client connections
+  - is a separate process from other neighborhoods
+
+** Neighborhoods provide fault isolation
+* a primary goal of the crumple zone is to isolate attacks so they don't afect the whole system
+* partially achieved by partitioning traffic among different MP neighborhoods
+* currently round-robin assignment; but could also be partitioned by risk indicators per pool
+* each neighborhood gets a watchdog to observe-restart as needed
+
+** ensuring correspondence of data
+* the bytes authorized by each MP must corespond to the bytes released by the Termination Proxy
+  - necessary to resist replay attacks
+* challenge: message boundaries != packet boundaries
+  - if part of a packet is approved and part is not, how do we avoid sending unapproved bytes?
+* our approach is to treat the incoming cipher text as a stream: first-in, first-out
+  - both the termination proxy and the mechanism proxy neighborhood process the same bytes in the same sequence
+  - implication: mechanism proxy checks are synchronous
+  - this greatly simplifies the escrow mechanism
+* we considered using a hash for correspondence; but this doesn't necessarily protect you from attacks
+  - doesn't mean anything if a correspondence check fails by hash
+  - packet loss would cause unauthorized data anyways (NOTE: is this for sure? what about TCP reliability?)
