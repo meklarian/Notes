@@ -211,5 +211,4 @@ Q: Are there any good ways to store login credentials on a phone?
 A: On iOS there's the KeyStore; I'm not an iOS dev, but there is a KeyStore where you may securely store credentials. There are also browser mechanisms. Android; shared preferences or use a private SQLite database. Also, they can just use session tokens; and not store this data on the device.
 
 Q: Given what you've mentioned about malicious apps; is there any way to tell if you have suspicious activity going on your phone?
-A: There's an app called "lookout" that has virus scanning and malware scanning abilities. There was a project by some intel (princeton?) researches called "taintDroid" that would be able to mark incoming data as tainted and determine where it would propagate onto the internet.
-
+A: There's an app called "lookout" that has virus scanning and malware scanning abilities. There was a project by some intel (princeton?) researches called "taintDroid" that would be able to mark incoming data as tainted and determine where it would propagate onto the internet. Unfortunately there aren't any real ways to do this with COTS apps.
