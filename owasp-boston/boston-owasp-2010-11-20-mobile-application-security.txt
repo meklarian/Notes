@@ -85,4 +85,56 @@ dalvik VM is register-based, whereas the reference Java VM is stack-based.
       Handset might not support WiFi
       Application might require carrier network
         Modify the Application, changing server.carrier.com to testsite.com
+  - Wireshark lets you see traffic
+    SYN TCP 80
+    SYN TCP 443
+    SYN TCP 9999 ????
+    UDP DST Port 4717?
 
+*** Case Studies
+
+** Case Study: Foursquared
+* Foursquare client for android
+* originally written in java, like most android apps
+  - source code released under apache 2.0 license
+* foursquare API supports Basic Auth and OAuth
+  - OAuth includes signatures for transactions, helps prevent replay attacks, etc.
+  - guess which one foursquared uses?
+* Correct: HTTP Basic Auth over plaintext transport
+* There's a SWE for that!
+  - CWE-331: Missing Encryption of Sensitive Data
+      (including credentials)
+* Why is this a problem?
+  - Everyone uses Foursquare
+      Well, maybe not you, but everyone else!
+  - Most applications "prefer" WiFi to cell radio
+      trivial interception of creds
+* Funny Enough, Foursquared has OAuth Support
+  - But not really used.
+
+** Case Study: Storage Application
+* Multi-platform application for storing and retrieving music, videos, documents, and more.
+  - Android, BREW, web, iPhone clients
+* Simple crash in storage quota viewer
+  - Divide by zero error leads to DoS
+  - Attacker must successfully intercept and modify server response for this to happen
+      a bit more difficult because this communicates only over carrier network
+
+* Diddling with "digital rights management"
+  - Application Supports sharing of video, audio, image content with your contacts
+  - Enforces "DRM" on "protected" files
+      often copyrighted or premium content
+  - Enforcement occurs based on the value of an attribute in the file's XML manifest
+      Yes, Virginia, that IS under the user's control
+  - Hacked via Burp, reverse proxy, to rewrite this value
+
+Q: Where was this XML file?
+A: It was in a response from the server- so before it is received at the client, we can rewrite it. So in a sense, this is twofold- the client is not validating whether the server is giving a correct response too.
+
+* The DRM basically enforced within the client, predicated on the response from the server
+  - CWE-807 Reliance on Untrusted inputs in a client
+
+** Case Study: Widget Framework
+* Cross-platform framework for HTML/JS widgets
+  - WinMo, Android, etc.
+* Custom permissions restricted us from sending messages (intents) to the widget runtime
