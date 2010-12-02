@@ -59,3 +59,131 @@ it will pickup thumbnails, detect semantic markup, etc. to create an experience
 
 avoidance of browser sniffing to try and narrow-target or exclude phones.
 
+* don't break the web (!)
+
+any page that is driven on a jquery mobile may use separate pages, automatically gets transitions, back button support, etc.
+bookmark/refresh friendly URLs too
+
+* physical testing
+
+20 different smartphones, 4-5 tablets are used in testing
+
+the unfortunate thing, is that if you are starting from scratch, you need a lot of devices; you need to be able to see performance, quirks, etc. for yourself.
+
+this allows you to tailor things (performance) that you wouldn't ordinarily be able to do
+
+* unit testing
+
+ref: john bender - contributor of many unit tests
+
+* accessibility testing
+
+ARIA attributes
+iPhone screenreader (voice-over?)
+
+Q: is it similar to the voice-over on mac?
+A: yes
+
+because we are not using a native select-menu, we have to add more semantic markup to allow it to function as native items.
+
+editor note: impressive screenreader demo!!
+
+target date of January 2011 for version 1.0
+
+demos & docs
+ref: http://jquerymobile.com/demos/1.0a2/
+
+live dev preview
+ref: http://jquerymobile.com/test/
+
+this is all in git
+ref: http://github.com/jquery/jquery-mobile
+
+* walk-through
+
+Q: testing tons of devices as you guys have said you've done; how did you dive into all of these things? Any secrets?
+A: Trial and Error :) iPhone has console logging though. But no, by hand. lots of strange issues. eg. WebOS doesn't support scroll-top. so it never gets an overlay- always a new page.
+
+Q: who sponsors development?
+A: we started doing some of the initial design work in june/july; launched the site sometime later.
+REF: filament group, mozilla, palm, blackberry, nokia, DeviceAtlas, Adobe, dotMobi
+
+blackberry has been fantastic in giving assistance and advice- we've had lots of access to their developers. palm also. adobe has been awesome. they've been the most active contributor.
+
+Q: as far as your unit tests go. are you running these on nightly builds?
+A: no, just as we can. we don't have full coverage either.
+
+Q: what are your unit tests written in?
+A: qUnit
+
+Q: How is windows mobile doing?
+A: so far this is really solid in all iOS, blackberry devices, android, really solid on palm webOS. also works really well on BB6 (webkit based). decent on 5 (doesn't support back button). basically good coverage on those 4 platforms. Nokia, there are some weird bugs. Nokia, should, by next release be on board. Opera/MiniMobile still need workarounds. Finally, windows, we have no device. And the emulator is garbage.
+Comment: It's like IE 7/8
+Q: What does IE's touch model look like?
+A: We haven't worked as much on touch/IE. For now we're looking to normalize touch to mouse clicks. Normalizing between standard mouse events, webkit touch events. If one exists and not the other, we try to support the other.
+
+Q: Are there any places to search for issues such as nonexistant back button for blackberry? Or documented list of known issues?
+A: There's two categories. First: C-grade, no javascript experience, feature test just to make sure those don't get extraneous support at all. Then, there are those that don't always pass feature tests. We have those listed in our issue tracker. I think as a whole we're trying to act in defensive ways.
+
+* walkthrough
+http://jquerymobile.com/
+http://jquerymobile.com/demos/1.0a2/
+
+pages are simple (frame)
+
+<html>
+<head>
+<script src="jquery1.4.3 ..." />
+<script src="jquery.mobile. ..." />
+</head>
+<body>
+<div data-role="page">
+<div data-role="header">
+<h1>Page Title</h1>
+</div>
+<div data-role="content">
+<p>page content goes here</p>
+</div>
+<div data-role="footer">
+<h4>Page Footer</h4>
+</div>
+</div>
+</body>
+</html>
+
+jquery mobile has frameworks to handle back button, pull new pages via AJAX, manage history, transitions, etc.
+
+also has multi-page support, like jQTouch
+
+<div data-role="page"> ... </div>
+
+http://jquerymobile.com/demos/1.0a2/#docs/pages/index.html
+
+Also uses the same transition to exit a page as was used to enter it.
+
+slide transitions, slideup/down, pop, fade, flip
+
+all via data-transition attribaute. slide is the default.
+
+dialogs don't affect the hash, so you can't deep-link to one.
+
+* toolbars
+
+<div data-role="header">
+<h1>Header!</h1>
+</div>
+
+<div data-role="header">
+<a href="index.html" data-icon="delete">Cancel</a>
+<h1>Header!</h1>
+<a href="index.html" data-icon="check">Save</a>
+</div>
+
+You can also use data-theme to change the style face.
+
+* navbars
+
+works like iPhone navbar sets
+they count children and automatically divide space to float between them.
+
+fixed toolbars will re-appear after you scroll.
