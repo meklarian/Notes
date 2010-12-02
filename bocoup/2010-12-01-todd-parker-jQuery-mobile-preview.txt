@@ -1,2 +1,61 @@
-*** jQuery mobile - Alpha Release Overview Todd Parker
+*** jQuery mobile - Alpha Release Overview - Todd Parker, Scott Jehl - filament group
+
+intro:
+filament group - boston-based design firm specializing in complex web app design & accessible front-end development.
+jQuery UI design lead + corporate sponsor
+authors of "designing with progressive enhancement", also wrote chapter in jQuery cookbook.
+design & dev leads for jQuery mobile framework
+
+** The challenge
+
+1.82 billion web-enabled mobiles by 2013 (projected)
+not just phones, but tablets, other intermediate devices
+
+device/browser diversity
+
+Opera, iPhone, Nokia, Blackberry, Android, iPod Touch, netFront, samsung, ucweb, other
+23%, 16%, 15%, 15%, 7.5%, 7%, 3%, 1%, 1%, 3%
+
+"our job as developers, is to make things work as well as they can across multiple browsers; but trying to being a developer in the mobile space is a big challenge."
+
+* different contexts, same expectations
+
+try to serve up a really good experience across all formats that you can.
+render things the same way as you can.
+
+** goals & approach
+
+one codebase, all platforms
+
+the goals of jquery mobile is to build something that works in absolutely as many places as possible.
+so jquery mobile is targeting iOS, android, blackberry, bada, windows phone, palm webos, symbian, meego, fennec.
+
+usable on older devices - trying to work with devices that may/may not have javascript support. 
+
+unified user interface
+
+instead of designing as iOS app/experience, try to make something that works on all platform.
+
+lessons learned- strive for powerful extensible theming (themeroller)
+
+even though we're targetting a lot of devices, we're trying to make this as clean as possible with html5/css3 support via progressive enhancement
+
+emphasis on semantic html:
+
+<label for="foo">Slider:</label>
+<input type="range" name="foo" id="foo" value="0" min="0" max="100" />
+
+instead of having to declare css and workarounds, jquery mobile aims to allow you to declare html5 and perform adaptations for you.
+
+* markup-driven configuration
+
+you can just write html and not have to fiddle with javascript or css to get a mobile-friendly view.
+
+<ul data-role="listview"> ... </ul>
+
+it will pickup thumbnails, detect semantic markup, etc. to create an experience
+
+* feature-test-driven (no sniffing)
+
+avoidance of browser sniffing to try and narrow-target or exclude phones.
 
