@@ -186,4 +186,69 @@ You can also use data-theme to change the style face.
 works like iPhone navbar sets
 they count children and automatically divide space to float between them.
 
-fixed toolbars will re-appear after you scroll.
+fixed toolbars will re-appear after you scroll. degrades to inline-toolbars on browsers that don't support floats.
+
+scrollbars are not entirely supported because of switching (landscape/portrait).
+
+* buttons
+
+note: can be synthesized from a link via data-role="button"
+
+* lists/list views
+
+<ul data-role="listview" data-theme="s">
+<li>A</li>
+<li>B</li>
+<li>C</li>
+</ul>
+
+read-only lists
+numbered lists
+split-button lists (automatically stubs-off a button on the end)
+
+you can add a data-role attribute filter too, that injects a search box that can filter a list.
+
+Q: What kind of optimizations did you do?
+A: We tried to use native selectors instead of sizzle, etc.
+
+nested lists automatically generate subpages
+
+<ol><ul><ol><ul> ....
+
+* form elements
+
+special auto-sizing for textarea
+support for themeable search boxes
+checkboxes
+checkbox-toolbars
+radio buttons
+
+html selects can do inline-dialog pops/overlays
+long/too-large selects can transition to full-page and  back
+
+all labels stack automatically or float-left depending on width (ED: impressive!)
+
+css3 has media queries (window width/height, pixel density, etc.)
+
+they're supported by jquery mobile, with emulation for some useful items that aren't always supported
+
+also orientation class definitions
+
+.portrait { ... }
+.landscape { ... }
+
+Q: do min-width/max-width change on orientation change?
+A: yes. we also have stepping with breakpoint classes (320, 480, ... )
+
+$.mobile.query can also be used to retrieve media query information
+
+* content formatting
+
+simple side-by-side grids
+two-column layout
+three-column layouts
+stackable grids
+
+collapsible content via data-collapsible="true" attribute
+
+end of presentation (ED: skipping demos)
