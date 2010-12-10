@@ -1,0 +1,232 @@
+*** mitchell foley - intro to node.js - boston javascript meetup
+
+background - software developer, javascript/html5/.net
+
+ref: http://thefoley.net/node
+
+** what is Node?
+
+Server-side Javascript
+based on V8 engine by Google
+Evented
+
+** why node?
+
+I/O is hard
+Can we do better?
+
+** Hypothetical Example
+
+Say you have a server
+Users Connect to get data
+This data is based on the user's input
+
+** The state of I/O
+
+Basics (single-thread)
+
+while you can get a new session:
+  ask the user for input
+  get user input
+  get data based on input
+  show user some data
+  close the connection
+
+** what are we doing here?
+
+Basics (single-thread)
+
+while you can get a new session: ** waiting for sessions
+  ask the user for input ** wait for input
+  get user input ** wait for completion
+  get data based on input ** wait for completion
+  show user some data ** wait for completion
+  close the connection ** return to initial state
+
+** Threading 
+
+Need to be able to multitask
+
+** Fixed?
+
+While you can get a new session
+    In a new Thread, do
+        Ask the user for input
+        Get user's input
+        Get data based on user's input
+        Show the user the data
+        Close the connection
+			
+** Maybe not
+
+Pay for execution stack
+Pay for context-switching
+
+** APACHE vs. NGINX
+
+Pay for execution stack
+
+NGINX does not consume more memory in comparison to connections
+
+NGINX uses an event model, just as node is modeled. They have a different way of doing non-blocking I/O.
+
+Pay for context-switching
+
+As the number of connections increases, the thoroughput decreases.
+
+Q: What's with the spike after zero, where more connections rises at the front before leveling backdown?
+A: Saturation, the point where the server's resources are fully consumed.
+
+** Event-driven?
+
+getSomeData(function(result) { 
+    console.log(result);
+    });
+
+** This isn't brand new
+
+GUIs
+DOM
+Natural style to Javascript Programmers
+
+** Why are we still do things like this?
+
+// demand input and freeze
+var name = prompt('what is your name?');
+alert('hello, ' + name);
+
+** When we can do this?
+
+betterPrompt('what is your name?',
+	function(name) {
+		betterAlert('hello, ' + name);
+	});
+
+Complaint: Too Complicated? Too Messy?
+
+** Infrastructure
+
+I/O must be non-blocking
+yet libraries are blocking
+
+** Good Libraries
+
+EventMachine, Twisted
+Easy to Use
+Use with Other Libraries?
+
+** This is node.js
+
+"To provide a purely evented, non-blocking infrastructure to script highly concurrent programs."
+
+** Simple Chat Server
+
+Let's write something simple
+
+// One of the goals is to make this as familiar as possible to developers
+// require() a pattern from other projects
+var net = require('net');
+var sockets = [];
+var server = net.createServer(onInitSocket);
+			
+function onInitSocket(socket) {
+    socket.setEncoding('utf8');
+
+// On Connection Open
+    socket.on('connect', 
+        function() { onConnect(socket); });
+// On request
+    socket.on('data',
+        function(data) { onData(socket, data); });
+// On Connection Close
+    socket.on('end',
+        function() { onEnd(socket); });  
+}
+
+function broadcast(msg) {
+    sockets.forEach(function(socket) {
+        if(socket.readyState == 'open') {
+            socket.write(msg + '\n');
+            console.log(msg);
+        }
+    });
+}
+
+Q: So this broadcast, with socket.write() wouldn't this block?
+A: socket.write is non-blocking ; returns a promise object, that will eventually complete activity as necessary after-the fact
+REF: Need quotation here?
+
+Q: So, this doesn't use a callback hook?
+A: I believe you can still provide callbacks, but not required. The return object is a promise object, and you can hook all the things that you need in there.
+
+Q: Will the promise object also tell you if it was successful?
+A: Yes, so you could interrupt your broadcast if there is a failure/
+
+Q: So is this multithreaded?
+A: I don't believe this is multithreaded. V8 sessions are single-threaded.
+
+Q: So you could share data as well across all sockets?
+A: Yes, exactly.
+
+Q: So this isn't multithreaded at all?
+A: Not exactly, the programming is declared in single-threaded assumptions, but V8 can perform things concurrently (REF?) and has other monitors running during production.
+
+Q: Who uses this?
+A: There is a japanese twitter clone, that heavily uses node.js
+
+Rick Larsen Comment: Web Workers are os-level threads with their own execution contexts; and do scale across cores.
+Q: Is this just FF?
+A: FF and in V8
+
+Q: Are there race conditions?
+A: Not within a scope. Each scope (function) will run to completion or until excepted.
+
+function onConnect(socket) {
+    socket.write('Nickname: ');
+}
+
+// Check to see if they have a nickname or not. We add a nickname object to hold this
+function onData(socket, data) {
+    var message = data.replace(/[\r\n]/g, '');
+	
+    if(socket.nickname) {
+        broadcast(socket.nickname + ': ' + message);
+    } else {
+        socket.nickname = message;
+        sockets.push(socket);
+        broadcast(socket.nickname + ' has joined.');
+    }
+}
+
+function onEnd(socket) {
+    var i = sockets.indexOf(socket);
+
+    if(i >= 0) {
+        sockets.splice(i, 1);
+    }
+    if(socket.nickname) {
+        broadcast(socket.nickname + ' has left.');
+    }
+}
+
+server.listen(12345, 'thefoley.net');
+console.log('Chat server listening on port 12345');
+
+Q: Can you update a function on a running server? Hot-code loading?
+A: Currently not in node.js; there are plans to implement it. It's not very difficult to write; basically just watch when a file changes, etc. It is expected this will be completed soon.
+
+Q: Can you talk about setTimeout() ?
+A: Other environments you can't have expectations of being able to run things in the background. (Not true in .NET?) Here, setTimeout() and setInterval() are available to perform activity server-side.
+
+Q: Has anyone implemented http servers completely in node.js?
+A: Yes, but not necessarily at a level that can complete with apache.
+
+Q: Is there debugging infrastructure?
+A: Yes, but not very much yet.
+
+Q: Is there SSL support?
+A: Questionable at this time; check with the node.JS master.
+
+Q: Is it possible to fill up the event queue? Say, with a long-running handler?
+A: Yes, but it would take a while. Otherwise, just per-request.
+
