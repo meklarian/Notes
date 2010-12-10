@@ -230,3 +230,7 @@ A: Questionable at this time; check with the node.JS master.
 Q: Is it possible to fill up the event queue? Say, with a long-running handler?
 A: Yes, but it would take a while. Otherwise, just per-request.
 
+With node, you don't really buffer data. When you're uploading a big file, you get a callback that arrives in chunks. So you don't ever want to write in a scenario with the expectation of buffering.
+
+Q: Is the set of pending events a queue?
+A: Not sure on the details of how the queue works.
