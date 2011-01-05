@@ -1,0 +1,4 @@
+Unit Testing with QUnit - Ben "Cowboy" Alman - 1/5/2011
+REF: github.com/cowboy
+REF: @cowboy
+
