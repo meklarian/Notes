@@ -234,3 +234,8 @@ With node, you don't really buffer data. When you're uploading a big file, you g
 
 Q: Is the set of pending events a queue?
 A: Not sure on the details of how the queue works.
+
+REF: http://nodejs.org/
+REF: http://paulbarry.com/articles/2010/02/08/node-js-presentation
+REF: http://jsconf.eu/2009/video_nodejs_by_ryan_dahl.html
+
