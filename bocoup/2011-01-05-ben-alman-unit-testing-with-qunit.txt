@@ -10,6 +10,8 @@ Usually where unit tests saves (my butt) is when I am modifying something in my 
 
 I'm going to mainly focus on implementing unit testing with qunit / qunit api. Some samples, and talk more about the implementation of qunit. I want to really point you at how easy it is to get into unit testing, to get you to be able to sit down (on first try) and start adding tests to your code.
 
+*** Introduction
+
 ** An easy-to-use JavaScript Unit Testing framework
 
 How easy?
@@ -20,3 +22,137 @@ ok(true, "passes because true is true");
 equal("1", 1, "passes because '1' == 1");
 strictEqual("1", 1, "fails because '1' !== 1");
 });
+
+In this example, we are expecting 3 assertions. ok(), equal(), strictEqual().
+
+Q: Why is expect() necessary?
+A: This is useful for asynchronous testing, in the case where something fails to run and you reach the end of scope. I will get into this more later.
+
+** Used and Maintained by the jQuery Project
+
+3823 tests, and counting
+
+Factoid: Each test contains at least 1 assertion
+
+** Does your code work?
+
+* your code is more complex than you think
+
+In any case, it is bad when you cause a regression; or your team does. Also beware of people commiting who try to avoid passing the unit test suite setup.
+
+* different browsers behave differently
+
+Much of the code you write in javascript is quite simple; but a lot of it may be browser dependent. It's helpful to have a suite of unit tests that you can refresh; and test in each browser (Chrome, Firefox, Opera, Internet Explorer, Safari) x (Mac, PC). Also, I test against the browsers that jQuery supports, some older versions (but of course, not as far back as FF 1.0).
+
+* caffiene & intuition only carry you so far.
+
+Sometimes you're not thinking straight, and unit tests allow you to think twice or more about your code. Once, when creating the test, and once more for you (automatically) whenever you update your code.
+
+** Fixing Bugs
+
+1. Write a test that asserts a bug's existence.
+
+Write a test that exposes the conditions of the bug.
+Write code to fix the bug.
+Run unit tests, now you can be sure the bug is fixed and you haven't introduced a regression.
+
+2. Squash the bug.
+3. Pat self on back.
+
+** Regression Testing
+
+1. Change some code.
+2. Ensure you didn't break anything.
+3. Pat self on the back.
+
+Case: A huge codebase, without unit testing. The organization that produced this suffered from code issues all the time.
+
+** It's Cool
+
+1. Devs know that you test your code.
+2. They use your code with confidence.
+3. Pat self on the back.
+
+I've talked with some developers that refuse to use jQuery plugins that don't have unit tests. They fear consequences of being able to change something without causing issues.
+
+*** Getting Started
+
+A lot of people write their unit tests before they start coding. This is up to you; I don't like to do that, but this is nice- you can write your assertions up front, and into plain-language; before you write your code. I don't know if there is a right or wrong way; but it is nice to make sure that you are thinking straight about your code. (sic) If you are doing X, you should expect Y.
+
+** Write testable code!
+
+* Separate your code into small, individually testable parts.
+
+When you start thinking more critically about your code, you stop writing large enormous functions and more modular, compact, organized, better structured code that is inherently more testable.
+
+Caveat: One thing to consider, code written in a closure is very tough to test. You can unwind and write these public up front, but then you lose the privacy of a closure. One way around this is to expose them with _ names upfront, which imply (public convention) that these are sensitive internals.
+
+One should consider rewriting event handlers into module functions. This avoids cases where you can only test things via functional tests.
+
+** What's the next step?
+
+* Download Qunit
+
+REF: https://github.com/jquery/qunit
+
+Three files:
+
+qunit.js
+qunit.css
+
+and a little bit of html
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>my app test suite</title>
+<link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
+<script src="qunit.js"></script>
+<script src="myapp.js"></script>
+<script src="myapp-tests.js"></script>
+</head>
+<body>
+<h1 id="qunit-header">My App Test Suite</h1>
+<h2 id="qunit-banner">banner/caption (changes when tests pass/fail, red/green)</h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture"></div>
+</body>
+
+*** Create a Test
+
+test("The name of the test", function() {
+// Assertions go here
+});
+
+*** What are assertions?
+
+Code that says "this is how it should work," and QUnit then tells you if it does (or doesn't).
+
+*** First, set expectations
+
+* This is most useful when testing async code, but get in the habit anyways
+
+// Traditional
+test("test name", function() {
+expect(e);
+// QUnit expects 3 assertions in this test.
+});
+
+// Shorthand
+test("test name", 3, function() {
+// QUnit expects 3 assertions in this test.
+});
+
+*** Qunit Assertions
+ok, equal, notEqual, strictEqual, notStrictEqual, deepEqual, not deepEqual, and raises
+
+*** ok
+
+test("ok", 3, function() {
+  ok(true, "passes because true is true");
+  ok(1, "passses because 1 is truthy");
+  ok("", "fails because empty string is not truthy);
+});
+
