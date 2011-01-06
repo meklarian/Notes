@@ -2,3 +2,21 @@ Unit Testing with QUnit - Ben "Cowboy" Alman - 1/5/2011
 REF: github.com/cowboy
 REF: @cowboy
 
+REF: http://docs.jquery.com/Qunit
+
+Open (paraphrase): Wrote many jQuery plugins, looking for a way to share plugin development with other developers. In jQuery plugin library, there are thousands of plugins. How does one differentiate one's own plugins against others, and make them better for the community as a whole? In general, many of the better plugin pages have demos, documentation, beautiful presentation, etc. At some point, writing unit tests came up; to help test and reduce regression.
+
+Usually where unit tests saves (my butt) is when I am modifying something in my code, and I add something that seems logical and simple; causes a specific circumstance to fail. It is a good feeling to know that your unit tests are useful, preventing time spent on regressions and side effects.
+
+I'm going to mainly focus on implementing unit testing with qunit / qunit api. Some samples, and talk more about the implementation of qunit. I want to really point you at how easy it is to get into unit testing, to get you to be able to sit down (on first try) and start adding tests to your code.
+
+** An easy-to-use JavaScript Unit Testing framework
+
+How easy?
+
+test("some tests", function() {
+expect(3);
+ok(true, "passes because true is true");
+equal("1", 1, "passes because '1' == 1");
+strictEqual("1", 1, "fails because '1' !== 1");
+});
