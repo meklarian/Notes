@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>my app test suite</title>
+<link rel="stylesheet" href="core/qunit.css" type="text/css" media="screen" />
+<script src="core/qunit.js"></script>
+<script src="core/jquery-latest.js"></script>
+</head>
+<body>
+<h1 id="qunit-header">My App Test Suite</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar"></div>
+<h2 id="qunit-userAgent"></h2>
+<ol id="qunit-tests"></ol>
+<div id="qunit-fixture"></div>
+<script>
+$(document).ready(function() {
+test("ok", 3, function() {
+  ok(true, "passes because true is true");
+  ok(1, "passses because 1 is truthy");
+  ok("", "fails because empty string is not truthy");
+});
+
+test("equal", 3, function() {
+var actual = 1;
+
+equal(actual, 1, "passes because 1 == 1");
+equal(actual, true, "passes because 1 == true");
+equal(actual, false, "fails because 1 != false");
+});
+
+test("notEqual", 3, function() {
+var actual = 1;
+notEqual(actual, 1, "fails because 1 == 1");
+notEqual(actual, true, "fails because 1 == true");
+notEqual(actual, false, "passes because 1 != false");
+});
+
+test("strictEqual", 3, function() {
+var actual = 1;
+
+strictEqual(actual, 1, "passes because 1 === 1");
+strictEqual(actual, true, "fails because 1 !== true");
+strictEqual(actual, false, "fails because 1 !== false");
+});
+
+
+test("notStrictEqual", 3, function() {
+var actual = 1;
+
+notStrictEqual(actual, 1, "fails because 1 === 1");
+notStrictEqual(actual, true, "passes because 1 !== true");
+notStrictEqual(actual, false, "passes because 1 !== false");
+});
+
+
+test("deepEqual", 7, function() {
+var actual = {a: 1};
+equal(actual, {a:1}, "fails because objects are different");
+deepEqual(actual, {a:1}, "passes because objects are equivalent");
+deepEqual(actual, {a: "1"}, "fails because '1' !== 1");
+
+var a = $('body > *'), b = $('body').children();
+
+equal(a, b, "fails because jQuery objects are different");
+deepEqual(a, b, "fails because jQuery objects are not equivalent");
+equal(a.get(), b.get(), "fails because element arrays are different");
+deepEqual(a.get(), b.get(), "passes because element arrays are equivalent");
+});
+
+test("raises", 3, function() {
+raises(function() {
+  throw new Error("look ma, i'm an error!");
+  }, "passes because an error is thrown inside the callback");
+raises(function(){
+  x // ReferenceError: x is not defined
+  }, "passes because an error is thrown inside the callback");
+raises(function(){
+  var a = 1;
+  }, "fails because no error is thrown inside the callback");
+});
+
+test("expectations", 1,function() {
+expect(1);
+var actual = false;
+stop(); // Stops test execution until further tests are run.
+setTimeout(function() {
+ok(actual, "this test would fail, if it ever ran");
+start();
+}, 1000);
+});
+
+});
+</script>
+</body>
