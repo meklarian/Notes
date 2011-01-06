@@ -251,7 +251,6 @@ raises(function(){
 raises(function(){
   var a = 1;
   }, "fails because no error is thrown inside the callback");
-
 });
 
 If you're writing code that people need to evaluate and handle errors in a useful way, raises() is what you would use.
@@ -317,4 +316,212 @@ equal(items.eq(0).text(), "1. foo", "first item should have index 1");
 equal(items.eq(1).text(), "2. bar", "second item should have index 2");
 equal(items.eq(2).text(), "3. baz", "third item should have index 3");
 });
+
+Q: Because this was checking for things in the fixture div and reverts it on every test, would this prevent you from using anything else on the page?
+A: No. You're free to modify anything else on the page, but this will affect the ability of your tests to run as atomic assertions. But sometimes there are gray areas... say if you were modifying something based off the body element, then you might not be able to put it into a fixture. Perhaps for the body element, you could just put it in an iframe and cross-script a solution to inspect it.
+
+*** Plugin Authors
+
+* if possible, test your plugin in multiple versions of jQuery
+
+Note: qunit works with all versions of jQuery and does not require jQuery.
+
+*** more powerful modules
+
+configure setup and teardown callbacks to streamline your tests
+
+module("module2", {
+setup: function () {
+ok(true, "once extra assert per test");
+this.prop="foo";
+},
+teardown: function() {
+ok(true, "and one extra assert after each test");
+}
+});
+
+test("test with setup and teardown", function() {
+expect(3);
+same(this.prop, "foo", "this.prop === 'foo' in all tests");
+});
+
+Q: How do the tests know they're in the module?
+A: By order. In QUNIT, you define a module, then the tests after. Modules declare in order with tests. The tests might not run in order, but sets of modules execute in groups. For multiple modules, just declare them after a previous module is done.
+
+Q: Can you tell it how many tests are expected in setup/teardown?
+A: Not at this time, but feel free to suggest this if you need this. Otherwise, you would have to adjust the counts expected for each test.
+
+Q: Is there a need for multiple asserts in setup/teardown?
+A: In cases, maybe.
+Audience A: Also, complicated setups also might need testing. So you might want to add a test to be sure your setup is correct.
+
+*** Sweet,  no errors!
+
+* but as you can see, sometimes no errors is a bad thing
+
+test("no errors", function() {
+var actual = false;
+setTimeout(function() {
+ok(actual, "this test would fail, if it ever ran");
+}, 1000);
+});
+
+Tests run synchronously, so this can't ever run.
+
+*** Set expectations, stop and start!
+
+test("expectations", function() {
+expect(1);
+var actual = false;
+stop(); // Stops test execution until further tests are run.
+setTimeout(function() {
+ok(actual, "this test would fail, if it ever ran");
+start();
+}, 1000);
+
+});
+
+*** asyncTest
+s action to complete.
+another way to tell QUnit to wait for an asynchronou
+
+asyncTest("test", 1, function() {
+
+});
+
+*** using a timeout
+
+get more granular control over your asynchronous tests
+
+test("stop w/timeout", function() {
+expect(1);
+
+stop(1000);
+
+$.getJSON("http://oops.com?callback=?", function(data) {
+ok(actual, "this test would fail.. if it ever ran");
+start();
+});
+});
+
+*** multiple async functions in one test
+
+REF: jsfiddle.net can be used to echo back what is sent
+
+test("multiple async w/counter", function(){
+stop();
+
+// only call start() when counter is 0.
+var counter = 2;
+function done() {--counter || start();}
+
+var url = "http://jsfiddle.net/echo/jsonp/?callback=?";
+
+*** the best way
+
+jorn added this one in, because I asked nicely
+
+test("multiple async w/multiple stops", function() {
+expect(4);
+
+stop();
+$.getJSON("http://oops.com?callback=?", function(data) {
+ok(false, "this test would fail.. if it ever ran");
+ok(false, "this test would fail.. if it ever ran");
+start();
+});
+
+stop();
+$.getJSON("http://oops.com?callback=?", function(data) {
+ok(false, "this test would fail.. if it ever ran");
+ok(false, "this test would fail.. if it ever ran");
+start();
+});
+});
+
+*** simulate ajax?
+
+what are you testing anyways, your client code or your server code?
+
+*** mockjax
+
+mock your ajax requests with mockjax for rapid development
+
+$.mockjax({
+url: '/user',
+contentType: 'type/json",
+resposeText: {status: -1}
+});
+
+$.mockjax({
+url: '/user/*',
+contentType: 'type/json",
+resposeText: {status: 1, user: 'sample user'}
+});
+
+REF: Also the jupiter mvc javascript guys have a similar mock harness.
+
+*** URL parameters
+
+running specific tests
+
+All tests 
+modules.html
+
+"core" module
+modules.html?core
+
+"options" module
+modules.html?options
+
+"Assertions" test suite
+
+assertions.html
+
+assertions.html?ok
+
+assertions.html?ok+equal
+
+*** global pollution detection
+
+just add ?noglobals to the URL, and QUnit will fail any "leaky" tests
+
+test("not leaky", 1, function() {
+var x = true;
+ok(x, "passes because x is true");
+});
+
+test("leaky", 1, function(){
+x = true;
+ok(x, "also passes because x is true");
+});
+
+*** callbacks
+
+automatically capture qunit test results, a la TestSwarm
+
+QUnit.begin = function() {
+console.log("running test suite");
+};
+
+QUnit.done = function() {
+console.info("blah blah blah all tests completed");
+};
+
+.log // every assertion
+.testStart // on test start
+.testDone // on test stop
+.moduleStart // on module start
+.moduleDone // on module done
+.reset // after every test group, redefining this will override the built-in #qunit-fixture reset logic
+
+REF: Mozilla Labs TestSwarm (distributed continuous integration for javascript)
+
+*** Qunit recap
+
+* write testable code
+* tests should be atomic
+* organic tests into modules
+* simulate your AJAX
+* it's only three files!
 
