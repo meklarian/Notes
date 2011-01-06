@@ -150,9 +150,171 @@ ok, equal, notEqual, strictEqual, notStrictEqual, deepEqual, not deepEqual, and 
 
 *** ok
 
+just an assertion is that something is true
+
 test("ok", 3, function() {
   ok(true, "passes because true is true");
   ok(1, "passses because 1 is truthy");
   ok("", "fails because empty string is not truthy);
+});
+
+Q: So, what if undefined got here?
+A: It would be false, and would fail.
+Q: What message would it give?
+A: It is up to your message. In the examples given here, I'm just showing pass/fail.
+
+*** equal
+
+a comparison assertion that passes if actual == expected
+
+test("equal", 3, function() {
+var actual = 1;
+
+equal(actual, 1, "passes because 1 == 1");
+equal(actual, true, "passes because 1 == true");
+equal(actual, false, "fails because 1 != false");
+});
+
+this differs from ok, because you can get a diff, to see how values expected differed from actual
+
+*** notEqual
+
+test("notEqual", 3, function() {
+var actual = 1;
+notEqual(actual, 1, "fails because 1 == 1");
+notEqual(actual, true, "fails because 1 == true");
+notEqual(actual, false, "passes because 1 != false");
+});
+
+*** strictEqual
+
+a comparison assertions that passes if actual === expected
+
+test("strictEqual", 3, function() {
+strictEqual(actual, 1, "passes because 1 === 1");
+strictEqual(actual, true, "fails because 1 !== true");
+strictEqual(actual, false, "fails because 1 !== false");
+});
+
+*** notStrictEqual
+
+a comparison assertion that passes if actual !== expected
+
+test("notStrictEqual", 3, function() {
+notStrictEqual(actual, 1, "fails because 1 === 1");
+notStrictEqual(actual, true, "passes because 1 !== true");
+notStrictEqual(actual, false, "passes because 1 !== false");
+});
+
+*** deepEqual
+
+recursive comparison assertion, working on primitives, arrays, and objects, using ===
+
+test("deepEqual", 7, function() {
+var actual = {a: 1};
+equal(actual, {a:1}, "fails because objects are different");
+deepEqual(actual, {a:1}, "passes because objects are equivalent);
+deepEqual(actual, {a: "1"}, "fails because '1' !== "1");
+
+var a = $('body > *'), b = $('body').children();
+
+equal(a, b, "fails because jQuery objects are different");
+deepEqual(a, b, "fails because jQuery objects are not equivalent");
+equal(a.get(), b.get(), "fails because element arrays are different");
+deepEqual(a.get(), b.get(), "passes because element arrays are equivalent");
+});
+
+This is especially useful in testing jQuery returns, as you can now deep-iterate through the result sets.
+
+Q: what if you have nested objects?
+A: It goes and iterates through each item and compares every item
+
+Remember, this is something you'll love if you are testing things in DOM fashion.
+
+*** notDeepEqual
+
+recursive comparison assertion, The result of deepEqual, inverted.
+
+There aren't too many use cases for this, but it exists if you need it.
+
+*** raises
+
+assertion to test if a callback throws an exception when run
+
+test("raises", 3, function() {
+raises(function() {
+  throw new Error("look ma, i'm an error!");
+  }, "passes because an error is thrown inside the callback");
+raises(function(){
+  x // ReferenceError: x is not defined
+  }, "passes because an error is thrown inside the callback");
+raises(function(){
+  var a = 1;
+  }, "fails because no error is thrown inside the callback");
+
+});
+
+If you're writing code that people need to evaluate and handle errors in a useful way, raises() is what you would use.
+
+*** Tests should be atomic!
+
+* and execution order cannot be guaranteed!
+
+// DON'T DO THIS
+
+var counter = 0;
+test("first test", 1, function(){
+counter++;
+equal(counter, 1, "counter should be 1");
+});
+test("second test", 1, function(){
+counter++;
+equal(counter, 2, "counter should be 2");
+});
+test("third test", 2, function(){
+counter++;
+equal(counter, 2, "counter should be 2");
+ok(false, "oops an error");
+});
+
+Caveat: Some test parts may be cached. So order can't be guaranteed... in chrome, these tests run forwards and backwards depending on each test attempt.
+
+Q: Something I am curious about, are there ways to write tests where you can only run certain tests or modules?
+A: Yes, via query strings.
+
+*** #qunit-fixture
+
+Any markup in here will be reset after every test (uses jQuery if possible).
+
+<div id="qunit-fixture">
+<ul>
+<li>foo</li>
+<li>bar</li>
+<li>baz</li>
+</ul>
+</div>
+
+You can setup any DOM tree that you need in there; allowing you to write more atomic tests, with the expectation that content is correct and fresh for every test.
+
+*** A plugin "test suite"
+
+* sometimes it really is this simple
+
+test("enumerate()", 4, function() {
+var items = $("#qunit-fixture li");
+
+strictEqual(items.enumerate(), items, ".enumerate should return this");
+equal(items.eq(0).text(), "0. foo", "first item should have index 0");
+equal(items.eq(1).text(), "1. bar", "second item should have index 1");
+equal(items.eq(2).text(), "2. baz", "third item should have index 2");
+});
+
+test("enumerate(1)", 4, function() {
+var items = $("#qunit-fixture li");
+
+strictEqual(items.enumerate(1), items, ".enumerate should return this");
+equal(items.eq(0).text(), "1. foo", "first item should have index 1");
+equal(items.eq(1).text(), "2. bar", "second item should have index 2");
+equal(items.eq(2).text(), "3. baz", "third item should have index 3");
 });
 
