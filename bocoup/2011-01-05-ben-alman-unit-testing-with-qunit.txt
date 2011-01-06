@@ -525,3 +525,15 @@ REF: Mozilla Labs TestSwarm (distributed continuous integration for javascript)
 * simulate your AJAX
 * it's only three files!
 
+REF: https://github.com/cowboy/talks/tree/master/unit-testing-qunit
+
+Q: Is there a plan or strategy for deprecated functions (equals / equal) in QUnit going into the future?
+A: Contact jorn if this is an issue. Some things were changed because of common convention, to maintain parallels with other test frameworks.
+
+Q: I'm wondering if there's a way to have a module run if another module succeeds? I'd like to shorten the time if there is an early failure.
+A: I haven't seen anything like that. That's interesting. At now, it isn't too bad if something runs, fails; then the next module just fails. This could be a valid thing to support.
+
+Q: Is there a recommended way to test an entire application in this manner?
+A: This varies, you may wish to just load separate parts, content, pieces of your application into a harness. If you wanted to do something more complicated, you might want to use FuncUnit (sp??) that includes QUnit and that will allow you to do higher order functional testing to simulate what a user would do.
+In terms of an entire website; you could use selenium; that would be able to interact straight with your app. That's something you can do on a much larger scale for an application level thing.
+Audience A: If you have a node.js instance, you can also use zombie.js to access the DOM on the server side.
