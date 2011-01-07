@@ -73,3 +73,227 @@ if you plan to serve many public pages with HTML generated on the server with a 
 * js should work across frames
 * closure tools should be independent, so it should be possible to adopt the use of one without the others; however the whole is greater than the sum of the parts
 
+*** a look at closure library code
+
+goog.provide('goog.string);
+
+/**
+  * fast prefix-checker.
+  * @param {string} str The string to check.
+  * @param {string} prefix A string to look for from the start of {@code str}
+  * @return {boolean} True if {@code str} begins with {@code prefix}
+  */
+
+goog.string.startsWith = function(str, prefix) { 
+  return str.lastIndexOf(prefix, 0) == 0;
+};
+
+Q: is this a standard format for jsdoc? can we use jsdoc to markup documentation for methods?
+A: the @param/@code are, don't know about the overall format
+
+*** closure templates code
+
+{namespace example.hello}
+
+{template .helloName}
+  {if not $greetingWord}
+    Hello <b>{$name}</b>!
+  {else}
+    <ul>{$greetingWord} {$name}!</u>
+  {/if}
+{/template}
+
+compiles to
+
+goog.provide('example.hello');
+
+example.hello.helloName = function(opt_data, opt_sb){
+  var output = opt_sb || new soy.StringBuilder();
+  output.append((!opt_data.greetingWord) ?
+    'Hello <b>' +
+    soy.$$escapeHtml(opt_data.name)+'</b>!':'<u>' +
+    soy.$$escapeHtml(opt_data.greetingWord) + ' ' +
+    soy.$$escapeHtml(opt_data.name) + '</u>');
+  if(!opt_sb) return output.toString();
+};
+
+Q: Can you use this to generate JSON/XML?
+A: Yes. However, if your line ends with a } or >, all whitespace might be removed.
+Q: What about [ ] ?
+A: Those are just treated normally, not inclusive of } or >. But there is a literal that also prevents the collapse of whitespace.
+Q: How small does the output get squeezed by the compiler?
+A: Not too much; but it will shorten names and items.
+Q: So how is this an improvement over php_include() ?
+A: This is client-side, and can be called as needed from js functions.
+Q: You mention each tool is independent. What would you need to do to wire this to work with jQuery.
+A: There's a script to be run that would create a script you can use; which you can then add as a dependency.
+
+*** calling a closure template
+
+goog.require('example.hello);
+goog.require('goog.dom');
+var data = {greetingWord: 'Hola', name: 'Sr. User'};
+goog.dom.getElement('some-el').innerHTML = example.hello.helloName(data);
+
+*** verbosity belies compiled code size
+
+original code:
+
+goog.provide('goog.string');
+
+goog.string.startsWith = function(str, prefix) {
+};
+
+** compiled code:
+
+var x=function(a, b){return a.lastIndexOf(b,0)==0;}
+
+*** externs
+
+how did the compiler know to treat lastIndexOf as special?
+
+Answer: externs (idea specific to the compiler, not js)
+
+externs are lists of symbols provided by the environment in which js will be run
+
+window document alert() setTimeout() etc
+
+*** common utilities in the closure library
+
+* goog.sting 
+  string/array utilities
+* goog.object 
+  object literal utilities
+  json serialization
+* goog.net.cookies
+  getting/setting cookies
+* goog.dom
+  manipulating the DOM
+* goog.dom.classes
+  managing CSS
+* goog.userAgent
+  user agent testing
+* goog.style
+  manipulating CSS styles
+* goog.structs
+  class/structure support
+
+*** defining a class in closure
+
+gog.provide('yext.User');
+
+/***
+ * @param {string} email User's email address.
+ * @constructor
+ */
+yext.User = function(email) {
+  /** @private */
+  this.email_ = email;
+}
+
+/** @return {boolean} */
+yext.User.prototype.isOnAol = function() {
+  return goog.string.endsWith(this.email_, '@aol.com');
+};
+
+*** static fields and methods in closure
+
+static values are defined in the constructor function rather than its prototype
+
+yext.User.emailMap = {};
+
+yext.User.getUserForEmail = function(email) {
+return yext.User.emailMap[email];
+};
+
+*** inheritance in closure
+
+goog.provide('yext.SuperUser');
+goog.provide('yext.User');
+
+/**
+ * @param {string} email User's email address
+ * @constructor
+ * @extends {yext.User}
+ */
+yext.SuperUser = function(email){
+yext.User.call(this, email);
+};
+
+goog.inherits(yext.SuperUser, yext.User);
+
+*** overriding a method
+
+/** {@inheiritDoc} */
+yext.SuperUser.prototype.isOnAol = function() {
+var isOnAol = yext.SuperUser.
+superClass_.isOnAol.call(this);
+return isOnAol &&someOtherCheck();
+};
+
+** why this works
+
+goog.inherits = function(childCtor, parentCtor) {
+/** @constructor */
+function tempCtor() {};
+tempCtor.prototype = parentCtor.prototype;
+childCtor.superClass_ = parentCtor.prototype;
+childCtor.prototype = new tempCtor();
+childCtor.prototype.constructor = childCtor;
+};
+
+Q: Are all of these in the same file?
+A: Not necessarily. Most times they're in separate files.
+Q: How does goog.provide() know where the source lives?
+A: So provide(), doesn't know about other files(). require(), that.. we'll come back that.
+
+*** event management
+
+it is possible to register listeners for built-in browser events (like clicks/keypresses) and user-defined events through the same interface in the Closure library:
+
+/**
+  * this is a simplified version of the api
+  * @param {EventTarget|goog.events.EventTarget} src Source of the event
+  * @param {string} type Event type to listen for
+  * @param {function(goog.events.Event)} listener
+  * @param {boolean=} capture
+  * @param {object=} handler
+  * @return {number} unique key for the listener
+  */
+goog.events.listen = function(src, type, listener, capture, handler) { /* ... */ };
+
+*** mouse listener
+
+adding a click listener
+
+var key;
+var el = goog.dom.getElement('some-button');
+var callback = function(e) {
+if(e.type != goog.events.EventType.CLICK || e.target != el) {
+alert('received unexpected arguments');
+}
+goog.events.unlistenByKey(key);
+};
+key = goog.events.listen(el, goog.events.EventType.CLICK, callback);
+
+// See also: goog.events.listenOnce()
+// ...
+
+*** example: custom event
+
+goog.provide('yext.LoginEvent');
+goog.require('goog.events.Event');
+
+yext.LoginEvent = function(user) {
+goog.events.Event.call(this, yext.LoginEvent.Type
+
+}
+
+*** custom eventtarget
+
+this.dispatchEvent() ...
+
+*** listen for a custom event
+
+goog.events.listen(...);
+
