@@ -277,7 +277,7 @@ goog.events.unlistenByKey(key);
 key = goog.events.listen(el, goog.events.EventType.CLICK, callback);
 
 // See also: goog.events.listenOnce()
-// ...
+// See also: goog.events.EventHandler
 
 *** example: custom event
 
@@ -295,5 +295,179 @@ this.dispatchEvent() ...
 
 *** listen for a custom event
 
-goog.events.listen(...);
+goog.events.listen(...);?
 
+Q: if the compiler can determine only one thing can call it, will it inline it? (or tidy it out?)
+A: I don't think it can do that right now. There are other cases where it knows if it receives something of a given type (direct calls).
+
+Q: Does the library cleanup eventhandlers at the end for you?
+A: you can use events.listenOnce() / EventHandler. EventHandler has a dispose() that can remove all the keys for you.
+
+Q: in the case of IE memory leaks can you automatically do disposal?
+A: no, that would still be possible if you don't clean up.
+
+*** user interface components
+
+the closure library includes a diverse set of UI widgets in the goog.ui package. they are skinnable and dispatch events in a consistent manner with the rest of the library.
+
+like the rest of the code in the library, they are battle-tested in real google apps products across browsers, so leveraging them can save a lot of time and energy.
+
+at the same time, it takes a bit of effort to understand the model behind the goog.ui package in order to use the widgets effective. the chapter that explains this in /the definitive guide/ is 50 pages long, so it is hard to condense into one slide.
+
+Q: Are there apps/controls that use this that don't look like google apps?
+A: Yes. I know the defaults look google-like; but there is separation in CSS so you can skin/style the way you want.
+
+Q: What's the load / price for using these? have you ever run into a situation where you've got too much on one page and things start to drag?
+A: Most of these are pretty snappy. In our own javascript, that's 100kloc of code. We carve up parts into modules, as 40kloc is google closure, and 60kloc is ours. We delay-load (sic) to avoid trying to load 4mb of code at once.
+Q: Is this modularization supported automatically?
+A: yes, by closure compiler.
+
+*** closure compiler
+
+here is an example of a widget built using the closure libary being compiled to 4% of its original size using the closure compiler
+
+http://bolinfest.com/javascript/closure-compiler-vs-yui.html
+
+*** closure compiler: renaming
+
+the compiler flattens properties by replacing dots with dollar signs (up to the prototype keyword):
+
+before: goog.string.startsWith
+after: goog$string$startsWith
+
+before: yext.User.prototype.isOnAol
+
+after:
+var yext$User$prototype = yext.User.prototype;
+yext$User$prototype.isOnAol
+
+*** closure compiler: devirtualizing prototype methods
+
+although it sounds fancy, it is actually a simple xformation on instance methods and their call sites. it is done provided that the method is not overridden, and the function does not reference the arguments variable
+
+*** closure compiler: inlining
+
+the closure compiler inlines the following things
+
+* constants
+* variables used just once (out of a loop)
+* getter methods
+* functions called just once (not referencing this)
+
+i'm tring to save bytes is not an excuse to use a short variable name or to avoid refactoring large functions: the compiler will rename your variables and inline the pieces of your decomposed function for you.
+
+*** quoting properties is significant
+
+unquoted properties can be renamed by the compiler
+
+var properties = {email: 'mbolin'};
+// will be compiled into:
+// var a={b:'mbolin'};
+
+quoted properties cannot be renamed because the compiler does not modify string literals
+
+var properties = {'email': 'mbolin')[
+// compiled into
+// var a={'email':'mbolin'};
+the rule of thumb is to use quoted values to extract values
+
+*** do not use this inside a static function
+
+*** avoid eval() and with
+
+generally eval() and with break down in the presence of variable renaming, so they should not be used in javascript that is going to be compiled
+
+fortunately this is not a significant hindrance because with is already disallowed in the most recent version of js with strict mode.
+
+there are legitimate cases of using eval() such as parsing a string of JSON, though that will still behave correctly in compiled mode.
+
+Q: can i pull in unrelated scripts into a namespace commands
+A: yes. in fact, with jQuery, we pull the entire library in.
+
+*** closure build commands
+
+a developer has to run the following commands to use the library, templates, and compiler together
+
+java -jar SoyToJsSrcCompiler.jar ........
+
+*** instead, introducing plovr
+
+plovr is an open-source build tool for Closure
+
+http://plovr.com/
+
+*** plovr features
+
+in order to lower the barrier to entry for closure, plovr has the following features
+
+* single download (java jar) that bundles library, templates, and compiler together
+* build options are stored in a JSON config file
+* operates in both build and server modes
+* dependency information is parsed once from JS files (reparsed if the file changes)
+* running in server mode eliminates startup time for recompilation
+
+*** consider a small jQuery program
+
+$('#toggle').click(function() {
+var shade = $('.shade');
+if(shade.is(':hidden')){
+shade.slideDown();
+}else{
+shade.slideUp();
+}
+});
+
+*** plovr config file
+
+{
+"id": "jquery-demo",
+"inputs": "jquery-demo/demo.js",
+"externs": "jquery-1.4.4.externs.js",
+"mode": "ADVANCED",
+"level": "VERBOSE",
+"checks": { "missingProperties": "WARNING"}
+}
+
+Q: how long does it take to compile 100kloc of javascript in your work environment?
+A: about 50seconds
+
+*** rnning plovr
+
+the following command starts plovr in server mode:
+
+// java -jar plovr.jar serve config.js
+
+the following command outputs to stdout, which may be piped out to a file:
+
+// java -jar plovr.jar build config.js
+
+*** questions? (references)
+
+closure project home page: http://code.google.com/closure
+twitter: @closuretools
+
+contact info:
+blog: http://blog.bolinfest.com/
+twitter: @bolinfest
+email: bolinfest@gmail.com
+
+Q: how do you locate the original location of code if an inlined output function is misbehaving?
+A: if you use the firebug extension, you can locate the original source.
+
+Q: do you closure with everything at yext? or do you also use jquery/other libraries.
+A: depends on the project. we use a lot of closure, but some other tools. all our server code is in java.
+
+Q: what do you use to edit all of this?
+A: i use eclipse to edit; and in code I use the plovr links to get back.
+
+Q: is there eclipse support for closure?
+A: not really. there are some plugin devs who are making things that can use type information, though.
+
+Q: do you have any idea where closure is going? are there any new neat features coming up?
+A: it's mostly developed internally at google for their stuff. but they're slowly getting better at release cycle and in taking patches by the public. in practice; a lot of the influence is from the needs of apps at google. most of it is supported by 20% teams at google. in the future they may make a dedicated team; but for now just the 20%ers.
+
+Q: i just started using plovr, which i like. can you explain a little about the testing framework? i have to create separate configs for each test suite.
+A: at this time, no support for those scenarios.
+
+Q: how close are these UI components to the new google docs components?
+A: it's quite different. but they are very close to the gmail controls and components.
