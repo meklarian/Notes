@@ -1,1 +1,75 @@
 Closure Tools: Principles and Practice - Michael Bolin - 1/6/2010
+
+*** why closure?
+
+challenges with javascript development "in the large":
+
+* no namespaces, resulting in name collisions and lack of module boundaries
+* no visibility controls: every variable is public
+* no type system
+* no static checking because js is interpreted
+* no built-in support for templates even though js is frequently used to build up large strings of HTML
+    (not even support for multi-line strings)
+
+*** what is closure?
+
+closure refers to a suite of javascript tools that have been open-sourced by google
+
+* closure library
+* closure templates
+* closure compiler
+  inling, removes dead code, folding constants, minifying, error/syntax checking
+* closure testing framework
+  jsunit based
+* closure inspector
+  firebug ext. to help debug obfuscated code
+* closure linter
+  code lint / code style checker / code format
+  
+the suite of losure tools was open-sourced as part of google's "make the web faster" effort
+
+*** who uses closure?
+
+many google apps are built on closure rather than the google web toolkit (GWT)
+
+gmail, maps, docs, sites, books, reader, blogger, calendar, photos
+
+though closure was open-sourced in nov. 2009, other companies have started using it as well
+
+yext, cloudkick, chartbeat
+
+*** how can closure help me?
+
+it depends:
+
+if you plan to create a single-page application that dynamically updates content with javascript, then you can benefit from the *library*, *templates*, and the *compiler*
+
+/this is a good if you care about speed and offline support/
+
+if you plan to serve many public pages with HTML generated on the server with a dab of JS for ornamentation, then you are probably only interested in the *compiler*
+
+/this is good architecture if you care about being indexed by a web crawler/
+
+*** how closure addresses the development issues
+
+* closure library interoduces javascript functions goog.provide() and goog.require() to declare/manage namespaces
+  some people use requireJS for this
+* closure library employs jsdoc annotations to indicate visibility and type information
+* closure compile performs static checks that enforce visibility and type annotations, among other things
+* closure templates make it possible to write HTML with placeholders that become functions that can be called from JS
+  (also includes xss support?)
+
+
+*** closure design principals
+
+* strong emphasis on reducing the size of compiled code
+* identify as many js errors at compile time as possible
+* js should work in both compiled and uncompiled modes
+  NOTE: unlike coffeescript
+* js should work on all "modern browsers", including IE6
+* js should manage references to avoid memory leaks
+  more sensitive to DOM structure
+* js should not modify built-in types (such as Array.prototype, Object.prototype)
+* js should work across frames
+* closure tools should be independent, so it should be possible to adopt the use of one without the others; however the whole is greater than the sum of the parts
+
