@@ -1,0 +1,183 @@
+Web Mapping with Geomap - $.geomap() - ryan westphal - 7/13/2011
+REF: @ryanttb
+REF: bit.ly/jquerygeo
+REF: trippingthebits.com/geopres
+
+Heading --- Mapping: y u no easy?
+
+--- Who?
+bing, esri (gis), google maps, mapquest, openlayers (open source map control), ovi (yahoo?), leaflet (new), polymaps
+
+--- reference test
+these are the common tasks that need to be available in any map API
+
+-- a task to implement in six APIs
+* add a map to a webpage
+* center and zoom to a location
+* handle click events
+* place the API's default marker/symbol at the cliecked location
+
+-- what about?
+* default map
+* literal center
+* inline event binding
+* geo event
+when you get an event, you would like to be able to get the map-relative location of the event, not the pixel
+* number of "new" per shape
+litmus: how many times do you have to type **new** to get a new shape on the map
+* amount of extra weirdness
+
+mapquest
+
+MQA.EventUtil.observe(
+window, 'load', function() {
+var map = new MQA.TileMap(
+document.getElementById('ma['), 7, { lat: 39.74... , lng: -105.020 }, 'map'
+...
+
+google
+
+function init() {
+var map = new google.maps.Map(
+document.getElementById("map", {
+zoom: 8,
+center: new google.maps.LatLng(-34.397, 150.644),
+mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+};
+
+google.maps.addEventListener...
+
+bing - has default map
+
+function init() {
+var map = new VEMap('map');
+map.LoadMap(new VELatLong(47.6, -12.33), 10);
+map.AttachEvent(
+"onclick", function(e) {
+map.AddShape(
+new VEShape(
+...
+
+Ovi (Yahoo! is deprecating their API and points to this...) requires behavior pointer, do not get geospatial point
+
+ovi.mapsapi.util.ApplicationContext.set({
+...
+
+esri - no default map, have to add as a layer after creating a map, no literal, have to create a point, and spatial reference
+
+dojo.require("esri.map");
+function init() {
+var spatialRef = new esri.SpatialReference({ wkid: 4329});
+var map = new esri.Map("map");
+map.addLayer(
+new esri.layers.ArcGISTiledMapServiceLayer(
+"http://server.arcgisonline.com/ArcGIS/rest/services/" + "World_Street_Map/MapServer"
+)
+);
+map.centerAndZoom(new esri.geometry.Point(-118.15, 33.80, spatialRef), 10);
+...
+
+
+openlayers - 
+
+function init() {
+var vectorLayer = new OpenLayers.Layer.Vector("VectorLayer");
+var map = new OpenLayers.Map(
+'map', {
+layers: {
+new OpenLayers.Layer.WMS(
+"OpenLayers WMS",
+"http://vmap0.tiles.osgeo.org/wms/vmap0",
+{
+layers:'basic'
+}
+},
+vectorLayer
+]
+}
+);
+map.setCenter(new OpenLayers.LonLat(-71, 42), 12);
+OpenLayers.ControlClick = 
+...
+
+Heading --- I don't always add maps to my websites, but when I do, I keep my code to 140 characters
+
+$.geo
+
+$(function() {
+var map = $("#map").geomap({
+center: [-71, 43],
+zoom: 10,
+click: function(e, geo) { map.geomap("append", geo");}
+);
+});
+
+Heading --- yo geom so plain, even on a map it don't know where it is
+
+when you add an object onto a map, you can get it back and don't have to worry about the placement on the map
+
+shapes & style
+
+$(function() {
+function rand() { return Math.floor(Math.random() * 256);}
+
+var map = $("map").geomap({
+center: [ ... ],
+zoom: 10,
+click: function(e, geo) {
+var existing = map.geomap("find", geo, 3);
+if (existing.length > 0){
+map.geomap("remove", existing[0]);
+}
+else
+{
+map.geomap("append", geo, {color: "rgb(" + rand() + "," + rand() + "," + rand() + ")"})});
+}
+}
+});
+
+map.geomap("shapeStyle", {strokeWidth: "4px"});
+});
+
+new objects correspond to geoJson default object
+
+if you've used google or other geo apis, it's always .lat / .long; by default in $.geo(), your longitude comes first in an array tuple [long, lat]
+
+*** gis ftw
+
+$("#map").geomap({
+services: [ {
+id: "NewJersey",
+type: "tiled",
+getUrl: function (view) {
+return "http://njgin.state.nj.us/ArcGIS/.....";
+}
+...
+
+Heading - "I am so going to add a map to this website" "hey that wasn't too hard" "i need to add something cool, to the docs!" "FUUUUUUUU!"
+
+lots of documentation in $.geo()
+
+Q: is there any integration with ???, which has a street overlap for OpenStreetMap?
+A: you can use any tileset, and can add it as long as it has a layout consistent with the aforementioned
+
+*** Demo
+
+Minimum
+<div id="map"></div>
+
+#map {position: absolute; bottom: 0; left: 0; right: 0; top: 0;}
+
+$("map").geomap();
+
+Q: is it possible to namespace the points?
+A: Not yet, but definitely. As far as versioning, this control is about 3-4 years old, at my company, Applied Geosource (??). I have a lot of stuff planned, I'm about 2/3rds of the way through porting the main tech over. This is considered alpha 2, as versions are concerned.
+
+REF: http://jsfiddle.net/ryanttb/PUeRC/ - bboxchange example
+
+Q: Have you looked at openheatmap?
+A: No.
+
+Q: Is there support for overlays for canvas?
+A: No. The idea here is to keep people from thinking too much about the underlying technology.

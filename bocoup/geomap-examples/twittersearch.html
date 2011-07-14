@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type='text/javascript' src="http://host.appgeo.com/libs/geo/alpha2/jquery-geo-alpha2.min.js"></script>
+<style>
+#map { position: absolute; bottom: 0; left: 0; right: 0; top: 0; }
+
+#content {
+    background: #fefefe;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 4px;
+    position: relative;
+    max-width: 80%;
+}
+</style>
+<script>
+$(window).load(function(){
+  var opts = {
+    center: [-71.0597732, 42.3584308],
+    zoom: 14,    
+},
+    map;
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(p) {
+        opts.center = [p.coords.longitude, p.coords.latitude];
+        map = $("#map").geomap(opts);
+    }, function(error) {
+        map = $("#map").geomap(opts);
+    });
+} else {
+    map = $("#map").geomap(opts);
+}
+
+$("#loc").submit(function() {
+    $.ajax({
+        url: "http://open.mapquestapi.com/nominatim/v1/search",
+        data: {
+            format: "json",
+            q: $("#loc input").val()
+        },
+        dataType: "jsonp",
+        jsonp: "json_callback",
+        success: function(results) {
+            if (results && results.length > 0) {
+                var nbbox = results[0].boundingbox;
+                map.geomap("option", "bbox", [
+                    nbbox[2], /* min longitude*/ 
+                    nbbox[0], /* min latitude */
+                    nbbox[3], /* max longitude */
+                    nbbox[1]  /* max latitude */
+                ]);
+                }
+            }
+        });
+        return false;
+    });
+
+    $("#twit").submit(function() {
+        map.geomap("shapeStyle", {
+            strokeOpacity: .1,
+            fillOpacity: .4,
+            width: "16px",
+            height: "16px",
+            borderRadius: "8px",
+            color: "#44e"
+        });
+        
+        var center = map.geomap("option", "center"),
+            geocode = [
+                center[1],
+                center[0],
+                Math.min(2500, map.geomap("getPixelSize") * $(document).width()/2 / 1000 ) + "km"
+            ];
+        
+        $.ajax({
+            url: "http://search.twitter.com/search.json",
+            data: {
+                rpp: 100,
+                q: $("#twit input").val(),
+                geocode: geocode.join(",")
+            },
+            dataType: "jsonp",
+            success: function(tweets) {
+                map.geomap("empty");            
+                if (tweets.results) {
+                    $.each(tweets.results, function() {
+                        if (this.geo) {
+                            this.geo.coordinates = [
+                                this.geo.coordinates[1],
+                                this.geo.coordinates[0]
+                            ];
+                            map.geomap("append", this.geo);
+                        }
+                    });
+                }
+            }
+        });
+        return false;
+    });
+  });
+</script>
+  
+</head>
+<body>
+  <div id="map"></div>
+<div id="content">
+    <form id="loc">
+        <label>Zoom to
+            <input type="text" autofocus />
+
+        </label>
+        <button type="submit">Go</button>
+    </form>
+    <form id="twit">
+        <label>Search Twitter for
+            <input type="text" />
+        </label>
+        <button type="submit">Go</button>
+
+    </form>
+</div>
+  
+</body>
+
+
+</html>
