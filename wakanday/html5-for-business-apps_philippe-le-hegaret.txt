@@ -1,0 +1,233 @@
+html5 for business apps - philippe le hegaret - w3c
+
+REF: http://www.w3.org/2011/Talks/1015-wakanday/
+
+HTML5 and the Open Web Platform
+
+    * Web pages are more beautiful, interactive, intelligent
+    * HTML5 provides cross-browser interoperability and all major browser vendors plan to support it
+    * Video a first-class citizen
+    * Simplified data integration
+    * Numerous devices
+    * Tools for social networking (privacy, security, identity)
+    * The most interoperable platform in the industry 
+
+"a month ago i was at a meeting in hollywood, discussing html5 on the tv; and not too long thereafter, set-top boxes with webkit; etc. you're seeing web technologies starting to be used in all sorts of contexts, not what you expect. even itunes internally is now html5."
+
+HTML5 and the Open Web Platform
+
+    * Powerful, modular: documents, multimedia, interactivity
+    * Multi-application: electronic books, user interfaces, games
+    * Common across devices: desktop, mobile, tablet, television 
+
+Benefits
+
+    * Better Web application adaptation to multiple devices, e.g. Boston Globe
+    * Reduce the size of Web applications
+    * Reduce the need to install third-party plug-ins
+    * Facilitate deployment of applications across platforms: one dev platform for all
+    * Allow more complex applications to be pushed and deployed through the Web Cloud 
+
+"there is only web. not mobile-web, desktop-web, etc. only one web."
+
+HTML5 and the Open Web Platform
+
+    * More than a 100 royalty-free technologies within the same environment: HTML5, CSS3, SVG1, Web Sockets, Web Workers, Indexed Database, File, Geolocation, etc.
+    * Incremental evolution of the platform: Real-Time Web Communications, Audio, User Timing 
+
+Technologies
+Text 	Hypertext Markup Language (HTML)
+Forms 	HTML
+Style 	Cascading Style Sheets (CSS)
+Fonts 	Web Open Font Format (WOFF)
+Images, Videos 	HTML
+Protocols 	Hypertext Transfer Protocol (HTTP), Web Sockets
+Dynamic 	JavaScript (ES), Web Application Programming Interfaces (Web APIs)
+2D Graphics 	Scalable Vector Graphics (SVG), 2D Canvas API
+3D Graphics 	WebGL Canvas API
+Offline access 	Web APIs: Web Storage, IndexedDB, File API
+Device access 	Web APIs: Geolocation, Orientation, Multi-touch, etc.
+Data 	RDFa, Microdata
+
+Timeline
+
+Each component follows its own timeline:
+
+    * HTML5 expected to be final by 2014
+    * Gathering use cases for HTML.next
+    * First release of HTML5 Test Suite in early 2012
+    * Several modules for CSS3 are final, as well as Geolocation, Navigation Timing 
+
+Adoption
+
+    * "2.1 Billion HTML5 Browsers on Mobile Devices by 2016 says ABI Research" - July 22, 2011
+    * Major browsers: IE9+, FF4+, Safari5+, Chrome 10+, Opera 11+, Blackberry Browser
+    * Platforms: iOS, Android, ChromeOS, Blackberry OS, Symbian, Windows Mobile 8
+    * Libraries: Webkit (Google, Apple, Nokia, etc.), Gecko (Mozilla), Trident (Microsoft), Presto (Opera) 
+
+Over 100 specifications and counting…
+
+    * HTML5
+    * CSS 2.1
+    * CSS 3 Selectors
+    * CSS 4 Selectors
+    * CSS 3 Media Queries
+    * CSS 3 Text
+    * CSS 3 Backgrounds and Borders
+    * CSS 3 Colors
+    * CSS 3 2D Transformations
+    * CSSOM View Module
+    * CSS 3 Transitions
+    * CSS 3 Animations
+    * CSS 3 Multi-Columns
+    * SVG 1.1
+    * WAI-ARIA 1.0
+    * MathML 2.0
+    * ECMAScript 5
+    * 2D Context
+    * WebGL
+    * Web Storage
+    * Indexed Database
+    * Web Workers
+    * Web Sockets Protocol/API
+    * Geolocation
+    * Navigation Timing
+    * Element Traversal
+    * DOM Level 3 Events
+    * Media Fragments
+    * XMLHttpRequest
+    * Selectors API
+    * CSSOM View Module
+    * File API
+    * RDFa
+    * Microdata
+    * WOFF
+    * HTTP 1.1 part 1 to part 7
+    * TLS 1.2 (updated)
+    * IRI (updated)
+    * …
+
+"forget about skype in a few years. we're already working on codecs for two way communication. you'll be able to do this entirely in the browser."
+
+Web Application APIs
+
+    * Web DOM Core API
+    * Drag Drop API
+    * Text Selection API
+    * Undo History API
+    * 2D Context API
+    * Web Storage API
+    * Web Sockets API
+    * Web Workers API
+    * Web Messaging API
+    * Geolocation API
+    * Indexed Database API
+    * Microdata API
+    * RDFa API
+    * Element Traversal API
+    * XMLHttpRequest API
+    * Web Notification API
+    * DOM Level 3 Events API
+    * Navigation Timing API
+    * Multi-touch Events API
+    * CSSOM View Module API
+    * Selectors API
+    * File API
+    * Web Events API
+    * Resource Timing API
+    * Audio API
+    * Messaging API
+    * Device API
+    * …
+
+Web Performance APIs
+
+Goal: provide methods to enhance aspects of application performance of user agent features and APIs.
+
+    * Navigation and Resource Timing: access timing information related to navigation and elements
+    * User Timing: high precision timestamps
+    * Page Visibility: determine the current visibility state of the page
+    * Timing control for script-based animations: script-based animations where the user agent is in control
+
+Navigation Timing
+
+Navigation Timing:
+		Redirect:	?ms
+		App cache:	?ms
+		DNS lookup:	?ms
+		TCP Connection:	?ms
+		TCP Request:	?ms
+		Processing:	?ms
+		Total page load:	?ms
+
+[No support for timing information in your Web browser]
+
+  sd=function() {
+    var a=window.performance
+          ||window.webkitPerformance;
+    return (a=a&&a.timing)
+            &&a.loadEventStart-a.fetchStart
+  }
+
+Security Considerations
+Be aware of security and privacy considerations before using those features!
+
+As a Web developer:
+
+    * Offline storage: Web Storage & IndexedDB:
+          o Privacy: Sensitivity of Data
+          o Security: Cross-directory attacks
+    * HTML5 forms: Servers should not rely on client-side validation.
+
+See also OWASP top 10.
+
+Accessible Rich Internet Applications (WAI-ARIA) 1.0
+
+<li role="menuitemcheckbox"
+       onclick='doAction();'
+       aria-checked="true">Sort by Last Modified</li>
+
+The contract model with accessibility APIs
+
+What's missing?
+
+    * Video Streaming (adaptive and live), P2P
+    * TV remote, DLNA
+    * TV channels, Speech
+    * More Web performance benchmarks
+    * 3D at the markup level (SVG equivalent)
+    * Identity, Access control
+    * Security, Privacy
+    * Digital content distribution and micropayment
+    * Data and query server discovery, service description
+    * Federated query server
+    * Trust, Provenance
+    * Read-write Web
+    * Interoperability
+    * Education materials
+    * Certification (software and developers)
+    * Authoring tools support
+    * Multilingual support
+    * Publishing pipeline: more on XML?
+    * …
+
+Upcoming workshops
+
+W3C Workshop on Data and Services Integration
+    October 20-21, 2011, Bedford, MA, USA
+    Hosted by MITRE
+The Future of Off-line Web Applications
+    November 5, 2011, Redwood City, CA, USA
+    Hosted by Vodafone 
+W3C Social Business Jam
+    November 8-10, 2011
+W3Conf: Practical Standards for Web Professionals
+    November 15-16, 2011, Redmond, WA
+    First W3C Public Conference!
+    Host Sponsor: Microsoft 
+
+Thank you
+http://www.w3.org/2011/Talks/1015-wakanday/
+
+mailto:plh@w3.org
+Twitter: plhw3org

@@ -1,0 +1,210 @@
+the battle for developer ecosystems - al hilwa, program director, IDC
+
+** agenda
+market forces
+technology trends
+future transformations
+developer ecosystems
+survey data
+
+"10 million professionals worldwide, many more hobbyists and amateurs"
+
+app dev market (1)
+
+consumeration of IT
+mobile devices
+touch interfaces
+social networking
+cloud services
+new content
+
+"there was a time when IT used to lead technology, but now it is trying to fllow what is going on. we have a lot of things going on in the market that makes it difficult for IT departments to keep up."
+
+"touch interfaces have changed the way we write applications"
+
+"social networking is ingrained in all applications, almost taking over the user interfaces"
+
+"crowdsource contents, information blogs, wikis, videos are all ..."
+
+Free tools
+- too vs runtime, where is the value?
+- more users than developers
+- more devices than users
+
+"people are starting to charge for deployment, runtime devices, etc. the value has moved to where the user is."
+
+new business models
+- advertising
+- freemium
+- AppDev as a service (tools as a service, platform as a service)
+- open source
+
+"open source may be used as a community leadership tool, staying ahead of anyone else who might use the code. but putting the code out there keeps people from publishing similar things."
+
+*** app dev technology
+
+virtual machine languages
+
+dominance on the server, some retreat on the client
+- value auto memory (GC), type enforcement
+- performance and control remain challenges
+- compiled/native still primary on the client
+
+language vm => OS => hardware/machine
+
+"native coding is back in vogue again, to supplement virual machine-like languages"
+
+the framework changed everything
+successful frameworks reach critical mass (RoR, J2EE, .NET, Spring, ...)
+mvc frameworks now estabilished paradigm
+shift to light-weight containers to support cloud deployment
+
+** rise of scripting - son of RAD
+back to the future with productivity
+late-binding for agility
+moore's law to the rescue
+javascript, php, ruby pull ahead of the crowd
+javascript shows client-to-server synergies
+configuration-based techniques play supporting role (screen designers, BPM, portals, mashups...)
+
+"by and large, javascript and php have pulled away from the crowd"
+
+** app dev transformations - architectures
+evolution of distributed computing
+logic complexity swings between client/server
+
+1970 servers over clients (mainframes => terminals)
+1980 clients over servers (pc apps => fileservers, rdbms)
+1990 servers over clients (DBs -> Forms / RAD)
+2000 clients over servers (Web Browsers, RIA, Plugins => web servers/app servers)
+2010? servers over clients (Cloud platforms => device apps)
+
+** app dev transformations - the frontend
+the ui: linchpin to the consumer revolution
+touch revolution
+social everything
+content is the new data
+web architecture dominaties - RIA goes html5/js
+hardware acceleration
+
+"web vs. native still playing out on mobile devices, the result is still TBD."
+
+mobile convergence
+pc goes mobile
+touch everything
+sensors everywhere
+smaller apps, bigger runtimes
+new app monetization opportunities
+rich developer analytics
+choice: native vs. web
+
+"in mobile applications, you get a lot of call-home opportunities, you can find out what people do and how in your application at an unprecedented level."
+
+app dev transformations - thebackend
+
+PaaS - the new back-end
+cloud platforms scramble to back the front-end
+programmable provisioning and deployment
+elasticity and the economics of incrementalism
+built-in disaster recovery and application availability
+competing paradigms
+
+virtualization  vs. multi-tenancy
+
+Data Explosion
+tracking, profiles, behaviors, clicks, logs, location, sensors
+content, documents, photos, books, video
+crowdsourcing content
+
+new data engines
+content (couchDB, mongoDB)
+no-sql
+map-reduce technology
+
+- tools
+should development be in the cloud?
+ALM in the cloud more mature (testing, version control, bug tracking...)
+IDE in the cloud?
+
+consumer platforms build on enterprise ecosystems
+c/c++ for ios
+.net for windows phone
+java for android
+web for the rest
+
+race to leverage ecosystems
+free tools
+rich developer services
+marketplaces
+
+enterprises build on consumer ecosystems
+developer shortages
+attempt to close consumer gap
+small enterprises first to cloud
+
+Technology Feedback Loop: Enterprise => Consumer => Enterprise...
+
+the web ecosystem (1)
+historical challenge of standards
+webkit breakthrough
+chasing the iPhone
+video standards
+
+HTML5: umbrella standard
+starring: JS (canvas, web workers, ...)
+standard bodies move faster
+
+HTML5 timeline
+
+1999 html4 published, no traction
+1997 html3.2 published
+1995 html2 
+1993 html grammer, mosaic released
+1989 tim-berners lee proposes hypertext system in CERN memo
+
+2004 whatwg starts work on web apps 1.0 spec
+2009 html last call working draft, no video tqag agreement
+2010 major browsers work on html5, google completes on2 acqiusighin, releases webM
+
+2011 desktop and mobile browsers shipt html5 releases
+
+projection
+
+2013 90% of devices will have html5 capabilities
+2015 90% of desktops will have html5 capabilities
+
+html5/js dominates, plug-ins expected to retreat to the high-end
+
+"things that are made today in flash, in a couple of years will be made in html5"
+"flash's role will move solely into the very high end. people say it may die, but things rarely die so much as shrivel, but it will still be around."
+
+2011 JS Developer Survey 400 respondents
+US Only
+58 work in companies with 5k or less employers
+54 are internal enterprise developers
+
+17.4% native ui
+16.7 web ui
+19.9 device and embedded
+23.2 data management
+remainder - server apps
+
+how many are in mobile dev?
+2--6 3.8%
+2007 5
+2008 8
+2009 15.5
+2010 24.8
+2011 41.3%
+
+which ecosystems do you affiliate with?
+
+12% none
+12% cobol/rpg
+java 23.5%
+compiled (c/c++) 26.5%
+ms/.net 29.5
+web/scripting 31.8%
+database (???)
+
+"if you have a technology you want to snap into an ecosystems. you want to make it easy for people to migrate and distribute throughout the ecosystem"/
