@@ -1,0 +1,107 @@
+javascript in the cloud - scott andrews, mark fisher - VMWare
+
+what is the cloud?
+it's water droplets suspended in the atmosphere
+it's servers on a network
+it's the internet
+it's marketing hype
+it's hip
+
+... well, yes. let us show you what the cloud means to us.
+
+<< node.js hello world cloud demonstration, using vmc >>
+
+introducing cloud foundry
+
+language/framework support
+	spring/grails/java
+	scala/lift
+	ror
+	.js/nodeJS
+
+cloud provider interface
+	private/public clouds
+	micro cloud foundry
+		virtual machine (local possible?)
+
+application service interface
+	data services
+	messaging
+	other
+
+it's almost seamless
+for node.js apps there is a required change
+... .listen(process.env.VCAP_APP_PORT || 1337)
+
+the main source file must be app.js
+rename to app.js, or... require('./myapp');
+
+other frameworks work out of the box with zero modification
+
+<< node.js hello world cloud demonstration with multiple instances, using vmc >>
+
+cloud foundry benefits
+
+easy deployments
+write code, not tickets
+
+easy scalability
+vmc instances myapp +1 / -1
+
+fault tolerance
+favor mean-time-to-recovery over mean-time-between-failure
+crashed applications are restarted automatically
+
+<< node.js hello world fault demo, using vmc >>
+
+let's kick it up a notch
+
+it's increasingly a polyglot world
+	cloud foundry's multi-language/framework support embraces this trend
+
+node.js apps can interoperate with ruby/rails, java/spring, scala/lift, etc.
+
+i hear flash is popular...
+	spring has great blazeds/amf support
+
+how do apps talk to each other?
+
+by default, applications are silos
+if shared state is required, developer must distribute that state
+stateless applications are easy
+
+distributing state is crucial
+
+cloud foundry services to the rescue
+
+data stores
+	mysql, prostgresql, mongodb, redis
+
+message brokers
+	rabbitMQ, redis
+
+<< node.js hello world fault demo, using vmc >>
+
+summary
+
+developing for and deploying to the cloud can be easy
+
+openness matters
+	choices of frameworks, languages, and services
+	choices for deployment
+
+lot of buzz and hype, but technology is real
+
+well built application can be deployed anywhere: local or cloud
+	good software engineering rules!
+	
+try it yourself -- it's free
+
+sign up for cloudfoundry.com
+download micro cloud foundry
+cloudfoundry.org
+
+REF: http://github.com/cloudfoundry
+
+Q: how do you manage dependencies for node.js applications?
+A: we don't do anything special serverside to manage them; we expect you to bring them into the application yourself.

@@ -1,1 +1,36 @@
 javascript everywhere with wakanda - dave terry & dan wasserman, business application development, PDM inc.
+
+introductions
+
+dave terry
+	26yrs of experience designing data applications
+
+where can we get wakanda?
+	available in a developer preview
+	www.wakanda.org
+
+what is wakanda?
+	a cross-platform development and deployment system for data-driven web-based applications
+	develop under windows/mac
+	deploy under windws/mac/linux
+	business apps
+	clients merely need to be a html5 browser [html5/css3/javascript]
+
+what's in wakanda?
+	wakanda server
+	wakanda application framework
+	wakanda studio
+
+web/data/rest/http server
+fast, threaded javascript environment
+presents wakanda data as javascript objects, automatically
+
+wakanda application framework
+	javascript framework automatically included in web pages
+	communicates with wakanda server
+	represents datastore model on the browser side
+	no plugins or proprietary code
+
+wakanda studio
+	cross-platform development environment for wakanda applications
+	
