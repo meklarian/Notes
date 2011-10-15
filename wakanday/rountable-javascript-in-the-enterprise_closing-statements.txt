@@ -1,0 +1,53 @@
+Round Table - JavaScript in the Enterprise - Douglas Crockford, Laurent Ribardiere, Joe McCann, Christoph Dorn
+
+Q: Is javascript ready for enterprises? Often, javascript is not even used in the front-end at all. Coportations have relied upon flex, flash, silverlight, etc. I want to ask of the experts if they think javascript is mature and ready for the enterprise?
+
+Answers:
+
+DC: I live in the public web, which is an extremely competitive environment. We tried java, it failed, and we use javascript because it works. Enterprise applications, sadly, are not competing for survival.
+LR: I've often heard from several people who don't know javascript; that if i have a project big enough, javascript will not be able to support it, it will not be possible to maintain my code. the way people program and manage their codes is the problem with large programs. it is just how you use it.
+JM: there seems to be a large amount of interest from corporations in the enterprise space towards developing products and services based upon javascript. whether that's ready or not may be TBD, but to have that level of interest from parties of that size is pretty telling.
+
+Q: We just said it's not about the framework but how you organize code. How can we help people adopt it? Is there a problem with adoption / development?
+
+LR: It is true that right now the way that JS interpreter/compiler is made; you cannot have everything loaded at once in memory. So you really have to break things into subprojects where you only pull the things in that you need.
+
+CD: What we're trying to do with CMJS 2 is to allow you to statically and dynamically link your code. ... If you follow some of the CMJS specs and how the dependencies work, you can completely organize your dependencies. You can provision your applications in a lean fashion. The loader can go through everything and only pull in the things that you need.
+
+Q: If enterprises must invest in js development, they need to be confident about the future of JS development (nodeJS/coffeescript) do you think that this planning is a constraint?
+
+DC: If you're writing in ES5 strict, you're not going to have any problems. All future versions will be built on top of ES5 strict. Compatibility is hugely important to the ES committee. Because the constraints on the web are so severe, in the web who will come to you will dictate what the runtime will b e and you need to serve all of them. We're going to keep the language stable going forward.
+
+Q: I've seen in the nosql movement that more javascript is being used in their tools and apps. are we hampered by js being dynamically typed?
+
+DC: it always comes down to tradeoffs. you don't have a type system to protect you, but you can be more productive. it's a tradeoff. what i've found is that you still have to test. there's a number of potential bugs that are not caught by type checking; the sorts of errors that a type checking would find can be found by hand very fast. The ones that keep you up at night are the ones you need to worry about, type checking doesn't help you there.
+
+Q: one of the concerns of enterprises on the web is security. is this a big concern for us?
+
+DC: The web is right now the best secure app delivery system that we have. it's still deficient in a lot of ways, and hjopefully someday we'll get the w3c to sit down with us and fix them. in the meantime, we have ways to mitigate the issues that come up. ... security has to come up first.
+
+LR: lack of security doesn't come from the tool you're using so much as the way you use the tools. very often, people start to use eval() on strings that come from the user and of course they're running into security problems. i think that people can instill practices and skills to overcome this.
+
+DC: security doesn't necessarily come with the programming languages. some languages provide particular hazards, though, when used in an open environment, such as the web.
+
+Q: do we need some organization to be able to give security certification for developers? could this help?
+
+CD: I don't know that it would improve anything for developers. when you write serverside code; there are a lot of issues that are outside of the domain and you still need to expect (XSS).
+
+JM: one of the key things from gov agency clients is that they need to hold someone accountable if things break. so they might like that; but i don't expect this to take hold in the community. i'm a proponent for is improving our documentation online so people avoid pitfalls.
+
+DC: i don't know who i would trust to do that certifications.
+
+Q: another question is open source. not all corporations are happy about it and many have a fear of it. could open source be accepted by the enterprises?
+
+JM: Yes. at the end of the day, you look at something, like, the jquery license. it's on 70% of websites out there. majority of clients out there that i've worked with are adopting these technologies ande using them. whether they contribute to them, well, there's a lot that has to b e done to make that happen; but i'm seeing a resurgence from large companies embracing open-source technologies. note that IBM is now the largest contributor to PhoneGap. MSFT is also contributing to nodeJS. Whether they're going to open up their own codebases is a separate project; but we'll see.
+
+DC: One thing that's demonstrated here is that they don't have to own all the software to make any money off the software.
+
+CD: THere's no sense is making something for yourself, if there is something out there that is free and fits your needs.
+
+--
+
+CD: How many people here, working for enterprises, are considering using more javascript? (some hands) 2 years ago? (3 hands) within 1 year ago? (many hands)
+
+DC: How many in favor of software patents? (one hand) How many violently opposed? (many hands)
