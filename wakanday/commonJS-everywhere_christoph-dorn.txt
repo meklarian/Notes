@@ -1,0 +1,173 @@
+commonJS everywhere - christoph dorn
+
+what does commonJS everywhere meann?
+being able to run commonjs compliant code in all areas of a system
+
+since commonjs builds on javascript, we need javascript everywhere first!
+
+all too familiar with browsers
+
+what commonjs is trying to do is to extend it's footprint towards the serverside (eg. node.js)
+
+have heard of server side javascript
+know about firebug (firefox extension)
+titanium and phonegap for native js mobile apps
+appenginejs for google app engine (java/rhino)
+v8cgi for cgi/fastcgi/apache module and cli JS
+gpsee for embedding spidermonkey in C/shell JS
+ringoJS for embedding rhino in java
+narwhal for javascriptcode, node & rhino
+add-on SDK for restartless & secure firefox extensions
+couchdb apps served from a user-facing REST database
+
+what do all these platforms have in common?
+
+all these (and many more) platforms:
+
+allow us to run javascript everywhere
+maintained by passionate authors and contributors
+have energetic and loyal userbases
+have great ideas
+solve specific problems
+also share common problems
+
+but all these platforms also lack:
+
+a compatible standard library
+
+binary, io, file, socket, event, system, ... etc
+
+how do you build applications that are first class citizens on the server?
+
+ability to share the same code packages & modules
+
+ability to share the same debug tools
+
+"don't really have a standard way (console.log, maybe?) to do things"
+
+what's the solution? CommonJS
+
+group of volunteers from many different projects
+want to: use javascript & share code
+a mailing list
+a wiki with specs in various stages
+run by group consensus and benevolent dictatos
+implementation driven
+always open for membership?
+
+so what does it look like?
+
+Module Loader => [Package Mappings, Standard Library]
+
+Potentially Portable Application
+
+***
+portable business logic
+interoperable libraries
+platform libraries
+
+[common js layer]
+
+platform (JS Engine => [Javascript API, Native API])
+***
+
+commonJS: API Process
+
+how does the commonJS api proposal process work?
+
+you pick a JS platform
+play with it and tie it into some of your stuff
+now you want to do something with a second platform: but, there are no consistent apis across platforms
+so you ask and then
+	hack something together based upon the best you can find or know
+	notice some common ground and improve your implementation
+champion your solution on the common js wiki/list
+expect to be redirected as approval process (...)
+ratified proposal
+
+what makes a commonjs specification ratified?
+
+a proposal
+sufficient discussions
+group consensus
+draft specification
+sufficient votes from members with skin in the commonjs game
+at least a handful of implementations
+
+commonJS: the result
+
+modules and packages and platforms targetting commonjs compliance are truly interoperable
+
+commonJS: status
+
+where is commonJS at?
+
+modules 1.1/1.1.1 (RATIFIED) many implementations (yay!)
+packages 1.0 (RATIFIED) 1.1 in the works
+unit testing 1.0 (RATIFIED) amendment pending
+system 1.0 (pre-ratified) need more implementations
+JSGI 0.2/0.3 (proposals)
+many proposals that need discussion and implementations
+
+sufficient for commonJS everywhere? unfortunately, no.
+
+commonJS: needed
+
+what do we need for commonJS everywhere?
+	portable unit tests for specifications
+	move to github for specifications/tests (better collaboration)
+	new interest from new and existing members
+	more implementors seeking commonjs compliance
+	users demanding commonjs compliance
+	packages/mappings/C
+	modules 2.0 (wrapped modules 1.1 and more)
+	portable loaders, package managers, and registries
+	agreement on low-level apis
+	
+commonJS: happenings
+
+key platforms are converging
+	RingoJS, GPSEE and V8CGI increasingly compatible
+	nodeJS learning CommonJS APIs thanks to CommonNode
+
+module loaders becoming multi-platform capable:
+	requireJS (browser, rhino, nodeJS)
+	PINF (browser, NodeJS, V8CGI, RingoJS, Narwhal, Jetpack, Titanium, AdobeAir)
+
+module loaders implementing packages/mappings
+	nodules (async loading: nodeJS)
+	PINF (async loading: nodejs, static loading: other platforms)
+
+package repositories with package managers
+	nodeJS package registry via NPM
+	dojo package prepository via CPM
+	commonJS package URLs and paths via PINF
+
+what's the ultimate goal of commonJS everywhere?
+
+bring the power of javascript (in terms of scripting) to all systems
+
+how close are we?
+
+12-24 months away, IF we embrace portable loaders such as PINF and agree on low-level APIs
+
+PINF JavaScript Loaders
+Loads multiple module source formats
+	asynchronous module definition (AMD)
+	commonJS modules 1.1
+	commonJS modules 2.0 (draft)
+	plain javascript files
+dynamically download and resolve dependencies
+run identical commonJS packages on many paltforms for dev
+
+wakanda support: coming soon
+
+parting suggestions
+use packages to hold modules
+	sovereign namespaces
+store packages by their URIs
+	~/packages/URI_NO_PROTOCOL/REVISION
+define dependencies via mappings in package.json
+use and support module loaders and package managers with mappings
+
+a core goal of commonJS is to be able to work together without conflict.

@@ -1,0 +1,149 @@
+javascript: the world's most misunderstood programming language - douglas crockford, javascript architect, yahoo
+
+the world's most popular programming language
+
+before javascript, vb/basic was probably the world's most well-known language
+
+the world's most unpopular programming language
+
+in some cases javascript is just not the language that developers know, perhaps they are angry that it isn't their language.
+
+but what they're really hating is the DOM. the DOM api, and other apis. it's not javascript at fault, it's the w3c (crowd laughs)
+
+it is the language that people use without bothering to learn it first
+
+programming is complicated business. it should never be undertaken in ignorance.
+
+javascript is a language of many contrasts
+
+it contains some of the best ideas, the worst ideas, of programming languages.
+
+javascript is succeeding very well in an environment where java was a total failure. applets, thin clients, fail.
+
+the broadest range of programmer skills of any programming language.
+
+from computer scientsts to cut-n-pasters and everything in between.
+
+a beginner cannot write hello world in java.
+
+brendan eich designed and wholly implemented the entire language in only 10 days, shipping it to netscape.
+
+took syntax from a language people knew (java)
+took functions as first class objects from scheme
+dynamic objects with protypical inheiritance from self (somewhat derived from smalltalk)
+
+originally called livescript. netscape and sun formed an alliance, in fear of MS. after wrangling for some time, they agreed upon javascript.
+
+sun initially owned attempted to own the name. IE called their language JScript. People get confused by this, but it is one language with two stupid names.
+
+sun owned the trademark (?)
+
+** global
+
+var names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+var digit_name = function(n) {return names[n];}
+
+alert(digit_name(3)); // 'three'
+
+javascript does provide a way to avoid using globals
+
+** slow
+
+var digit_name = function(n) {
+var names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+return names[n];
+};
+
+alert(digit_name(3)); // 'three'
+
+javascript compilers are faster than the java vm byte-verifier
+
+** closure
+
+var digit_name = (function() {
+var names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+return function(n) { return names[n];}}());
+
+alert(digit_name(3)); // 'three'
+
+here we are calling the first level function right away, and the inner function now has access to the variable defined outside of it via closure.
+closures are perhaps the best concept ever invented within programming languages.
+
+writing in ECMAScript language without understanding closures is like writing in Java without understanding classes.
+
+function are first class.
+functions are lexically (or statically) scoped.
+closures can be used to make methods.
+
+power constructors
+1. make an object
+object literal, new, object.create, call another prwer constructor
+2. define some variables and functions
+(these become private)
+3. return the object
+
+function myPowerConstructor(x) {
+var that = otherMaker(x);
+var secret = f(x);
+that.priv = function () { secret x this/that ...}
+return that;
+}
+
+language subsetting
+
+only a madman would use all of C++
+
+javascript has a lot of problematic features. you can be a better developer by avoiding them.
+
+jslint
+
+jslint defines a professional subset of javascript
+the good parts
+http://www.jslint.com/
+
+warning! JSLint will hurt your feelings.
+
+one of the things we can do with subsetting, we can make it a more secure language because we have lambdas.
+
+we want to be able to put in 3rd party code into our systems, but it is not safe to do that because it gets access to everything.
+
+an ad on a web page is a self-inflicted XSS attack.
+
+ad-safe - a system for safe web advertising
+http://www.adsafe.org/
+
+adsafe is a safe subset of javascript, static validation only, no code rewriting
+no impact on performance
+
+the JSON Data interchange format - inspired by java object literals
+RFC 4627 - application/json
+
+no version number
+JSON will not be changed
+stability is more important than any feature we can think of.
+perhaps someday it will be replaced.
+
+this stability is really important when tying systems together. you need something to count on.
+
+design rules
+textual, minimal, a subset of javascript
+
+being minimal turns out to be really good.
+
+intersection of features (json)
+number
+ - digits, maybe a decimal point. nothing else. no IEEE formats
+string
+ - unicode only, no code pages
+boolean
+ - true/false; that's it
+object (record, struct, dictionary, hash)
+array (vector, list, sequence)
+
+conclusion
+
+javascript is a great programming language.
+it is made better by avoiding the bad parts.
+programming is complicated business; it should never be taken in ignorance.
+don't check anything in until you have learned the language.
