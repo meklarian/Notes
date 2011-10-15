@@ -1,0 +1,232 @@
+AMD vs. CommonJS, which is better? - john hann, lifeIMAGE
+
+CommonJS > AMD
+
+CommonJS covers lots more topics than AMD
+	modules
+	packages
+	IO
+	filesystem
+	promises
+	etc...
+
+a better comparison
+AMD vs. CommonJS Modules 1.1/1.1.1
+
+What are they?
+
+formats for javascript modules
+proposed standards
+
+harmony modules are also another alternative coming down the pipe for native JS modules
+
+standards much? do we have room for more standards?
+1. html[5]
+2. css[3]
+3. ECMAScript[3]
+4. JSON
+REST
+WebQL/etc
+
+shouldn't ECMAScript handle javascript standards?
+
+ECMAScript.Next("Harmon") modules will arrive in early 2012
+but ie 9/10 won't die off until 2019
+harmony modules just scratch the surface
+
+AMD/CJS modules/1.1 are interim standards
+
+why should i care about modules?
+	encapsulation
+	no more global/namespace shenanigans
+	enabler for dependency management
+	end script tag hell
+
+amd = asynchronous module definition
+	simple flexible module format
+	forward compatibility with ES.Next / harmony mods via translation
+	designed with browser in mind
+	designed to accomodate asynchronous loads
+	plugins for loading other resource types
+
+who's using it?
+dojo 1.6/1.7
+mootools 2
+wink toolkit
+embedJS
+firebug 1.8
+jquery 1.7 (really! jquery core will be compatible)
+
+AMD == define()
+	define(moduleId, dependencies, definitionFunc);
+
+using a moduleid can make it harder to relocate your module during refactoring. use anonymous modules where possible.
+
+module format
+
+// MyApp/MyModule
+
+define(
+	['pkgA/modA', 'pkgA/modB', 'pkgZ/modC'],
+	function(modA, modB, modC) {
+		var myModule = {
+			doStuff: function() { /* */ }
+			};
+		return myModule;
+	}
+);
+
+using it
+HTML
+
+<script src='curl.js'></script>
+<script>
+curl(['MyApp/MyModule'], function(MyModule) { var m = new MyModule(); m.doStuff(); document.getElementsByTagNAme('html').className = '';});
+</script>
+
+plugins
+AMD plugins can load other types of resources, such as images, html templates, css, localized language/string files, etc.
+
+define(
+	['renderer', 'text!modA-template.html', 'i18n!modA-strings', 'css!modA'],
+	function(renderer, template, strings) {
+		var ModAWidget = ...;
+		return ModAWidget;
+	}
+);
+
+plugins can do even more powerful things
+
+wire! plugin - wire.js IOC container integration
+has! has.js feature detection and conditional module loading
+cs! plugin that loads and compiles coffeescript
+
+module format
+
+no define() wrapper
+require, module, and exports are  "free variables", i.e. they're implicit
+
+var modA, modB, modC;
+modA = require('pkgA/modA');
+modB = require('pkgA/modB');
+modC = require('pkgZ/modC');
+
+function doStuff() {...}
+
+exports.doStuff = doStuff;
+
+AMD Hybrid Format
+
+define(function(require, exports, module){
+	var stringFormat = require('myLib/stringFormat');
+	exports.short = function(date) { ... return stringFormat.format(...);};
+	exports.long = function(date) { ... return stringFormat.format(...);};
+});
+
+AMD has no way to do conditional loading, doesn't have any means nor logic to decide if something /could/ be prefetched or not required.
+
+why do we need both?
+
+why are there 2 (3 if you include the Node variant) module formats?
+
+Differences
+
+AMD is abrowser-first approach
+	prefers async
+	non-module resources (no File I/O)
+	simplifies backward-compatibility
+
+CJSM is a server-first approach
+	assumes sync
+	clean slate, no global language
+	forward looking
+
+authoring
+CJSM allows for unwrappered "naked" modules
+feels closer to the Harmony approach
+
+whereas AMD is more like captain underpants
+
+module types
+
+CJSM supports
+	objects
+
+amd supports
+	objects
+	functions
+	constructors
+	strings, JSON, number, dates (really, but please don't), JSONP
+
+alternate resources
+
+AMD uses plugins
+	there's no file IO in the browser, but sometimes, non-javascript resources are integral to your module.
+
+
+which is better?
+
+runs native in browser AMD
+runs native on server CJSM
+translates to harmony (both)
+
+has plugins AMD
+naked authoring CJSM
+exports can be any type AMD
+dependency management (both)
+
+which one?
+
+both formats are valid paths to CommonJS Modules/2.0
+
+why do we need CJSM/2.0?
+
+harmony modules are just an authoring format
+no dependency management
+no version management
+plugins == custom Harmony module loaders?
+browser vendors will be forced to support CJSM/2.0 or be slow
+
+CJSM/2.0 in a nutshell
+
+/* CJSM == AMD */
+require.memoize() == define()
+module.load() == require()
+CommonJS Package Mappings/C
+
+which one?
+
+write packages that could execute in a server environment in CJSM format
+write packages that could benefit from AMD's browser-friendly features in AMD format
+write AMD modules in the AMD hybrid format unless they use plugins
+	consider using AMD plugins, they can be a huge advantage
+unscriptable.com - AMD vs. CommonJS
+
+AMD in the browser
+	RequireJS
+	curl.js
+	bdLoad
+	Lsjs
+	PINF
+	integrated tools inside dojo, MooTools, etc.
+
+AMD on the server
+	RequireJS
+	PINF
+
+CJSM in the browser
+	PINF
+	SproutCore 1.1
+	curl.js 0.6
+
+audience note: PINF doesn't actually run natively in the browser; it generates code that can load via other frameworks.
+
+CJSM encironments
+node
+narwhal
+...
+
+REF: @unscriptable, http://github.com/unscriptable, lifeIMAGE, Inc.
+
+Q: are there plugins for LESS / SASS?
+A: yes, there are at least two out there. there are also build-time tools to just compile LESS to CSS at that time.
