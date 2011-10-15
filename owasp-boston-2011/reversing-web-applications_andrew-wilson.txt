@@ -1,0 +1,236 @@
+*** Reversing Web Applications - Andrew Wilson - TrustWave SpiderLabs
+
+Primer
+
+What is reverse engineering?
+
+source + compiler = binary, in reverse
+
+if engineering is the art of designing a body of code
+reverse engineering is the art of learning how it works
+
+aplication composition -> < elements, relationships, behaviors >
+
+** does it matter?
+
+every methodology says so
+
+the web application hacker's handbook
+PTES - penetration testing execution standard
+OWASP
+
+penetration testing is a problem of incomplete information
+
+** learn everything
+
+"the first phase in a security assess
+
+OWASP IG-003
+
+enumerate the application and attack surface
+
+the IG laundry list
+map visible content
+discover hidden and default content
+test debug paramenters
+data entry points
+tech used
+map attack surface
+analyze exceptions
+...
+
+the top down approach implies it only happens once. it doesn't. it is a continuous process and can be slow.
+
+"the purpose of analysis is not to understand the universe,, but to direct you towards focused action" - flawless consulting
+
+brief systems reversing - find things that are worth testing
+
+REF: John Boyd - military strategy, OODA / Boyd's loop
+Observe -> Orient -> Decide -> Act -> Observe
+This is both the attacker's loop and defender's loop.
+40 sec challenge
+
+Caveats
+
+* not a 1:1 relationship to compiled binary reversing, except shipped binaries like silverlight, flash, other RIAs
+* people do silly things
+
+*** Decomposing applications
+
+"wherever he steps, whatever he touches, whatever he leaves, even unconsciously, will serve as a silent witness against him." - locard exchange principle
+
+** Identifying Compositions
+
+* passive testing
+techniques which don't connect to system, appear as normal / public use
+google dorks, shodan, regular traffic
+
+* active testing
+the opposite
+
+passive testing reveals the 'happy path'
+active testing reveals how optimistic the developers were
+
+** design patterns
+
+Martin Fowler: Page Controller -> View, Page Controller -> Model, Model -> View
+
+* Page Controllers
+lots of single pages (.php, .asp)
+lots of client controlled variables
+
+(MVC / MVVM) Model <-> View <-> Controller <-> Model
+
+* Model View Controller
+
+URL Structure:
+/controller/action/id
+/controller/ (default action)
+/id (default controller & action)
+
+Won't see very many parameters in query string, mostly things that control things at the page-level
+very popular in certain languages
+
+* Front Controllers
+
+Page -> Delegate
+Page -> doEdit, Page -> doHistory
+
+/index.php?title=Installation&action=history
+/index.php?title=Installation&action=edit
+
+* Event Based
+
+Structurally similar to page controller
+ASP.NET WebForms is the most popular version of this, event based design
+
+* Data Access
+
+Uncommon to be able to identify this unless (most times) you get an exception that shows you the underlying structure.
+
+Concatenated Strings (not safe)
+"select * from table where value = " + value;
+
+Prepared Statements (safer)
+query = "select * from table where value = ?"; query.Properties.add(value);
+
+Stored Procedures
+Mostly safe, but really depends on what you do with the parameters
+
+* Be wary of inconsistencies
+sometimes URL re-writing rules can "appear" as MVC
+However frameworks still generate front-controller links
+
+** Cheat
+if you can, download the framework locally
+
+identify where technologies intersect
+
+can find issues in auth issues, bypass mechanisms, etc.
+
+** leveraging infrastructure
+anything the app says, can and should be used against the application
+- how things are named can reveal how it is created
+
+every pattern has strengths and weaknesses
+
+MVC -> Model Binding Attacks; try to redirect the model given to the view
+Front Controllers -> Command Injection; try to get privileged access
+
+view patterns can imply underlying data access pattern(s)
+
+social: try browsing the company's job listings and resumes of developers to see what their history is and what technologies they prefer
+
+** application psychoanalysis
+
+we are concerned with what an application does and doesn't do
+
+where does data go? what happens with my data? if i am a user, where does my data go?
+how did it get there? was it via POST? QueryString? Cookie?
+ex: replays are easy over GET
+ex: HEAD attack; subset of GET, yet still able to reach the same handler in buggy applications (authentication attacks)
+
+what the data encoded when I retrieve it?
+
+ASP.NET webforms - doesn't support javascript decoding by default; could possibly inject code via data
+
+was there a redirection? where do i end up after making a request? from a workflow perspective, perhaps one may circumvent existing logic to get to a destination page.
+
+* identifying types
+
+there are only two types of types, basic and complex
+
+in both cases, you wnat to know:
+- is it required?
+- what does it do?
+
+* basic types
+
+exist in forms, query strings, cookies, URL composition
+
+strings, numerics, guids - how these are composed can be used to vary your method of attack via fuzzing parameters
+
+* complex types
+
+sometimes obvious, often a literal 1:1 map to a basic type per field
+(me: also semantics can be revealed by name)
+
+* exceptions
+
+exceptions tell you a lot about what the system can do
+skipfish - breaks applications badly, can troll through exceptions
+
+discovering field type from error messages:
+
+negative integers, large numbers
+
+ex: Amount (a is not a valid amount, 1.001 cannot be a decimal, 100000000000000000000000000000000000000000000000000000000000000000000 value is invalid)
+
+you can learn if a field is dynamic or static; whether it is parsed, part of an expression or internal variable, etc.
+check things like: value=1+1,1-1; you could discover if they are using strings, or numbers. you could cause string concatenation.
+
+new errors are better than old ones
+
+gatting new errors means you are making progress.
+applications will fail in various places, and can sometimes be cheated to not fail
+
+could possibly detect whether validation happened at the data tier
+
+Pex does things like this; route detection and possible taint detection
+
+* taking their time
+
+exceptions take up time; blind SQL injection is based, most often, on timing attacks
+might purposely input something that takes a long time, and can use this to measure this against normal results.
+how quick an application fails is almost as important as how it fails
+- could discover if a method calls the database; use the long-running request to block access while probing a side channel with a method that also could call the database.
+
+* pro tips
+
+what an application says, or doesn't say is very revealing
+
+don't trust tools too much (berksuite?) as they can falsely identify or fail to reveal the architecture of the application
+
+take advantage of framework artifacts
+
+don't test top down; do iterative testing. avoid waterfall methodology.
+
+ask a lot of questions (of the application). if you ask it properly, it will likely tell you (or provide a clue)
+
+listen to the application and what it is saying an dmake informed decisions.
+
+really only two ways to test:
+- checklist, statement of beliefs
+- ask the application, and let it reveal itself, because it can't hide it (Locard Exchange Principles)
+
+most developers are not trying to cover up murders (sic); they just want to get through the end of their unit of work. the evidence of any such efforts will show itself.
+
+Q: what do you think about jsonp? is it a viable form of integration? or is this a permanent vulnerability that should be avoided?
+A: i would say in general, more often or not, anytime you use two sets of technologies; that implies a different service is being used for at least one set; and you can discover whether their security models don't match.
+
+As a developer, you can remove artifacts. There are also tools that can discover your platform, such as joomla, wordpress, etc. CMS Explorer, etc.
+
+Ex: look at the changelog for the applications, look at the welcome page (post-installation). Many tools use hash checks to perform diffs.
+
+Q: When you do these web application tests? Are you reporting on different known vulnerabilities? or actually actively looking for new faults in an application?
+A: Depends on the type of evaluation; if i find an exploit that gives me more than i expected, i will definitely go after it. for data retrieval, it depends on the client.

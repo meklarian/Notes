@@ -1,0 +1,135 @@
+*** The Perils of Javascript APIs - Ming Chow (Tufts University Department of Computer Science, Lecturer)
+
+** Overview
+
+Javascript has never been more important (a first class citizen now)
+
+client side web applications
+jQuery
+ajax
+HTML
+node.js
+mobile
+more powerful javascript engines
+
+more powers => more potential for abuse (and misunderstanding)
+
+what i will not discuss: localStorage, Web SQL, HTML5 tags
+
+** what developers still get wrong, part 1
+
+shoving the responseText of an XHR into the innerHTML property of an HTML element
+can you really trust what is in the response text
+example: document.getElementById("header").innerHTML = request.responseText // where request = new XMLHttpRequest(); ...
+
+** part 2
+
+parsing JSON with eval()
+remember, JSON is a subset of JavaScript
+by definition, eval() evaluates or executes any JavaScript argument
+Resolution: use JSON.parse()
+- built in to some browsers such as chrome
+- for other browsers, use json2.js at https://github.com/douglascrockford/JSON-js
+- JSON.parse() will throw an exception if the text contains anything dangerous
+
+* cross origin javascript requests (or cross origin resource sharing)
+- we are moving slowly away from the same-domain policy
+- not directly part of HTML5 but introduced by the w3c
+- XDomainRequest() created by MSFT in IE8
+- XMLHttpRequest() starting to allow cross-domain requests (FF 3.5+, Safari 4+)
+- Caveat: consent between web page and the server is required.
+- server must respond with an access-control-allow-origin of either * (universal allow) or the exact URL of the requesting page (site-level; whitelist)
+  Example 1 (BAD!): header('Access-Control-Allow-Origin: *');
+  Example 2 (BAD!): Access-Control-Allow-Origin: http://allowed.origin/page?cors=other.allowed.origin%20malicious.spoof
+- Resolutions
+  add some form of auth/cred checking via withCredentials property on XMLHttpRequest (e.g. with a cookie)
+  validate response
+
+* cross-document messaging
+- again, moving away from the same-domain policy
+- establish a communication channel between frames in different origins
+- (new in HTML5)
+- you can send messages from your current window to any other (e.g. iframe, popup)
+- requires sender and receiver
+- sender: window.postMessage("message", "targetOrigin");
+- receiver: listens for mesages via event listener
+
+- watch out! if you are the receiver of a message from another site, verify the sender's identity using the origin property.
+- resolution: don't listen for messages, verify origin
+window.addEventListener("message", receiveMessage, false);
+function receiveMessage(event)
+{
+if(event.origin !== "http://example.org")
+{
+...
+}
+}
+
+** web workers
+- very powerful stuff; allows background computation tasks via JavaScript, think threads
+- really simple: instantiate a worker object in JAvaScript
+- example: var w = new Worker("some_script.js")
+- responding to messages from some_script.js: w.onmessage = function(e) {// do something};
+- to terminate a worker: w.terminate();
+- caveat: web workers cannot run locally (i.e. file:/// urls)
+- same-origin security principle applies
+- things that a worker has access to: XHR, navigator, application cache, may spawn other workers!
+- things that a worker does not have access to: DOM, window, document object
+
+** issue with web workers
+- CPU hog
+- if a page uses a worker, you cannot stop it with the browser's stop button (i.e. could crash browser)
+- unlike threads, cannot set the priority of a worker
+
+Q: if a worker spawns additional workers, does terminating the head also terminate the child workers that were spawned?
+A: Don't know at this time. Obviously, this can be a great means f crashing the browser.
+
+** WebGL
+- impressive technology on the web browser
+  http://chrome.angrybirds.com/
+  http://alterqualia.com/three/examples/webgl_cars.html
+
+- issue is simple, webGL requires browser to have edirect access to graphics hardware
+- known exploits at this time due to bugs in the webGL implementation
+  cross-domain image stealing (from the memory of the graphics hardware)
+    (me: example; captcha theft, document snapshots, passwords/sensitive data)
+  denial of service
+    some implementations can cause bluescreening by abusing the graphics card
+
+** node.js
+- server-side javascript; non-blocking
+- trivial to create a web server
+- very active project but not mature, yet
+- a lot less bloated, less administration, and faster than apache
+- you still have to verify the response (for POST)
+- the consensus remark: use a reverse proxy such as nginx (especially if you are going to have multiple node.js apps)
+  this is for standard HTTP logging, anomaly detection, etc
+
+** what about HTML5 games?
+- putting it all together
+- games demonstrate the potentials of the web browser; the browser as a platform
+  local storage
+  application cache
+  webgl
+  web sockets
+- the simple fact of the matter is: you can't trust data from the client (high scores, for example) considering the code is now available for everyone; let alone cheating
+
+** looking ahead
+- unfinished standards
+- everyone is playing there own game, having their own standards
+- fragmentation and inconsistencies from browser to browser
+- everything is still work-in-progress
+
+Audience: Google has the concept of native-clients; which allow you to run precompiled code in native sandbox (citation needed?)
+
+Q: (web workers) is there any part of the api that lets you explore and see what threads are open, files are open, etc?
+A: No, I haven't seen one. Chrome has a memory panel, but just doesn't show any additional information for web workers.
+
+Q: Do you have any thoughts on google's (dart?) their javascript replacement language?
+A: None at this time?
+
+Q: Any thoughts of why node.js is finally getting people's attention?
+A: It's starting to get that way [Audience: perhaps it is just time? OSS is more mature now?] Perhaps it is because of maturity and attitude towards the Javascript language in general. Since AJAX, people have started to realize that they can do so much more with javascript. Certainly the reputation has improved, and a bigger influx of developers.
+
+Audience: Also note that it is so much faster than it used to be 10 years ago; Google V8, etc.
+

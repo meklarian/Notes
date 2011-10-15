@@ -1,0 +1,118 @@
+*** Prevent Data Breaches from Web Applications using Data Provenance - Anirudh Ramachandran PhD, CTO NouVou
+
+** tons of breaches through webapps
+
+Sony Ownage
+21 separate attacks in 2011, many using SQL injection
+
+Citibank
+360,000 account numbers
+insecure direct object reference
+attackers merely changed account numbers in URL
+
+** web applications: easy targets
+lots of juicy data behind them
+massive variety
+relatively inexperienced programmers
+wide variety of attacks
+not easily proventable by signature-based methods
+
+money tends to be paid for scalability and uptime, not as much security
+
+** the old way
+intrusion prevention systems (appliances)
+data loss prevention systems (appliances)
+
+these tried to be jack-of-all trades and fell short of data patterns in web applications; too low in scope.
+
+** the new way
+web application firewalls - can learn what web app traffic looks like
+next-generation firewalls - can learn via by protocol analysis and session reconstruction, checked against a huge database of activity
+
+still overwhelmingly content-aware
+
+** what's wrong with content-awareness?
+speed (10gb/sec max lately)
+accuracy
+maintenance requirements
+  can't keep up with new application session changes (facebook, skype, etc)
+no guarantee of stopping future attacks
+
+** a newer way
+focus less on stopping attacks and more on tracking data
+use low-level systems to identify data leaks without using content inspection
+approach known as information-flow control (related: taint tracking)
+  can also use tagging to find where leaks are
+
+outline
+
+information flow control
+  basics
+  implementation - OS-level IFC using Pedigree
+
+web application security using IFC
+  implementation
+
+What is an information flow?
+
+flow of one or more bits of info between two or more principals
+
+example 1: process reads a file
+process -> kernel -> VM/hypervisor
+
+example 2: web application reads DB
+info-flow tracked at kernel level on db
+or at database proxy / monitor
+or at web application
+
+** other examples:
+
+security application 1: prevent buffer overflows
+
+vulnerable application
+sprintf(buf, "%s", userinput);
+
+information-flow tracking subsystem
+patches sprintf and implements parameter checking
+
+security application 2: prevent mobile data breaches
+
+** how to track with IFC in a distributed network
+
+solution: Tags
+
+Server -> Malware/Inside Intrusion -> Firewall
+
+** Our IFC system: Pedigree
+OS-level patch - no user-space software
+Network-wide IFC
+Completely transparent to applications
+completely generic, content-agnostic
+
+Q: So this is basically based upon a database tracking?
+A: We just instrument databases to maintain tags. But otherwise, rules-only is distributable and linear-scale.
+
+REF (from me): See Persistent-Zone-Identifiers (PZIs). Basically this concept in reverse; tag all content from untrusted sources and warn the user when potentially unsafe content is accessed.
+
+Q: How are tags transmitted?
+A: We transfer them out-of-band; via a separate drop repository that understands how to identify connections by their identifying tuple <Server, Port, etc.>
+
+using IFC to prevent web application breaches
+
+how is it different?
+- tagging database records
+- allowing users to take data out
+
+an auth module in conjunction with a database proxy and network enforcer tracks the tag
+the database needs to be trusted, so that tags per row are stored in the database
+
+the database proxy handles the flow of tag tracking from the database, and communicates with pedigree root.
+
+SELECT * FROM user WHERE UserID = 2...
+transformed into
+SELECT * FROM user NATURAL JOIN user_tags WHERE UserID = 2...
+then on the return
+<userID, username, <...>, <tag>>
+is stripped into
+<userID, username, <...>>
+

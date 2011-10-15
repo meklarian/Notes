@@ -1,0 +1,131 @@
+*** pulp google hacking - the next generation search engine hacking arsenal - Francis Brown (Stach & LIU LLC)
+
+using search engines to look for exploit vectors
+
+demo: using google code search to look for amazon cloud keys and secret keys
+
+example expression: ec2[^\d]["'][A-Z0-9]{20}["']
+
+S3Fox Organizer for FireFox then used with cloud key and secret key to login to device.
+
+Agenda Overview
+
+intr/background
+
+advanced attacks
+google/bing hacking - core tools
+new diggity attack tools
+
+advanced defenses
+google/bing hacking alert RSS feeds
+  new diggity alert feeds and updates
+new diggity alert RSS feed client tools
+
+open source intelligence
+OSINT is a form of intelligence collection management that involves finding selecting and acquiring information from publically available data.
+
+attack tarets - google hacking databa
+advisories and vulnerabilities
+error messages
+files containing juicy info, passwords, usernames
+footholds
+pages containing login portals
+pages containing network or vulnerability data
+sensitive directories
+sensitive online shopping info
+various online devices
+vulnerable files/servers
+filename detection
+
+lulzSec and anonymous are believed to use google hacking as a primary means of identifying vulnerable targets
+
+their releases have nothing to do with their goals or their lulz. it is purely based upon whatever they find with their "google hacking" queries and releasing them.
+
+snippet used by Kayla, of LulzSec
+!Host=*.* intext:enc_UserPassword=* ext:pcf
+
+quick background
+2004 google hacking databse begins
+2004 may - foundstone stiedigger v1 released
+2005 jan - foundstone sitedigger v2 released
+feb 13 2005 - google hack honeypot first release
+feb 20 2005 - oogle hacking v1 released by johnny long
+jan 10 2006 - msnpawn v1.0 released by netsquare
+dec 5, 2006 - google stops issuing google soap api keys
+may 2007 - bing disables inurl: link: and linkdomain: directives
+nov 2 2007 - google hacking v2 release
+mar 2008 - cdc goolag gui tool released
+sep 7 2009 - google shuts down soap search API
+nov 2009 - binging tool released by blueinfy
+dec 2009 - foundstone sitedigger v3.0 released
+2010 - googlag.org disappears
+apr 21 2010 - google hacking diggity project ???
+nov 1 2010 - google ajax api slated for retirement
+nov 9 2010 - ???
+
+google diggity uses google json/atom api
+not blocked by google bot detection
+does not violate terms of service
+required to use google custom search
+
+bing diggity
+uses bing 2.0 soap api
+company/webapp profiling
+  enumerate: URLs IP to virtual hosts, etc.
+bing hacking dataase BHDB
+  vulnerability search queries in bing format
+
+google diggity - new api
+updated to use googleJSON/ATOMAPI
+due to deprecated google ajax api
+
+misc. feature upgrades
+  auto-update for dictionaries...
+
+bulk download of results, files
+
+SLDB updates in progress
+sharepoint google dictionary
+
+bing allows ip: prefix to check ranges of ip addresses
+
+ex: penetration test, search for C source code, republished on a high school reunion website that turned out to be hosted on the client's infrastructure.
+
+bing linkfromdomaindiggity
+link from domain : is a feature specific to bing that gives you every offsite link of a domain
+www.gov.cn, site: gov.cn
+this reveals a list of sites belonging to a specific domain
+
+malware diggity
+leverage linkfromdomain: search directive to find off-site links of target application/domains
+run off-site links against google's safe browsing API to see if any are malware distro sites
+return results to identify malware sites that your web applications are linked against
+
+DLP diggity
+data loss prevention
+NOTE: OpenDLP is a free OSS checker
+
+filetype:pdf 513,000,000
+filetype:doc 84,500,000
+filetype:xls 17,300,000
+filetype:txt 46,400,000
+
+search through downloaded files for data leaks like SSNs, phone#s, etc.
+
+flashdiggity
+NOTE: SWFscan can find flash things
+
+can search for usernames/passwords hardcoded into swf files, etc.
+
+baidudiggity
+new add-on that can do google/bing searches as in baidu
+
+** defense tools
+
+rss feeds setup via google alerts with queries used in diggity searches
+diggity hacking alerts bundles
+
+SHODAN Alerts
+
+Alert Diggity - systray app that can track domains on the feed (intrusion detection)
+iDiggity Alerts - iPhone app

@@ -1,0 +1,91 @@
+** static binary analysis internals - Christien Rioux, Chief Scientist - VeraCode (@dildog)
+
+Goal: 
+
+A tool to model a program from the lowest level to a reasonable high-level; may not the most optimal source code generator, but make it high level enough that human beings could potentially understand what is going on, but that machines could. Basically to turn a program into an explorable database, with a Structural Model (Classes, Sequences, Data Structures, etc.). Then, use that to look for interesting data flow.
+
+Look for insecure patterns, interesting interactions that haven't been seen and catalogued before. Of course, the halting model says that you can't model everything in the program; but a compiler was used to make the program; a decompiler may safely make the assumption that a compiler was used to generate the binary in question.
+
+Platform Architecture
+
+Binary -> Loader (win32/86, solaris, linux) -> Application Modeler -> Model Analyzer -> REporter -> <Security Metrics, Detailed Flaw List>
+
+Loader
+load and disassemble the binary and 3rd party libraries into an intermediate language
+
+Q: What if a binary has gone through obfuscation?
+A: We support it for some languages, like Java. Any pre-compiled obfuscation doesn't change our assumptions.
+
+Binary Analysis Engine
+Engine analyzes binaries from varied platforms
+- resourceable C/C++, java, coldfusion, C#/.nET, ObjC, Php
+- retargetable: x86, x64, ARM, SPARC, JVM, CIL
+- multiple OS: Windows/Linux/Solaris/iOS, Android
+Engine determines program control flow and variable scope to generate an intermediate form specially created for sec. analysis.
+patented technique to iteratively recover control flow and data flow
+
+** Engine Design
+Platform-Specfic Front End
+- prepare all symbol information, procedures, environments, types, and other platform-specific information for disassembly and transform
+
+Data flow transformer
+- disassemble and import code. convert low-level register access into high-level variables
+convert references to variable memory locations into high level alias form. propagate type information.
+
+Optimization
+reduce complexity of code by performing pattern-based and dataflow-based reductions, propagations, substitutions, simplifications
+
+control flow transformer
+reconstruct high-level control flow from low-level jumps and conditionals. transform into if/else, while/do/for, goto, try/throw/catch, switch
+
+language-specific back end
+export code as readable source output, or as searchable graphs
+
+Q: How does this work with data flows that exit the boundaries of an application?
+A: Anytime you have something that breaks the outline of the program; unfortunately we have to manually annotate that knowledge after the fact. We're constantly working on new frameworks to understand how these work and how to identify frameworks for these.
+Q: So you model the environment, not just the program?
+A: Correct.
+
+Q: What happens when you encounter assembly-level quirks?
+A: We don't handle that scenario. This isn't a malware disassembler, this is only an analyzer for code written with known tools and compilers.
+
+Q: (something about recovering the original program)
+A: The best thing you can do when making a decompiler like this; is to incrementally build your type information knowledge as you go.
+
+Q: How do you handle multiple instances of the same variable?
+A: There's always a linker involved. Only if the linker is providing multiple definitions do we care, and those would still have to be treated as separate symbols from our perspective.
+
+Q: How do you reverse the mapping when intra-source procedure calls are rewritten due to optimized calls?
+A: it's not completely true for optimized code that it will be a random method of optimization. Some compilers always use base rules; but in general a type of optimization used will be commonly used through the lifetime of a compiler version (e.g. frame pointers are always setup the same way, not many ways to rewrite the rest of the calling convention assembly). This sort of pattern can be detected and is mostly a cataloging problem.
+
+Q: Can a tool like this extra inline functions?
+A: We have common code sample detection; but for the most part we don't need to look at these for static analyzer. Mostly this is an issue if a human is looking at code; a call to foo() procedurally is essentially the same as running the body of foo() inline.
+
+Platform-specific frontend
+
+set up excution context
+load images and their dependencies into memory
+load environment images and their representations
+parse debug symbols for types, procedures, and line numbers
+perform static library unlinking using signatures
+setup architectures, data formats, compiler settings for each procedure and image we understand
+perform 'match expression' generation, laying out classes in memory per compiler specs and specify the lowlevel layout of calling conventions
+
+by the time the front end process is done, we have prepared ourselves for platform independent ops, and dealt with all proc/compiler details except import/disassembly process
+
+key differentiators
+single intermediate representation
+required to support code discovery
+type information available at all times
+required to support virtual function table discovery
+knowledge of compiler limitation
+required to understnad what propagations are really possible
+required to understand when to apply calling convention knowledge
+required to understand when to worry about the halting problem
+
+variablizer is merge-based, which only moves towards the final model, never backward
+
+optimization phase works on high=-level dataflow but not high-level control flow
+exception handling is very dataflow-sensitive so its decompilation happens earlier than you would expect.
+
+NOTE: /d1-layout compiler switch in MSVC (?) that can dump structures and offsets.

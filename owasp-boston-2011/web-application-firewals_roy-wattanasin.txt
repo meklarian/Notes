@@ -1,0 +1,193 @@
+*** WAFs - an overview of free web application firewalls - Roy Wattanasin
+
+** Application Security Risks
+
+Threat Agents -> Attack Vectors -> Security Weaknesses => Security Controls -> Technical Impacts [Assets, Functions] -> Business Impact
+
+There may be any number of attack vectors, while these may be labeled by some names (A, B, C); usually agents will pick the easiest route.
+
+** OWASP Top 10
+Injection
+Cross Site Scriptiong XSS
+broken Authentication/Session Management
+Insecure Direct Object References
+Cross Site Request Forgery (CSRF)
+Security Misconfiguration
+Insecure Cryptographic Storage
+Failure to Restrict URL Access
+Insufficient Transport Layer Protection
+...
+
+** Agenda
+
+What is a WAF
+Why use a WAF
+Benefits of using a WAF
+What are the risks?
+Criteria
+Best Practice Considerations
+WAF Examples
+Conclusion
+
+** What is a WAF?
+WAF = security policy enforcement device positioned between web applications and their clients
+standalone or integrated
+implemented at the perimeter of the network or in between network zones
+provides a 1st line of defense against attacks
+secures existing application where application repairs may require a lot of short term work and thus are not feasible to fix in a time.
+blacklisting / whitelisting
+
+Q: Is this a separate server? or standalone device?
+A: It can be anywhere. On the server, another device on the network, injected into the app (MSFT ISAPI), etc.
+
+Q: What happens if the requesting client is external to the intranet?
+A: Depends on how the WAF is setup.
+
+** Benefits of using a WAF 1/4
+(varies with access to application internals)
+Low: When full access to source/devs are available
+Average: Applications developed in-house, low pct of external code
+Higher: High percentage of external code, high pct of modifications, no product source code
+Highest: Application as a black box
+
+** Benefits of using a WAF 2/4
+protection without having to change the application itself
+adheres to regulatory standards (PCI, ISO, NIST, etc.)
+performance - only rules are checked and state is managed by the application server
+  (me: this is a red herring; can supplement but should not remove responsibility)
+capability & process - fix promptly instead of waiting 2-4 weeks for another maintenance cycle
+can implement tasks which can be solved by common methods applicable to any application
+cost-effectiveness (Avoidance of damage, lower cost, savings)
+
+Q: What are the objects involved that the WAF can handle & protect without having to modify the application?
+A: In short, it depends on the WAF and application; some WAFs don't protect against the entire OWASP top 10, but commonly some will cover sql injection and parameter checking.
+Audience: Worked with a company that had a WAF in front of the store sitewide; and we found a XSS bug. With just a conference call to the WAF and 30 mins of a work, we were able to develop a rule to close that finding, bought us time (3 weeks to repair) helped plug the hole in the meantime.
+
+** Benefits of using a WAF 3/4
+proactive security (URL encryption, minimize attack surface)
+SSL termination for applications that cannot support it (depends on the app.)
+Compliance
+  I like to point out that compliance != security.
+
+** Benefits
+Can be used to protect against and provide:
+Provide cross-site tracing
+WebDAV attacks
+code injection
+SQL injection
+LDAP injection
+XML/XPath injection
+just in time patching
+data validation
+buffer overflow
+HTTP request smuggling
+
+** what are some of the risks?
+false sense of security
+increased complexity to infrastruction -> complex troubleshooting
+training team / testing
+false positives
+cost-effectiveness (license costs, updates, project costs, resources, time required)
+any initial effect on web application if the WAF terminates the session
+
+also note that it is good to have a house team to do pen-tests, to ensure there is a human element also actively looking for faults.
+
+** Criteria
+Importance of the web application(s)
+Importance of the loss of data of the web application
+number of web applications
+basic legal conditions or industrial standards
+complexity
+operating costs
+performance / scalability
+
+** best practice considerations 1/3
+infrastructure - central or decentralized
+performance indicators (# of users, avg. load times)
+conformation to existing security policies
+team roles (WAF platform mgr, WAF app mgr, application mgr [subject matter expert])
+  iterative procedure for implementation - basic to full protection
+
+try to cover basic vulnerabilities first, and then work your way towards complex scenarios
+
+** 
+step 1 - assign roles
+step 2 - basic protection of web applications and organization training
+step 3 - prioritize web applications and create list
+  personal data, confidential information, critical certifications, effects of non-availability, critic
+step 4 full protection
+step 5 ???
+
+assessment and VM should be done before implementation of a WAF in production
+the impact of WAF changes must be assessed for potential impact to relevant web applications
+communicate timing and scope of production WAF changes to all affected parties in the organization
+adhere to all policies and procedures including change control, business continuity, and disaster recovery
+changing the production environement should occur during a monitored maintenance window
+
+** Modsecurity
+apache web server module that provides a WAF engine
+http://www.modsecurity.org/
+http://www.modsecurity.org/documentation
+@modsecurity
+
+now administered by trustwave spiderlabs
+
+Q: This modsecurity, is it something that sits on the web server?
+A: Yes, it intercepts requests on the server.
+Audience: You can also add this to an apache proxy to run it on a separate server.
+
+** IronBee
+created by Qualys in Feb 2011
+Cloud based WAF
+https://www.ironbee.com/
+@TheIronBee
+https://www.ironbee.com/dl/ironbee-whitepaper.pdf
+
+** MS URLScan
+restricts the type of HTTP requests that IIS may process
+Version 3.0
+
+** WebCastellum
+JAva-based to include inside a web application to protect it against attacks
+www.webcastellum.org/
+sourceforge.net/projects/webcastellum
+
+** Aqtronix WebKnight
+WAF for IIS / ISAPI filter
+http://aqtronix.com
+
+** ESAPI
+J2EE filter
+
+The ESAPI Web Application Firewall ESAPI WAF (see on OWASP)
+
+** References
+WASC Web Application Security Consortium 
+http://www.webappsec.org/
+
+Presenter Q: Any other WAFs that are out there that people have in production?
+Audience A: Akamai - We offer a WAF for customers
+
+Audience Comment: What a lot of people do is ask their firewall vendors; and a lot of them just offer deep-packet inspections. I just want to point out that this is not a good substitute for web applications.
+
+websecr@gmail.com
+@wr0
+
+Q: What do you like most?
+A: I like modsecurity; but it really depends on the support you can get and how it fits your needs. Also check forums and channels to see how people are using. There's a nice book out... "Web Obfuscation" I think; a cool book on the topic. Do your homework and see what you think; before bringing anything in from a vendor I like to do my own homework and see if there is an open-source software or hardware solution and have a comparison with the 
+
+Q: What is the performance impact? Does it depend on configuration / rules?
+A: It depends on the WAF, and requires a lot of testing. I could say "oh, it's fast" but that really depends on how you integrate it, where it is, where in the network, and how it is accessed.
+
+Q: From an architectural perspective? What is scability on these? Co-residence on a web server implies non-scability. Frontend protection implies scability.
+A: Again, this depends on the WAF; perhaps you are using a black-box waf, it could be more scalable, until you make it point to multiple applications
+
+Q: Have you see WAFs sitting in front of multiple apps?.
+A: Yes.
+
+Q: Can you give a couple rule examples to setup a WAF?
+A: Let's say your application does not provide encryption for a communication endpoint. You could conceivably add it at the WAF layer and encrypt traffic from the WAF outward. Again, this sort of rule requires careful testing. Another example is maybe your application has some XSS vulnerability; you can put in a rule to mitigate the problem.
+
+Audience: For PCI scoping; suppose you have multiple servers involved. You can setup modsecurity on a server with a rule that has a luhn-check rule to block anything that looks like a credit card number. You could add a rule to strip out requests containing <script tags. Also note that WAF tends scale horizontally.
+
+Presenter: There's a lot of talk about DLP lately in the industry (Data loss prevention); data leakage protection. You could use it as a reverse-log to audit error messages and other transfers containing data that might be sensitive.
