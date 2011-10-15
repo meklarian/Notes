@@ -1,0 +1,34 @@
+web audio - alistair macdonald
+
+where we started
+	mozilla & google
+	processing.js
+	CDOT - center for development of OpenSource technology
+
+ref: https://wiki.mozilla.org/Audio_Data_API (Firefox)
+
+ref: https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html (Web Audio API, webkit)
+
+jquery Phono http://phono.com/
+
+HTML5 gives us the <audio> element
+	native in the browser, playing audio
+	no plugins required
+
+ref: http://labs.dinahmoe.com/plink
+
+live code example (firefox):
+
+<script>
+var sound = new Audio();
+sound.mozSetup(2, 44100);
+
+var buffer = new Float32Array(44,100), i = 0;
+while(i < 44100)
+{
+buffer[i] = Math.sin(i/20) /  8;
+i++;
+}
+
+sound.mozWriteAudio(buffer);
+</script>
