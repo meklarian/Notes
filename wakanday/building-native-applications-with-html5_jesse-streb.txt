@@ -1,0 +1,87 @@
+building native applications with HTML5 - jesse streb - brightcove - @foop37
+
+mobile: brightcove mobile app workshop
+
+abstract
+	2011 - the rise of hybrids
+	challenges with html5
+	landscape of UI frameworks
+	containers
+	app cloud and jQuery Mobile in action
+
+2011 - the rise of hybrids
+
+hybrids living among us
+
+netflix
+linkedin
+	note that app and m.linkedin.com are very similar
+facebook
+
+mobile browser challenges
+
+data connections are slow (if even existent)
+cpu power low (well, relatively low compared to desktops)
+	you have to take advantage of what the phone offers, not impose what the phone should do
+small amount of memory
+fixed headers, scrolling and transitions
+	lot of solutions where people are trying to implement their own scrolling (css translates)
+	challenging
+different resolutions / DPI
+	be mindful of iPhone 3G/4 differences
+responsive design required - orientation changes
+	bostonglobe has become the gold standard for responsive design changes
+	use liquid layouts
+
+frameworks and libraries that help
+	jquery mobile
+	sencha touch
+	jo
+	kendo UI
+	zepto.js
+	xui.js
+	jQTouch
+	(micro frameworks, spot solutions, piece together only what you need)
+
+jQuery Mobile
+quick to get up and running
+progressive enhancement, from feature phones to current phones
+doesn't have a native feel; may not be the best choice for embedding into a native app
+
+sencha touch
+fantastic job of making ui components look like native versions
+higher learning curve
+all javascript based
+built on top of ext.js (some love it, some hate)
+
+micro frameworks
+http://microframeworks.js
+
+zepto.js
+	jquery for webkit (?)
+mustache / markup.js
+backbone.js
+	used by linkedin
+iScroll / scrollability
+	momentum scrolling
+
+native containers
+what you're looking for is a means to talk to the api for the device and not just the browser offerings
+
+phonegap
+	huge variety of phones
+	open source
+	apache license
+	natobi - acquired by adobe
+
+appcelerator / titanium
+	javascript apis that compile down to native code
+
+appcloud
+	similar approach, like phonegap
+	data navigation
+		breakup sections into their own pages, for maintenance and code reuse
+
+appcloud + jquery mobile
+
+<< demo of manifest and composition ide >>

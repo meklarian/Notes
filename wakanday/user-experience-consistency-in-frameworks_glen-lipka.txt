@@ -1,0 +1,74 @@
+user experience: consistency in frameworks - glen lipka
+
+user experience: Consistency
+
+don't move the cheese
+
+dopamine loves patterns
+	when you make a change, whether better or not, dopamine feedback stops
+	an object at rest tends to stay at rest
+
+wizards are not always very simple
+especially for users that aren't sure where they go or what will happen
+important to keep things remain the same
+
+the uncanny valley
+when things are very close to being the same, but not quite, the user can find this to be more difficult than if there were more changes
+
+choice
+mac: go forward on the right
+windows: go forward on the left
+
+pick one and stick with one in your application. most people do not think of mac os or windows or the web as being the same in any related way. you don't have to worry about how that will be presented; but within an application that will screw everyone up if you aren't consistent. bake them into your classes or however you construct your modals.
+
+in general, consistency trumps customization. encourage your users to lock away patterns and allow them to file that in their minds.
+
+user consistency: being different
+
+think different - think about how can we be different; not within your application, but versus your competition
+whenever it is do nothing or use your competitor; it is critical that your users are able to differentiate what your application does versus your competition. your differentiation can maintain loyalty (minimum viable personality).
+
+<< ipod example shown >>
+
+people are horrible judgers of their own desires
+
+observe, watch, learn by looking. never ask users; they won't tell you what they like or don't like; it is best to watch.
+
+user experience: frameworks
+
+this used to be standard practice
+
+<a href="#"
+	onclick="alert('hello world!); return false;"
+	>...</a>
+
+we used to write things in jenga code style
+
+as a designer, you are dependent upon engineers to deliver features
+
+instead, rely on your frameworks, refactor
+
+consistency is hard to maintain through larger groups of people, again, use the framework!
+
+features flow from clean code
+frameworks help you deliver clean code; this is why we have frameworks
+the point of it all is to have a product that people can use to get their job done
+the cleaner you keep the code, the better.
+
+summary
+consistency within the app is good
+different from the competition is good
+maintainable clean code is good
+bullet points are bad
+
+REF:
+Glen Lipka
+@glenlipka
+http://commadot.com/
+Marketo
+
+Q: are there any trends in web design / app design that you think are particularly good, or egregious?
+A: things that i think are good are the move are things that are web based but hybrid with the desktop; things that have toolbars and things on the side; are really good. they're opening up the doors to a rich application.
+things that are bad, are the things that dictate only one way. people will guess, they might have to guess 5 times or more to guess something in your app if you don't provide multiple ways. stop making the user do it the way you want it to be done, and just have it do things the way they might try to do it. many applications are starting to move in that direction.
+
+Q:
