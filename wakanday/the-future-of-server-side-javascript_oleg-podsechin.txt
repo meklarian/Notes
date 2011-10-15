@@ -1,0 +1,177 @@
+the future of server-side javascript - oleg podsechin
+
+REF: #startups / #akshell / #ringojs / #moscowjs / #dailyjs
+
+node.js
+ideal use cases
+	realtime apps, infrastructure duct tape
+
+badly suited for
+	crud, command line tools, heavy CPU loads
+
+easy to get started with
+	difficult to get into production
+
+nodeJS isn't the only serverside platform
+
+Akshell, GPSEE, NarwhalJS, RingoJS, v8cgi, Wakanda
+most of the other platforms are synchronous, node.js is purely asynchronous
+
+sync vs. async
+why is it that node has become so popular? mainly that it is fully asynchronous
+
+sync is "on top of" async- a higher level of abstraction
+
+sync vs. async
+
+function add(callback) {
+	http.get(url1, function(response1) {
+		var part1 = response1.data;
+		http.get(url2, function(response2) {
+			...
+			
+http.get(url1).data + http:get(url2).data
+
+interoperability
+
+pure javascript modules run anywhere
+	templating, parsing, formatting, encoding
+
+doing anything io exposes sync or async api
+	defines the interface exposed by higher level packages
+
+State of CommonJS
+
+CommonJS / 1
+	Modules/1.1
+	Packages/1.0
+	Assert
+	Console
+	System/1.0
+
+CommonJS / 2
+	Binary/B
+	IO/A
+	JSGI 0.3
+	Filesystem/A
+
+CommonJS / 3
+	http client / A
+	sockets / A
+	sub processes
+
+common-node
+
+implements synchronous CommonJS using node-fibers
+traceur to support latest language features
+bridges the gap between platforms, sync and async
+
+REF: http://olegp.github.com/common-node/
+
+what's it good for?
+
+business logic
+	lots of state, fine grained error handling
+CRUD
+	java, rails, PHP, python
+command line tools
+cross platform portability
+
+on threads & fibers
+"threads suck" - brendan eich, creator of javascript
+"fibers introduce interleaving hazards..."
+
+concurrency in javascript
+"you shouldn't think that event-based synronization eliminates..., or shared memory..."
+
+fibers / 1
+co-routine implementation using libcoro
+co-operative multitasking
+implicit synchronization
+
+fibers / 2
+not a fork or a hack of node
+no wrapper script required
+v8 context and 64kb stack per fiber
+will run on windows
+
+internals - sleep
+
+exports.sleep = function(milliseconds) {
+	var fiber = Fiber.current;
+	setTimeout(function() {
+		fiber.run();
+	}, milliseconds);
+	yield();
+};
+
+internals - httpclient / 1
+
+var req = http.request(options, function(r) {
+	fiber.run(r);
+});
+
+req.on('error', function(error) {
+	..
+});
+
+...
+
+var result = yield();
+if(result instanceof Error)
+	throw new Error(result.message);
+return {
+	status: result.statusCode,
+	headers: result.headers,
+	bdy: new Stream(result)
+};
+
+internals - IO
+
+var listeners = attach(this.stream);
+var data = yield();
+detach(this.steam, listeners);
+
+examples
+
+JSGI
+exports.app = function(request) {
+	return {
+		status: 200,
+		headers: {},
+		body: ['Hello World!']
+			// openRaw(module.filename)
+	};
+};
+
+spawn & sleeep
+exports.app = function(request) {
+spawn(function() {
+	sleep(10000);
+	console.log("hello server!");
+	});
+	
+	return {...};
+};
+
+var HttpClient = require('httpclient').HttpClient;
+exports.app = function(req) {
+		req.url = 'http://nodejs.org';
+		...
+};
+
+other things
+
+third party services * APIs
+	olegp/rest-wrapper
+	thelockerproject.org
+browser based IDEs (cloud9, akshell)
+social hosting
+	PINF, automatic redeployment, continuous integration
+
+summary
+sync and async will co-exist
+toolkits instead of framework
+implementation driven de-facto standards
+
+REF: @olepodsechin
