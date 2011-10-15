@@ -1,1 +1,98 @@
 end-to-end javascript, joe mccann, principal architect, subPrint
+
+agenda
+	state of javascript
+	business objectives
+	example of an end to end javascript product
+	
+current state of JS
+
+it is everywhere
+
+desktop web
+	chrome (V8)
+	firefox (tracemonkey)
+	IE (Chakra)
+	opera (carakan)
+	safari (Nitro)
+
+javascript engines are now 2-3x within the speed of C
+
+http://www.slideshare.net/iamdvander/js-math-jiting-jsconfeu
+
+mobile web
+	mobile safari
+	android browser
+	skyfire
+	fennec mobile firefox
+	opera mini
+
+server
+	rhino
+	node.js
+	wakanda
+	~57 other possible solutions (not mentioned here)
+
+native mobile apps
+	phonegap
+	sencha touch (2.0)
+	tizen
+	titanium
+	blackberry (webworks SDK)
+
+native desktop apps
+	titanium (win, mac, linux)
+	metro (win8 via WinJS)
+	tizen (?)
+
+databases
+	couchDB
+	riak
+	mongoDB
+	wakanda
+
+can write map-reduce functions in javascript for couchDB/riak
+
+operating systems/hybrids
+	webos
+	nintendo ES
+	chrome OS
+	native client
+
+all around hacking
+	arduino
+	espresso
+
+why does it matter?
+
+end-to-end javascript is here
+
+from front to back end, everywhere in between, javascript exists and is thriving
+
+what does it matter to me and my company?
+
+business objectives
+	cross platform solution (* prior attempts but not mature)
+	future proof / friendly
+
+example: end-to-end javascript for file uploader
+
+http://bit.ly/gunnarapp
+http://github.com/joemccann/gunnar
+
+uses titanium to bundle everything together
+
+js.next
+	incredibly robust graphics
+		webgl
+		webcl
+		svg/canvas
+	compilers/transpilers
+		coffeescript
+		google's traceur
+		dart
+	device apis
+		capture/camera
+		filesystem
+
+http://bit.ly/end2endjs - slides
