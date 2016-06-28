@@ -1,0 +1,108 @@
+dissecting git's guts
+emily xie / recurse center
+@emilyxxie
+
+--
+
+porcelain
+--
+basic commands, check out, remote, stash, etc.
+
+plumbing
+--
+.git direcctory
+git objects
+git references
+git packfiles
+
+.git directory
+--
+objects dir
+
+git objects
+--
+a folder that functions as git's database - content addressable filesystem
+-- method of storing ifnormation so that it may be retrieved based on its content
+
+zlib is the compression library that git uses
+
+Execrise #1: how git saves files
+
+https://github.com/emilyxxie/gits_guts_commands
+
+1. create a new folder and initialize git on it
+2. use a text editor to create & save a new file. write a 1-line bio in it.
+3. save the file to your git database using plubming (see cheat sheet)
+4. use resulting hash to inspect the file using a plumbing command
+5. edit the file: underneath your bio, add 1 additional line about how you love coding & then saev the file to your database
+6. list the contents of your objects folder - you should see two items. you now have two versions of your file.
+7. inspect the resulting object. HOWEVER, beforehand: turn to your neighbor and discuss what you think you will see.
+
+when updating a file
+git uses whole-file diffs
+each version of a file initially gets a full hash
+
+initially, git represents files as blobs
+git is more than just snapshots of files, but the state of the entire repository at once
+
+tree objects
+----
+complete snapshot of your project directory
+need to make an index file, git makes trees from an index file
+staging area / index are the same. staging - representative name.
+
+git update-index
+--
+add flag specifies adding a file to an index
+
+Exercise 2: making tree objects
+add the file you created to the index using plumbing
+ls your .git folder - you should now see an index appear
+examine the contents of your index file, aka staging
+run a porcelain git status
+write your tree
+list all objects in your database
+if you finish early - challenge: trees in trees (5 mins)
+try making a subdirectory in your repo. inside, create a new file with content
+add the file to your index (aka staging area)
+write your tree & inspect the resulting tree object. you'll see a reference to another tree
+
+commit-objects
+---
+
+exercise #3: commit objects
+create a command object using the recently created tree
+take a look at your git database
+inspect the commit object
+change your existing files or add a new one
+update your index and write your tree
+create another commit object, chaining it to the one previous
+inspect the new commit object
+run git log --stat «commit hash»
+
+challenge discussion - if you finish early:
+have you ever done git commit --amend to edit your commit message
+if so: discuss with a neighbor of someone else who's finished: what do you think will happen when you amend a commit will a new commit object be created, or will we have simply edited the pre-existing command object for the commit in question. why?
+
+git commit trees are DAGs, also MERKLE trees, also known as MERKLE DAGs
+
+what is a git branch? how does git identify a branch?
+git branches are just references or pointers
+
+dir .git\refs\heads
+
+exercise #4: GIT REFERENCES
+list everything in your git references folder. you'll see nothing because you don't have any branches
+use a plumbing command to manually create a branch
+list your refs folder again to see the result
+cat your master branch (remember, you can cat because branches are just text files)
+run a porcelain command to create & checkout to a new branch (git checkout -b)
+list your .git/heads/refs folder again
+now cat the new branch to inspect the commit hash
+now edit some files in your new branch. add and commit the changes using porcelain like you would normally. now, cat the branch again.
+
+challenge - if you finish early: (5 mins)
+1. remember how git keeps track of what branch you're on via .git/HEAD? cat the file to look at it. what if you change this file to point to another branch? discuss w/neighbor, then implement/explore. run a git status and a git log. have fun, break stuff, mess around.
+
+2. what would happen if you just go in and change a branch file in .git/refs/heads so that the commit is different? discuss with a neighbor, and then implment / explore / break stuff/ have fun messing around.
+

@@ -1,0 +1,205 @@
+12 factor apps and kubernetes
+kelsey hightower, google
+--
+
+introduction
+
+see http://12factor.net
+
+excerpt:
+
+
+Introduction
+
+In the modern era, software is commonly delivered as a service: called web apps, or software-as-a-service. The twelve-factor app is a methodology for building software-as-a-service apps that:
+
+    Use declarative formats for setup automation, to minimize time and cost for new developers joining the project;
+    Have a clean contract with the underlying operating system, offering maximum portability between execution environments;
+    Are suitable for deployment on modern cloud platforms, obviating the need for servers and systems administration;
+    Minimize divergence between development and production, enabling continuous deployment for maximum agility;
+    And can scale up without significant changes to tooling, architecture, or development practices.
+
+The twelve-factor methodology can be applied to apps written in any programming language, and which use any combination of backing services (database, queue, memory cache, etc).
+
+--
+
+on one-click deployments
+--
+presenter gives demonstration on tetris, about how one-click deployment is just unattended tetris, wasting resources while things compound
+
+second demonstration on tetris is to demonstrate that a scheduler and workload balancer should be placing loads appropriately to be able to handle and balance large workloads
+
+what's required to do a 12-factor thing
+--
+in order for schedulers to be effective, some constraints and such are needed
+
+no one-click deployment scripts
+
+like a fedex shipment, put things in a box, label it, and ship it
+
+http://github.com/kelseyhightower/app
+
+1. in a 12 factor world, have version control
+
+2. dependencies - explicitly declare and isolate dependencies, package them into containers
+
+3. config - ideally, we should not deal with config files. copying them is tedious (even worse, don't use environment variables).
+
+don't build your app in production.
+try to isolate state where it belongs.
+
+dev/prod parity - your laptop is not production. it's not even close to production.
+
+on sys administration
+--
+first line of code in your app should be a log message informing that the app has started.
+shut down cleanly
+  - respond to sigint, etc.
+  - handle signals, finish processing queues (http, etc) on your way out.
+
+kubernetes
+--
+can request things using .yaml
+(presenter showing item for requesting load balancer)
+
+> kubectl config current-context
+>> responds: testing
+> kubectl create -f services/frontend.yaml
+>> service "frontend" created
+> kubectl get svc
+>> shows: list of services
+
+presenter: don't be packaging configs with your containers
+
+kubernetes has the notion of secrets and config-maps, and we can refer to them (sic: by alias)
+only the app needs to see this data, doesn't need local filesystem access
+
+> kubectl create configmap nginx-frontend-conf --from-file:nginx/frontend.conf
+>> configmap "nginx-frontend-conf" created
+> kubectl create secret generic tls-certs --from-file=tls/
+>> secret "tls-certs" created
+> kubectl get secrets
+>> displays secrets
+> kubectl get pods
+
+if you need tightly coupled dependencies, you can deploy them together using pods (a construct like VMs)
+
+> kubectl create -f deployments/auth.yaml
+> kubectl create -f deployments/hello.yaml
+
+presenter: why do we want this in a declarative format?
+a: because we want to be able to do the same thing in production
+
+> kubectl config use-context production
+>> switched to context "production"
+> kubectl get pods
+>> ((responds with blank))
+
+> kubectl create configmap nginx-frontend-conf --from-file=nginx/frontend.conf
+> kubectl create -f services/frontend.yaml
+> kubectl create -f services/hello.yaml
+> kubectl create -f services/auth.yaml
+> kubectl create -f deployments/frontend.yaml
+...
+
+> kubectl get pods
+>> displays pods
+> kubectl get svc
+>> shows svcs, presenter notes that ip addresses aren't provisioned yet
+
+presenter: can login to containers
+
+> kubectl exec --tty -i frontend-NNNNN-XYZ /bin/bash
+>> presents a shell on the container
+
+> kubectl logs frontend-NNNNN-XYZ
+
+presenter logs into production (by private ip)
+presenter notes that the workflow is exactly the same between production and development/staging
+
+demo: showing setting up volumes (to create a db)
+
+> gcloud compute disks list
+>> shows volumes
+> gcloud compute disks create mysql-data
+
+> kubectl create -f services/mysql.yaml
+> kubectl create -f deployments/mysql.yaml
+
+presenter notes no secrets are setup yet, will create them now
+
+> kubectl delete deployments mysql
+
+(cleanup)
+
+> kubectl create secret generic mysql \ ...
+> kubectl create secret generic lobsters \ ...
+
+then, reinit
+
+> kubectl create -f services/mysql.yaml
+> kubectl get pods
+> kubectl get svc
+...
+
+> kubectl port-forward mysql-NNNNN-XYZ 3306:3306
+...
+
+> mysql -h 127.0.0.1 -u lobsters
+>> displays mysql cli prompt
+
+> cat deployments/lobsters.yaml
+>> displays kubernetes info
+
+> kubectl create -f deployments/lobsters.yaml
+> kubectl get pods
+
+presenter notes that migration scripts need to be run for rails (lobster)
+kubernetes has the notion of jobs, that can make sure things get run imperatively
+ 
+> kubectl get jobs
+> kubectl create -f jobs/lobsters-schema-load.yaml
+> kubectl create -f jobs/lobsters-db-seed.yaml
+> kubectl get jobs
+
+> kubectl get pods
+
+presenter: what happens if we delete a database?
+
+> kubectl delete pods mysql-NNNNN-XYZ
+>> pod "mysql-NNNNN-XYZ" deleted
+
+presenter notes that the object was declared to always be running, and after deletion, it will realize that the object is missing and start it back up again
+
+> kubectl scale deployment lobsters --replicas=38
+>> deployment "lobsters" scaled
+> kubectl get pods
+
+presenter notes that all of them are running (crowd applauds)
+
+> kubectl apply -f deployments/lobsters.yaml
+
+presenter notes that when doing a migration, shutting down cleanly is important because kubernetes (and other tools) expect you to be able to handle migration cleanly
+
+> kubectl get pods
+
+note that almost all the pods have reset running times
+presenter navigates to the app and audience notes the app has been updated
+
+Q: can you explain the networking between the containers, the hosts, and the available ips
+A: we assume each cluster has a flat network, every container has its own ip address and can talk to the other containers/pods on the network. the host is just there to provide cpu and memory. but the host's ip address is not used for the containers, instead the vms have their own subnets behind.
+
+Q: how does the cost compare? and can you do dynamic scaling?
+A: kubernetes is an OSS project, and run it anywhere you choose. amazon, google cloud, bare metal, etc. what kubernetes is supposed to do is be a better resource allocation cloud. let kubernetes play tetris and get better utilization and fit. kubernetes itself is like a linux kernel, and all the CLI commands map to API calls. if you want autoscaling, you can use the horizontal autoscaler, but people can use the api to make decisions to scale up/down based on live information.
+
+Q: what happens when a node goes down?
+
+A: presenter: 
+
+> kubectl get nodes
+> kubectl get pods --option get-wide
+> kubectl drain node-NNNN-xyz --force --delete-local-data
+>> note that kubernetes migrates pods and moves/recreates things where resources are
+
+drain kills an object
+

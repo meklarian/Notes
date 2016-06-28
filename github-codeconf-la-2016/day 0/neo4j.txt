@@ -1,0 +1,145 @@
+nick dorion
+
+neo4j
+
+--
+
+graph databases
+
+instead of tables and SQL
+nodes and relationships
+specialized queries
+
+not everything is a graph
+
+ex. social friendship models: twitter/facebook friendships
+
+DSL for neo4j is called cipher
+
+neo4j uses JRE
+
+neo4j.com/install
+
+who uses graphs?
+--
+panama papers
+IMDB / six degrees of kevin bacon
+social networks
+research data
+maps
+anywhere number of joins is large, indefinite, or unlimited
+
+Cypher
+--
+based on sql, but designed by neo4j for ease of use
+ref: gremlin is used too
+
+MATCH(n:Officer)
+WHERE n.name =~ 'Emma.*Watson'
+RETURN n
+
+MATCH (s:Street { nameslug: ' .... ' })
+RETURN s;
+
+MATCH (r:Artist)
+WHERE UPPER(r.name) = 'PABLO PICASSO;
+MATCH (r) -[:ARTIST_OF]-> (a:Artwork)
+RETURN a
+
+MOMA.org study
+----
+
+the trouble with tables
+--
+many joins to get people, titles, photos, additional relationship info
+speed of query
+difficult to write new queries
+
+artworks could have multiple titles, different photos for media, etc
+
+hypothetical: art graph DB
+--
+did picasso collaborate with other artists in his lifetime?
+are any artists credited as painter, director, sculptor, etc? (maybe an art EGOT)
+
+who uses MOMA.org?
+tourists
+researchers
+distant art fans
+members
+
+let's build that graph
+
+artists and artworks
+basic bio data, moma id -> artist node
+future db: all people conneted
+title, date, moma id -> artwork node
+ARTIST_OF relatoinship (include order)
+
+https://github.com/mapmeld/graph
+building a scraper for MoMA
+
+neo4j has transactions
+no schema, no tables
+instead, labels are applied by name
+
+OSM
+----
+
+data sets
+--
+google: mapzen extracts
+download a city
+- download the OSM XML file
+- also a download for PostGIS
+
+benefits of OSM
+--
+open to use, full data
+open to edit / choose tags
+HOT community
+civil e-mail lists (Crimea)
+
+google on OSM
+--
+our maps represent what you or i need to do on a day-to-day basis in the developed part of the world - Google Maps Geospatial Technologist (quoted in FastCompany)
+
+XML Data snippet
+--
+<node id="x" lat="y" lon="x">
+	<tag k="name" v="los angeles" />
+	<tag k="name:ar" v="..." />
+</node>
+<way id="wid"
+	<nd ref="x" />
+	<tag k="highway" v="residential" />
+</way>
+<relation> <member /> <relation>
+
+smart renderer
+--
+when is a <way> a line (cul de sac) or a polygon?
+
+building graph data
+--
+script adds all roads to neo4j
+
+includes an array of node ids (can mix content types, similar to document database)
+
+if two ways share a node with the same ID, linked them both ways <--->
+
+google prediction API
+--
+prediction based on a CSV
+categorization or numerical
+google generates a model and estimates accuracy
+not allowed in Myanmar
+
+predicting houses
+--
+format 60k+ rows of database export data
+choose categories to predict 2-3 years
+competing models determine how important each column is
+can it parse dates? find patterns
+edging up to ~74% accuracy
+

@@ -1,0 +1,204 @@
+
+innersource is about change
+every organization does what is designed to do
+if an organization is broken, it was designed badly
+...
+when we find we have trouble with software systems
+...there's an underlying problem to be solved
+
+things you need to succeed
+--
+recognition of the problem
+willingness to take risks
+air cover / ground cover
+honest cultural evaluation
+extrinsic rewards
+metrics
+a messaging plan
+
+recognizing the problem
+--
+issues: lack of empathy - tendency to spend a lot of time solving the wrong problems
+
+when organizations get to a certain age, there are constraints present on what resources are available to teams. there can be a tendency to pull back, to not have enough money, time, etc. to accomplish goals to the benefit of teams.
+
+a lot of companies are driven by short term revenue
+
+open source is really good at saying: this is good, this is horrific, ... i'm going to break this up into 4 different modules... most organizations not so good at this
+
+misguided competition/collaboration: we're going to have three teams (black box?) working on this, best one wins
+
+Exercise #1 (meet & greet): state your name, your organization(s), three hashtags that are important to you
+
+Exercise #2:
+
+Problem
+: not enough code reuse, lots of code duplication
+
+Evidence:
+Multiple teams competing to build user interface kits on top of bootstrap
+Velvet rope access to public source code repositories
+
+Role:
+I have power to talk to all the parties involved, need to get access
+
+
+----
+
+The risks of change agency
+--
+the more important the change is for an organization, the more resistance there is going to be
+
+one of the greatest transitions at paypal was to migrate from waterfall to agile, spearheaded by a woman
+
+don't let people get away with bias, call it out
+
+
+risk mitigation strategies
+--
+make sure this agent of change is something you wish to do
+network
+manage your public persona: being a public figure can help drive adoption of new ideas and process
+
+air cover
+--
+C-level sponsorship
+if you don't have a C-level executive willing to go to bat for you, you may be sunk. (or a cabal of senior directors, etc)
+
+sidebar: don't be a person who just wants to set things on fire
+
+have a good grasp on the culture of your organization, if you understand how the culture works, you can use this to your advantage.
+
+
+ground cover
+--
+it's not hard to convince engineers to collaborate. most have learned they can only build cool things if they collaborate. there's no rocket that gets launched based on the efforts of one individual. speaker: "even my favorite, perl, has only one guy at the core; but all the cool things have been built by the community"
+
+
+exercise #3:
+evaluate your personal appetite for risk
+evaluate your capacity to lead a team through risk
+what is your plan to mitigate?
+
+
+1. moderately high appetite for risk
+2. probably could lead a team through risk, have done this before but ended up having to leave
+3. plan to mitigate has always been to have my own personal parachute. (hah)
+
+----
+
+grassroots vs. top-down
+--
+
+homework:
+list your potential allies at all levels
+rank them on the following criteria
+- critical to success
+- able to shield you
+
+cultural evaluation
+--
+what is the style of the engineering teams (engineer / devops team split)
+does your company acquire other companies?
+physical locations: do people have safe environments (open plans, high risk environment for people)
+how old is your code? is it well documented? how many tools do you use? do you have real code reviews? 
+how much risk can your organization really handle? how much money is available for experiments? how much free time do people really have?
+how are your engineers measured? how are your managers measured?
+mentorship is the difference between saying "i am the guardian." vs. "this is a great start or this is an interesting start."
+
+
+Exercise #4:
+do a cultural evaluation sheet for your immediate target
+do another one for the whole organization
+
+think about your organization, what are three points that could be addressed to build collaboration between teams.
+
+1. NIMBY-ism, not in my backyard attitude towards adopting practices
+2. Cronyism (sp?), protected principals who get to set directives without feedback and without measurement / evaluation
+3. Inertia: people are satisfied with the status quo, even though they could benefit from improving their own skills and practices
+
+----
+
+why cultures obfuscate:
+--
+technologists are starting to understand that security through obscurity doesn't work. if there's a vulnerability, people are going to find it.
+when we get together, we are collectively smarter than each of us individually.
+some companies have whole teams on products where there are indispensible roles. if your bus factor is 1, you're in trouble. you're not going to be able to respond to the market, to respect your customers.
+be cautious of what is rewarded.
+
+at paypal, we have ownership struggles: "you wrote this, it's your fault, it's your problem."
+the big difference in a pull-request culture, the blame culture, is: "i wrote it, i merged it, i am responsible." --- "i merged it, i own it."
+at paypal: we have had to negotiate that the submitting team is on the hook for 30 days for production responsibility.
+
+if a wizard is standing on top of a tower, they're afraid of being replaced.
+
+reason vs. emotion
+--
+open source flips the paradigm for a lot of things
+people don't necessarily work on stuff they don't need every day
+if we can get organizations to adopt purpose-driven ????, we can accomplish so much more
+when people are condescending, it's because they're afraid of being vulnerable.
+if somebody won't look you in the eyes, they don't want to be vulnerable with you. it takes a lot of courage to be the type of person people are willing to engage with, to be comfortable with. different organizations will reward one type over the other.
+when somebody is feeling imposter syndrome, if someone feels like an imposter- you being vulnerable to them, being open to them, can help them step out of that. this can be an incredibly powerful tool for effecting change.
+
+Exercise #5
+who are you holdouts
+what are they afraid of
+what are their chief pain points
+how do they try to subvert innersource in your organization
+
+Exercise #6
+imagine your most difficult manager or your least sharing engineer
+now sit with the person next to you and answer the questions "what are you afraid of" and "what are your pain points" as if you were that person.
+
+REF: daniel h pink, drive
+what drives people?
+autonomy
+the ability to develop mastery
+the ability to work on something meaningful (esp. personally meaningful)
+
+metrics
+--
+beware of compound KPIs
+
+build vs. buy
+--
+the output of collaboration ends up in source code mgmt, anything we can do to tie back to the participants
+
+what we care about
+--
+an increase in collaboration
+an increase in quality
+decrease in escalation (get rid of the cheese cycle)
+increase in employee happiness
+
+a messaging plan
+--
+
+
+skills you'll need on innersource teams
+--
+need contributors
+need trusted committers to do good code reviews
+tech leads, architects
+need stakeholders, people directly affected by your work
+facilitators (sic: therapists) [people act badly when they feel threatened], or an ally who has these skills
+workflow folks
+data scientists
+marketers
+a sponsor
+
+Homework
+--
+chart a transition that you'd like to make
+list actions you want to encourage
+where do actions you want to encourage actually happen?
+how could you measure that
+in what order do you need to message
+what assets do you need to develop
+what's your process for developing assets
+can you share them?
+
+REF: innersourcecommons.org
+
+Closing statement: "Go forth, and be excellent to each other."

@@ -1,0 +1,204 @@
+mkdir sample_project
+cd sample_project
+git log
+-- fails, because git is not initialized
+git init
+ls -la
+-- can see .git w/this (DIR /AH on windows)
+ls .git
+-- note that no index file is visible here
+-- make hello_world.txt
+git hash-object -w hello_world.txt
+-- generates hash, using SHA1
+printf "blob 13\000HelloWorld\041\n" | openssl sha1
+-- same hash as above
+printf "blob 13\000HelloWorlds\041\n" | openssl sha1
+-- different hash
+find .git/objects -type f
+--
+git cat-file -p «hash»
+-- -p pretty-format
+-- emits content of file
+cat .git/objects/98/... «hash»
+--
+
+
+-- Exercise 1
+mkdir gits_guts
+cd gits_guts
+copy con bio.txt ----> entered hello etc...
+git hash-object -w bio.txt
+-- hash is 606808f7030622cb2b6ecd8f3962e16aee351d06
+git cat-file -p 606808f7030622cb2b6ecd8f3962e16aee351d06
+-- will emit the current contents of bio.txt
+-- edit file using text editor or something
+git hash-object -w bio.txt
+-- after editing, has new hash
+-- current hash is 199db4a9fdc185ed0e4e8b89719f2a1caa687e08
+git cat-file -t 606808f7030622cb2b6ecd8f3962e16aee351d06
+-- shows the type of file (will say blob)
+
+
+copy con foo_bar.txt
+-- create new text file
+git update-index --add foo_bar.txt
+git ls-files --stage
+git status
+-- (low level git add)
+git write-tree
+-- commits index
+-- hash is 110765123616ca683d65908280b9d02c8fbe77cf
+
+
+-- Exercise 2
+cd gits_guts
+git update-index --add bio.txt
+git ls-files --stage
+git write-tree
+dir .git\objects /S /B /OG /A-D
+-- unix: find .git/objects -type f
+-- windows version shows directories, but point is to note that files with corresponding hashes are present
+
+
+-- hash is d516aa691ec1eb914bca7d973b0e1e6c67f77e39
+echo "first commit" | git commit-tree d516aa691ec1eb914bca7d973b0e1e6c67f77e39
+-- hash is 5582d4981602d36e9f55aba6dbd5903ff00b1551
+git cat-file -p 5582d4981602d36e9f55aba6dbd5903ff00b1551
+--  tree d516aa691ec1eb914bca7d973b0e1e6c67f77e39
+--  author Paul Shinn <meklarian@gmail.com> 1467068535 -0400
+--  committer Paul Shinn <meklarian@gmail.com> 1467068535 -0400
+--
+--  "first commit"
+notepad foo_bar.txt
+-- modify file
+git update-index -- add foo_bar.txt
+git write-tree
+-- hash is b2db86eb693ade4b31d293eb9b02abc6d74b6d31
+echo "second commit" | git commit-tree b2db86eb693ade4b31d293eb9b02abc6d74b6d31 -p 5582d4981
+602d36e9f55aba6dbd5903ff00b1551
+-- ties new commit to old commit
+-- hash is 80682f1b27cc0fa13c43c5bc11bbfe6f59950b9c
+
+
+-- Exercise 3
+cd gits_guts
+git write-tree
+-- hash is d81d65837846b8588045bacc5340412884e13a27
+echo "first commit ok" | git commit-tree d81d65837846b8588045bacc5340412884e13a27
+-- hash is f89a64a7ba60c0f621239a704a748da97ceca2ef
+dir .git\objects /S /B /OG /A-D
+--C:\MyDev\gits_guts\.git\objects\19\9db4a9fdc185ed0e4e8b89719f2a1caa687e08
+--C:\MyDev\gits_guts\.git\objects\60\6808f7030622cb2b6ecd8f3962e16aee351d06
+--C:\MyDev\gits_guts\.git\objects\d8\1d65837846b8588045bacc5340412884e13a27
+--C:\MyDev\gits_guts\.git\objects\f8\9a64a7ba60c0f621239a704a748da97ceca2ef
+notepad bio.txt
+git update-index --add bio.txt
+git write-tree
+-- hash is e714f407f82ee2b3d18eab41d55a5a3d11673cf4
+echo "2nd commit" | git commit-tree e714f407f82ee2b3d18eab41d55a5a3d11673cf4 -p f89a64a7ba60c0f621239a704a748da97ceca2ef
+-- hash is fc96f415f2e549b916fecade63ad68e1624a2b06	
+git log --stat fc96f415f2e549b916fecade63ad68e1624a2b06	
+-- ****
+commit fc96f415f2e549b916fecade63ad68e1624a2b06                                                 
+Author: Paul Shinn <meklarian@gmail.com>                                                        
+Date:   Mon Jun 27 19:18:36 2016 -0400                                                          
+                                                                                                
+    "2nd commit"                                                                                
+                                                                                                
+ bio.txt | 3 ++-                                                                                
+ 1 file changed, 2 insertions(+), 1 deletion(-)                                                 
+                                                                                                
+commit f89a64a7ba60c0f621239a704a748da97ceca2ef                                                 
+Author: Paul Shinn <meklarian@gmail.com>                                                        
+Date:   Mon Jun 27 19:13:46 2016 -0400                                                          
+                                                                                                
+    "first commit ok"                                                                           
+                                                                                                
+ bio.txt | 2 ++                                                                                 
+ 1 file changed, 2 insertions(+)                                                                
+-- ****
+
+
+dir .git\refs\heads
+git update-ref refs/heads/master 80682f1b27cc0fa13c43c5bc11bbfe6f59950b9c
+-- now on branch master
+dir .git\refs\heads
+git checkout -b FEATUREBRANCH
+-- modify or create a new file
+git add .
+git commit -m "ok message"
+dir .git\refs\heads\FEATUREBRANCH
+type .git\refs\heads\FEATUREBRANCH
+-- hash content is: 2cc0ea692d56352389bcc4cfec4452d780945fad
+
+
+-- Exercise 4
+cd gits_guts
+dir .git\refs\heads
+-- no content
+git update-ref refs/heads/master fc96f415f2e549b916fecade63ad68e1624a2b06	
+dir .git\refs\heads
+-- master is now present
+type .git\refs\heads\master
+-- hash content is : fc96f415f2e549b916fecade63ad68e1624a2b06
+-- add new hello_world.txt
+-- (made a blank on using copy con hello_world.txt, then hit ^Z right away)
+git add .
+git commit -m "new file"
+git update-ref refs/heads/master fd464a0cabc97a39a18d94e662e969fc7c4d71b9
+type .git\refs\heads\master
+-- hash content is: fd464a0cabc97a39a18d94e662e969fc7c4d71b9
+git update-ref refs/heads/FEATUREBRANCH fd464a0cabc97a39a18d94e662e969fc7c4d71b9
+dir .git\refs\heads
+-- shows FEATUREBRANCH, master
+
+
+dir .git\objects /A-D /S /B /OG
+---- ****
+C:\MyDev\sample_project\.git\objects\05\099bc887496a7598bab18dc4d015a65d7769db
+C:\MyDev\sample_project\.git\objects\11\0765123616ca683d65908280b9d02c8fbe77cf
+C:\MyDev\sample_project\.git\objects\28\8fe2d6f15c00f531080d243115a43f7db8ba28
+C:\MyDev\sample_project\.git\objects\2c\c0ea692d56352389bcc4cfec4452d780945fad
+C:\MyDev\sample_project\.git\objects\55\82d4981602d36e9f55aba6dbd5903ff00b1551
+C:\MyDev\sample_project\.git\objects\75\1d196d23ad7ab36c0f89f1fdc109da51a8174c
+C:\MyDev\sample_project\.git\objects\80\682f1b27cc0fa13c43c5bc11bbfe6f59950b9c
+C:\MyDev\sample_project\.git\objects\b2\db86eb693ade4b31d293eb9b02abc6d74b6d31
+C:\MyDev\sample_project\.git\objects\bc\7774a7b18deb1d7bd0212d34246a9b1260ae17
+C:\MyDev\sample_project\.git\objects\cd\c007191ea0752f2d4af9923bcf9e87bbac11ab
+C:\MyDev\sample_project\.git\objects\d5\16aa691ec1eb914bca7d973b0e1e6c67f77e39
+---- ****
+git count-objects -H
+-- reports: 11 objects, 948 bytes
+git gc
+---- ****
+Counting objects: 10, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (10/10), done.
+Total 10 (delta 1), reused 0 (delta 0)
+---- ****
+git count-objects -H
+-- reports: 1 objects, 56 bytes
+dir .git\objects /A-D /S /B /OG
+---- ****
+C:\MyDev\sample_project\.git\objects\11\0765123616ca683d65908280b9d02c8fbe77cf
+C:\MyDev\sample_project\.git\objects\info\packs
+C:\MyDev\sample_project\.git\objects\pack\pack-ac73286b04d85030e7f28441f68d5c1490beed56.pack
+C:\MyDev\sample_project\.git\objects\pack\pack-ac73286b04d85030e7f28441f68d5c1490beed56.idx
+---- ****
+git verify-pack -v .git\objects\pack\pack-ac73286b04d85030e7f28441f68d5c1490beed56.pack
+---- ****
+2cc0ea692d56352389bcc4cfec4452d780945fad commit 219 150 12
+80682f1b27cc0fa13c43c5bc11bbfe6f59950b9c commit 230 161 162
+5582d4981602d36e9f55aba6dbd5903ff00b1551 commit 181 128 323
+cdc007191ea0752f2d4af9923bcf9e87bbac11ab blob   31 40 451
+05099bc887496a7598bab18dc4d015a65d7769db blob   12 14 491
+bc7774a7b18deb1d7bd0212d34246a9b1260ae17 blob   12 21 505
+288fe2d6f15c00f531080d243115a43f7db8ba28 tree   120 113 526
+b2db86eb693ade4b31d293eb9b02abc6d74b6d31 tree   7 17 639 1 288fe2d6f15c00f531080d243115a43f7db8ba28
+d516aa691ec1eb914bca7d973b0e1e6c67f77e39 tree   82 86 656
+751d196d23ad7ab36c0f89f1fdc109da51a8174c blob   23 33 742
+non delta: 9 objects
+chain length = 1: 1 object
+.git\objects\pack\pack-ac73286b04d85030e7f28441f68d5c1490beed56.pack: ok
+---- ****

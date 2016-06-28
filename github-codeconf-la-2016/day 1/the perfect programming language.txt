@@ -1,0 +1,71 @@
+the perfect programming language
+michael bernstein, code climate
+
+the story
+----
+speaker found a box of records containing a notebook, with records.
+the notebook was titled: the perfect programming language, j. piano
+
+the notebook was dedicated to borges, sun ra, and mccarthy (written in esperanto)
+
+there was a record by sun ra, the heliocentric worlds of sun ra
+
+jorge luis borges - the analytical language of john wilkins
+john wilkins - toward a "universal language"
+
+john mccarthy - father of lisp
+
+entities
+--
+borges
+sun ra
+mccarthy
+esperanto
+programming languages
+
+the language
+--
+semantics
+type system
+interfaces
+distributed computing
+gradual typing
+data types
+data structures
+compiles to a small core language
+portability
+formally verifiable
+syntax
+
+why you shouldn't
+--
+it's not a real language
+no notebook
+no records
+etc.
+made up for the talk
+
+the perfect programming language does not exist
+
+constructed languages
+--
+esperanto, interlingua, lojban, etc.
+there is a long history of people trying to make ideal languages
+
+things that are often missing
+--
+friendly errors
+editor integration
+package management
+libraries
+existing programs and idioms
+documentation
+testing
+
+the perfect programming language is the one you're using right now
+languages don't succeed because they're perfect
+languages succeed because of people
+languages succeed because of the communities that we build and nourish
+languages succeed because of the stuff we build
+
+ref: http://michaelrbernstein.in
