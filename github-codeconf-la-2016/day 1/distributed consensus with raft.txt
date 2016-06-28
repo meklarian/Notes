@@ -1,0 +1,209 @@
+distributed consensus with raft
+john feminella, pivotal
+
+how computers agree
+
+http://jxf.me
+@jxxf
+
+consensus: a challenge
+
+imagine you have a single node, where you could store a value
+you have a client that is responsible for making requests to the node
+
+you want to be able to read from the node and get the value you get back
+
+if it's 1:1 it's easy
+
+what happens when there is more than one party that can provide a value
+
+two kinds of buckets
+
+symmetric consensus
+any server can respond
+
+assymetric consensus
+a leader is elected to issue commands
+
+situation: going to lunch
+
+alice -> lunch at 12:30?
+bob -> sounds good
+
+alice and bob are in a locality bubble, messages quick to send/receive
+
+any message(x) / reply(x) in proximity between two parties is like this
+
+what if there is distance between two parties
+
+when alice sends a message, it may take a while to get the message to bob
+
+alice can't tell if bob hasn't responded yet, or even received the message yet
+
+failure detection requires external knowledge
+
+many failure modes
+fail-stop failure: bob doesn't respond, bob pulls away
+
+byzantine failure:
+bob could respond with any message, even a harmful message, a message telling alice to self-destruct, etc etc.
+
+concept: two generals problem (a hostile environment)
+
+two generals (A, B) that want to attack a city
+
+generals must coordinate, as the city could repel them singly
+
+general agree on a time to attack
+A attack(t) -> B
+B acknowledge(t) -> A
+
+city has spies, can intercept messages
+
+can't guarantee success here! other party can't confirm receipt
+
+more confirmations won't help
+
+note: distributed systems are very hard!
+
+concepts: some previous answers to the problem
+
+blockchains: but most work is proof-based
+
+paxos: hard to implement and explain, notorious for having bugs in the implementation. but proven to be correct. but hard to implement correctly.
+
+heading: consensus with raft
+
+goal: have an available replicated state machine
+available: provides meaningful responses from a log.
+
+(ed: notes how messaging is based on command pattern)
+
+raft is assymmetric, nodes elect a leader to act on their behalf
+
+roles:
+leader
+candidate
+follower
+
+starting state is follower
+after some amount of time, each node with randomized timeout, on expiry the follower becomes candidate, kicking off an election
+if it receives enough votes, it becomes a leader
+if you don't get enough votes, you start a new election
+
+if you're a leader, you could step down if a better leader is detected (or instructed to)
+
+raft devices time into segments of terms
+
+each term begins with an election
+during the election, they try to figure out who the leader is
+
+once a leader is elected, normal progress ensues
+
+leader died? no problem; election takes too long? increment term again, hold new election
+
+repeat indefinitely. goal is to try and spend more time doing work and exchanging messages
+
+concept: desired properties in election
+^safety: at most one winner per term
+example: don't want an election among five, with five winners
+^liveness: someone eventually wins
+election timeout is set to much longer than expected delivery time so the voting and results can be finished in one quanta
+
+
+election outcomes
+rec eive majority
+receive valid heartbeat
+election times out
+
+receive majority: become leader, tell everyone
+valid heartbeat: return to being a follower
+timeout: keep being a candidate, start new election
+
+process on being candidate:
+solicit votes
+collect votes
+determine state
+return to main state graph
+
+
+log replication with raft
+(what happens when you want to exchange information)
+
+log entry: an (index, term, data) tuple
+example: (4, 2, ant)
+
+sample, three agents:
+
+0 1 ant
+1 1 bow
+2 1 cat
+3 2 bow
+4 2 ant <- newest entry
+
+0 1 ant
+1 1 bow
+2 1 cat
+3 2 bow
+
+0 1 ant
+1 1 bow
+2 1 cat
+3 2 bow
+
+new entries include previous (term, index)
+
+leader's job is to propogate logs to followers
+
+log coherency: deny votes if bad candidates
+only vote for nodes that could be better leaders than self node
+
+slides: showing some scenarios of elections where there are bad candidates (behind on logs or timed out)
+
+a log entry cannot be committed and overwritten
+
+don't vote if your term is better than candidate's
+if you're on term 6 and receive a vote for term 5, then don't vote for them
+don't vote if your term is the same, but your index is better than candidate
+
+sample:
+
+0 1
+1 1
+2 2
+
+0 1
+1 1
+2 2
+3 3
+
+0 1
+1 1
+2 2
+3 3
+4 3
+
+first two can't get votes, third can
+
+
+3 2
+4 4
+
+3 2
+
+3 3
+4 3
+5 3
+
+server one could be overwritten if two becomes leader
+
+log integrity: an entry in a log is committed if it is also majority stored, and in an election, the latest term is majority stored
+
+concepts: takeaways
+
+much less complicated than alternatives
+strong guarantees from a small set of simple rules
+you're already using it!
+(CF, Kubernetes, etcd, Docker Swarm)
+
+

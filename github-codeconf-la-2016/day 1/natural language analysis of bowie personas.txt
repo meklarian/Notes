@@ -1,0 +1,42 @@
+natural language analysis of bowie's personas
+anton mcconville, ibm canada
+
+slide: ex-pres-sion
+genius
+understanding (our clients)
+digital creativity (development/design)
+
+slide:
+persona -> albums -> lyrics -> watson -> personality insights
+
+slide: watson personality insights:
+openness
+conscientiousness
+extraversion
+agreeableness
+neuroticism
+
+slides: presenter is showing off slides of various data summaries (insights?) mined from david bowie's lyrics
+
+slide:
+watson personality insights
+ibm blue (???)
+
+slide:
+display:flex;
+
+flex container <<< flex items
+
+slide: information model
+persona 1:n -> album 1:N -> songs
+
+slide: "tomorrow belongs to those who can hear it coming". - david bowie
+
+slide:
+bluemix.net
+
+ziggy.mybluemix.net
+
+http://github.com/IBM-Bluemix/ziggy
+
+@antonmc

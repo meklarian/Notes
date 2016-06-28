@@ -1,0 +1,89 @@
+emily dunham, mozilla
+rust's community automation
+
+REF: slides are at http://talks.edunham.net/codeconfLA2016
+@QEDunham
+codeconfLA@edunham.net
+
+slide: Rust
+
+started ~2010
+1.0 stable may 15 2015
+safe, concurrent, fast
+54380 commits, 1582 authors
+
+www.rust-lang.org
+
+a variety of automation tools that allow a relatively small team manage a community avoiding pitfalls that plague other teams
+
+process:
+
+maintaining high expectations
+code of conduct
+moderation
+
+on exclusion:
+try to head off people who like to engage in flame-war like behavior
+
+pain of rejection increases with respect to time invested
+
+try to keep units of work (PRs) small and tiny
+
+on appreciation:
+http://this-week-in-rust.org newsletter
+http://blog.rust-lang.org
+callouts for "friends of the tree" people who are doing good things, call out people who might go unrecognized
+
+processes recap:
+set high expectations
+exclude the immoderate
+require and simplify communication
+show appreciation
+
+slide: the robots
+the original author of rust came up with a principle on maintaining software: ~~~the not rocket science rule~~~
+you should automatically maintain a repository of code that always passes all the tests
+
+slide: rust: bors & homu
+https://github.com/servo/homu
+tests tree's state after landing r+'d PR
+
+bors runs all tests after PR, will fast-forward master if all tests pass, if not, then will rollback if not. always tries to guarantee that everything passes on merge commits
+
+slide: starting out...
+test every PR!
+http://docs.travis-ci.com/user/getting-started/
+
+protected branches help...
+
+https://github.com/user/repo/settings/branches
+
+slide: welcoming newbies
+https://github.com/nrc/highfive
+offers guidance and assigns a reviewer to assure PRs don't go stale or get stranded
+
+slide: for your repos
+https://github.com/blog/2111-issue-and-pull-notifications
+use PR templates
+
+enable notifications
+https://github.com/user/repo/settings/hooks
+
+slide: automate your pipeline!
+
+contributing.txt
+(see links from slide link above)
+
+make sure your repo looks good when someone comes in through the issue tracker
+maybe someone came in through the repo
+make sure readme is up to date
+make sure contributing guide is up to date
+once you're sure someone hopping in will be able to find around well
+make sure your contributing guide shows how to tag issues and how to triage them
+once your issues are triaged well, you can get utility out of other sites / projects
+
+slide: robots recap
+automatically maintain a repository of code that always passes all the tests
+welcome & guide new contributors
+mark & share introductory bugs
+
