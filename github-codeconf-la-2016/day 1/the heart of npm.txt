@@ -1,0 +1,116 @@
+stephanie snopek
+the <3 of npm
+
+slide:
+the heart of npm --- npm loves you
+
+who am i (stephanie)
+tech enthusiast
+support pro
+canadian
+icecream lover
+
+slide:
+what is npm?
+
+slide: wombats
+
+slide: npm is a registry of code (303,587 as of today)
+
+slide: CLI
+
+npm install
+npm init
+npm publish
+npm -v
+
+
+slide: the website
+
+https://www.npmjs.com/
+
+npm doesn't stand for anything. commonly referred to as node package manager
+
+slide: what's my job (stephanie)
+supporting npm users with all of this
+
+slide: some big numbers!
+
+slide: who uses npm?
+4 million developers, thousnads of companies use npm
+
+slide: how many downloads?
+75M downloads in the last day
+1.2B in the last week
+
+slide: these numbers => human interactions
+
+slide: primary support
+
+twitter: 46 tweets/month
+tickets: 612 emails/month
+issue tracker: 852 open support issues
+
+2 colleagues
+
+slide: additional support
+CLI meetings
+docs
+engineering calls
+status page
+
+CLI team invites users to meetings to see what's coming up next, what's going on, voice questions and conerns
+status team mostly run by registry team
+
+slide: why is npm unique?
+the whole team cares about support
+really intentional communication
+
+slide: communication
+
+the successul conveying or sharing of ideas and feelings
+means of connection between people or places
+
+slide: support is communication
+written
+visual/symbolic
+
+slide: "soft skills"
+it's easy to dismiss communication as being a soft skill
+but it's not easy, it can take effort to get points across in a meaningful and useful way
+
+slide: strategies
+flex your empathy
+when in doubt, use emoji
+(pt 2)
+don't take it personally
+the issue is rarely about you
+(pt 3)
+get comfy with conflict
+don't feed the frustration
+you (blaming) them = conflict
+(pt 4)
+ask questions
+don't assume you know what's going on
+(pt 5)
+take breaks & slow down
+"that's really interesting, I'll get back to you with more info asap"
+  - most people just want to know that they're heard (being heard)
+(pt 6)
+apologize
+* genuinely, without expectation
+
+slide: communication = connection = community
+
+slide: support your support team
+
+slide: takeaways
+
+npm loves you
+adapt your communication
+love your support team
+
+pictured: baby wombat
+
+@stephsnopek
+stephanie@npmjs.com

@@ -1,0 +1,104 @@
+the open source contributor funnel
+mike mcquaid, github
+(creator of brew/homebrew?)
+
+the contributor funnel: turning users into maintainers
+
+https://github.com/MikeMcQuaid
+
+senior engineer at github (2013-2016)
+
+
+the funnel: group -> funnel -> upsell -> retain
+
+
+on retention: how do you keep your project from dying
+
+
+1) group
+grouping your users together
+
+users: people who are just users (excluding maintainers for sake of example)
+vast majority won't have interactions
+sometimes a few will have issues
+
+contributors: people who, have at some point, interacted with the project; people with really detailed issues
+these are people who may submit prs, but don't have commit access
+
+maintainers: people who review/merge, worked, gatekeeping, direction setters of the project.
+
+2) funnel
+
+my understanding of sales: leads -> prospects -> sales
+you have groupings of people at each stage of the process
+leads: people secretly interested in buying your product, no contact yet
+prospects: people who have experienced an interaction, but haven't made a commitment
+sales: people who have completed a transaction
+
+analogue:: users -> contributors -> maintainers
+when you start a project, you'll just have yourself in these groups
+hopefully as the project grows, you'll have people join at the user end of the funnel
+how do you keep feeding into the pipeline to get people through each stage of the pipeline
+
+homebrew: 500,000 users -> 5,000 contributors -> 10-20 maintainers
+(this is a pretty dramatic funnel, if you were in retail sales this might be a really awful job)
+
+
+3) upsell
+trying to push someone into a new bracket
+when a random person brings up an issue in a support channel, try to get them to update the issue (create/update ticket)
+supply comments to reproduce / describe the bug
+if you have a savvy user, you can try to steer them to a pull request
+
+slide: how to open a homebrew pull request (and get it merged)
+
+slide: new maintainer checklist
+if you have someone making consistently high-quality contributions, with consensus of maintainers, may invite them to join as a maintainer
+
+4) retain
+
+it's important to think about the ways these groups of people are affected by changes
+always be thinking about the changes you're making
+your organizational structure (of the project)
+
+users: 
+high quality
+no guilt merges
+no v2.0
+
+users care about the project working
+
+it can be bad when a project goes through a big rewrite
+or a big organizational change
+
+if you're breaking their stuff and they just want to be able to use your software, they (??? ed: drift away?)
+
+in homebrew, trying to avoid having a 2.0; try not to fall on dream documents/plans of what might we do if we could do all again.
+if you do a 2.0 rewrite everything from scratch to a project, chances you'll introduce a slew of new bugs (or old regressions), lose users, give up value of stable 1.x codebase
+
+contributors:
+no bike shedding
+mailing list/IRC
+no feature issues
+
+try to keep conversations focused and not opinion based
+have a place where people can have such conversations (a side channel, irc / slack)
+rarely accept feature requests- unless a maintainer is working on a feature, chances are it won't get done (esp if maintainers are not being paid to do something, only building out something for themselves/gratis)
+
+maintainers:
+code of conduct
+private chat
+always growing
+
+
+benefit of private chat: don't have the sense of having thousands of eyeballs judging discussion
+try to have your project always be growing
+
+
+summary: group -> funnel -> upsell -> retain
+
+group model your users
+try to funnel them along
+try to keep people engaged
+find a way to get people to care about your project and help maintain it
+
