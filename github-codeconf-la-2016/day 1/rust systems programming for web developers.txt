@@ -1,0 +1,127 @@
+herman radtke, nordstromrack.com | hautelook
+rust: systems programming for web developers
+
+rust is a new language by mozilla, roughly in the c++ space
+
+slide: web developer + rust = systems programmer
+
+web developers are one of the largest growing groups of developers
+let's talk about how rust can make the pie bigger for the systems programming development community
+
+slide:
+Ruby :: developers -> Dev Ops :: capistrano, puppet, chef, rvm, rbenv, chruby, Vagrant, Sensu
+
+people who started writing ruby apps eventually started creating their own tools
+
+slide: UI Developer + Node = Full Stack Developer
+
+presenter notes that rhino and other environments have existed for a while. but this projection is flawed, node is not a replacement for php et al.
+
+slide:
+modern web stacks
+--
+application caching
+http caching
+message job queues
+relational sql/nosql/search databases
+load balances
+vm / containers
+
+slide: knowledge      gap
+(ed: spacing intentional)
+
+any web developer knows that the biggest bottleneck (usually) is the connection to the database
+but some communities are abstracted (word??) away from this concern (ed: masked?)
+
+slide: web developer | barriers | memory management, thread safety, expressiveness
+
+web developers tend to be isolated from certain concerns
+put yourself in the shoes of a web developer trying to solve a pain point or scratch an itch
+"hey i'm going to write some C++ to solve this problem" (no warnings, even with gcc -Wall / equiv) and it blows up in production
+even the most seasoned C++ developers make mistakes when it comes to dealing with existing and unknown threats in C++
+Mozilla recognized the need to improve the state of the art for C++
+
+Sandy Metz: i will give up some cpu cycles to make my code more readable, more maintainable
+
+C++ repos are hard to read. lots of pointer redirection, macros defined, etc.
+
+if you're trying to get involved in C++, it can be a tough thing to do.
+
+rust solves these things pretty well.
+
+slide: why rust?
+1. memory safety without gc
+2. concurrency without data races
+3. abstraction without overhead
+
+slide: (c++ concerns) no segmentation faults, no use after free, no memory leaks*
+
+slide: compiler as Teacher
+
+a lot of people trying to do new things (to them) in C++, the compiler gets in their way, and the compiler tends to end up yelling at them
+what starts to happen is that people start to learn ahead of time that the compiler will report something is wrong
+but with rust, people can start to intuit things that are wrong (the compiler starts acting as a teacher)
+
+slide: contribute with confidence
+
+many languages, not even C++, even scripting languages
+you can write a patch that appears to work for you
+but blows up for everyone that consumes/uses it
+what happens with the rust compiler
+all of these common errors get removed from the code (ed: really?)
+you can have confidence that the code does what it says it does
+you may have domain logic / knowledge bugs
+but you can be free of worry that things will segfault or crash in production
+
+slide: expressiveness
+
+let's change the way the syntax looks, and now it is a first class consideration in rust code
+
+slide: zero cost abstractions :: mullet driven dev (ruby in the front, C in the back)
+
+slide: (code sample)
+> let n = (1..10)
+>   .map(|i| i*2)
+>   .filter (|&i| i > 5)
+>   .fold (0, |acc, i| acc + i);
+
+rust uses llvm to compile (and reduce this down) and make it fast
+you can write first and be assured that it works the right away out of the box
+
+slide: optional correctness
+
+it can be hard to get things really perfect in rust
+rust is a really pragmatic language though
+if you are writing things in rust
+you may not want to handle all error conditions
+you can unwrap some expectations (error handling) using option types
+you can concentrate (initially) on the happy path for the default use case
+this is optional correctness
+in rust these are not like true monads like in haskell
+you can even exit the thread (word??) or program from a function
+you can opt out of correctness in rust by wrapping with an unsafe block
+as nice as the compiler is, you may need to suspend safety (like when talking through FFI or other languages like C++ direct)
+
+slide: foreign function interface
+
+if you're a web developer trying to get involved in systems programming
+with rust, since the ffi is so good, you can profile your code, find the hotspots, and rewrite them in rust
+
+slide: C : lingua franca
+
+you can write rust, and interface it directly in C / C++
+we aren't going to write a linux kernel in rust, probably not going to happen, but we can introduce pieces of rust into the ecosystem
+url handling in firefox preview is handled by rust code.
+
+slide: systems programming is hard because systems are hard. rust makes it easier.
+
+it's hard to write device drivers
+etc.
+
+slide: further learning
+
+slide: rust la meeting
+http://www.meetup.com/rust-los-angeles
+
+REF: https://github.com/hjr3
+REF: @hermanradtke
