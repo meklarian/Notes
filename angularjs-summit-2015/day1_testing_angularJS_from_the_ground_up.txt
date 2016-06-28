@@ -1,0 +1,118 @@
+*** automated testing from the ground up, venkat subramaniam
+
+npm install -g karma-cli
+npm install --save-dev karma karma-mocha kamra-chai karma-phantomjs-launcher
+npm install --save angular
+npm install --save-dev angular-mocks
+npm install --save-dev karma-clear-screen-reporter
+
+
+karma - a test runner
+
+observes files and can run tests on change
+
+phantomjs - headless browser
+
+chrome and firefox plugins exist for karma too
+
+mocha - testing tool, but no asserts
+
+chai - assertion library
+
+istanbul - code coverage tool
+
+karma has an instanbul plugin
+
+angular-mocks mocks things for you
+
+***
+
+karma init
+
+creates karma.conf.js
+
+mocha syntax:
+
+describe('taskcontrollertest', function() {
+it('canary', function() {
+expect(true).to.be.true;
+});
+});
+
+canary test to assure that the toolset/toolchain are working properly
+
+karma start --reporters clear-screen,dots
+
+controller should have empty tasks on create
+
+describe('taskcontrollertest', function() {
+var controller;
+beforeEach(module('todoApp'));
+beforeEach(inject(function($controller) {
+controller = $controller('TasksController');
+}));
+});
+
+
+
+var TasksController = function() {
+
+};
+
+angular.module('tasksApp', [])
+.controller('TasksController', TasksController);
+
+getTasks should return tasks from the server
+
+
+it('controllers tasks should be empty', function() {
+expect(controller.tasks).to.be.eql([]);
+});
+
+testing: an act of gaining insight about the application
+
+is the application useable?
+is it useful?
+is it relevant?
+does it have a nice workflow?
+should i reorganize this/that?
+do i need to ask the user for this/that data?
+does this work?
+it worked yesterday, does it work today?
+
+do manual testing, but only do automated verification
+
+no human should ever be asked: can you check if the code is working?
+
+it('getTasks should populate the tasks list'), function() {
+controller.getTasks();
+
+var sampleData = [
+{name: 'task1', month: 12, day: 1, year: 2015},
+{name: 'task2', month: 12, day: 2, year: 2015},
+{name: 'task3', month: 12, day: 3, year: 2015}
+];
+
+$httpBackend.expectGET('/tasks')
+	.respond(200, sampleData);
+
+controller.getTasks();
+$httpBackend.flush();
+expect(controller.tasks).to.be.eql(sampleData);
+});
+
+
+
+getTasks = function() {
+$http.get('/tasks').success(function(data) {
+controller.tasks = data.data;
+});
+}
+
+
+
+
+
+http://www.agiledeveloper.com/downloads.html
+
+	

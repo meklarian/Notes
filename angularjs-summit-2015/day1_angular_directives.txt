@@ -1,0 +1,34 @@
+*** Angular Directives, exploring the awesome power of resuseable code!
+
+*** introduction
+
+peter pavlocich, principal cloud & front-end evangelist
+current: principal architect, enerNOC inc. (energy intelligence software)
+
+*** angular
+
+js based client side MV framework
+super powerful
+easy to code in
+
+*** why use angular
+
+expressive, readable maintainable code
+intentions are clear from reading html
+clean separation: intent vs. implmentation
+highly testable
+nice integrations with meteor, firebase, and others allows angular to own the DOM but get its data
+
+***  angular toolbox
+
+***** presenter going too fast with some slides
+
+angular has directives for nearly all known element tags
+
+<body ng-app>
+<h1>title</h1>
+<script src="angular.js"></script>
+</body>
+
+The preceding block causes 3 directives to be created and execute.
+

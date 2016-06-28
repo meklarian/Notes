@@ -1,0 +1,1196 @@
+original: https://angularsummit.com/s/slides/2015/speaker/Daniel_Zen/advanced_angularjs_/AngularJS_Workshop_AngularSummit.pdf
+
+*** what is angularJS?
+
+is a framework for dynamic web apps
+uses HTMl as your template language
+extends HTML's symtax creating new HTML constructs
+has databinding and dependency injection
+happens within the browser client-side MVC/MVW
+
+*** angularJS creates new HTML syntax
+
+** examples
+data binding, as in {{}}.
+DOM control structures for repeating/hiding DOM fragments (ng-repeat, ng-show, ng-hide)
+support for forms and form validation
+attaching new behavior to DOM elements, such as DOM event handling (ng-click)
+groups HTML into reuseable components
+
+** angular is a complete client-side solution
+
+handles all of the DOM and AJAX
+opinionated way to create a CRUD application giving you:
+data-binding
+basic templating directives
+form validation
+routing
+deep-linking
+reuseable components
+dependency injection
+
+*** angularJS focuses on Testability
+
+unit-testing
+end-to-end testing
+mocks
+harnesses - to test under varying conditions
+
+*** opinionated high level abstraction
+
+** angularjs believes
+declarative code is better than imperative for UI and connecting code
+writing tests is as important as writing code
+decouple the client side from the server side
+framework should include UI, logic, testing
+make the common trivial
+make the difficult possible
+
+*** angular JS frees you from
+
+registering callbacks, reducing boilerplate clutter
+manipulating DOM programmatically
+marshalling data to and from the UI
+writing a lot of initialization code
+
+*** simple examples
+
+https://docs.angularjs.org/guide/concepts
+http://angularjs.org
+
+*** angularjs sources:
+
+bower install
+code.angularjs.org
+** CDNs:
+developers.google.com/speed/libraries/#angularjs
+cdnjs.com/libraries/angular.js
+
+*** Concepts
+
+template - html with additional markup
+directives - extend HTML with custom attributes and elements
+model - the data shown to the user in the view and with which the user interacts
+scope - context where the model is stored so that controllers, directives, and expressions can access it
+expression - access variables and functions from the scope
+compiler - parses the template and instantiates directives and expressions
+filter - formats the value of an expressino for display to the user
+view - what the user sees (the DOM)
+data binding - sync data between the model and the view
+controller - the business logic behind views
+dependency injection - creates and wires objects and functions
+injector - dependency injection container
+module - a container for the different parts of an app including controllers, services, filters, directives; which configures the injector
+service - reuseable business logic independent of views
+
+*** simplified workflow
+
+ng-app directive bootstraps angularJs
+ng-init - initis model before template is rendered
+directives are custom HTML tags & attributes
+directives add dynamic behavior
+{{ expression }} outputs model values
+ng-model allows for 2-way data binding
+changes in model are propagated to template
+
+*** the super powers
+
+teach a browser how to interpret new HTML tags and attributes
+dependency injection (DI)
+/ DI makes it easy to assemble a web application from smaller, thoroughly tested services.
+open source project hosted on GitHub
+/ https://github.com/angular/angular/js
+
+*** Tools
+
+great IDEs make life easier
+/ JetBrains WebStorm (and others)
+/ sublime, textmate, atom, brackets
+command line tools:
+/ node.js
+/ bower
+/ yeoman
+testing
+/ karma
+/ jasmine / mochaJS
+/ protractor
+/ angular batarang / ng-inspector
+
+*** tools (cont)
+
+jsFiddle, Plunker, CodePen
+ngDocs (android app with documentation)
+angularUI - collection of UI components
+/ ui-router
+/ ui-map / UI-Gmap
+/ ui-calendar
+/ UI bootstrap - native bootstrap in Angular
+ng-table - sorting and filtering table
+restangular - easier get/delete/update and post
+ngmodules.org
+
+*** advantages of angularJS
+
+reduction in the number of lines of code needed
+templating with two-way data binding
+vibrant and supportive community
+has its own set of idioms, patterns, and best practices
+doesn't require an explicit DOM refresh
+/ angular JS is capable of tracking
+// user actions
+// browser events
+// model changes
+
+*** Controllers
+
+constructor functino used to augment Scope
+new child scope available as injectable $scope
+sets initial state of scope
+adds behaviour to scope
+DO NOT
+/ manipulate DOM (business logic only)
+/ format input - use angular form controls instead
+filter output - use angular filters instead
+share code or state across controllers - services instead
+
+*** Controllers
+
+move logic/data init out of the html/template
+ng-controller & scope examples:
+/ classic $scope
+
+(index.html)
+```
+<body ng-app"app">
+<div ng-controller="HelloCtrl">
+Say hello to:
+<input type="text" ng-model="name" /><br />
+	<h1>Hello, {{name}}!</h1>
+</div>
+</body>
+```
+
+(app.js)
+```
+angular.module('app', [])
+.controller('HelloCtrl', function($scope) {
+	$scope.name = 'World';
+});
+```
+
+*** "Controller as" syntax
+
+introduced in Angular 1.2
+now considered a best practice...
+naming of controllers allows nesting (mode later)
+forces use of dot.syntax (prevents some issues)
+
+(index.html)
+```
+<body ng-app="app">
+<div ng-controller="HelloController as hello">
+Say hello to:
+<input type="text" ng-model="hello.name" /><br />
+	<h1>Hello, {{hello.name}}!</h1>
+</div>
+</body>
+```
+
+(app.js)
+```
+angular.module('app', [])
+.controller('HelloController', function() {
+var hello = this;
+hello.name = 'World';
+});
+```
+
+*** more examples
+
+https://docs.angularjs.org/guide/concepts
+https://angularjs.org
+
+*** angularJS bootstrap process
+
+web app URI request is made
+angular.js is downloaded
+bootstrap callback is registered by angular.js
+HTML page is fully downloaded and callback is executed
+angular traverses the dom tree to find ng-app directive
+angular locates the element containing the ng-app directive and defines it as the root of the app's DOM
+injector used for dependency injection is created
+injector creates the root scope object ($rootScope) that will become the context for the app's model
+angular compiles the DOM by starting at the ngApp root, then processes directives and bindings as it works its way down the tree
+once bootstrapped, angular waits for browser events taht might change the model
+when an event occurs, angular checks for a change to the model
+if changes to the model are found, angular updates the affected bindings within the view
+
+*** scope
+
+contains the data model
+glue between the controller and the view
+context for expressions in templates
+have hierarchal structure that mimics dom
+scopes calss can watch expressions and propagate events
+Scope.$watch observes model mutations
+Scope.$apply tells view to re-example model for changes
+directive set up $watch on scope during linking
+
+recommendation: call $apply to let angular know that you manipulated scope variables outside of NG scope
+recommendation: wrap jQuery UI components in directives
+
+*** directives
+markers on DOM elements, attributes, classes, ...
+tell $compile service to create special behavior
+built-in directives:
+/ ng-app
+/ ng-init
+/ ng-controller
+/ ng-model
+/ ng-bind
+/ ng-class
+/ ng-repeat
+/ ng-show
+/ ng-hide
+and you can create your own directives
+
+*** ng-repeat directive
+instantiates a scope per item from a collection
+loop variable is set to the current collection item
+$index is set to the item index, or key
+following booleans are also available
+/ $first
+/ $middle
+/ $last
+/ $even
+/ $odd
+syntax:
+/ ng-repeat=
+// country in countries
+// (key, value) in storeObj (order is unreliable)
+example: http://plnkr.co/edit/0134iPSdMxPTlCcOQulG?p=preview
+with batarang: http://run.plnkr.co/jfdCil5aLd5AhBle/
+
+*** scope hierarchy and inheritance
+
+controllers create a new scpoe
+be careful of scoping errors!
+
+(js)
+```
+var app = angular.module('app', []);
+app.controller('HelloCtrl',
+function($scope) {
+}
+);
+```
+
+(html)
+```
+<body ng-app"app" ng-init="name='World'">
+<h1>Hello, {{name}}</h1>
+<div ng-controller="HelloCtrl">
+Say hello to:
+	<input type="text" ng-model="name" />
+<h2>Hello, {{name}</h2>
+</div>
+</body>
+```
+
+*** scope hierarchy & events
+
+hierarchial scopes can be used as an event bus
+dispatch named events with a payload using:
+/ upwards via $scope.$emit
+/ downwards via $scope.$broadcast
+
+(js, request to listen to core $broadcast event)
+$scope.$on('$locationChangeSuccess', function(event, newUrl, oldUrl) {
+// react on the location change here
+// ex: update breadcrumbs based on newUrl
+});
+
+rec: can also preventDefault to suppress bubbling of events, etc.
+
+*** scope hierarchy & events (cont)
+
+angularjs framework only emits three events:
+/ $includeContentRequested
+/ $includeContentLoaded
+/ $viewContentLoaded
+and, only seven events being broadcast:
+/ $locationChangeStart
+/ $locationChangeSuccess
+/ $routeUpdate
+/ $routeChangeStart
+/ $routeChangeSuccess
+/ $routeChangeError
+/ $destroy
+use sparingly, evaluate other options
+/ two-way data binding
+
+*** scope lifecycle
+
+hierarchial scopes help in managing memory
+directives create and destroy scopes
+/ Scope.$destroy, Scope.$new
+destroyed scopes can be garbage collected
+you can manually create and destroy scopes
+/ this is extremely useful for testing
+
+*** view
+
+angularjs is not just a templating language
+unique ability to automatically refresh screen
+angular's html compiler traverses DOM
+compile: collect all directives to produce linking function
+link: combine directives with scope to produce live view
+most other templating languages: (one way data binding, one time merge of template/model to view)
+
+*** two-way data binding
+
+two-way data binding
+
+template -> [view <-> model]
+
+template is compiled
+changes to view update model, changes to model update view
+continuous updates allow model to be single-source-of-truth
+
+*** declarative vs imperative
+
+angularJS philosophy of building UIs: http://plnkr.co/edit/1DgQNfh5h2OBCrjNJwBB?p=preview
+templates describe a desired effect
+/ not how to achieve it
+DOM elements:
+/ we don't keep references to them
+/ not obliged to manipulate them explicitly
+view changes based on model mutation
+directives enable this:
+/ ng-model, ng-click, ng-class, ng-show, ng-hide
+
+*** modules
+
+angularJS defines global angular namespace
+various utility functions:
+/ angular.boostrap, angular.injector, angular.module
+module is a container for angularJS objects
+/ controllers, services, factories, animations, etc.
+module.controller requires:
+/ name (as string), constructor function (avoids use of new keyword)
+ng-app has to be set to the module name!
+
+*** dependency injection
+
+declaratively describe dependencies among objs
+where does $scope come from?
+/ angularJS sees that scope is needed for controller
+/ it then creates a new scope and injects it!
+angularJS' dependency injection engine can:
+/ see a need for a collaborating object
+/ find the collaborator
+/ wire up the objects into a functioning application
+being able to swap collaborators allows us to:
+/ create a different application with existing code
+/ unit test components effectively
+
+*** DI-registering services
+
+angularJs can only wire up objects it is aware of
+we need to register an object for DI to work
+/ actually registering constructor functions.
+DI can instantiate objects & wire them up
+$provide service does registration
+$injector service provides object instances
+/ all dependencies are resolved & injected
+
+*** DI - $provide
+
+services are created by a service factory
+service factories are created by service providers
+service providers $get holds the service factory functions available on Module!
+/ provider(provider) - registers a service provider with the $injector
+/ constant(obj) - registers a value/object that can be accessed by providers and services
+/ value(obj) - registers a value/object that can only be accessed by services, not providers
+/ factory(fn) - registers a service factory function, fn, that will be wrapped in a service provider object, whose $get property will contain the given factory function.
+/ service(class) - registers a constructor fuction, class, that will be wrapped in a service provider object, whose $get property will instantiate a new object using the given constructor function
+
+*** DI - value & constant
+
+easiest ways to manage an object
+/ Module.value(name, value);
+/ Module.constant(name, value);
+registers a pre-instantiated item with $injector
+/ string, number, array, object, or function
+$get is a factory with no arguments
+/ returns value service or constant service accordingly
+constants
+/ cannot be overridden by decorator
+/ get applied before other provide methods
+/ can be injected into module.config
+
+*** DI - service
+
+service(name, constructor);
+/ register a service constructor which is invoked with new
+/ constructor creates the service instance
+services can have other dependencies!
+/ constants and values cannot
+provider's $get property is the service constructor
+service - method of registration
+service - singleton obj managed by AngularJS DI
+
+*** DI - factory
+
+factory(name, $getFn);
+more flexible than service
+/ we can register any arbitrary object-creating function
+services can be written as factory, but not all factories can be written as a service
+most commonly used AngularJS DI method
+regular functions
+/ we can simulate private variables
+/ hide implementation of a service
+
+*** DI - provider
+
+function that returns an obj containing $get
+/ $get is a factory function
+/ $get returns a service instance
+provider(name, provider);
+/ registers provider function with $injector
+service providers end with Provider (((convention??)))
+/ the $log service's service provider is $logProvider
+provider objs can potentially be configured
+/ ex. $logProvider has method debugEnabled
+all other $provide methods are syntactic sugar
+
+*** module loading & dependencies
+
+providers can be configured before construction
+modules ahve 2 types of blocks to support this
+/ configuration blocks - executed during provider config
+// only providers & constants can be injected
+/ run blocks - executed after injector is created
+// kickstarts the application
+// only instances & constants can be injected
+
+(js example)
+```
+angular.module('myModule', [])
+.config(function(injectables) { // provider-injector (((injection?)))
+}).
+run(function(injectables) { // instance-injector (((see above)))
+});
+```
+
+*** module convenience methods
+
+(js)
+```
+angular.module('myModule', [])
+.value('a', 123)
+.factory('a', function() {return 123;})
+.directive('directiveName', ...)
+.filter('filterName', ...);
+
+// is the same as
+
+angular.module('myModule', [])
+.config(function($provide, $compileProvider, $filterProvider) {
+$provide.value('a', 123);
+$provide.factory('a', function(){return 123;});
+$compileProvider.directive('directiveName', ...);
+$filterProvider.register('filterName', ...);
+});
+```
+
+*** modules can depend on other modules
+
+angular takes care of inter-module dependencies
+group related services into one module
+/ potentially creating re-useable service libraries
+module dependencies need to be loaded before
+/ their config executes before dependent modules
+/ their run blocks execute first as well
+/ modules only load once (even with many dependences)
+angular.module('app', ['dependency'])
+modules can form their own hierarchy
+step 1: http://plnkr.co/edit/QBFUSAROzYXxT9zE3e9u?p=preview
+step 2: http://plnkr.co/edit/QUyrpHVC2gUpFOmuSiRM?p=preview
+
+*** service scope
+
+service is visible to all other modules
+/ hierarchy of modules doesn't affect visibility of services
+services are defined across all modules, globally
+service names need to be unique
+/ we can depend on a module and override a service
+step 3: (services override) http://plnkr.co/edit/TfSSdOnIMbhOS3JRdwYa?p=preview
+
+(html)
+```
+<html>
+<head>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="AppCtrl">
+</body>
+</html>
+
+```
+
+(js)
+```
+angular.module('app', ['engines', 'cars'])
+  .controller('AppCtrl', function($scope, car, $http) {
+    car.start();
+    console.log('car started');
+  });
+
+angular.module('cars', [])
+  .factory('car', function($log, dieselEngine) {
+    return {
+      start: function() {
+        $log.info('Starting ' + dieselEngine.type);
+      }
+    };
+  })
+
+  .factory('dieselEngine', function() {
+    return {
+      type: 'custom diesel'
+    };
+  });
+
+angular.module('engines', [])
+  .factory('dieselEngine', function() {
+    return {
+      type: 'diesel'
+    };
+  });
+
+```
+
+*** jQuery and AngularJS
+
+jqLite is a simplified version of jQuery included
+/ angularJS can work with no dependency on an external lib
+// if jQuery is loaded first, it will be substituted for jqLite
+using jQuery plug-ins with AngularJS
+/ can be difficult
+/ both want to own the DOM
+/ ideally you need to wrap jQuery plug-ins in a directive
+/ or, find a substitute Angular directive
+
+*** AngularJS influence on standards
+
+Object.observe (ECMAScript7)
+/ enables Declarative programming in pure JS
+/ Chrome & Node have implemented
+Web Components
+/ reuseable widgets
+/ similar to AngularJS components
+/ incorporated into AngularJS 2.x
+
+*** communicating with a Back-end
+
+angularJS is ready to create CRUD style apps using the Promise interface
+$http service for XMLHttpRequest & JSONP
+$q service implements Promise API for asynchronous requests
+$resource service targets RESTful endpoints
+
+*** dealing with Associations
+
+get all accounts belonging to a customer
+/ GET /customers/456/accounts
+create new account for specific customer
+/ POST /customers/456/accounts
+relationships can be complex, so don't nest too deeply
+add ability to add optional attributes with HTTP ?:
+/ GET /customers?state=NY&city=New%20York
+
+*** $http service
+
+angularJS XmlHttpRequest API with Promise ;)
+/ returns a promise object with the standard then method and two http specific methods: success and error
+
+(js)
+```
+$http({method: 'GET', url: '/someUrl', config: {...})
+.success(function(data, status, headers, config) {
+// this callback will be called asynchronously
+// when the response is available
+})
+.error(function(data, status, headers, config) {
+// called asynchronously if an error occurs
+// or server returns response with an error status
+});
+```
+
+shortcut methods on $http:
+/ get, head, post, put, delete, jsonp, patch
+
+*** $http configuration object
+
+some of the configuration object properties:
+/ method: HTTP method to be issued
+/ url: URL to be targeted with a request
+/ params: parameters to be added to the URL query string
+/ headers: additional headers to be added to a request
+/ timeout: timeout (in ms) after wich a XHR request will be dropped
+/ cache: enables XHR GET request caching
+/ transformRequest,transformResponse: transformation functions that allow us to pre-process content
+
+*** $http example with live database
+
+(js)
+```
+angular.module('app', [])
+ .controller('AppCtrl', function($http) {
+ var userToAdd = {name: 'Daniel Zen', email: 'daniel@zendigital.com'};
+ $http.post('https://api.mongolab.com/api/1/databases/zendigital/collections/users',
+ userToAdd, {params: {apiKey: 'AYbi4ibES9BvBeoIT4ldzkvszZK1JQqy'}})
+ .success(function(data, status, headers, config) {...})
+ .error(function(data, status, headers, config) {...});
+ });
+```
+
+illustrates HTTP query string parameters
+/ apiKey
+see: https://mongolab.com/databases/zendigital
+
+*** $httpProvider - Setting HTTP Headers
+
+$http automatically adds certain HTTP headers
+configured via $httpProvider.defaults.headers
+
+```
+$httpProvider.defaults.headers.common (headers that are common for all requests):
+	Accept: application/json, text/plain, */*
+$httpProvider.defaults.headers.post (header defaults for POST requests):
+	Content-Type: application/json
+$httpProvider.defaults.headers.put (header defaults for PUT requests):
+	Content-Type: application/json
+```
+
+can also be set at runtime via $http.defaults
+
+```
+module.run(function($http) {
+	$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
+});
+```
+
+*** Promise API & $q
+
+in a synchronous world
+/ pass the results of one function to another
+/ handle exceptions with try/catch is straightforward
+asynchronous world
+/ we need to rely on callbacks
+/ handling exceptions becomes difficult
+solution: promise API
+/ promise; eventual result of an asynchronous operation
+/ $q inspired by Kris Kowal's Q Promise API libary
+// REF: https://github.com/kriskowal/q
+/ $http, $timeout, & other ng rely on it
+
+*** working with Promises & $q
+
+promise.then(onSuccess, onFailure, onNotify).finally(onFinal, onNotify);
+/ onSuccess, onFailure: functions with 1 parameter
+// onSuccess called when task is successful
+// onFailure called if task fails to execute
+// only one is called!
+deferred object: var deferred = $q.defer();
+/ has promise property (var promise = deferred.promise; ...)
+/ methods:
+// resolve(value), reject(reason), notify(value)
+promises
+/ live up to their name
+/ can be used with $http
+
+*** $q.all & $q.when
+
+$q.all
+/ start multiple async tasks
+/ aggregates promises
+/ resolves only when all of the tasks complete
+/ if any one action fails, the aggregate promise will be rejected
+
+$q.when
+/ wraps a javascript object as a promise
+
+*** $http with Promises
+
+$http returns a promise and 2 convenience methods
+
+(js, convenience methods example)
+```
+$http.get(urlResource)
+.success(function(data) {
+ $scope.value = data;
+})
+.error(function(data, status) {
+ console.error('Error', status, data);
+})
+.finally(function() {
+ console.log("finally finished");
+});
+```
+
+(js, promise methods)
+```
+$http.get(urlResource)
+.then(function(response) {
+ $scope.value = response.data;
+})
+.catch(function(response) {
+ console.error('Error',
+ response.status, response.data);
+})
+.finally(function() {
+ console.log("finally finished");
+});
+```
+
+*** common persistence practice
+
+crud - create, read, update, and delete
+
+each letter in the acronym can map to a standard SQL statement and HTTP method
+
+Operation : SQL : HTTP
+Create : INSERT : PUT/POST
+Read : SELECT : GET
+Update : UPDATE : PUT / PATCH
+Delete : DELETE : DELETE
+
+*** common persistence practices
+
+restful apis - representational state transfer
+
+the name "representational state transfer" is intended to evoke an image of how a well-design web application behaves: a network of web pages forms a virtual state machine, allowing a user to progress through the application by selecting a link or submitting a short data-entry form, with each action resulting in a transition to the next state of the application by transferring a representation of that state to the user. - Roy Fielding
+
+http 1.1 based on REST
+
+*** Web API design
+
+nouns are good, verbs are bad
+/ pluarals are better (some use singular & plural)
+start with 2 urls
+/ collection /accounts or /customers
+/ specifics /accounts/123 or /customers/456
+look at tools to help you create your API
+/ http://swagger.io
+/ https://apiary.io
+/ http://apigee.com
+
+*** common persistence practices
+
+resource : POST/create : GET/read : PUT/update : DELETE/delete
+/accounts : create a new account : list accounts : bulk update accounts : delete all accounts
+/accounts/123 : error : show account 123 : if exists update account 123, if not error : delete account 123
+/customers : create a new customer : list customers : bulk update customers : delete all customers
+/customers/456 : error : show customer 456 : if exists update customer 456, if not error : delete customer 456
+
+ED: POST to a specific ID is not always an error or invalid action. ex: highly independent sharding, like tweets + snowflake ID generation, credit card user-side activity tokens
+
+*** $resource - make REST easier
+
+$resource(url, [paramDefaults], [actions], options);
+factory lets you interact with server-side data
+returns resource with methods for CRUD operations: get, save, query, remove, delete
+operations can be invoked by the following:
+/ http GET "class" actions: Resouce.action([parameters], [success], [error])
+/ non-GET "class" actions: Resource.action([parameters], postData, [success], [error])
+/ non-GET instance actions: instance.$action([parameters], [success], [error])
+
+*** $resource - a higher level abstraction
+
+doesn't use promises, but...
+you can also access the raw $http promise via the $promise property on the object returned
+
+(js)
+```
+var User = $resource('/users/:userId',{userId:'@id'});
+ User.get({userId:123})
+ .$promise.then(function(user) {
+ $scope.user = user;
+ });
+```
+
+more references:
+angular communication $http & $resource @ http://www.slideshare.net/EyalV/02-http-resource
+what is @id as passed to $resource? @ http://stackoverflow.com/questions/17559515/what-is-id-as-passed-to-resource
+
+*** $resource example
+
+(js)
+```
+ .factory('Users', function ($resource) {
+ var Users = $resource('https://api.mongolab.com/api/1/databases/zendigital/collections/users/:id',
+ {id: '@_id.$oid’});
+ })
+ .controller('ResourceCtrl', function ($scope, Users) {
+ $scope.users = Users.query({}, function(users){
+ console.log($scope.users.length);
+ });
+ $scope.remove = function (user, index) {
+ $scope.users.splice(index, 1);
+ Users['delete']({}, user);
+ };
+ $scope.add = function () {
+ var user = new Users({
+ name:username
+ });
+ };
+ });
+```
+
+*** Restangular - uses promises
+
+angularJS service simplifies GET, DELETE, UPDATE
+
+GET /accounts
+
+(js)
+```
+Restangular.all('accounts').getList().then(
+function(accounts) {
+scope.accounts = accounts;
+});
+```
+
+(js)
+```
+$scope.accounts = Restangular.all('accounts').getList().$object;
+```
+
+ref: ng-newsletter article @ http://www.ng-newsletter.com/posts/restangular.html
+
+*** restangular
+
+allows you to intercept object
+extend/decorate object to add behavior / mix-in
+
+(js)
+```
+angular.module(‘pa.services’, [‘restangular’]).
+ factory(‘AccountSvc’, function(Restangular) {
+ Restangular. extendModel(‘accounts’, function(acct) {
+ return angular. extend(acct, {
+ profit: function() {
+ return this.revenue().minus(this.cost()));
+ },
+ revenue: function() {
+ return this.price()
+ .convertTo(this.internalCurrency));
+ },
+…
+});
+ return Restangular.all(‘accounts’);
+})
+;
+```
+
+*** displaying and formatting data
+
+interpolate directive
+/ <span>{{ expression }}</span>
+/ {{}} delimiter is configurable in $interpolateProvider
+/ can be escaped with \backslash
+/ HTML markup in expression will be escaped
+/ one-time binding now available with {{::expression}}
+/ REF: http://plnkr.co/edit/n4jR9GkF1yXsSHZzWVHM?p=preview
+
+ng-Bind equivalent
+/ <span ng-bind="expression"></span>
+/ can prevent initial template flicker (like ng-cloak)
+/ you can request that html in expression not be escaped:
+// <p ng-bind-html="msg"></p>
+// done in a secure way (SCE: https://docs.angularjs.org/api/ng/service/$sce#show-me-an-example-using-sce- )
+*** conditional display
+
+4 sets of directives to show & hide parts of DOM
+/ ng-show
+/ ng-hide
+/ ng-switch-*
+/ ng-if
+/ ng-include
+ng-show/ng-hide use CSS "display: none;"
+/ <div ng-show="showSecret">Secret</div>
+/ <div ng-hide="!showSecret">Secret</div>
+ng-switch adds DOM nodes conditionally
+(html)
+```
+<div ng-switch on="showSecret">
+	<div ng-switch-when="true">Secret</div>
+	<div ng-switch-default>Won't show you my secrets!</div>
+</div>
+```
+/ <div ng-if="showSecret">Secret</div>
+/ <div ng-include="user.admin && 'edit.admin.html' || 'edit-user.html'"> ... </div>
+
+*** ng-repeat directive
+
+constantly monitors the source data to re-render
+ng-repeat="user in users"
+/ loop variable user is set to the current collection item
+/ $index is set to the item index
+booleans available: $first, $middle, $last, $even, $odd
+iterating over an object's properties:
+
+(html)
+```
+<li ng-repeat="(key, value) in object">
+ Property {{$index}}: {{key}} has value {{value}}
+</li>
+```
+
+keys are sorted, but don't rely on it (ref: http://jsfiddle.net/danielzen/8j3h1kbn/ )
+
+*** ng-class, ng-class-even / ng-class-odd
+
+ng-class-even, ng-class-odd used in ng-repeat
+/ take effect only on odd/even rows
+ng-class expression works in 3 ways
+/ if string: one or more space-delimited class names
+/ if object: key-value pairs. keys are classes used if truthy
+/ if array: each element can be a string or object above
+
+*** DOM event handlers
+
+click events: ng-click & ng-dblclick
+<input ng-model="name">
+<button ng-click="hello(name)">Say hello!<button>
+
+mouse events:
+/ ng-mousedown, ng-mouse-up, ng-mouseenter, ng-mouseleave, ng-mousemove, and ng-mouseover
+
+keyboard events:
+/ ngKeydown, ngKeyup, ngKeypress
+
+input change event: ng-change
+/ cooperates with ng-model, to react on user input
+
+*** $event
+
+DOM event handlers can accept $event
+allows access to lower level properties of event
+/ prevent default action, stop propagation, etc
+read position of a clicked element:
+
+(html)
+```
+<li ng-repeat="item in items" ng-click="logPosition(item, $event)" >
+ {{item}}
+</li>
+$scope.readPosition = function (item, $event) {
+ console.log(location: ' + $event.clientX + ',' + $event.clientY );
+};
+
+```
+
+*** filters - Model transformation
+
+used for formatting data displayed to the user
+there are some built-in filters (& custom ones: http://plnkr.co/edit/XrLLE59JnIwy11gM191R?p=preview ):
+
+filter - selects a subset of items from an array and returns a new array
+currency - formats a number as a currency (ex: $1,234.56). When no currency symbol is provided, default symbol for current locale is used
+number - formats a number as text
+date - formats date to a string based on the requested foramt
+json - allows you to convert a javascript object into a JSON string
+lowercase - converts a string to lowercase
+uppercase - converts a string to uppercase (example: http://plnkr.co/edit/JOmT3GzYEVv1UExHpNQM?p=preview )
+limitTo - creates a new array or string containing only a specified number of elements. the elements are taken from either the beginning or the end of the source array, string, or number, as specified by the value and sign (positive/negative) of limit. if a number is used as input, it is converted to a string (((???)))
+orderBy - orders a specified array by the expression predicate. it is ordered alphabetically for strings and numerically for numbers. note: if you notic e numbers are not being sorted correctly, make sure they are actually being saved as numbers and not strings.
+
+*** forms
+
+in a standard html form, the value of an input element is the value that will be sent to the server on submission of the form
+
+angularJS decouples the model from the view.
+data submited does not have to be the same as the data entered.
+
+*** user information form example
+
+(html)
+```
+<h1>User Info</h1>
+ <label>E-mail</label>
+ <input type="email" ng-model="user.email">
+ <label>Last name</label>
+ <input type="text" ng-model="user.lastName">
+ <label>First name</label>
+ <input type="text" ng-model="user.firstName">
+ <label>Website</label>
+ <input type="url" ng-model="user.website">
+ <label>Description</label>
+ <textarea ng-model="user.description"></textarea>
+ <label>Password</label>
+ <input type="password" ng-model="user.password">
+ <label>Password (repeat)</label>
+ <input type="password" ng-model="repeatPassword">
+ <label>Roles</label>
+ <label class="checkbox"><input type="checkbox" ng-model="user.admin">
+Is Administrator</label>
+ <pre ng-bind="user | json"></pre>
+
+```
+
+*** input directive
+
+input w/ng-model supports additional functionality
+/ binding to the model
+/ all the basic input directives support required
+functionality depends on input's type attribute
+type="text" or textarea, accepts any string
+/ change the text & the model instantly changes
+/ allow you to specify minimum and maximum lengths
+/ as well as arbitrary regular expressions (ex: http://plnkr.co/edit/nmbaFj?p=preview )
+
+*** checkbox & radio inputs
+
+checkbox
+/ indicate a boolean input
+// <input type="checkbox" ng-model="user.admin" />
+/ can specify different strings for true and false
+// <input type="checkbox" ng-model="user.role" ng-true-value="admin" ng-false-value="basic" />
+
+radio
+/ provides a fixed group for a field (ex: http://plnkr.co/edit/Nvu98h?p=preview )
+(html)
+```
+<label><input type="radio" ng-model="user.sex"
+value="male">Male</label>
+<label><input type="radio" ng-model="user.sex"
+value="female">Female</label>
+
+```
+
+*** select & ng-options inputs
+
+select
+/ allows you to create a drop-down list
+/ specify statically or from an array on scope
+
+(html)
+```
+<select ng-model="sex">
+ <option value="m" ng-selected="sex=='m'">Male</option>
+ <option value="f" ng-selected="sex=='f'">Female</option>
+</select>
+```
+
+ng-options binds select to an object (ex: http://plnkr.co/edit/LQDmOP?p=preview )
+/ accepts a comprehension expression of what is displayed
+// [value as] label [group by grouping]
+// for item in arrayExpression
+// for (key, value) in objectExpression
+
+*** single page application navigation
+
+easy to read URLs structure apps for users
+deep-linking URLs refer to a specific feature
+/ can be emailed or messaged
+back & forward buttons continue to work
+uses HTML5 history API if available
+services: $location, $anchorScroll
+directive: ng-view
+
+*** hashbang URLs (after the # character)
+
+administration of users typical URLs:
+/ /admin/users/list - this url shows a list of existing users
+/ /admin/users/new - this url shows a form to add a new user
+/ /admin/users/[userId] - this url shows a form to edit an existing user with ID equal to [userId]
+SPAs translate these partial URLs to full URLs
+/ http://myhost.com/#/admin/users/list
+/ http://myhost.com/#/admin/users/new
+/ http://myhost.com/#/admin/users/[userId]
+allows us to change URLs without reloading
+/ history works
+/ won't issue calls to server
+
+*** history API in html5
+
+hashbang trick makes URL long & ugly
+history API can simulate external resources
+/ without actually making round trips to the server
+history.pushState can change URL history
+window.onpopstate can observe history changes
+allows use of pretty URLs (without #)
+/ http://myhost.com/admin/users/list
+/ http://myhost.com/admin/users/new
+/ http://myhost.com/admin/users/[userId]
+looks standard, but if typed in, will issue a request to the server
+
+*** $location service
+
+masks the differeance between hashbang and HTML5 URL
+/ consistent API regardless of browser mode
+api to get/set part of the current URL
+/ protocol, host, port, path, query params, etc.
+allows us to observe changes & take action
+intercepts user's interaction with links
+
+*** $location API
+http://myhost.com/myapp/admin/users/list?active=true#bottom
+or in hashbang mode
+http://myhost.com/myapp#/admin/users/list?active=true#bottom
+me
+
+method : would return
+$location.url() : /admin/users/list?active=true#bottom
+$location.path() : /admin/users/list
+$location.search() : {active: true}
+$location.hash() : Bottom
+
+*** $routeProvider example
+
+(html)
+```
+<body ng-controller="MainCtrl">
+ <script type="text/ng-template" id="
+embedded.home.html">
+ <h1> Home {{name}}</h1>
+ </script>
+
+ <script type="text/ng-template" id="
+embedded.about.html">
+ <h1> About {{name}}</h1>
+ </script>
+
+ <div>
+ <div id="navigation">
+ <a href="#/home">Home</a>
+ <a href="#/about">About</a>
+ </div>
+ <div ng-view></div>
+ </div>
+</body>
+```
+
+(js)
+```
+app.controller('MainCtrl', function() {})
+.config(function ($routeProvider) {
+ $routeProvider.
+ when('/home', {
+ templateUrl: 'embedded.home.html',
+ controller: 'HomeController'
+ })
+ .when('/about', {
+ templateUrl: 'embedded.about.html',
+ controller: 'AboutController'
+ })
+ .otherwise({
+ redirectTo: '/home'
+ });
+});
+```
