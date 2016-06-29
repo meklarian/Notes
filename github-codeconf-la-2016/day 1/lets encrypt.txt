@@ -1,0 +1,215 @@
+lets encrypt
+josh aas / cofounder/exec dir let's encrypt
+
+a free, automated, and open certificate authority
+
+slide: why is https important for everyone?
+
+users aren't in control of their data any more
+the web is too complex
+need to treat everything as potentially sensitive
+
+developers expect integrit. unencrypted traffic can be modified, eg. ad insertion, script injection (eg. great cannon)
+
+slide: the web isn't secure
+accoring to firefox telemetry, only 45% of page loads are https
+this should be 100%
+
+slide: why isn't the web secure?
+
+security is too difficult
+we know what needs to be done but we haven't made it easy enough to do
+
+slide: secure connection requirements
+
+encryption (scrambling bits)
+authentication (who am i talking to)
+
+slide: encryption (easy-ish)
+
+just a software stack for public key and symmetric crypto that needs to be installed and configured
+most web services support it
+private (???) supported
+
+slide: authentication via CA (too hard)
+
+certificate authorities issue the x.509 certificates required for SSL/TLS
+
+slide: traditional certificate fun
+
+figure out you need a cert
+try to figure out where to get a cert from
+figure out what kind you need
+figure out how to request a cert (learn what a CSR is and how you make ojne)
+go through painful manual verification process, maybe setup a new email address
+pay
+figure out how to install your cert
+remember to renew it on time
+
+slide: http/2 summer 2012
+http/2 ietf wg debating requiring encryption
+major objection was encryption was too hard or even impossible for many
+josh aas and eric rescorla decide we need to address this problem if the web is ever going to achieve https everywhere
+
+slide: the solution
+
+we needed a new CA, a lot of work, but nothing short of that would cut it
+didn't think we could get an existing CA to fully cooperate 
+especially in the time scale we wanted
+also, didn't want to be forever at the mercy of another CA
+
+slide: cornerstones for a new CA
+
+automated - ease of use, reliability, and scalability
+free - cost excludes, payment adds complexity
+transparent / open - essential for trust
+global - the secure web is for everyone
+
+slide: building a foundation
+spent 2 years clearing schedules, creating an entity, finding initial sponsors, and making a plan for getting trusted (a deal with an existing CA)
+
+initial backers: akamai, mozilla, cisco, EFF
+CA partner: IdenTrust (part of HID Global)
+
+slide: Internet Security Research Group
+
+ISRG is the entity behind let's encrypt
+founded 2013
+IRS 501(c)(3) status granted june 2014
+
+slide: building let's encrypt
+work still to complete:
+creating CA policy
+writing software
+hiring a team
+etc.
+
+slide: how let's encrypt works
+
+ACME protocol, "DHCP for certificates"
+Boulder CA software implements ACME, running on Let's encrypt infrastructure
+clients request certificate from let's encrypt via ACME
+
+everything can be done through ACME
+
+slide: types of certificates
+
+domain validation (DV) - asserts control of a domain (what let's encrypt does)
+organization validation (OV) - asserts control of a domain as well as basic organizational vetting
+extended validation (EV) - asserts control of a domain as well as extended organizational vetting
+
+we only issue DV certs - this is the only level at which let's encrypt can operate in automated fashion
+
+slide: ACME
+
+automated certificate management environment
+
+it's at the core of how let's encrypt works
+provides API for requesting, validating, revoking, and otherwise managing certificates
+being standardized by IETF
+
+slide: ACME issuance overview
+
+client -> cert request -> ACME server
+<- challenge
+-> challenges completed
+<- verify challenge completion
+<- certificate (or denial)
+
+slide: ACME challenge types
+
+http: put a file on your web server
+DVSNI: provision a virtual host at your domain's IP address
+DNS: provision a DNS record for your domain
+
+slide: clients
+
+3 categories
+1. simple (drop a cert in the current dir)
+2. full featured (configure server for you)
+3. built-in (web server just does it)
+built-in is the best client experience!
+
+slide (video): caddy sever video clip courtesy of matt holt
+
+slide: 90 day cert lifetimes
+
+shorter lifetimes are important for security
+encourage automation
+limit damage from key compromise or mis-issuance (in case revocation doesn't work)
+short-lived certs some day? potentially a nice solution for revocation
+
+ex. chrome doesn't check OCSP/revocation
+other issues with revocation
+better hope your private keys don't leak
+
+slide: phishing and malware
+
+CAs are not the right place to police phishing and malware!
+* don't have the data
+* can't respond fast enough
+* if https becomes existential, we don't want to be censors
+* revocation is ineffective
+
+read our full blog post on this
+https://letsencrypt.org/2015/10/29/phishing-and-malware.html
+
+let's encrypt asks google if site has a reputation for malware
+
+slide: certificate transparency
+public transparency log (near real-time list)
+https://crt.sh
+
+slide: our commitment to transparency
+
+goes beyond certificate transparency
+
+open source software
+quick and complete incident disclosure
+public benefit governance
+
+slide: let's encrypt is everywhere
+
+there are countries in the world where it has been very difficult to get a cert
+
+not anymore
+
+we issue to every country in the world
+every tld and cctld except for .mil
+the secure web is for everyone
+
+slide: active certificates
+launched on 2013/12
+certs covering over 7M domains, 3.6M active certs as of 2016/06
+
+slide: https growth rate
+approx. 92% of let's encrypt certs are issued to domains that didn't have certificates before
+
+we can create a web that is more encrypted than not in 2016
+
+growth - 2015/12 39.5% -> 2016/04 42% -> 2016/06 45%
+projection - possible that by end of 2016, this could break 50%
+
+slide: champion let's encrypt at work
+
+make sure your employer is deploying https by default for every site. demand the same from your partners
+get your employer to sponsor us
+we need strong advocates inside companies to keep let's encrypt going
+
+Q&A
+----
+
+q: what do the other CAs think of you? how did you get the one to partner with you.
+a: CAs aren't too concerned about us, and they shouldn't be. other CAs offer other kinds of certs, we don't offer paid support or anything, etc. there's a lot of value that other CAs provide that we don't provide. other CAs may see this as an inevitability as well. let's encrypt is useful to the CA ecosystem because it extends support to everyone. why identrust in particular partner with us? they got it. they understood what they were trying to do. they had the cross-signing and support services needed; it just made sense.
+
+q: is let's encrypt vulnerable to interference from the gov?
+a: i'm not sure how likely that is, but it is something we have thought out. .. when we think about how secure we need to be and how paranoid we need to be. ... on the legal side of things, we have good attorneys, we publish a transparency report, can people use/access let's encrypt to snoop on people's data? yes in a way, but not in a way you think. (paraphrase) if compromised, you could only really issue certs, nothing that you couldn't get from any other CA. we don't ask for private keys, we don't want them, you wouldn't be able to get access to people's data. the value in that is not as high as some people think.
+
+q: do you have educational efforts to teach people how to use it?
+a: we don't write now, fairly small, currently spending a lot of times keeping things running. but the community is doing a good job helping to keep things up and getting answers to people (paraphrased). our community site is where most of the education happens.
+
+q: are you pursuing let's encrypt integrations with other providers? (besides wordpress)
+a: yes, we have many ongoing ones.
+
+q: do you have a published list of hosting providers?
+a: i believe there is one on our community site. that landscape tends to change pretty quickly.
