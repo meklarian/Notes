@@ -1,0 +1,84 @@
+tools for debugging
+kerri miller, github
+
+ED: sparse slides for this talk, not many clear objective points
+
+background
+--
+went to goddard college (home of the moonbats)
+studied performance art and production
+
+anecdote on maxim from goddard college: if you wish to learn, go teach yourself (heavily paraphrased)
+
+consider the car engine
+--
+needs fuel, air, a spark, pressure
+
+a simple binary tree (ed: gate?)
+
+speaker recounts a story about owning a vespa-like vehicle, learning how to repair it, having an incident and then realizing that a bad assumption led her down the wrong path of diagnosis: the vehicle was merely out of gas
+
+scientific method
+--
+ask a question
+background research
+construct a hypothesis
+test your hypothesis by doing an experiment
+analyze your data and draw a conclusion
+communicate your results
+
+speaker notes that what separates bad from good poker players is that good players make sure to try and learn from every experience in a hand, win or lose.
+
+quote: "the real purpose of the scientific method is to make sure nature hasn't mislead you into thinking you know something you don't actually know."
+robert m. prisig
+zen and the art of motorcycle maintenance
+
+caro's theory of misery: there is a threshhold where additional pain fails to register; things get so bad that we may cease to care if things get worse.
+manifestation examples
+- i overslept 2 hours, maybe i will just take the day off
+- well, i know i should refactor this, but i'm just going to tack on another else and i'll be ok
+- i know i should write some tests, but it's too hard, i'll do it tomorrow
+- if i just add a little more jquery, the page is already 4mb, it won't matter
+
+teams and organizations can be poisoned by this attitude
+this is an unfortunate place where we can lose our best engineers, but also our best work
+our decisions actually do matter
+if we maintain this perspective, we can make better choices
+keep performing as if we care
+be someone who does care
+
+slide: juxtaposition: you're the best around || be humble
+
+self analyze, is your process solid?
+
+speaker notes that debugging is about dealing with imperfect information
+
+as complexity grows, it ??? the limits of our knowledge and scope
+
+we can factor away the applied complexity, what we bring to code
+but we still have to deal with inherent complexity- the system is hard to understand
+
+ex. metaprogramming, trading applied complexity to create inherent complexity
+
+the things that are bad about a piece of code, are attributes that may have been good at the point of inception and sometimes become vestigial
+
+quote: "when you change the way you look at things, the things you look at change." - dr. wayne w. dyer
+
+on crescent wrenches
+--
+favorite tool
+can turn bolts
+hammer things
+bridge contacts (not recommended!)
+simple, crude, reliable chunk of steel
+
+a tool that invites extraneous uses
+
+best practices are best practices for a reason
+if we don't question our own processes, we can fail to improve our knowledge and operation
+
+humans can understand how any piece of software works
+but humans need to get comfortable with the process of discovery
+
+the best tool for debugging any problem any system, exists on the inside of your own head
+
