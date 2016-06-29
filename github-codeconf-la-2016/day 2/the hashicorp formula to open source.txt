@@ -1,0 +1,172 @@
+the hashicorp formula to open source
+mitchell hashimoto, HashiCorp
+
+@mitchellh
+
+opened with history on how he learned php and how this started his journey on OSS
+
+early OSS heroes
+--
+john resig - jQuery
+dhh (david h ...?) - RoR (ruby on rails), 37signals
+yehuda katz (sp?) - jQuery, ruby on Rails, Bundler, ember
+
+started getting into OSS around 2006
+
+founded hashicorp after 2013
+9 major projects with big presence on github
+
+lessons from apple
+- guts need to work, but look and feel matters.
+- design for humans
+- be welcoming and kind
+  - insight: most people are kind, and want to be nice. if someone is not nice, there's usually a reason (an emotion), and you might feel uncomfortable if subjected to that reason.
+
+the formula
+--
+find a problem
+design a solution
+build a 0.1
+documentation
+landing page
+ship
+
+find a problem
+--
+something that can fix one or more of these things:
+- time
+- money
+- errors
+
+ex: vagrant, time & errors - because of manual setup time starting projects, made vagrant as a solution
+
+slide: deeply, deeply understand the problem
+- it's really hard to solve a problem that doesn't affect you
+- try to insert yourself into the problem (experience) to see how it would
+
+questions before starting
+- who has tried to fix this?
+- why is my idea better?
+- what are the risks?
+
+ex: vault (security tool) - almost didn't start because of risks involved
+
+slide: 10x (concept) (subtext: at least 3x)
+an order of magnitude is what you want to aim for, in being better than everyone else out there
+if something is twice as good, it may not take off, because the old thing is good enough
+while 10x is extreme, aim to be at least 3x better at minimum.
+you want something that is so much better, that when you show someone that thing, it invalidates what they currently have and compels them to move on to the new thing
+
+design a solution
+--
+a lot of people will start to write code at this step. instead, you want to write a lot of human language.
+
+ex: terraform - started with an initial design doc, try to cover the why, the what, describe in words the backend and the frontend at the same time
+
+backend = internals
+design for the future
+aim for technical edge
+understand tradeoffs
+
+front end = user-facing
+design for humans
+will dictate backend
+
+concept: "how do i want to use this in the real world? if i were having this problem, how would i want this to look like?"
+
+people need to use your software (people like fun things)
+try to have nice errors
+try to make it intuitive
+how is the program communicating to the person
+
+playtest the frontend
+
+ex: terraform - for terminal app, made some bash scripts to mock things up, found a bunch of things that weren't fun.
+
+build a 0.1
+--
+(engineers would rejoice, this is the point where engineers would like to start writing code)
+
+aim for a 3-6 month timeframe, whether full/part-time. (part-time, just cut features)
+shorter = too weak
+longer = too tiring
+
+slide: primary use case should work great! || edge cases can have bugs, but try for human-friendly errors!
+
+a 0.1 is not something that should necessarily stand on its own, but it should show people that you're heading towards a 1.0
+
+follow the design! very normal to go adjust
+
+code as craft
+what you're building as 1.0 may get run for a really long time, so treat it as craft and build it well
+
+a lot of OSS projects have the attitude: "i'll make a pretty README", but you should also do more
+build a website
+work more on human interface
+code talks to machine
+but humans need docs
+
+documentation/landing page
+----
+documentation is not a landing page!
+if you visit a website and it's a github readme/blub, it's not a landing page
+
+landing page tells you what something is, and why you want to use it.
+
+look and feel matters
+what is this?
+how do i get started?
+how can i get involved? (OSS)
+
+consul
+vault
+vagrant
+
+documentation: human ordering
+order in the order you expect people to learn/get to things
+beginners want that journey
+advanced players know where the good stuff is
+
+human ordering:
+high + low level
+repeat yourself!
+
+it will take a full week to write documentation
+
+shipping
+----
+start working on 0.2 asap
+
+0.1 is rough
+0.2 should clean up
+ship features
+
+0.3-0.5 aims to be prod-ready (at hashicorp)
+
+public speaking:
+- outdated: if you build it they will come
+
+vagrant:
+9 months: 200/month
+12 m:l 1000/month
+18 months later: 10000/month
+4 years later: 1M a month
+
+big difference at 9 months: gave presentation at a meetup and it took off
+
+local = free
+remote = $$$
+be creative, find ways to talk about your project
+
+community:
+be kind
+be helpful
+be welcoming
+
+if you feel you can't be all of these things, put someone else in
+if nobody else can fill in, step back for a bit and chill out-- it will be ok
+
+slide: negative people will come
+
+more lessons from apple
+ref: http://mitchellh.com/apple-the-key-to-my-success
