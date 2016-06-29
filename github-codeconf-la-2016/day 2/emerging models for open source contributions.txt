@@ -1,0 +1,132 @@
+emerging models for open source contributions
+nadia eghbal
+
+@nayafia
+
+different models of managing open source
+
+BDFL: 1980s-1990s
+meritocracy: 1990s-2010s
+liberal contribution: 2010s-present
+
+different models are solving for different needs
+
+market = users + contributors
+
+1980s-1990s: BDFL (linux) - benevolent dictator for life
+
+under the bdfl model, anyone can make contributions and have a say, but only one person who has final say in everything
+early on this made a lot of sense, as there weren't many people in open source let alone contributing
+
+slide: fewer users, fewer contributors
+
+on the contributor side, it was hard to learn how to code in the 80s compared to today
+
+the bdfl has benefits: centralized leadership and governance
+
+centralized roadmap and direction
+
+but bdfls are also by definition, less democratic
+
+slide: BDFLs made companies nervous
+
+slide: open source needed company buy-in to succeed.
+
+slide: 1990s-mid 2010s: meritocracy (Apache)
+apache flattened the bdfl model, enabling multiple actors to participate
+anyone (with merit) can contribute
+anyone (with merit) can vote on projects
+this did wonders for company buy-in
+
+this is partially why open source thrives today
+
+but there was still friction with the clause, with merit
+
+how does one get merit?
+
+if you wanted to be part of the meritocracy, you needed to prove yourself
+
+and you prove yourself by spending time on a project
+
+this makes sense in theory (only people who've "earned it" get a voice)
+
+but in practice, it favored those who could "pay [with time, money] to play"
+
+mid 2010s-now: liberal contribution (node.js)
+
+more users, more tech talent than ever before
+
+number of companies who say they are using OSS has doubled in the last 5 years
+
+git + github made it easier for anyone to jump in on projects
+
+49% of ppl on top Github projects only contributed once
+
+more noise from casual contributors
+
+under a meritocracy, this was a bad thing
+ - casual contributors hadn't "earned" their voice
+ - make them go away!
+
+but some people looked at casual contributors and saw an opportunity
+
+instead of tuning out the noise, node.js decided to harness and redirect it
+  - dropped their CLA requirement (contributor license agreement)
+  - ref: see quote by bryan cantrill, Joyent on CLAs
+  - atoped a liberal contribution policy
+  - ref: quotes by mikeal rogers, node.js 
+
+slide: and some fun things started to happen
+
+way more contributions (incidentally, there was a fork, too (node.js -> io.js))
+
+free marketing: contributors became WOM ambassadors (word of mouth)
+
+attracted new perspectives, skills, backgrounds
+
+slide: awesome! :+1:
+
+another example of liberal contribution model: Rust
+
+Rust went from BDFL (2010) -> core team (2013) -> federated structure (2015)
+
+rust has 1200+ contributors, many of whom make regular contributions
+  - ref: quotes by alex crichton, Rust
+
+some patterns for liberal contribution models:
+1. floodgates, not bottlenecks
+2. "consensus seeking" (discuss major concerns) rather than "consensus" (pure vote)
+3. meet contributors where they are
+4. default to yes
+
+putting it all together:
+  do BDFLs still matter?
+    yes: early on a project, centralization is still really important. most projects start with one person working very hard at the start, they almost all start with one person; who can incubate the project and set the product (project?) vision.
+  as projects mature, liberal contribution models can help with growth
+
+slide: project trajectory might look like this (linear graph of popularity growing with respect to time, bdfl partition at start, liberal contribution after)
+
+examples: rest, django, node started with a B?DFL, then transitioned out when they got big enough
+  ref: quote by jacob kaplan-moss, Django
+
+do BDFLs work as a long-term strategy?
+  yes, but with caveats
+  Clojure uses a BDFL model - most contributions by one person
+  Clojure is sustainably supported by cognitect
+
+BDFL for the long term still requires "getting lucky"
+
+in the absence of having a benefactor, the liberal contribution model is a pretty good hack to reduce maintainer burden
+
+will it work for everyone?
+
+still too early to tell
+
+not every project will fit into this model
+
+if you're a project with a fairly narrow scope, BDFL might work forever, but for ecosystem-projects it is different
+
+highly dependent upon community and culture
+
+but liberal contribution models give us a framework for what sustainability could look like
+
