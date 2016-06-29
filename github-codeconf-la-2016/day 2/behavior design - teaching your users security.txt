@@ -1,0 +1,77 @@
+behavior design: teaching your users' security
+sonya mann / freelancer
+
+@sonyaellenmann
+http://sonyaellenmann.com
+me@sonyaellenmann.com
+
+ref: http://sonyaellenmann.com/CodeConfLA2016
+ref: http://sonyaellenmann.com/2016/06/behavior-design-teaching-users-security.html
+
+behavior design : teaching your users security
+--
+how can we nudge our users into making better and more secure habits
+typical users have really bad security habits
+mainly because they have different priorities
+most people are not judged by security habits (eg. password hygene)
+if you're a, "normal person", security habits that are really robust don't feel worth the hassle
+
+stats
+--
+splashdata: the most common passwords are 123456 and password
+
+roboform survey: 8% use a password manager, but 23% always use the same password
+
+1password has "millions" of users, and lastpass has eight million
+us population is ~323 million people
+
+there's a lot of room for improvement
+there's a lot of habits people could be improving
+
+slide: mark zuckerberg -> "dadada"
+used on at least 3 different social media profiles
+linked-in had a breach that revealed this password
+
+verizon did a study that showed 23% of people who received phishing emails, opened them. and 11% opened attachments.
+
+slide: quote by cade cairns and daniel somefield
+"the first time someone signs up for your site of captioned cat pictures using the same email address and password that they use for their bank logins, your seeming low-risk credentials database has become a vehicle for storing financial credentials"
+
+excerpt: So how do you deal with this general problem, of users not understanding how to take their own security seriously, or not caring enough to try? Technical work is the first, best, and most effective way to set ground rules. I’ll just throw out some basics: Use HTTPS everywhere. Hash and salt passwords. Find cross-site scripting opportunities and eliminate them. Enable multiple account management, especially if your software or web application has any kind of business application, since that limits the need to share passwords.
+
+behavior design = persuasion
+--
+anyone who has shipped a product, whether OSS, etc. will probably know how frustratingly impossible it can be to get users to do what they are supposed to do
+behavior design may involve: instruction, GUI
+more a mindset than just a discipline
+behavior design often needs technical underpinnings
+sadly, some of the best at behavior design are those who do sleazy marketing design
+ex. popups that make you feel bad for closing them
+ref: confirmshaming.tumblr.com
+ex: greatist.com
+weird design: amazon claiming you are not yourself if you wish to logout.
+ex: stripe - they encourage you to turn on 2FA, every time you visit the site, there is a banner that keeps nagging you on it
+
+ref: http://samnewman.io/blog
+
+noted that some VS Code extensions are inherently insecure because they relay data, also use unencrypted connections over the net
+noted there is no prompt to inspect the details of the extensions carefully
+
+slide: benefits > features
+the idea is that instead of pitching people on the mechanisms in your product, pitch them on the benefits
+ex. google search -> all the world's information at your fingertips
+  - could also be improved
+  - something that appeals better to human nature
+
+behavior design doesn't have to just be user interface design
+you can work on email interactions
+you can provide tutorials
+etc. other resources
+
+ex: pandora email to customers on topic of linked in breach
+
+slide: on passwords
+friction!
+it's okay - there are always tradeoffs
+A/B test everything & evaluate your priorities
+

@@ -1,0 +1,107 @@
+design for non-designers
+tracy osborn / hello web app / dreamfactory
+
+@limedaring
+(daring, not darling)
+
+ED: in between slides, presenter showed little working study on improving a basic email signup dialog, step by step in interleave
+
+REF: https://hellowebapp.com/
+
+hello web app
+--
+teaches programming for designers
+
+how can i teach design to programmers?
+
+slide: design: making an interface that works well
+
+slide: picture of golden ratio (speaker notes this has nothing to do with real design)
+
+slide: how can we create effective, basic designs
+
+slide: let's talk clutter
+
+fastest way for better looking designs: cut down on clutter
+
+slide: the grid
+line things up - pixel differences are definitely unconsciously noticed
+
+slide: bootstrap
+bootstrap is a good resource
+comes with a grid
+
+slide: color principles
+keep your colors complimentary
+use mostly neutrals + one brighter color for important bits
+
+slide: colourlovers.com
+
+slide: fonts
+keep the number of fonts low - two different fonts is usually a good rule of thumb
+
+use fancy/display fonts sparingly
+
+vary weights (bold), style (italics), and transforms (uppercase, etc.) to differentiate bits
+
+slide: resource -> beautiful web type -> http://hellohappy.org/beautiful-web-type
+slide: resource -> typewolf.com
+
+slide: whitespace
+the ultimate clutter reducer
+
+examples: people who redesign hackernews
+the new york times -> added more column spacing, other things
+
+example: https://studio.uxpin.com/blog/ux-case-study-designing-whitespace-to-improve-conversions/
+
+user experience principles
+--
+what's the most important action on your deisgn?
+make it easy to find and use
+
+pay attention to your goals
+make them easy to find and use
+
+content principles
+--
+less is more
+big paragraphs are a sign of clutter
+break into bullets if you can
+
+people on the web don't read, they skim.
+
+slide: shows breaking up paragraph into bullet list
+then bullet list with bold lead-sentences
+then bullet list with bold lead-sentences and extra line-spacing
+
+headlines
+--
+talk benefits, not details
+keep it short
+use natural, friendly language
+
+ref: https://www.webprofits.com.au/blog/case-study-headline/
+
+slide: good artists copy, great artists steal
+
+slide: not sure if i'm a good developer // or good at googling (futurama fry gif)
+
+slide: this is only the starting point!
+
+summary
+--
+reduce visual clutter
+keep the number of fonts and colors low
+add white space
+line things up
+keep content short and easy to skim
+
+make sure your goal is easy to find and use
+
+keep your content simple, friendly, and to the point
+
+practice, practice, practice
+
+REF: http://hellowebapp.com/web-design
+
