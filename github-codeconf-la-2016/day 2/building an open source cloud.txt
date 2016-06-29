@@ -1,0 +1,90 @@
+building an open source cloud
+elizabeth K. joseph, HP Enterprise
+@pleia2
+
+openstack
+--
+founded in 2010
+OSS cloud, written in Python
+Made up of 100s of projects
+vast marketplace of supportive companies in the ecosystem
+http://www.openstack.org/marketplace/
+
+speaker background
+--
+author of common openstack deployments
+senior automation & tools engineer at HPE
+joined openstack infrastructure team in 2013
+
+openstack deployments
+--
+familiar with various types of production openstack clouds
+openstack infrastructure infra-cloud project
+distilled and presented openstack basics using puppet
+configuration management is super important to such a project
+
+configuration management
+--
+installing openstack was hard
+but today you don't need to get bogged down with basic config, you can leverage existing config management tooling (instead of mysql hacking)
+and it's no longer proprietary and vendor specific
+
+the usual suspects
+--
+puppet: puppet-nova
+chef: cookbook-openstack-compute
+ansible: openstack-ansible-os_nova
+juju: charm-nova-compute
+
+more available at
+https://git.openstack.org/cgit/openstack
+
+slide: let's be honest- installing openstack is still kind of hard
+
+team expertise
+--
+strong linux systems engineers
+network engineers
+strong relationship with data center techs
+python developers to assist with patches and relationship with upstream
+
+
+what should your cloud do
+--
+just like any other cloud or virtualization environment
+determine what you need and have preliminary plans for how you'll scale over time
+
+compute power?
+block storage?
+object storage?
+do you need speed? reliability?
+
+networking
+--
+network planning is essential and difficult to change later
+openstack networking with neutron is very flexible
+local and public address planning and allocation
+
+backups, recovery, fail-over
+--
+backup strategy
+- what to back up
+- location of backups (on/off-site)
+fail-over
+- "regions" across racks" datacenters?
+- automatic/manual
+
+doing more with open source
+--
+sure you could build customizations internally, but...
+the openstack project runs an OSS infrastructure with a CI system and a large community for development of common solutions
+(beware introducing technical debt for yourself)
+(openstack requires 2 reviewers to review and approve changes)
+
+developer's guide:
+http://docs.openstack/org/infra/manual/developers.html
+
+example review:
+https://review.openstack.org/#/c/303726
+
+lyz@princessleia.com
