@@ -1,0 +1,123 @@
+data-driven public-private collaborations
+tyrone grandison, us dept of commerce
+
+background
+--
+jamaican
+started coding in basic/assembly ages ago
+current language of choice is python
+lover of line dancing
+
+
+things about mobile phones (gov contributions)
+--
+patents (US PTO)
+weather app (NOAA)
+stock app (BEA)
+spectrum
+broadband
+positioning sensors (GPS)
+
+the us dept of commerce creates the conditions for economic growth and opportunity
+
+uspto
+us census
+NOAA
+international trade administration
+BEA
+NTIA
+NTIS
+NIST
+Minority business development agency
+data.gov
+
+a problem for data.gov
+--
+data inventoried: ~1%
+
+ex: global weather industry fueled by ~10% of NOAA data
+NOAA releases 20-30TB a day
+expected to increase by 2-3 orders of magnitudes in the next 5 years (due to new satellite deployments)
+
+commerce data service
+--
+startup within the dept
+public launch: november 9, 2015
+mission: look at the 12 bureaus, make sure data initiatives were on par with the private sector
+
+the team
+--
+engineers
+data scientists
+technologists
+
+user-centered design
+lean
+agile
+open
+
+data products, data academy, data science
+
+designed for impact
+--
+leadership team
+operations team
+data science team
+development team
+education team
++14 other members in residence
+
+https://commerce.gov/datausability
+
+problem: how do we apply data and empower people who could make the world better with it? (paraphrased)
+
+tutorials
+--
+hail risk (weather)
+http://commercedataservice.github.io/tutorial_noaa_hail
+
+making sense of cyber vulnerability patterns
+http://commercedataservice.github.io/tutorial_nist_nvd
+
+processing satellite imagery
+http://commercedataservice.github.io/tutorial_viirs_part1
+
+finding the right customers for you
+http://commercedataservice.github.io/tutorial_acs_rank
+200,000 attributes on americans collected by the census bureau
+
+initial external collaborators
+--
+housing affordability
+http://commercedataservice.github.io/tutorial_zillow_acs
+
+understanding atomospheric rivers
+http://commercedataservice.github.io/tutorial_mapbox_part1
+uses precipitation dataset from NOAA
+
+using environmental data for resource allocation
+http://commercedataservice.github.io/tutorial_earthgenome
+collaboration with DOW - used topological data from NOAA to show them where to setup a location for new industry
+
+innovation analysis
+http://commercedataservice.github.io/tutorial_pto
+
+your help
+--
+gov needs you to help improve the current state of the art
+collaborate on the next tutorial with your favorite data set
+we want to capture knowledge and get it to the rest of the community to use
+
+
+how to collaborate
+--
+a novel analysis or question posed to the data
+visually arresting graphics and engagement with the public
+open free code and data for the public to use
+
+tyron grandison
+tgrandison@doc.gov
+@tyrgr
+
+http://commerce.gov/dataservice
+http://commerce.gov/datausability

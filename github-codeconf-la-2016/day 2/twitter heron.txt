@@ -1,0 +1,173 @@
+twitter heron
+fu moasong, twitter
+
+moasong fu/tiwtter
+
+@louis_fumaosong
+
+twitter heron in practice
+----
+
+why do we need realtime processing?
+- twitter is realtime
+- realtime trends
+- realtime conversations
+- realtime recommendations
+- realtime search
+
+heron terminology
+--
+topology
+- DAG - vertices = computation, edges = streams of data tuples
+spouts
+- sources of data tuples for the topology
+- examples: kafka, kestrel, mysql, postgres
+bolts
+- process incoming tuples and emit outgoing tuples
+- examples: filtering, aggregation, joins, arbitrary functions
+
+slide: heron topology workflow example (graph)
+spout 1 -> bolt 1 -> bolt 4
+spout 2 -> bolt 2 -> bolt 4
+spout 2 -> bolt 3 -> bolt 5
+
+good horizontal scalability
+
+why heron?
+--
+performance predictability
+improve developer productivity
+ease of manageability
+
+heron architecture
+--
+topology submission -> scheduler
+
+scheduler -> topology silos
+
+topology architecture
+--
+toplogy master receives traffic from containers
+containers contain stream manager metrics manager
+ZK cluster receives inputs from topology master and containers
+
+slide: topology execution (example shows O(n^2))
+
+slide: heron sample topologies (shows various simple items, simple Tees, advanced propogation graphs)
+
+heron @ twitter
+--
+heron has been in production for 2 years
+large amount of data produced every day
+large cluster
+several hundred toplogies deployed
+several billion messages every day
+topologies vary from 1-stage to 10-stage graphs
+
+
+heron use cases
+--
+realtime etl
+realtime bi
+product safety
+realtime trends
+realtime ml
+realtime media
+realtime ops
+
+componentizing heron
+--
+heron - microstream engine
+
+state manager and scheduler -> topology master
+topology master, stream manager, instance, metrics manager -> basic inter/intra IPC -> hardware
+scribe / graphite -> metrics manager
+
+heron has typesafe interfaces and apis to support extensibility
+
+microstream engine
+--
+plug and play components
+ease of development
+as environment changes, core does not change
+
+multi language instances
+support multiple lan api with native instances
+
+multiple processing semantics
+
+heron environment
+--
+supports scenarios:
+laptop/server
+cluster/testing
+cluster/production
+
+stragglers and back pressure
+--
+stragglers are the norm in a multi-tenant distributed systems
+- bad host (laggy, not necessarily crashed)
+- execution skew
+- inadequate provisioning
+
+senders to get stragglers to drop data
+request senders to slow down to the speed of stragglers
+detect stragglers and reschedule work elsewhere
+
+issues with a data drop strategy
+--
+unpredictable
+can affect accuracy
+poor visibility
+
+slow down sender strategy - back pressure
+--
+provide predictability
+processes data at maximum rate
+reduce recovery times
+handles temporary spikes
+
+slide: example showing 15 containers and 193 instances, backpressure on graph
+
+back pressure in practice
+--
+in most scenarios, back pressure recovers
+- without any manual intervention
+sustained back pressure
+- irrecoverable GC cycles
+- bad or faulty host
+sometimes users prefer dropping of data
+- care only about the latest data
+
+heron resource usage
+--
+event spout -> aggregate bolt
+60-100M/min events
+filter 8-12M min
+flat-map
+40-60M/min
+
+aggregate cache -> 1 sec
+output 24-45M events/min
+
+resource consumption
+--
+most of time spent in spout (84%)
+bolt (9%)
+overhead (7%)
+
+RTAC topology
+--
+slide: comparison showing storm vs heron
+
+curious to learn more
+--
+papers published:
+streaming @ Twitter
+twitter heron: stream processing at scale
+storm @ twitter
+
+heron is open sourced
+
+https://github.com/twitter/heron
+http://heronstreaming.io
