@@ -1,0 +1,92 @@
+from closed to open, a tale about parse
+florent vilmart, ampme
+
+florent@flovilmart.com
+
+ref: http://www.parse.com/
+
+slide: parse, the mobile backend as a service (mBaaS)
+audience of mobile app devs
+
+free backend
+that can scale ($$$)
+
+schema-less
+security with ACL
+
+slide: the client SDKs are the gateway to the service. the service has to be invisible
+
+slide: timeline
+started in august 2011 (open beta)
+acquired by facebook in april 2013
+mid 2015 - open source, client SDKs
+open 2016 - intial notice of shutting down the project
+early 2016 - parse server parse dashboard
+january 2017 - end of service
+
+slide: the open source family
+iOS, macOS, watchOS, tvOS
+browser, node, react-native
+android
+arduino, embedded C
+.Net, Xamarin
+PHP
+
+Server + Dashboard
+
+slide: to open source
+from 1M users to 1
+
+product shift: when it went open source, it just targeted 1 user
+
+product shift -> technology shift -> audience shift
+
+no longer a service, but a platform you run
+
+ref: quote by drew gross
+
+slide: parse-server, under the belly
+express.js app
+CLI interface
+ES6
+1000 tests, 8 environments
+150mb RAM in sustained use
+
+slide: parse-server
+http://github.com/parseplatform/parse-server
+10k git stars, 500 PRs, 1300 bugs, 2500 forks
+
+slide: technology shift
+formerly, 1 single point of contact
+now: any platform (AWS, etc.)
+problem with educating users to make choices on where to pick a host/backend for parse
+
+slide: audience shift
+from front-end to backend
+
+front-end developers
+- no backend skills
+- many have never touched IaaS / PaaS
+- many have never touched a database
+
+slide: audience shift - open source is not easy
+existing user concerns
+- front-end -> continuity of service
+- stability -> migrating to other providers
+
+new user concerns:
+- great api/sdk
+- flexible solution
+- ease of use
+
+SaaS
+- business
+- making money
+
+slide: moving forward, open source matters
+extensible (parse-server-modules)
+live queries
+simple 'native' social authentication
+postgres (cockroachDB)
+CloudCode enhancements
+
