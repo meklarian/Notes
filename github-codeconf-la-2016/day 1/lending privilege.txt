@@ -1,0 +1,124 @@
+lending privilege
+anjuan simmons, assemble systems
+
+@anjuan
+
+recent news: tech inclusion pledge
+
+you have a role to play in making tech a more inclusive industry
+
+slide: moving frmo diversity to inclusion and empathy
+diversity has reached EOL, and we should move to inclusion and empathy. diversity is easy to game.
+diversity is inviting people to a house party.
+inclusion and empathy is making sure people are feeling welcome and happy at your party
+  - some may have had to travel far to join the party
+  - or work extra hard
+
+slide: inclusion and innovation
+
+there's actual value to being inclusive
+inclusive teams are innovated teams - (studies show)
+
+graph of innovation and inclusion in mutual relation
+
+inclusion is really at the heart of open source
+even from the beginning
+
+the cathedral and the bazaar
+one of the first works on open source development
+(by eric s. raymond)
+
+"given enough eyeballs, all bugs are shallow"
+
+more formal version:
+"given a large enough beta-tester and co-developer base, almost every problem will be characterized quickly and the fix obvious to someone."
+
+if we have open source be this big tent, this boisterous forum to software and dedication to making it better, there's no problem we can't solve.
+often our companies are tended by privilege, and there are voices we keep out of the bazaar, disallowing them from participating in the project (in the company)
+
+slide: what privilege is not
+privilege doesn't mean you haven't worked hard, that you haven't made sacrifices, that you aren't good at what you do
+for some, their journey is harder, and they have barriers that make it hard that you don't have to deal with; their journey through technology is harder than yours
+
+it doesn't mean you're not a good person, it just means things are a little bit easier for you
+
+privilege, two major categories:
+
+birth privilege
+--
+racial, gender, etc.
+
+ironically, birth privilege, which you do not even choose for yourself, are often the cause of most vice
+
+selected privilege
+--
+different factors that you choose for yourself
+it's human nature to share your privilege with people who have it
+people who have racial privilege, generally choose the benefits of racial privilege to those who have it
+it's more powerful to lend your privilege than to keep it to yourself (your peers?)
+
+portfolio of privilege
+--
+parental
+education
+racial
+religion
+gender
+physical
+
+how much harder would your journey through technology without these privileges?
+there are people you work with every day, who have to work without some (or all) of these privileges
+
+having a more empathetic and inclusive (words?) benefits the industry
+
+let's face it: marginalization is on the rise (slide of trump / clinton)
+
+credibility lending
+--
+providing visibility to someone without privilege
+LGBTQ people often feel invisible / not recognized; credibility lending can help fix this
+
+slide of de ray and stephen colbert: they swapped chairs, colbert lent credibility to de ray
+
+
+access lending
+--
+providing entry to someone without privilege
+for women in tech, there are barriest due to gender privilege
+access lending can be a powerful way to solve this problem
+tracey chow (chau? sp?) - one of her professors insisted she become a TA (as a stanford student? grad student?); by becoming a TA, she was able to see that her grades were better and that her status was higher (merit) than she believed
+
+
+expertise lending
+--
+providing a voice to those who don't have privilege
+often people of color don't feel we have a voice in technology, because we dno't have the racial privilege of leaders in technology
+expertise lending is a good way to fix this
+
+at swsx, michelle obama was able to speak at the music festival:
+  "if you got a voice at the table, is there diversity around the table, are there voices or opinions that don't sound like yours?"
+a challenge to those in the lead
+a description of the bazaar in the aforementioned book
+
+give underrepresented people opportunities to lead
+
+your turn to lend
+--
+this isn't hard to implement
+just open your eyes to contributors who lack privilege
+and you can lend them privilege
+and help them with access and gain credibility by lending it
+it has to become a philosophy
+you have to believe this cathedral (or this bazaar) is real
+and that this requires inclusion
+and this can be improved by improving inclusion
+
+speaker: story about POC being denied a promotion, every peer got promoted but the POC did not; being an advocate for inclusion is not a sprint, it's a marathon. you have to embed it in your work.
+
+to get excluded to stay, to get promoted in technology, you can make a difference by lending your privilege
+
+@anjuan
+https://linkedin.com/in/anjuan
+
+stock images from wocintechchat.com
+

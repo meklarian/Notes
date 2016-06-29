@@ -1,0 +1,92 @@
+when military veterns learn to code
+david molina, operation code
+
+@davidcmolina
+
+@operation_code
+
+----
+
+slide (video):
+documentary-like clip/interview on veteran
+victor - marine corp veteran
+served in iraq
+deployed in iraqi freedom, enduring freedom
+found it difficult to socialize back into society
+found no programs to help transition
+googled the top 100 jobs for 2015
+first was dentist, number three was computer/software programming
+(has always loved computers/computing)
+code fellows is a seattle-based code school
+the va only approves accreddited programs, which suppresses organizations from being able to reach out to veterans (paraphrased)
+code school tuition room and board averages about $20,500
+victor applied and was accepted
+saved for 6 months to pay for the program
+
+operationcode.org
+
+to care for him who shall have borne the battle and for his widow, and his orphan - a. lincoln
+
+mission: veteran-founded, and led, operation code is on a mission to get active military ... around the world to get to code
+
+slide: map of US/europe and other worldwide presence
+
+902 veterans served
+147 airforce
+177 marines
+169 navy
+16 coast guard
+394 army
+
+all branches represented
+incl. national guard and reserve
+
+the 1944 GI bill helped to train returning soldiers to train for the current work to create opportunities for them to not only go to college and get a job and get a home
+currently this hasn't been updated since then
+250,000 people currently don't get the opportunity or assistance after their service (paraphrased)
+
+
+slide (video):
+david molina presenting for operation code
+operation code/founder
+frustrated to find that the GI bill funds could not be used to train in learning to code
+interviews with veterans who have served
+the accredidation issue
+interviews with other code school / resource CEOs/leaders
+the VA has to keep up with the way the economy is working again
+inherently they are bureaucratic and don't have the agility nor the focus to connect with people
+government works slowly
+eventually they will come around and see that a lot more is going on
+and training is happening outside of 4 year universities
+david: we're on a mission to create new opportunities for veterns in software development and coding
+
+operation c ode is an OSS community
+maintained by over a dozen software developers and ricing
+opening the source code for the project is meant to empower all developers everywhere to contribute
+
+
+program: software mentorship
+
+contact: contact@operationcode.org
+get invite to slack
+
+objective: scholarships
+currently raising $7.5M to bring in hundreds more students aboard
+
+resource: employer services
+resource: deploy, web apprenticeship
+  - trying to shorten the jr developer time to expertise and hiring
+
+objective: advocacy
+  - trying to get the VA to change and get a new GI bill
+  - pushing legislation that favors retraining veteraans to become software developers
+
+how you can help
+--
+join as a software mentor
+spread word to more military veterans
+help us find scholarship sponsors
+volunteer to help teach beginners
+contribute to github
+  - github.com/OperationCode
+
