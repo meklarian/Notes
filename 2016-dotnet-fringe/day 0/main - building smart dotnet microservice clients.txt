@@ -1,0 +1,93 @@
+building smart .net microservice clients
+beau palmquist
+@beau_palmquist
+
+jared schaab
+https://github.com/schaab/
+@jaredschaab
+
+background: both from Home Depot QuoteCenter
+
+what will be covered
+--
+how to host a pure js client in a .net core 1.0 web app
+how to write a simple js client that consumes .net usvcs
+how to build react js web applications in a .net core world
+how to implment a simple spa middleware for .net core 1.0
+how to incorporate react-router into a react application
+
+what will not be covered
+--
+how to build microservices
+http://teamjohnston.net/blog/category/microservices/
+how to build isomorphic js applications
+how to become a webpack expert
+how to take over the world
+
+tools of the trade
+--
+latest node (5.0+) and npm (3.0+)
+.net core 1.0
+git client
+client IDE (vs code)
+
+git repo
+--
+https://github.com/beaupalmquist-hdqc/microservice-client-workshop-2016
+
+vanilla js
+react
+react-router
+redux
+
+each project category contains two projects, one that is the complete project and the other that is the starter project
+we will be working with the starter projects
+.net core class library that contains middleware for hosting a SPA in .net core
+
+the monolithic web application
+--
+one project to rule them all (contains)
+business logic
+views
+controllers
+data models
+view models
+scripts
+
+what are microservices
+--
+a logically connected group of web apis
+hosted independently from the consuming web app
+more granular and scalable than a monolithic web app end
+
+microservices in .net
+--
+asp.net provides a generic web api platform
+oriented to building a monolithic web application
+
+no constraints in webapi projects to adhere to usvc principles
+
+forge microservice framework
+--
+built at home depot over the last year
+forge team: jessejohnston, beau palmquist, jared schaab
+based on asp.net core 1.0 middleware
+platform infrastructure is built on usvcs
+- deployment
+- routing
+- identity and security
+provider-based and technology-agnostic
+
+lab #1: vanilla js web app
+simplest client we can write
+
+using https://www.npmjs.com/package/eslint-config-airbnb
+
+from slack channel:
+Here’s an example of using a `hosting.json` file to configure your port number: https://github.com/smashdevcode/microservice-client-workshop-2016/commit/906139175e4f214e6a3d5f6139329a2611317ba8
+
+https://calesce.github.io/redux-slider-monitor/
+react redux slider monitor (replay recorded redux actions)
+
+getting started with redux
+https://egghead.io/courses/getting-started-with-redux
