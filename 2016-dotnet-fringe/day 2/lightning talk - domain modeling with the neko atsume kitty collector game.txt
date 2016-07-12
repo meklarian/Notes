@@ -1,0 +1,60 @@
+neko atsume
+julie lerman
+
+intro
+--
+intro to neko atsume
+can buy things to collect more cats, remodel, etc.
+
+as a programmer, started noticing different cats had different behaviors with different objects
+
+ddd thinking cap
+
+things
+----
+
+metadata
+--
+cats
+  name
+  looks
+  personality
+goodies
+  name
+  cost
+  visual
+  possible interactions
+  size
+
+rules
+  what cats come for what goodies
+  which interactinons cat has with each goodies
+  frequency of visits
+  frequency of visible visits
+
+behaviors
+  cats interact with goodies
+  cats come and go
+
+state
+  fish "bank"
+  cat visits & albums
+  purchased goodies
+  placed goodies
+  collected ??? (mementos? - ED)
+
+define static data
+  cats: name, looks, personality
+  goodies: name, cost, visuals, possible interactions, size
+graphics & animation
+cat appearance
+cat departures
+goody placement
+cat/goodie interaction
+cat history
+goody purchasing
+
+main components
+--
+rules engine service
+fish account service

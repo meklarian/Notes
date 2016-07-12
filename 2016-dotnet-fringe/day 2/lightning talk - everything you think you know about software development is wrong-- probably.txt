@@ -1,0 +1,20 @@
+everything you think you know about software development is wrong. probably...
+
+dave evans
+@davedev
+xamarin MVP
+CTO miniscreenpictures.com
+
+caption: challenge everything
+
+graph: accuracy of estimate vs time (convergence)
+laurent bossavit #leprechauns
+the leprechauns of software development
+found this graph went back to 1981 (barry boone? ***Barry W Boehm*** - ED)
+"these ranges have been determined subjectively, and are intended to represent 80% confidence limits that is within a factor of four on either side, 80% of the time"
+
+graph: cost of finding and fixing defects increases over time (cost exponential vs time)
+Boehm again: 1981, from a paper (completely different graph, jagged, the bottom curve is the cost of fixing defects, which is not exponential but a sawtooth, and also goes out to 11th week, not years)
+11th week was when his team would do acceptance testing
+the exponential graph is not an intrinsic value of software development, but a side effect of your development process
+

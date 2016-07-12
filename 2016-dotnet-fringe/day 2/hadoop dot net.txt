@@ -1,0 +1,65 @@
+hadoop.net
+hakeem mohammad
+@hakeemsm
+
+https://github.com/hakeemsm/hadoop.net
+
+what is hadoop?
+--
+a data processing framework 10 years in the making
+can mean different things depending on the context
+written entirely in java
+started as a framework for writing applications using the mapreduce pattern
+
+design
+--
+code is pushed to the data
+core pieces are hdfs, a distributed file system & YARN, the cluster resource management system
+data needs to be loaded into HDFS first before performing any processing
+results can be written back to HDFS or a different destination
+client applications can be written in any language with the streaming feature
+
+HDFS write
+--
+typical replication factor is 3
+slide: diagram of pipeline
+
+HDFS read
+--
+slide: diagram of pipeline
+data nodes send heartbeats to the main node
+
+
+YARN
+--
+resource manager to manage the use of resources across a cluster
+node managers running on all nodes in a cluster
+containers running in NMs where the code gets shipped to
+resource manager & namenode can be co-located
+node managers run on DataNodes
+
+slide: diagram of node management
+
+demo
+--
+configuring YARN xml file
+setting up cluster locally
+dashboard
+
+roadmap
+--
+Core - IO, HDFS, YARN
+Custom datatypes
+implement an orchestrator [zookeeper]
+extensions for azure, aws, openstack, et al
+
+slide/caption: need your help!
+
+info
+--
+Hakeem S Mohammad
+@hakeemsm
+Atlanta
+http://code-cafe.blogspot.com/
+https://github.comhakeemsm
+hakeemosrc@gmail.com

@@ -1,0 +1,47 @@
+high performance multi-target logging with logary
+jeremy abbott
+
+logary
+--
+logary is a high performance multi-target logging metric tracing and health-check library for mono and .NET
+non-blocking logging
+written in F#
+now w/C# extensions
+written by Henrik Feldt (aka @haf)
+  one of the creators of Suave!
+
+targets
+--
+logary can log to multiple targets
+support for logging to
+  textwriter (file)
+  console
+  debugger console (VS, Xamarin Studio, Mono Develop)
+  databases via ADO.NET
+  More
+
+adapters
+--
+plugins into other libraries
+those libraries can send their logs to logary
+adapters for:
+  log4net
+  suave
+  topshelf
+  eventstore
+
+demo
+--
+basic logging to a file
+using the suave adapter to log to a file
+
+resources
+--
+logary
+F# for fun and profit
+F# foundation
+  become a member!
+F# on slack
+#FSharp on Twitter
+book of F# by Dave Fancher
+slides created with FSReveal

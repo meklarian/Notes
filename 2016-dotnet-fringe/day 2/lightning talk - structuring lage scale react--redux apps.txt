@@ -1,0 +1,93 @@
+structuring large scale react/redux apps
+anthony van der hoorn
+@anthony_vdh
+
+toolkit
+--
+webpack
+babel
+react
+redux
+react-redux
+react-router
+react-router-redux
+redux middleware
+reselect
+sass
+css modules
+eslint
+chai
+karma
+and more...
+
+lots of dependencies
+15+ prod time packages
+40+ dev time packages
+... and counting
+
+file structure
+--
+public/
+  index.html
+  client/
+    index.js
+    modules/
+      registry/
+        ...
+      user/
+        ...
+    routes/
+      album/
+        ...
+      artist/
+        ...
+    ...
+  stuff/ ...      
+
+modules hold data related files, broken down by sub-directors "think repository layer"
+routes view related files, broken down by individual routes "stuff that's unique for route"
+
+modules
+--
+...
+  registry/
+    registry.js
+    registry-actions.js
+    registry-constraints.js
+    registry-reducer.js
+  user/
+
+functions are called on the entry point
+  -> result data being fetched and actions being called
+  -> reducers subscribe to actions and put data in store
+
+routes
+--
+...
+  album/
+    album-actios.js
+    album-config.js
+    album-reducer.js
+    album-selector.js
+    album-components.js
+  artist/
+
+state updates occur which trigger updates in selectors
+components are updated based on provided data
+component events triger ui centric actions
+reducers control data going to store
+
+higher order components...
+  filter the data being passed to children "think view model generator"
+
+components bootstrap the route and provides relevant metadata
+
+summary-
+--
+start small and work your way up
+  strawmans are a great way of slowly introducing complexity
+
+know what's going on
+  boilerplates are great, but you need to know what's happening
+
+just start!

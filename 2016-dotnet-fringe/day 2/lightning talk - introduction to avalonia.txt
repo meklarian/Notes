@@ -1,0 +1,88 @@
+introduction to avalonia
+steven kirk
+
+what is avalonia
+--
+cross platform ui framework
+formerly called perspex
+based on wpf/xaml etc (where it made sense)
+brings them up-to-date
+  new language features (linq, async/await)
+  uses modern patterns such as Rx
+  adds proven features from other places (eg web development)
+currently in late alpha - beta this year?
+
+cross platform
+--
+we have two subsystems
+  windowing
+  rendering
+on windows we use win32/direct2d
+on linux and mac we use GTK/cairo
+in the process of moving from cairo to Skia (via Skia#)
+experimental support for iOS/android
+
+based on wpf/XAML
+--
+we use xaml
+not tied to XAML, our aim is for XAML to be just another markup
+basic visual studio visualizer
+
+xaml improvements
+--
+binding to controls
+  WPF
+    <TextBox Text="{Binding ElementName=other, Path=Text}" />
+  Avalonia
+    <TextBox Text="{Binding #other.Text}" />
+
+binding negation
+  Avalonia
+    <TextBlock IsVisible="{Binding Loading}">Loading...</TextBlock>
+    <!-- ED Note: can't read comment but I think it says negation is possible on binding expression -->
+    <ContentPresenter Content="{Binding}" IsVisible="{Binding !Loading}"> ... </ContentPresenter>
+
+CSS-like styling
+--
+a pain-point of WPF is styling
+  can only have one style per control
+  BasedOn is limiting
+the idea of CSS (although junk in places) has been proven
+  we use a mixture of the two approaches
+
+<Style Selector="TextBlock.h1">
+  <Setter Property="Foreground" Value="#212121" />
+  <Setter Property="FontSize" Value="20" />
+  <Setter Property="FontWeight" Value="Medium" />
+</Style>
+...
+<TextBlock Classes="h1">A Header</TextBlock>
+
+rx for binding
+--
+we use rx for binding
+get observable for property:
+  var o = textBox.GetObservable(TextBox.TextProperty);
+bind properties to observable (this probably has a small syntax error? - ED)
+  var o = textBox.GetObservable(TextBox.TextProperty)
+    .Select(x => "Hello " + x);
+  textBox2.Bind(TextBlock.TextProperty, o);
+
+references
+--
+https://github.com/VitalElement/AvalonStudio
+https://github.com/Core2D/Core2D
+
+left to do
+--
+item virtualization has just been added - needs stabilizing
+rewrite of rendering - we render the whole scene on every frame right now
+bring skia up to parity
+missing controls
+improve designer
+.net core support
+performance and memory usage
+
+https://github.com/AvaloniaUI/Avalonia
+https://gitter.im/AvaloniaUI/Avalonia
+https://twitter.com/grokys

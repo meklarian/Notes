@@ -1,0 +1,40 @@
+scriptcs, what's new
+glenn block
+
+scriptcs.net
+
+scriptcs is a really lightweight way to write C# code
+has a REPL
+
+write a script (.csx file? - ED)
+
+works cross platform (linux/windows)
+
+features requested:
+  async/await
+  dynamic
+  C# 6.0 syntax
+
+now available thanks to roslyn
+
+dynamic foo = new ExpandoObject();
+foo.bar = "baz";
+
+repl > foo
+repl >> { "bar" : "baz" }
+
+repl > string prop1 {get;} = "hello .net fringe!"
+repl > prop1 
+repl >> Hello .net fringe!
+
+debugging possible for scriptcs in visual studio
+
+demo: breakpoints in wpf scriptcs app
+
+try scriptcs at katacoda
+  they have a scriptcs playground
+  launches environments in containers
+
+new rewrite of scriptcs coming on top of .net core clr
+
+github.com/scriptcs/scriptcs

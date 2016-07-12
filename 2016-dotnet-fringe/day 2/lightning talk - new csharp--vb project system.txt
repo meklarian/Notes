@@ -1,0 +1,30 @@
+new C#/VB project system
+david kean
+immo landwerth
+
+editing .net projects in visual studio -- "or your favorite text editor!"
+
+immo landwerth works on .net team
+
+david kean developer on roslyn team
+
+goipng to talk about the editing experience in visual studio
+the whole point is to allow you to do it in your fav text editor as well
+
+slide: one does not simply edit msbuild files
+can edit by hand, but if you want to make from scratch- you're screwed
+slide: do it
+there's a way to do it
+
+slide: project file for msbuild, xml based
+  can remove namespaces
+  can remove xml prolog
+  etc.
+  audience: remove the xml (laughs - ED)
+  can get rid of project guids
+
+slide: let's see this again
+
+demo: side by side demo (wow - ED)
+  modifying project file from within visual studio in another editor (vs code)
+    vs automatically updates, no warning or complaints
