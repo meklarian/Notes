@@ -1,0 +1,36 @@
+event storming for dotnet projects
+robert zalaudek, partner & director, business dev, adaptech solutions
+
+what is event storming?
+--
+event storming is an approach for modelling complex business flows
+
+benefits include
+  speed
+  collaboration
+  clarity
+
+goal
+--
+an outline of what you want to build
+
+what do you need?
+--
+the right people in the room
+the right kind of room
+a few simple supplies
+
+traditionally we all used to use a BA/product owner
+instead, get everyone in the room at the same time
+ex. tech leads, programmer, sales, analyst, customer's reps (tech, sales, etc)
+
+it looks like this
+--
+shows sticky-note board with timeline-like model
+
+how you do it
+--
+start with domain events
+consider how the domain events came about
+look for aggregates
+

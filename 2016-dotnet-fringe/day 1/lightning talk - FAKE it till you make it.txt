@@ -1,0 +1,33 @@
+FAKE it till you make it
+ryan rousseau
+
+FAKE = F# Make
+(Rake => Ruby Make, PSake PowerShell Make, Cake C# Make)
+
+3 main topics
+--
+build targets
+dependencies
+helpers
+
+
+example
+----
+open Fake
+
+Target "Init" ( fun _ =>
+	trace "init"
+)
+
+Target "Build" (fun _ =>
+	trace "Build"
+)
+
+Target "Clean" (fun _ =>
+	trace "Clean"
+)
+
+"Init"
+	==> "Clean"
+	==> "Build"
+

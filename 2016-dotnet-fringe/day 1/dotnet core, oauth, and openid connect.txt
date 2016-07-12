@@ -1,0 +1,173 @@
+OAuth, OpenID Connect in dotnet core
+
+kassandra perch
+
+who am i
+--
+developer evangelist for Auth0
+austinite
+catparent
+genderqueer (sure, go ahead, ask me about it)
+
+pun master
+javascript lover
+nodebots author, addict, scientist
+EE student at ASU online
+
+I hear this a lot: "OAuth is terrible"
+
+two things contribute to this
+--
+a lack of knowledge about what OAuth is supposed to do
+missing context on the history of OAuth
+some misunderstandings of OAuth 1 and 2, specifications vs implementations
+
+OAuth 1 and 2
+--
+most OAuth providers have move to 2 (or at least support it)
+OAuth2 accounts for more than "computer + browser + server"
+we did lose signed signatures... KIND of
+  (no longer really requires signatures or certs, instead: bearer-tokens)
+
+
+bearer tokens
+--
+added in oauth 2
+if you have the token, you're authenticated
+
+json web tokens (JWTs)
+--
+mitigate the lack of signatures by being signed
+your bearer token can be a signed JWT which consumers would then verify, and you can also require signed JWTs from them
+
+wait, JWTs?
+--
+header + payload + key
+header and payload are JSON objects
+Key is header + '.' + payload, signed with a secret
+  secret can be symmetric or asymmetric
+
+want to learn more?
+--
+https://jwt.io
+RFC 7519
+
+back to oauth
+--
+you care about oauth because managing usernames and passwords is a giant pain
+logins are universal, but why implement it yourself
+how do i keep passwords safe?
+will users care enough to create a new (totally secure because of course it is...???) password?
+
+probably not. but they'll login to twitter/facebook/etc
+
+the problem with implementations
+--
+some oauth platforms only use 1.0
+some use both!
+some people expect every OAuth implementatino to return the same user identity (a problem with OAuth)
+
+identity vocabulary
+--
+authentication: proving a user is who they say they are
+authorization: allowing a user to complete an action
+identity: the information we know about a user
+
+the problems with oauth
+--
+just does authentication
+  which is what it was designed to do
+  don't confuse the goals of authentication with the goals of identity
+it's so hard to use!
+  no not really, there are SDKs and libs all over for .net and js
+  you just heard that from someone and agreed with them to sound smart (i know this because i did that too)
+
+
+the real problem
+--
+we shoehorned oauth to be an identity solution
+which, as it always did on the web, led to 50 different specs of what user identity is and means
+
+what was this a problem
+is it username, userName or name for twitter?
+i want to add facebook, but i ahve to map everything to fit my current models
+i need this piece of user info, but i have no idea how to get it
+
+openid connect
+--
+started as openid authentication
+became an id wrapper around oauth2
+standardized way of defining id for users logging in with OAuth
+
+right, but what is it?
+--
+a simple id layer built on top of oauth 2.0 openid.net
+
+openid connect protocol suite
+--
+[Complete
+  Session Management
+  Form Post Response Mode
+  [Dynamic
+    Dictionary
+    Dynamic Client Registration
+    [Minimal
+      Core
+    ]
+  ]
+]
+~~~~
+[Underpinnings
+  OAuth 2.0 Core
+  OAuth 2.0 Bearer
+  OAuth 2.0 Assertions
+  OAuth 2.0 JWT Profile
+  OAuth 2.0 Responses
+  ~~
+  JWT
+  JWS
+  JWE
+  JWK
+  JWA
+  WebFinger
+]
+
+
+but it does make things simpler
+--
+dynamic: give me a url that i can use to figure out where everything is
+dynamic client registration: let me programmatically obtain a client ID and secret for Oauth
+session management specs mean if you're implementing OIDC, you can share sessions between your apps
+
+instead of preprogramming URLs, you grab a discovery doc and use the URLs within
+you authenticate with OAuth like usual
+you get back a JWT ID token, which you can validate the signature of
+you can use this token to obtain user information from the OAuth provider, like google
+
+so you're saying
+--
+you use OAuth 2.0 to authenticate users
+and OpenID Connect to get information about their identity
+
+Middleware Everywhere
+--
+aspnet.security.oauth
+  one of my coworkers contributes to this (jerry)
+microsoft aspnetcore.authentication.oauth
+  has a few providers, works pretty similarly
+microsoft.aspnetcore.authentication.openidconnect
+  a little confusing, assumes discovery level
+
+
+learn you some auth and identity for great good
+--
+http://openid.net
+https://github.com/aspnet/Security
+http://jwt.io
+
+openID playground is forthcoming (similar to oauth playground)
+
+kas@auth0.com
+@nodebotanist
+https://github.com/nodebotanist/dot-net-fringe-2016
+http://auth0.com

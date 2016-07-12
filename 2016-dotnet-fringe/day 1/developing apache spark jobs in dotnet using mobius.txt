@@ -1,0 +1,112 @@
+developing apache spark jobs in dotnet using mobius
+kaarthik sivashanmugam
+
+apache spark
+--
+general purpose cluster computing system for big data processing and analytics
+  ease of programming
+  high performance
+  unified API to solve a diverse set of complex data problems
+  API in scala, java, python, & R
+
+much faster than hadoop 
+  multiple stages can be routed in memory, avoiding disk writes (as opposed to hadoop)
+
+not every workload can see benefits, but most can
+
+apache spark key concepts
+--
+data
+  rdd - resilient distributed dataset
+  transformation & action
+  dataframe
+  dstream
+cluster
+  driver
+  executor
+
+rdd: ex. if a partition is lost, it can be reconstructed using the lineage
+transformation: transformations are lazy, a transformation is done on a RDD but nothing is immediately done; only when an action is called on a RDD, that's when the pipeline activates, causing transformations to be applied
+dataframe: spark can do optimizations to make some operations fast
+dstream: control for stream data (control for data stream?); abstraction to help you code, with extra concepts for temporal thing
+
+
+mobius: C# api for spark
+--
+enable organizations invested deeply in .NET to build apache spark applications in C#
+reuse of existing .NET libraries in spark applications
+
+why C#, why not F#? - simplest answer: my team had expertise in C#, and partner teams had expertise in C# too. but more and more developers came aboard and wanted support for F#, but we don't have an idiomatic api for F#, we're looking into it.
+
+.NET & Spark
+--
+Spark Apps in .NET (top) -> Mobius: C# API -> PySpark -> Scala/Java API (also SparkR) -> Apache Spark
+
+Word Count in spark using RDD (scala)
+--
+val textFile  spark.textFile("hdfs://...")
+val counts = textFile.flatMap(line => line.split(" "))
+	.map(word => (word, 1))
+	.reduceByKey(_ + _)
+counts.saveAsTextFile("hdfs://...")
+
+job is triggered when reduceByKey gets called
+
+Word Count in spark using RDD (C#)
+--
+var textFile = sparkContext.TextFile(@"hdfs://...");
+var counts  textFile.FlatMap(x => x.Split(' '))
+	.Map(w => new KeyValuePair<string, int>(w, 1))
+	.ReduceByKey((x,y) => x + y)
+	.Map(wordCount > $"{wordCount.Key},{wordCount.Value}"); // this line helps convert bytes to a string, otherwise you'll get binary data. C# specific
+counts.SaveAsTextFile(@"hdfs:///...")
+
+develop & launch mobius applications
+1. add reference to mobius package in nuget
+2. develop, debug, test mobius driver application
+3. build mobius driver (.exe) -> needs to be copied to a machine that can submit job results to a spark cluster (spark client)
+
+a. get mobius release
+b. get mobius driver and dependencies
+
+mobius has a command called sparkclr-submit.cmd that does the equivalent as its spark counterpart
+
+Demo
+--
+DataFrame can be used to load data from a SQL source, etc.
+Can also read from JSON, Cassandra, etc.
+
+Mobius & Spark
+--
+Driver (SparkContext) -> Workers (SparkExecutor, SparkExecutor, etc.)
+C# Driver talks to SparkContext using IPC/Sockets
+SparkContext and Executors are in JVM
+C# Driver is in CLR
+On worker side, C# workers live in CLR, speak to Executors using IPC
+recommended to use the DataFrame API so you can go outside of JVM execution (eg. done when using R, etc.)
+Mobius can be used with any existing Spark cluster, in windows & linux
+
+Mobius in Linux
+--
+using mono
+
+Kafka Message Processing in Mobius using DStream
+
+https://github.com/Microsoft/Mobius
+MIT License
+SparkCLR on StackOverflow
+@MobiusForSpark
+http://gitter.im/Microsoft/Mobius
+
+Project Status
+--
+upcoming
+  spark 1.6.2
+  spark 2.0.0
+
+wip
+  interactive scenarios
+  exploration for ML scenarios
+  idiomatic F# API
+  support for .net core
+

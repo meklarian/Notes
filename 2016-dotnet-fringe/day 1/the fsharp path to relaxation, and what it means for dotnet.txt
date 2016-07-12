@@ -1,0 +1,159 @@
+the f# path to relaxation, and what it means for .net
+language design, community, openness, independence, and what it all means for .net
+don syme
+
+F# open sourced in 2010
+in some way, F# has been an interesting thing at microsoft
+had to do things a year or two earlier in the F# world
+
+2010 - open source (in legal sense, apache 2.0 license) - we could sense that to be credible as a language (in 2010, even), you just had to be open source. management kind of knew that, and microsoft waren't ready for that, but for F# they allowed it
+
+2016 - to be credible, you have to have certain kinds of characteristics, and now the whole runtime stack is out there as well.
+
+F# has also been an accidental thought leader in language design, but also in the community
+
+a gentle stroll through the land of language design and delivery
+--
+a starting position
+the great disputes of computer science should be struggled with
+they are chances to make a better simpler more relaxed world as much as creating opposing camps
+
+we shouldn't just take a side and shout at each other
+we should realy work with things, what we do- find a synthesis
+
+not a new idea (ex from philosophy)
+--
+contradictions
+thesis <--> antithesis
+---> change
+Synthesis
+
+(need source - ED)
+
+what do we get out of all of this
+--
+relaxation (slide of hyde park in london)
+
+slide: mustard watches - an integrated approach to time and food
+
+slide: [X <--> Y] -> ???
+slide: [functional <--> interop]
+
+there were efforts to bring other languages too: perl, python, mercury (??), etc.
+
+back then (2003) - functional languages were isolated, non-interoperable, using their own VMs, interop standards like C-calls, COM, CORbA, XML were a mess for language-integration
+certainly this wasn't good for language-level interoperability
+
+the F# approach - embrace industry-standard runtime layers, and influence them. keep exosystem at an appropriate distance. design with end-to-end interop in mind. compromise where needed.
+design of generics was done to support java like languages, ML, forth, C# in mind
+a tricky tension of how close the language gets to the runtime system (closures, etc.)
+we're willing to redesign languages with interop in mind
+
+relaxation achieved, 200%
+--
+a path followed by scala, swift, and now many others
+today's FP languages are immensely interoperable while staying true to FP principles
+F# type providers raise interop to a completely new level
+** some tensions remain - not all functional techniques are easily implemented on industry standard VMs
+
+then (2003)
+--
+in the 1990s, functional languages were historically anti-OO
+even today any mention of objects gives some people an "urghhhh" reaction
+modern compiler implementation with standard ML, chapter 14, object oriented programming: "object - to express a dislike or distaste for something"
+
+F# - Objects + Functional
+
+type Vector2D (dx:double, dy:double) 
+let ...
+let ...
+
+F# appraoch is to embrace objects, make them fit with the expression-oriented typed functional paradigm, especially for interop and software engineering purposes, but not embrace full "object-orientation"
+
+slide: Functional X Objects, feature grid
+HM Type Inference, Method Overloading, Currying, edge cases.
+
+a functional first approach makes sense in practice
+
+
+an analysis (simon cousins, energy sector)
+--
+350,000 lines of C# OO by offshore team, 8 devs
+30,000 lines of robust F#, with parallelism and more features, 3 devs
+
+2000+ try/catch in C#
+9 in F#
+
+zero bugs in deployed system
+
+"F# is the safe choice for this project, any other choice is too risky" - simon cousins
+
+[pattern matching <--> abstractions] etc.
+
+cultural and community themes
+--
+[enterprise <--> openness]
+
+TL;DR - where we are now
+--
+F# is open cross platform neutral independent
+the F# language is accepting contribs
+fsharp.org
+xamarin provides F# tools for android and iOS
+F# tools are MS' pro tools for windows and azure
+etc...
+
+F# 4.1 being finalized
+F# power tools
+Fable F# to JS
+Akka.net
+Paket - dependency manager
+mbrace
+
+enterprise quality + openness + community + tooling + ecosystem + evolution path = goodness
+
+[dependence <--> independence]
+a fascinating thing for .net at the moment
+
+the genesis of the F# software foundation, 2014
+.net is at a similar juncture, we all know it
+the lesson from F# is that the solution is not just technical, but social
+
+the principles of founding the FSSF
+--
+open worldwide free membership social media education focus
+every base tech needs a social org that acts in its interests
+companies struggle to provide a voice strong enough for a base tech today. they can contrib but won't succeed alone
+let's shift F# to where we want to be, not where we are
+let's embrace both commercial and non-comm.. be a DMZ
+let's solve our weaknesses (eg cross-platform, open-source). if we're not perfecting XYZ, work on it. it's painful, but do it.
+self-consistency and an empowered user base are more valuable than sh???? (short?) size in the long run
+
+memetic independence
+--
+when a tech can be virally communicated as an idea independently of other techs, associations, or vested interests
+
+does VB have MI? no, can't talk about it independently of MS
+does F# have? yes
+do .NET and C# have memetic independence? your challenge
+
+warning signs
+--
+when searching for .net/c#/f# lead you straight to one company?
+does the first sentence begin with: is it a java clone?
+got to make this thing spread independently of its relationship to its parent founder
+are all major comm contributors MVPs from one company?
+have to be broader
+everyone giving talks or attending is using windows or VS
+when inspirational upstack frameworks and languages are upstack (??) encouraged
+
+the great challenge for .net, C#, F#
+--
+social independence, memetic independence, enterprise ready contribution = goodness
+
+in conclusion
+--
+synthesis from contradiction is at the heart of what we do
+opposites come in all shapes and flavours
+relaxation can be achieved
+

@@ -1,0 +1,83 @@
+.NET Performance Testing with NBench
+aaron stannard
+CEO, Petabridge, Founder NBench (and also akka.net? - ED)
+
+performance testing historically has been hard to do
+  requires understanding how your application works at a low level
+
+a performance story
+--
+akka.net
+slide: akka.remote performance over time
+  in 12/2015 someone checked in a change that made performance suffer
+how quick is akka.remote
+
+defensive programming
+--
+no sudden negative changes
+memory consumption
+  on a mobile device, memory is at a premium
+total throughput
+garbage collection overhead
+  if you have a lot of g2 gc and you're not using server gc, this can cause big pauses (20s+)
+I/O
+# of network calls
+shared resource contention
+
+performance lifecycle management
+--
+determining performance constraints 
+  -> identify performance critical path
+  -> set targets
+  -> measure against target
+  -> update performance history
+    (having a single source of truth in performance history allows developers to contribute to the conversation with a common benchmark)
+
+where nbench belongs
+--
+nbench belongs in this area:
+  -> measure against target
+  -> update performance history
+
+performance testing is hard
+--
+why performance testing is hard
+  os unpredictability
+    scheduling
+    virtual memory
+      (if you use a benchmark that consumes a lot of virt memory, stuff will start getting paged to disk)
+    other processes
+  hardware variability
+    cache pinning
+    CISC optimizations
+  runtime & dependencies
+    GC
+    JIT
+    Downstream changes
+  Metrics
+    platform dependencies
+    instrumentation challenges
+  difficult to design isolated tests    
+
+NBench Features
+--
+feels just like writing a unit test
+writes output to files
+reliable, believeable data
+fast
+configurable
+extensible
+OSS (apache 2)
+
+demo
+--
+nbench has run modes, iteration counts, test modes
+  speaker recommends prime numbers for iteration counts to avoid triggering CPU optimizations like intel's even-numbered pipelining
+nbench uses attributions to label tests
+  PerfBenchmarkAttribute
+  MemoryMeasurementAttribute
+    MemoryMetric, with Constraints bounded by ByteConstants, etc.
+  CounterMeasurementAttribute
+  GcMeasurementAttribute
+output from NBench is a markdown file
+  speaker uses sublime text to read the output formatted

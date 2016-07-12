@@ -1,0 +1,28 @@
+creating full dynamic sites in no time
+chris holt
+
+DSL for generating sites
+
+Suave (like Nancy, but for F#)
+
+lethandedgoat/genit
+
+html views
+routes
+form types
+validation
+domain types
+mapping
+fake data gen
+data access
+sql, ddl
+postgres and sql
+dashboard
+api
+register
+load tester
+ui tests
+unit tests
+api integration tests
+1-many / many-many relationships
+

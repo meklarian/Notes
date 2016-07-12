@@ -1,0 +1,211 @@
+agile experiments in machine learning
+
+why this talk?
+machine learning competition as a team
+
+team work requires process
+code, but "subtly different"
+statically typed functional programming with F#
+
+repo
+Kaggle.homedepot
+
+team & results:
+jamie dixon
+@jamie_dixon
+taylor wood
+@squeekeeper
+
+final ranking, 122/2125
+
+the question
+search "6 inch damper" -> result "battic door energy conservation products premium 6" back draft damper"
+is the recommendation any good?
+
+the data
+<result,<query>,<score>
+
+the problem
+given a search, and the product that was recommended
+
+predict how relevant the recommendation is
+rated from terrible (1.0) to awesome (3.0
+
+70,000 training examples
+20,000 search + product to predict
+smallest RMSE* wins
+3 months
+
+RMSE - average distance between correct and predicted values
+
+machine learning - experiments in code
+
+an obvious solution:
+
+type Observation = { Search: string, Product: string }
+let predict (obs:Observation) = 2.0
+
+code, but
+--
+domain is trivial
+no obvious tests to write
+correctness is (mostly) unimportant
+/ what are we trying to do here? /
+
+we will change the function predict,
+over and over and over again
+
+trying to be creative and come up with a predict function that fits the data better
+
+observation
+--
+single feature
+never complete, no binary test
+many experiments
+possibly in parallel
+no "correct model"
+
+experiments
+----
+we care about "something" (the phenomena)
+
+what we want
+--
+observation -> model -> prediction
+
+what we really mean
+--
+observation « x,y,z » -> model « f(x,y,z) » -> prediction « C »
+
+we formulate a model
+
+what we have
+--
+observation -> result
+observation -> result
+observation -> result
+observation -> result
+etc.
+a collection of observations and result
+and we take this data and calibrate it (we calibrate the model)
+
+niels bohr - "prediction is very difficult, especially if it's about the future"
+
+if you're a physicist, the fact is if you have a model, it isn't good until you can predict the future, even if you are certain about the past
+
+we validate the model
+--
+... which becomes the "current best truth"
+
+overall process
+--
+formulate model -> calibrate model -> validate model
+
+formulate: this is how i think the world works
+calibrate: if i get these inputs, this is the output the model should get
+
+ML: experiments in code
+--
+formulate model: features (eg, i think the length matters, the # of char matters, etc.)
+calibrate model: learn (these input numbers correlate to these outputs)
+validate model: crossvalidate (reserve some of the dataset on the side and see if it matches the input)
+
+recap
+--
+traditional software: incrementally build solutions by completing discrete features
+machine learning: create experiments hoping to improve a predictor
+traditional process likely inadequate
+
+practice
+----
+
+how does it look?
+--
+// load data
+
+// extract features as vectors
+
+// use some algorithm to learn
+
+// check how good/bad the model does
+
+what are the problems
+--
+how to track problems
+how to extract features
+how to add value
+
+to avoid waste, build flexibility where there is volatility
+
+use types to represent what we are doing
+automate everything that doesn't change
+
+Core Model
+--
+
+type Observation = {
+	Search: string
+	Product: string
+}
+type Relevance = float
+type Predictor = Observation -> Relevance
+type Feature = Observation -> float
+type Example = Relevance & Observation
+
+type Model = Feature []
+type Learning = Model -> Example [] -> Predictor
+
+"Catalog of Features"
+--
+
+let ``search length`` : Feature =
+	fun obs -> obs.Search.Length |> float
+let ``product title length`` : Feature = 
+	fun obs -> obs.Product.Length |> float
+let ``matching words`` : Feature = 
+	fun obs ->
+		let w1 = obs.Search.Split ' ' |> set
+		let w2 = obs.Product.Split ' ' |> set
+		Set.intersect w1 w2 |> Set.count |> float
+
+Experiments
+--
+// shared/common data loading code...
+let model = [|
+	``search length``
+	``product title length``
+	``matching words``
+	|]
+
+let predictor = RandomForest.regression model train
+let quality = evaluate predictor validation
+
+Conceptual Graph / Flow
+--
+Shared / Reuseable Parts: Features (1..N) x Algorithms (1..N)
+
+Data -> Features {1..N} -> Algorithsm {1..N} -> Validation
+
+Recap
+--
+F# types to model domain with common language across scripts
+separate code elements by role to enable focusing on high value activity, the creation of features
+
+General / Summary
+--
+don't be religious about process
+why do you follow a process?
+identify where you waste energy
+build flexibility around volatility
+automate the repeatable parts
+
+Statically Typed Functional Application
+--
+super clean scripts / data pipelines
+types help define clear domain models
+types prevent dumb mistakes
+
+@brandewinder
+jamessdixon/Kaggle.HomeDepot
+mathias-brandewinder/Atropos
+

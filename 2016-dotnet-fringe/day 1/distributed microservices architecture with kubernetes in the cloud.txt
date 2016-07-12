@@ -1,0 +1,138 @@
+distributed microservices architecture with kubernetes in the cloud
+alena hall
+
+solution architect, master in CS
+
+
+talk about modern flexible architectures
+look at kubernetes
+create a real cluster in the cloud
+examples in F#, etc.
+
+what is an ideal architecture
+--
+there is no ideal architecture
+things either change or fail all the time
+we should just be ready for failure and deal with it
+
+flexible architecture
+--
+good soc in business logic code
+quick adaptation to changes
+automated CI, CD, immutable infrastructure
+no obstacles for frequent deployments
+
+in between code?
+--
+scaling
+service discovery
+etc.
+
+kubernetes
+--
+kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications
+
+primitives in kubernetes
+--
+node - worker machine in kubernetes'
+  contains services to run pods
+    can support docker
+    or kublet
+pod
+  smallest compute unit that can be operated
+  contains 1 or more containers
+container
+  share an ip address
+  explore each other via localhost
+  share port space
+  share volumes
+  if in different pods, can't use IPC
+
+pods are ephemeral, non-durable
+
+what can we do?
+--
+deploy pods
+  can be done manually
+  simply runs containers in itself from within a node
+replication controller
+  great solution for high availability
+  can automatically replace pods that fail or are migrated
+replica sets
+  label that can be attached to a primitive
+  quality based or set based
+    search on label based on equality rules
+    set based operations find nodes by logical operators
+deployments
+  when you need a more flexible primitive for groups of things
+  ex. deployment of 3 replica sets for a version of a container
+    container gets updated
+    version increases
+    just add it to the configuration (kubectl)
+      kubernetes picks up the change and it will migrate them by failover rules (rolling updates)
+  can undo deployments
+  or check histories
+you can use the canary pattern
+  test deployments in parallel with stable deployments
+  send traffic to both versions, then upgrade labels to promote to prod
+services
+  abstraction that allows a replica set to provide functionality to another replica set
+  logical set of pods and how to access them (can be considered a microservice / boundary)
+jobs
+  can terminate pods when done with work
+secrets
+  can store passwords and keys in a safe way
+
+you don't have to use hadoop if you only have 2gb
+but if you want to go a full scalable system with parts that are hard to manage, you can use kubernetes
+doesn't solve lack of ci
+doesn't solve bad service boundary design
+
+cluster in the cloud
+--
+first things
+define zone, region, size, number of nodes (AWS)
+
+tools
+--
+https://github.com/fsprojects/projectscaffold.git
+paket
+
+step 1
+--
+containerize
+
+step 2
+--
+prepare kubernetes replication controller configuration
+set name, replicas, docker images, etc.
+we can scale from 1 to 3 to as many as we can support
+
+kubectl create -f fs.vaml 
+> reports: replicationcontroller "fsharp-service" created
+
+step 3 (???)
+
+step 4
+--
+prepare kubernetes service configuration
+set internal/external ports
+
+step 5
+--
+deploy F# service
+
+example:
+cassandra RC and service
+F# RC and service
+client
+
+what can we do next
+--
+add secret management (for pws)
+add deployments with replica sets for flexible rolling updates, rollbacks, canaries
+define jobs to manage CI like stuff
+add services for data analysis
+
+@lenadroid
+lenokhall@gmail.com

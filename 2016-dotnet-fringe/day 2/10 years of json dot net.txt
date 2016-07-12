@@ -1,0 +1,60 @@
+10 years of json dot net
+james newton-king
+
+it's been 10 years since the first release of json.net
+looking back over what can be done to make open source enjoyable and healthy
+
+initially started as backend support for an asp.net web form control
+needed a way to retrieve data from the server for the js-based control
+initially used xml as data format and transport
+  discovered it was verbose and kind of slow
+learned about javascript object literals
+  but then found js literal tricky to write on the page from asp.net
+
+initially thought of open source as something that you write once and then move on
+but changed when he moved source code to codeplex
+codeplex offered issue tracking, source code, feature requests
+and he discovered that a community had sprung up around json.net
+
+lots has changed since then for opensource and .net
+  github - code contributions, distributed source control
+  nuget - seeing your project be used, getting downloads and stats
+  techempower - drive to be better/faster, benchmark comparisons
+  twitter - being told you're doing it wrong, social networking (crowd laughs - ED)
+
+how can we increase the .net OSS community
+  grow the number of developers, will grow the number of contributors
+    slide: transition from a pie chart with a thin slice, to a larger pie with the same slice %
+  increase the % of people involved in open source
+    slide: transition from a pie chart with a thin slice, to a pie with a larger slice %
+  ms has also started putting resources into nuget and github
+  tooling is cheap/free now with vs code and vs community edition
+
+editorial
+  would like to see codeplex sunset
+    should move to github
+    stop new projects
+    codeplex is like google+
+      you can send party invites, don't expect anyone to show up
+    automatically redirect visitors to github
+    future: read-only
+  would like to change the microsoft MVP program
+    traditionally given to, well, loud people (people who wrote books, blogs, etc.)
+    but there's really no such thing as a MVP in open source
+    scott hanselman introduced the idea of an open source MVP
+    could be a place to highlight significant .NET open source contributions
+     e.g. Ben Adams - increased Kestrel performance by X million requests/sec
+          Jon Hanna - top 5 contributor to .net core fx
+  integration between sites
+    on nuget page
+      show stack overflow questions or tally
+      github repo information
+    "sometimes the only way to determine if a package is good or not is by its download count" (paraphrased - ED)
+  integration in visual studio
+    right click on an assembly
+      open in stackoverflow
+      open in github
+      open in slack (chatroom)
+      with .net core, potentially: clone project
+        being able to edit locally in one motion and fix bugs may lead to making it easier to get more bugs fixed upstream
+

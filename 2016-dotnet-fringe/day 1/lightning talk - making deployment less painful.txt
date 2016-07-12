@@ -1,0 +1,30 @@
+making deployment less painful
+matthew goleck - procore (construction software)
+@slodack
+
+http://slides.com/matthewglodack/deck
+
+WPF app
+
+used to ship slowly: ~6 times in 8 months
+
+retrospective into why:
+workflow interruptions
+installer was bad
+extremely painful to be bottlenecked by the installer
+unable to get fast feedback from customers
+
+investigate a background installer
+
+found out an installer called squirrel, does background updates
+
+decision: do we build our own?
+
+result: we did
+
+called: bobcat
+
+two key things: improved customer experience, developer process was a lot nicer
+made shipping part of the developer workflow
+
+not open source yet but will be by the end of the Q

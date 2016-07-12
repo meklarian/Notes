@@ -1,0 +1,26 @@
+vanquish legacy code in 5 minutes flat
+robert reppel
+@robertreppel
+
+director of engineering, adaptech solutions
+
+legacy code is a mixture of many different creatures
+slide: raccoon - pigeon - cat
+
+legacy code:
+publish
+freeze
+move on
+http://adaptechsolutions.ca/using-events-to-leveerage-legacy-system-investments
+
+ad-hoc rule for bad design: no more than 4 boxes and 6 arrows per diagram, otherwise you should sniff for separation of concerns issues
+
+bounded contexts
+anti-corruptions
+
+http://adaptechsolutions.ca/blog
+http://dddcommunity.org
+http://zibrando.blogspot.com/2013/11/introducing-event-storming.html
+
+what changes together should be developed managed and deployed together by the same team
+

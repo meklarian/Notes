@@ -1,0 +1,112 @@
+the F#orce awakens (warning, contains some spoilers)
+evelina gabasova
+@evelgab
+
+background
+researcher, ml person, works with cancer data helping biologists to work with their data in cambridge UK
+in her free time, likes to play with some more interesting data
+montage: .net fringe the F#orce awakens as a starwars movie intro
+
+searched for data sources on starwars
+found quite a lot of scripts for movies
+  ex. the script for the force awakens was available quickly after release
+
+movie scripts are quite well formalized
+  scenes
+  lines
+  who speaks to whom, etc
+relationships of who speaks to who can be used to form social networks (graphs - ED)
+initially started with regular expressions
+  finds regexes to be write-only
+  thought maybe more F# methods could be applied
+would be nice to split each scene into items, rows
+and then do pattern matching
+  if it's a scene title, do something
+  if it's a name, do something else
+  etc.
+the great thing in F# is you can do this using Active Pattern
+Pattern Matching against anything
+hide the complexity behind readable code
+expose complexity with abstractions in active pattern
+
+but there are caveats
+some scripts are formatted strangely
+but then found other bugs
+like OCR inputted text (TlON MEDON? TION MEDON?, note the lowercase L)
+some of the characters were also missing
+  like R2-D2
+    line: Artoo frantically beeps something
+  chebacca barks a comment
+    "han - boy you said it, chewie"
+    speaker: "no, you didn't" (audience laughs - ED)
+
+number of common mentions -> number of character appearances
+
+some characters didn't make it into the social network (ewoks)
+some characters appear but don't say a work (luke at the end of the force awakens)
+
+if you are dealing with data, you can expect the most time processing the data
+
+theorem: there is an API for everything
+proof: swapi.co
+
+but the data and examples for swapi.co are not very great (vanilla C# centric - ED)
+
+Type Providers allow you to get typed access to data providers (supports json, sql, etc)
+// http://swapi.co/api/people/1
+
+type Person = JsonProvider<"http://swapi.co/api/people/1/">
+let getPerson id = Person.Load ("http://swapi.co/api/people/" + string id)
+
+let p = getPerson 1
+> demo: presenter types "p." and notes that autocomplete brings up all the attributes
+> demo: presenter showing this running in emacs (!!)
+> demo: presenter noting entire api support in F# was just 67 lines
+> demo: presenter showing some stats using the api, such as average height (ref: scene where leia is being rescued by luke in stormtrooper disguise "aren't you a bit short for a stormtrooper"; answer: yes.) and eye color pivot
+
+F# to JS compiler (FABLE)
+  can get breakpoints and debugging
+    emits sourcemaps
+> demo: social network graph in browser
+> demo: graphs for specific movies
+
+caption: network structure, how do the networks differ
+slide: characters in essential scenes
+slide: density of graph
+slide: clustering coefficient - measure of interactivity between neighbor nodes
+slide: degree, betweenness - measure of how much a character connects two different sub-networks
+
+R
+library(igraph)
+let b = R.betweenness(network)
+
+F#
+open RProvider.igraph
+let b = R.betweenness(network)
+
+slide: centrality (Poe, Finn, Han, Chewbacca, BB-8), betweenness (Poe, Kylo Ren, Rey, BB-8, Finn)
+
+who is the most important character in the galaxy
+before episode 7: obi-wan kenobi
+after episode 7: darth vader
+
+network analysis in the real world
+@FSHARPORG
+  1. @dsyme
+  2. @VisualFSharp
+  3. @migueldeicaza
+  4. @tomaspetricek
+  5. @c4fsharp
+
+slide: a slide from a biology paper, showing bar-line plots of gene interaction betweenness, presenter notes that practicing star wars stats prepared her to understand network graph measurement in biological studies
+
+summary
+parsing scripts in a functional way
+polyglot data science
+type providers
+F# to js with fable
+network science
+having fun with interesting data
+
+evelinag.com/star-wars-talk
+github.com/evelinag

@@ -1,0 +1,51 @@
+state of open source in .net
+scott hanselman
+
+.net OSS timeline
+
+2001 - shared source "rotor"
+2004 - mono
+2008 - .net reference source
+2012 - ASP.NET Open Source TypeScript
+2014 - .NET foundation, .NET Core - Open Sourced, Roslyn
+2016 - (Today) .NET Core
+
+more contributors
+more users
+more options
+
+.NET Core > 8x faster than Node.js
+
+M/Requests/Sec
+.NET Core 5.2
+Java 2.4
+Go 1.8
+Node 0.6
+
+.NET Today - The family gets bigger
+
+.NET Framework, .NET Core, Xamarin
+.NET Standard Library
+
+Blogs from the Community
+Muhammad Rahjan Seed
+hisham
+Armen Shimoon
+thedatafarm.com
+F# for fun and profit
+Michael Whelan
+
+.NET OSS Growth
+
+It's all on GitHub
+
+AvaloniaUX / Perspex
+mBrace - image processing
+ImageProcessor - image processing
+ImageFlow
+OmniSharp
+Nancy
+Rider EAP
+
+PowerBI Stats on .NET / OSS
+

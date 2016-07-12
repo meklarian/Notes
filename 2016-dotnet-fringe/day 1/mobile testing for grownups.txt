@@ -1,0 +1,106 @@
+mobile testing for grownups
+alexandra marin
+@xmonodev
+http://crossplatform.io/
+
+background
+--
+software consultant based in bucharest
+remote worker
+cat video enthusiast
+xamarin certified mobile developer
+
+BDD
+--
+behavior driven development
+a collaboration tool
+sit down w/client and work together
+conversations to uncover assumptions between you and your client
+get to a common ground by discussing examples and using a language everyone can understand
+do you and your team future self a favor
+
+results
+--
+documentated features tied directly to your development and testing process
+concrete, executable, easy-to-repeat behavior embodied in automated tests
+
+to start: find out what the user wants
+--
+involve your users and ensure that you are developing functionality that they're actually going to want
+
+everybody contributes in defining the specs
+--
+don't hand your dev a sheet full of predefined requirements
+get them together with people from the business side
+
+functional specs
+--
+describe how the system should behave
+written from the user's point of view, in a step-by-step form
+serve as an entry point into the classic TDD cycle
+
+
+keep it implementation free
+--
+don't worry about the shape of the APIs just yet
+focus on behavior and specifications instead
+illustrate business rules with examples (and not jus the UI)
+
+Caption: BDD moves the focus to higher level purposes of the system & proving the product
+(don't worry, unit tests still happen, but only later in the process)
+
+acceptance testing
+----
+building block for BDD
+identify acceptance tests by specific features
+acceptance tests are executable specifications written in a domain specific language that describe how a user will interact with the app
+
+tests are written in a manner that mirror user stories created w/the client
+
+acceptance tests are written in the language of the business, while maintaining a connection to your implmented system
+if the tests pass, it means the system passes the requirements (defined by the user?)
+
+acceptance testing involves performing tests on the full s ystem
+have the requirements nailed before you begin coding
+
+the good
+--
+find bugs that unit tests can'ts, such as wiring/environment issues
+tests are described in plain english
+
+the bad
+--
+moved up another level on the testing pyramid
+tests touch more code
+bisecting an error can be mroe difficult
+
+dno't test small units of logic through the UI
+instead: test flows
+
+simulate UI ainteractions to provide some example of how your code is valuable to the user (have the rest of the tests at the class level w/unit testing)
+
+why do UI tests?
+--
+ui and requirements go hand in hand
+product is also ux, not just business logic
+device fragmentation: do you support the specific ui of the app? (android-specific screens)
+"it works on my device!" problem
+
+when?
+--
+continuous delivery
+automation of UI tests
+repeatable regreesion tests
+can drive UI development as well as (...??)
+
+ui tests vs unit tests
+--
+ui tests round out the test coverage
+use an environment that is closest to production
+ui tests don't care about system internals
+run on an iOS / android emulator or even better, on a real device
+
+Demo
+--
+using nunit, specflow, and xamarin.uitests
+using xamarin test recorder

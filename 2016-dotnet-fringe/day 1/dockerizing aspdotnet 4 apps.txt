@@ -1,0 +1,95 @@
+dockerizing asp.net 4.x apps
+anthony chu
+@nthonyChu
+
+docker and containers
+
+containers support existed in linux for a while
+docker made them accessible
+lightweight virtualization
+
+virtual machines mandate including copies of the guest OS
+containers abstract away the guest OS
+
+linux containers architecture
+--
+operating system (bottom) -> docker engine (talks to linux services) >> rest api -> docker client / compose / swarm / etc
+
+eliminate friction
+--
+separation of concerns between development and deployment
+
+dockerfile
+--
+base image
+install dependencies
+build application
+specify entry point
+
+continuous delivery pipeline
+--
+[docker hub (top) <- docker image] >>> dev / QA / Production
+
+that's linux but what about
+--
+webforms
+mvc, webapi, signalR
+dependencies that require full .net framework
+don't want to port to .net core?
+
+windows server containers
+--
+coming in windows server 2016
+current version is technical preview 5
+comes in 2 flavors: windows server, nano server
+native support for containers
+nano server: really stripped down version of windows that only supports .net core
+
+windows containers architecture
+--
+operating system (bottom) -> docker engine (port of linux version, nearly exact codebase) >> rest api -> docker client / compose / swarm / etc
+
+demo
+--
+docker images
+> displays images
+docker run --rm -it windowsservercore cmd
+> launches interactive session with windowsservercore, launches cmd and connects
+
+demo shows job ids connected inside the container, but container can't see outside
+
+asp.net in containers
+--
+asp.net core (.net core): linux, windows, nano server
+asp.net core (full framework): linux (mono), windows
+web api, signalr (owin self-host): windows
+webforms, mvc 5 (iis): windows
+
+so.. what's the point of all this
+----
+
+docker all the things
+--
+manage and deploy everything with docker
+run multiple .net versions on the same machine
+no more intsalling dependencies on servers
+
+mixed linux/windows clusters
+--
+docker swarm can manage a cluster that has some linux and some windows nodes
+can give windows containers to docker swarm and it will know to provision them to windows machines
+
+summary
+--
+docker and containers are a big deal
+dockerize all asp.net applications
+windows server containers coming 2nd half 2016
+manage linux/windows containers with the same tools
+
+next steps
+--
+try windows server 2016
+azure container services windows private preview
+http://aka.ms/containers
+http://anthonychu.ca
+

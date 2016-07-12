@@ -1,0 +1,20 @@
+giving back: your first pull request
+ben hyrman & david glick
+
+if you haven't done one already
+you will soon
+everything is open source now
+want to give a talk to let people know it's not scary
+
+example
+--
+dave is a maintainer for WYAM
+  static site generated (like jekyll)
+reason to talk about PRs is that his first sub to WYAM was a documentation PR
+
+how does a PR work?
+--
+displaying: github for WYAM
+fork the repo
+make edits
+submit pull request

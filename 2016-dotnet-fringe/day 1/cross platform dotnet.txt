@@ -1,0 +1,39 @@
+cross platform .net
+welcome to the new age!
+
+Julie Lerman
+thedatafarm.com
+github.com/julielerman
+@julielerman
+
+setup instructions at docs.microsoft.com
+
+no slides
+
+bit.ly/efcoreroadmap
+
+github.com/aspnet/EntityFramework/wiki/Roadmap
+
+make a new web project
+--
+dotnet new -t web
+
+.net core made in electron
+totally cross platform
+
+new entity framework .net Core CLI Commands api
+dotnet ef [command] --help
+
+dbcontext scaffold allows you to build from an existing database
+ef migrations -> read model, instruct how database needs to change
+
+dotnet ef migrations add init
+
+no more implicit magic: need to explicitly provide database locations
+
+datagrip - new cross platform tool from jetbrains, lets users work w/many databases
+
+can source control migrations (creates migration classes)
+
+new in-memory provider for EF (useful for mocking and testing!)
+from slack: https://github.com/tamasflamich/effort

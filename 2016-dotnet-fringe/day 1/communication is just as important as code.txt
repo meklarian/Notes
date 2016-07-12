@@ -1,0 +1,122 @@
+Communication is just as important as code
+bit.ly/comm-code
+corgibytes
+@andreagoulet
+
+background as a marketer, learned programming after partnership at corgibytes
+
+gave a lightning talk on polyglot development: here's another language you can learn >> English
+
+on having skills: need to bridge being technical with the non-technical
+
+what is communication?
+--
+the first thing to know is that it is rooted in empathy
+empathy: developed by listening and understanding, applied by perspective-taking
+a thing you have acquired after you have listened and truly understood where someobody else is coming from
+being able to take the perspective of what myself, the people contributing to this project, we all need to be successful [5+ years from now]
+empathy is a skill we can learn
+
+another aspect, as events
+--
+axes:
+synchronous ---- asynchronous
+obvious ---- not obvious
+
+obvious x synchronous
+meetings, video calls, screenhero, phone calls
+
+obvious x asynchronous
+email, twitter, texts, stack overflow
+
+centrist
+slack
+
+synchronous x not obvious
+chit chat, eye contact, body language, punctuality
+
+asynchrnous x not obvious
+commit messages - document your code, your idea
+naming
+scenarios & tests
+timesheets - as a business owner, we send our clients a report list of how much effort has been done per task and our commentary
+PR comments - opportunity to describe our thinking
+error messages
+(source comments? - ED)
+
+Communication - the artifacts of your ideas
+
+Legacy Code - Code without Communication Artifacts
+the reason legacy code is hard to work with is because there's no communication artifacts, no documentation, clutter, a mess, etc.
+michael feathers defines legacy code as code without tests; this is kind of polarizing > gets into the debate of do we need to test vs not test, do we need 100% coverage, etc.
+ex. like an archaeology - trying to get context (resurface context)
+eg. bones, you can learn a lot about a culture from a culture
+but also things like pottery, coins, foundations of buildings, writing
+it is the combination of all of these artifacts that gives people insight into how the world was lived/worked in
+
+why this *&*^ matters
+--
+if you want to level up your career, you need to learn how to communicate
+if you want to be a CTO someday, you need to be able to communicate about the strategic direction of technology
+
+building trust
+--
+think of trust also as artifacts
+"trust as a marble jar" (needs citation, benet brown?) - teacher had a marble jar, when the class did well, a marble was placed in the jar, and when it got full, the class would have a pizza party
+you build trust just the same, over time and incrementally
+
+communication is essential if you want to have a culture where you are preventing fires instead of putting them out
+maxim at corgibytes: control the ???
+
+patterns & frameworks
+--
+"move slowly from one pattern to another" - joshua k???, something constantly moving towards
+
+context switching - the struggle is real
+marketing folks generally don't get it
+interruptions eat mental models
+(used example from inceptions)
+
+use inception levels to gauge interruptibility
+
+shattering glass - you'll be shocked how often you do this
+be less like ted, more like tina (how i met your mother?)
+in the show they talk about bad habits, and ted says "well actually"
+"well actually" annoys marketers as much as "hey got a sec" annoys us
+instead of saying "well actually" which is divisive
+instead, "yes, and"
+you can rephrase and get the same information across
+
+how not to sound like a jerk
+kim scott:
+care personally (the give a damn axis) x challenge directly (how much am i willing to piss you off)
+
+ruinous empathy          | radical candor
+-----------------------------------------------
+manipulative insincerity | obnoxious aggression
+
+on how sheryl sandberg instructed kim scott to stop saying "um": "it makes you sound unauthoritive"
+
+radical candor: humble, helpful, immediate, private-> criticism, public -> praise, don't personalize (don't dissect character, only contribution)
+
+communication is a skill
+you can learn it
+i believe in you
+
+list of books:
+team of teams
+present! a techie's guide to public speaking
+bossypants
+essentiation
+thinking fast and slow
+daring greatly
+tongue fu!
+thanks for the feedback!
+
+andrea goulet
+@andreagoulet
+@corgibytes
+
+corgibytes.com
+legacycode.rocks
+empathy-driven-development.com

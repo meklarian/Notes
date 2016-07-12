@@ -1,0 +1,133 @@
+so you want to be a mobile app developer
+
+lori lalonde, solola solutions inc.
+@loriblalonde
+solola.ca
+westerndevs.com
+xamarin MVP
+MS MVP
+
+before you sit down to develop that first line of code, you need to consider the concern of publishing an app that can go to millions of personal devices
+
+initial startup costs
+--
+business registration
+equipment - dev machine, devices
+licenses - dev tools, graphics design, stock images
+accounting and legal fees
+
+reasons to incorporate
+--
+need to secure financing
+protect your personal liability
+leverage tax credits for business expenses
+participate in gov funding programs (where applicable - ED)
+
+app store accounts
+--
+apple: $99/usd/year individual
+google pay: $25/usd one time
+windows: $19/usd (one time) individual
+
+invest in devices
+--
+at least one low end test device for each supported platform
+test app performance, behaviors, touch capabilities, and appearances
+
+protect your investment
+--
+github
+tfs
+bitbucket
+
+the importance of an appealing UI
+--
+clean simple UI design
+use stock images / mobile app templates
+if possible, partner with a graphic designer
+
+the planning phase
+----
+
+define your mobile roadmap
+--
+what is your app really going to do?
+  main function
+  purpose of app
+target market
+suppoted languages
+
+choose a monetization strategy
+--
+paid
+freemium
+in-app purchases
+in-app advertising
+  doesn't really yield a big return
+
+is it just a portfolio item? or an investment to make money through the future
+
+analytics or bust?
+--
+analytics enable you to track
+  application usage
+  user demographics
+  crash reports
+
+hockeyapp
+crashlytics
+fabric
+etc.
+
+if your application...
+--
+collects personal information, including images, location tracking, device id
+uses 3rd party services, such as analytics, in-app advertising etc
+will be published to a public app store
+
+you MUST include a privacy policy
+
+how to obtain a privacy policy for your app
+--
+use an online privacy policy generator
+iubenda.com/en/mobile
+termsfeed.com/privacy-policy/generator
+consult laywer
+
+before you release the app to the store...
+----
+
+the importance of beta testers
+--
+searching for beta testers: betafamily.com
+deploying to beta testers: hockeyapp.net
+slide: keep calm and beta test
+
+master the art of marketing
+--
+reach out to technical blogs
+make use of social media
+tailor marketing to your target audience
+
+bit.ly/AmazonPitchPerfectBook
+Pitch Perfect - Erica Sadun, Steve Sande "the art of promoting your app on the web"
+
+user feedback and support
+--
+setup social media accounts
+include a support email link in app
+setup an online portal to enable feedback and support (UserVoice, Fresh Desk)
+
+schedule maintenance releases
+--
+address critical bugs
+opportunity to include popular feature requests
+updates appear as notifications, reminding users about your app
+
+even if you have nothing to fix, add something new, do something, push out a maintenance release to remind users that you are working on it and that your app exists
+
+@lorilalonde
+solola.ca
+bit.ly/LI-Lorilalonde
+westerndevs.com
+@westerdevs

@@ -1,0 +1,73 @@
+getting productive with fsharp open source tooling
+krzysztof cieslak
+@k_cieslak
+https://github.com/krzysztof-cieslak
+http://kcieslak.io
+http://lambdafactory.io
+
+what i'm going to talk about
+--
+dependency management
+building process - on complex build processes including testing deployment etc.
+project scaffolding
+editor tooling
+
+paket
+--
+alternative nuget client (and more)
+solution level version resolution
+no package version in folder path
+transitive dependency
+WHEN conditions
+Grups support
+
+github dependencies
+http dependencies
+git support
+building dependencies from source
+
+fake
+--
+build automation system
+DSL for build
+helpers for everything in .net space
+mature tool (over 5 yrs old)
+
+who is using fake
+--
+akka.net
+octokit.net
+elasticsearch.net
+math.net numerics
+almost all F# OSS projects (community standard)
+
+forge
+--
+creating new projects
+modifying existing projects
+integration with paket and FAKE
+
+ionide
+--
+an atom editor and vscode plugin
+f# editing features
+f# interactive
+integration with paket fake and forge
+
+fsunit - template for nunit
+
+links
+--
+paket
+http://fsprojects.github.io/paket
+fake
+http://fsharp.github.io/FAKE
+forget
+https://github.com/fsprojects/forge
+ionide
+http://ionide.io
+F# foundation
+http://fsharp.org
+
+FP Programming slack
+http://fpchat.com
