@@ -1,0 +1,126 @@
+accessibility testing with aXe
+marcy sutton
+@marcysutton
+https://github.com/marcysutton
+
+senior front-end engineer, deque systems
+deque - accessibility only company
+
+slide: test automation (tony braxton gif)
+
+slide: accessibility (image of little boy raising hand, has prosthetic arm)
+caption: means everyone can use the web
+
+people with disabilities
+--
+visual: blind, low vision, color blind
+hearing: deaf, hard of hearing
+motor: spinal cord injury, MS, cerebral palsy, ALS
+cognitive: autism, learning, TBI, memory, attention
+
+accessbility & automated testing [sitting in a tree....]
+--
+test low-hanging fruit
+document accessibility intent
+prevent regressions
+get help from experts
+
+sidebar: speaker used to work on the angular material framework
+
+slide: WCAG & Section 508
+wcag is currently on 2.0
+
+the a11y testing situation
+--
+we can automate testing in browsers, but not assistive technologies (yet)
+best practices and development tools help here
+
+test low-hanging fruit
+----
+
+easy wins
+--
+use tools to help you find
+- lacking keyboard support
+- missing labels
+- invalid aria attributes
+- color contrast
+- and more!
+
+package: axe-core
+
+maintainer rules: 
+want to have a zero false positive rate, and avoid people filtering out things as noise. 
+want it to be lightweight and fast.
+can run it locally.
+run in all browsers, including mobile devices.
+  a lot of fixtures to catch common problems and errors
+
+what is axe-core
+--
+javascript library for accessibility testing
+engine powering browser extensions, test integrations
+a handy unit testing tool
+open source (on github)
+  there is an enterprise version too
+
+list of rules for running an audit
+  each rule is sourced to a line item from WCAG and Section 508
+ex. aria attributes, correct use of tabindex, etc.
+
+demo: axe in action, chrome extension
+item: checked npm site, and noted 44 violations for color contrast
+  accessibility is a continuum, not a checkbox. we should recognize that people need to work on it and accept that our users have disabilities.
+item: amazon.com
+  missing alt text, multiple ids, form elements missing labels, etc.
+
+caption: document accessibility intent _and_ prevent regressions /with test coverage/
+
+tools for the job
+--
+axe-core
+axe-webdriverjs
+
+axe-core API (2.0.5)
+--
+axe.a11yCheck(context, options, callback)
+axe.getRules(['wcag2a', 'section508', ...])
+axe.configure(options)
+axe.reset()
+axe.registerPlugin(plugin)
+axe.cleanup()
+
+slide: axe.a11yCheck
+example based on ref:https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axea11ycheck
+
+unit testing with axe-core
+--
+>> npm install axe-core --save-dev
+
+code> var axe = require('axe-core');
+code> ...
+
+ref: https://github.com/marcysutton/axe-jasmine-unit
+
+demo: automated test
+
+what is axe-webdriverjs?
+--
+an open source library that injects axe-core into selenium webdriver instances
+
+prefer end-to-end/integration tests with webdriver because of focus issues with phantomJS (detached dom elements can't receive focus)
+
+slide: integration testing with axe webdriver js
+
+ref: https://github.com/marcysutton/axe-webdriverjs-demo
+
+get help from experts
+----
+
+the axe team
+--
+dylan barrell
+wilco fiers
+ian kelly
+
+available on gitter
