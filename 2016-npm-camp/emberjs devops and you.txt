@@ -1,0 +1,88 @@
+ember.js devops and you
+iheanyi ekechukwu
+software engineer @ digitalocean
+@kwuchu
+https://github.com/iheanyi
+
+caption: defining devops: what exactly is devops?
+
+development + operations
+--
+devops is deploying
+devops is provisioning
+devops is versioning
+devops is complicated
+
+automation is key
+--
+the importance of automation
+since you can see what your code is going to do
+this can leave less room for human error
+
+caption: what do ember.js and devops have to do w/each other?
+
+caption: ember-cli-deploy plugins
+
+speaker: originally wrote a ember application to be able to use ember-cli
+
+an ember-cli-plugin can implement up to 11 hooks
+
+configure
+setup
+willdeploy
+willbuild
+etc.
+
+so, it doesn't just deploy
+
+ember cli can provision (in a clever way at the configure step)
+ember cli can build
+ember cli can deploy
+
+ember-cli-deploy
+
+speaker: suggested renaming to ember-cli-devops
+
+ref: https://ember-cli.com/
+
+demo: showing what it takes to deploy to a droplet (on digital ocean)
+
+ref: http://www.ember-fastboot.com/quickstart
+
+ref: https://www.npmjs.com/package/ember-cli-deploy-build
+
+demo item: showing hooking into npm, etc
+
+slide: problem: what if my droplet restarts and kills the fastboot server
+solution: create a fastboot upstart service on the droplet
+
+slide: problem: how do i get the application up and served to the user?
+solution: upload a custom NGINX config and restart everything
+
+slide: one small npm trick that makes building deploy plugins way easier
+solution: npm-link / symlink a package folder
+ref: https://docs.npmjs.com/cli/link
+
+slide: plugin limitations
+
+deploys limited to one droplet
+provisioning tasks get re-run unnecessarily
+no controlled release management
+need support for zero downtime deployment
+ssl support
+semantic versioning / semantic-release
+
+ref: https://github.com/ember-fastboot/fastboot
+
+what is the future of devops
+--
+docker
+docker + ember = ???
+
+credits:
+@tomdale
+@lukemelia
+@davidpett
+@digitalocean
+and others
+

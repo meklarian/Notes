@@ -1,0 +1,103 @@
+A tale of two front-end development environments: or how bend npm3 to your will
+kate hudson
+
+https://github.com/k88hudson
+https://twitter.com/k88hudson
+
+k88hudson, firefox engineering, mozilla
+
+background: cyclist
+
+using npm for javascript in the browser
+
+dependency management makes code dramatically more readable, sharable, maintainable, and stable
+
+npm originally made to support node
+now adopted to solve a lot of problems
+
+dependency management is really really hard to get right
+
+for any large system that adapts to an increasingly diverse set of users
+definitions of success become much more nuanced
+
+performance / reliability / intuitive design
+these things mean extremely different things to different people
+
+exercise: building an app (bike lane go)
+
+in node, we load resources from the file system
+  only has to be done once at startup
+  the cost of this is pretty minimal
+
+in browser, we load resources from the network
+
+browser constraints
+size, content of files matters
+number of http requests matters
+partial failures/slow connections possible
+
+module loaders for front end integration w/npm
+--
+webpack
+
+webpack supports require() (also async possible)
+
+instead of importing files at runtime, has a compile step that reorganizes into chunks run as needed
+
+slide: how big is the bundle?
+
+without webpack
+react.js: 687k (145k, minified)
+
+slide: bundle detective (image of scully)
+
+webpack --json
+outputs stats for all modules and dependency trees
+
+webpack-bundle-size-analyzer
+ref: https://github.com/robertknight/webpack-bundle-size-analyzer
+
+>> npm ls
+>> npm ls react
+showing dependency tree
+
+caption: why do duplicates happen?
+
+slide: npm 2, each package would install their own package
+A -> M1, B -> M1, C -> M1
+
+in npm3, packages get installed at the top level.
+
+A, B, C, M1 [referenced by A, B, C]
+
+>> npm dedupe
+can fix duplicated dependencies
+but can't fix fixed version dependency
+
+slide: hacks to the rescue
+
+1. override the resolve for react to point to the top level
+2. webpack --optimize-dedupe
+  searches the tree for duplicate files and takes them out
+
+slide: what about legacy systems?
+can we have dependency management without throwing everything out?
+
+the circumstances
+--
+you probably already have some way of loading modules
+you might have a vendor folder/files that are checked in to the repo
+it's big, monolithic, and gnarly in a bad way
+
+caption: hint-- don't rewrite it all at once
+
+caption: write a proxy for your module loader
+
+demo: rebundling with webpack
+
+export a Vendor object
+then import it in the legacy project as window.Vendor
+
+caption: these are just a few examples
+
+caption: it takes a lot of humility and experience to realize that your technical priorities are not the same as everyone else
