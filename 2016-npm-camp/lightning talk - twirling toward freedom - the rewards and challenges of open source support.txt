@@ -1,0 +1,68 @@
+﻿Twirling toward freedom: The rewards (and challenges) of open source support
+Steph Snopek & Kiera Manion-Fischer
+
+caption: twirling towards freedom | or: you don't know npm support
+
+@StephSnopek
+@Kmanion
+
+tech support
+- essential
+- challenging
+- rewarding
+
+tagline: npm install npm
+slide: homer simpson starting at -> to start, press any key, caption: "where's the any-key"
+
+npm support
+- emails
+- twitter
+- github
+- video calls (for enterprise customers)
+slide: homer simpson, nuclear plant is on fire
+
+where should you go when you need help?
+- so many options
+- can be confusing :(
+slide: homer simpson astronaut and escaped ants
+
+we are here to help!
+- support@npmjs.com
+- we will get back to you asap!
+- working hours:
+  mon-fri 9-5
+
+what's the issue?
+- 500 errors in the cli?
+- registry issue
+- https://github.com/npm/registry/issues
+- @npm_support
+
+- 400 errors in the cli?
+- https://github.com/npm/npm/issues
+- @npm_support
+
+- think there's an outage?
+- http://status.npmjs.org/
+- @npm_support
+
+- questions about using npm or docs
+- https://docs.npmjs.com
+- https://github.com/npm/docs
+- docs expert @ag_dubs
+
+need help with a specific package?
+- contact the authors
+- >> $ npm owner ls <package name>
+- 318,271 total packages
+
+not sure what to do?
+- email support@npmjs.com
+- we will connect you with the appropriate resource
+- there are no silly questions!
+slide: simpsons bill clinton: always twirling, twirling, twirling toward freedom
+
+thanks everyone!
+- npm <3s you
+slide: homer: can you repeat the part of the stuff where you do those two things?
+

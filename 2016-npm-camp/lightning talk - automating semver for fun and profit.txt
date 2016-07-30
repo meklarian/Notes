@@ -1,0 +1,81 @@
+﻿Automating SemVer for Fun and Profit: Tools and Practices to Make Releasing Easier
+Andrew Goode
+
+caption: fun?
+yes, open source is fun
+
+and profit?
+wel, kinda. this message applies to your dayjob too
+
+ok, i'm listening. how do i automate semver?
+
+3 words:
+structure commit messages
+
+structured commit messages? more work! this invades my creative space!
+
+first of all
+defer the structure until
+you're ready to merge
+
+the idea
+- stick with your witty everyday commit msgs
+  slide: commit msgs in github
+- push your changes
+- open pr and review
+- caption: sound familiar?
+- SQUASH AND MERGE
+- ADD STRUCTURE
+speaker: github added features to help promoting feature branches to your primary branches
+
+secondly
+structure is easy!
+
+feat:
+fix:
+breaking change
+(angular conventions / prefixes - symbols)
+
+example/slide: commit msg: feat: apply .env() globally (#553)
+
+that's it
+
+ok, so what?
+where does the "automating" part come in?
+
+enter standard-version
+
+before: -> npm version «something»
+(or worse, edit package.json by hand)
+you have to THINK about it AFTER changes have been made
+
+now: standard-version
+bump the semver version for you
+NO THOUGHT REQUIRED
+you already told it what to bump during merge
+when the changes were still fresh on your mind
+
+time to cut a release?
+let the commit history SPEAK FOR ITSELF
+ed: missed slide, standard-version can also update changelog
+
+you did the hard work upfront 
+with structured commit msgs
+let your commit history work for you
+no more changelong editing
+
+i like the sound of that. what was that tool again?
+standard-version
+
+ref: https://www.npmjs.com/package/standard-version
+slides: setting up standard-version with npm
+
+standard-version
+opinionated, local changes only
+
+for full automation, check out: semantic-release
+ref: https://www.npmjs.com/package/semantic-release-cli
+
+@nexdrew
+andrew@npmjs.com
+https://github.com/nexdrew
