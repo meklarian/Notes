@@ -1,0 +1,90 @@
+opening keynote
+issac z schlueter
+
+why this npm thing
+--
+back then, lots of interesting node stuff being done, but no easy way to share dependencies
+when everyone else pushes hard to move forward, the best thing to do is reduce friction
+small modules and semver are quite popular! the experiment has mostly worked!
+
+semver
+--
+not magic, not math
+still pretty good! shared vocabulary is useful!
+the semantics are inside you
+they were in you all along
+- numbers are just tokens, you assign the value
+
+small modules
+--
+not an original design goal of npm!
+just what happens when it's easy and possible to split a program up into pieces
+write a thing, why not publish it?
+if that's *a thing*, then it needs docs, and tests!
+
+the value of small modules is the value of modules
+reuse and parallel iteration
+hiding complexity
+code quality and isolation
+but no strategy is without tradeoffs
+
+npm got started when issac was looking to build a web framework in node, realized that a package manager was needed to pull in other units of work
+
+npm 2009-2013
+--
+2009-2013, npm community grew a lot
+my side project, help from a handful of others
+the infrastructure was donated generously by couchone, then iriscouch, then nodejitsu
+q4 2013, things melted down in a bad way
+
+why npm, inc.? what does it do? does it do things?? let's find out!
+--
+the problem was resources
+make a foundation?
+make npm a joyent thing?
+make a new company?
+
+(missed slide)
+
+the thing about exponential growth is that unexpected things are the norm
+humans are not built to handle the scope of exponential growth
+
+npm is here to help you make stuff with javascript
+the npm registry is a crucial part of modern oss
+
+slide: the spice must flow (graph of growth and some stats on growth)
+
+it's all about popular
+--
+over 4M human beings using npm
+if we hiccup, the internet gets very upset
+i've stopped being amazed by large numbers
+constant exposure to npm's graphs has broken me
+everyone uses npm for everything and it's awesome, but also never stops feeling weird to me
+
+why conference?
+--
+npm is mentioned at pretty much every js event
+frontend, backend, iot, all the things
+wanted an event focusing on our community
+mostly not wombats! (but some wombats)
+
+a few nice things
+--
+zeit.co: deploy your node programs easily
+greenkeeper: keep deps locked and up to date
+node security project: what it says on the tin
+bithound: code quality analytics
+hyperterm: a term using electron and npm
+thousands of things that don't fit here
+
+npm, inc.'s actual plans
+--
+keep working to make npm the obvious, trusted, essential tool for all web development
+let this community keep growing and building awesome new things
+support our customers and keep delivering value
+stay ahead of the exponential scaling curve
+
+the future is large
+fill it up with ideas
+have fun

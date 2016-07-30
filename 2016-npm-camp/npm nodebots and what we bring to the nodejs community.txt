@@ -1,0 +1,211 @@
+npm, nodebots, and What We Bring to the Node.JS Community
+
+Kassandra Perch
+
+background
+--
+from austin tx
+dev evangelist for auth0 (ask me about openid connect)
+EE student at ASU
+gender non-binary they/them pronouns
+i like robots, baseball, woodworking, sewing, bunch of other stuff
+has two cats
+
+slide: my father is getting back into robots w/me
+
+slide: and i have a love of javascript robotics (nodebots)
+
+slide: warning, mode community and people than robots in this talk
+
+nodebotanist's definition of community
+--
+anything, anyone that you interact w/is part of your community
+
+yes this include the following
+--
+your docs
+that jackass being mean on stack overflow
+etc.
+
+why do we code?
+--
+because if you want to bake an apple pie from scratch, you must first create the universe
+
+no but really
+--
+for work
+to learn
+for fun
+
+coding to learn
+--
+reverse engineering
+writing a hello world
+going a little deeper
+
+coding for fun
+--
+coding for the sake of building things
+just to push our own boundaries
+ed: missed line
+
+slide: i didn't have control over much as a kid, but i had control over rpg maker
+"i could make something that was mine"
+
+the inter-relation
+--
+coding for work keeps us paid so that we can build our communities for fun
+otherwise OSS as we know it wouldn't exist
+
+side projects
+--
+these are our fun coding projets-- "no real business value"
+
+or is that true?
+--
+preventing burnout
+bringing in new people
+encouraging curiosity
+
+quote: "And yet our species is young and curious and brave and shows much promise. In the last few millennia we have made the most astonishing and unexpected discoveries about the Cosmos and our place within it, explorations that are exhilarating to consider. They remind us that humans have evolved to wonder, that understanding is a joy, that knowledge is prerequisite to survival. I believe our future depends powerfully on how well we understand this Cosmos in which we float like a mote of dust in the morning sky."
+ref: https://en.wikiquote.org/wiki/Carl_Sagan
+
+caption: our very species needs these side projects, be they code or otherwise, to continue to thrive
+
+caption: but why code?
+
+code allows us to begin from almost nothing
+we can take a small cheap computer, and build an apple pie (or an entire cosmos) from scratch
+"we have to build the tools before we can build our programs"
+
+citation: aristophenes (sp?) measuring the earth to within a few % using only basic implements
+
+an aside on tropse
+--
+you do not have to code for fun to be a good programmer
+you are allowed to have other interests
+and no these don't have to include star wars
+for instance, i like baseball and woodworking
+
+caption: robotics
+
+we're moving in the same direction here
+cheaper boards, less to start, more to gain
+
+we're doing really cool things with nodebots
+
+demo: kinematic (term?) controlled robot using leap (citation?) controllers with nodebots
+
+caption: and the nodebots community, while not perfect, is diverse, respectful, and welcoming
+
+caption: npm represents a huge step forward
+"they're one of the most diverse companies i've ever seen. they work hard to be diverse."
+
+caption: Why? (why does all this matter?)
+
+caption: people are more important thatn code, and more important than robots
+
+and unfortunately, that's what has me the most optimistic and also the most cynical
+
+caption: cynicism: the library at alexandria
+ref/quote: https://books.google.com/books?id=EIqoiww1r9sC&pg=PT38&lpg=PT38&dq=sagan+quote+it+seems+probable+that+the+library+contained+half+a+million+volumes&source=bl&ots=Zy36XrSg7V&sig=s3aRPty4blzP50GU9N6aqKOJnXs&hl=en&sa=X&ved=0ahUKEwi205zn45vOAhUE3mMKHco2BbwQ6AEIHjAA
+
+we have the library, but we are lacking in our passion to fill it
+--
+node is still very poly-monocrhomatic
+go check out the inclusivity working group's github issues
+"well actually"s abound
+
+we are, in fact, disturbingly close to the fate of the library at alexandria
+--
+there's even infighting in nodebots
+trashing npm has become popular in some circles because this is high school
+aubergines
+
+a few notes on privilege
+--
+privilege is a spectrum, not a binary
+you are allowed to be upset over how you are treated, even if someone else has it worse
+you, as a victim, do not have to remain silent. and you aren ot alone.
+
+codes of conduct and the library
+--
+we create rules in our communities to allow people in
+we all make mistakes-- this is not about exile and shame, but about education and reform
+we only remove unrepentant and repeat infringers
+we need these rules because we do not all act like adults, and when we do, we will slip up.
+
+caption: we are not an angry mob, we are siomply asking for a frame work to ensure equal treatment and respect for all (ed: paraphrased, fast slide)
+
+the resistance to codes of conduct
+--
+if we lived in a perfect world, we wouldn't need these
+we also wouldn't need laws against murder and theft!
+i find the most resistance comes from the very people that don't need its protection
+
+"you should judge code/hardware, not people"
+--
+the intent is not to pass judgement on those who infringe, but to ensure that all attendees of an event, or participants of a community, are treated with diginity, fairness, and respect
+
+"you can't just exile people you don't like"
+--
+codes of conduct are about education, not exile. no one is perfect (including and especially myself) and this is recognized
+
+"you don't win allies by shouting/being angry"
+--
+yes, well, sitting by and doing nothing didn't really work, did it?
+without confronting predjudice, it will continue unabated
+
+the allegory between ancient science and today's communities
+--
+the problem then was that the rules prevented the study and spread of ideas
+today the lack of a rule system allows the oppression created by that former system to prevent the study and spread of ideas
+
+caption: optimisim: ionia
+ref: allegory https://en.wikipedia.org/wiki/Ionian_Enlightenment
+ed ref: http://www.goodreads.com/quotes/825794-for-thousands-of-years-humans-were-oppressed-as-some-of
+
+caption: i seriously happy-cry at what goes on at npm all the time
+
+a note on destroying your idols
+--
+we let way too many people get away with bad behavior because they wrote a library, or give sound technical advice. we need to start objectively viewing the behavior of a person with their technical output.
+
+quote: "What do you do when you are faced with several different gods each claiming the same territory?  The Babylonian Marduk and the Greek Zeus was each considered master of the sky and king of the gods.  You might decide that Marduk and Zeus were really the same.  You might also decide, since they had quite different attributes, that one of them was merely invented by the priests.  But if one, why not both?  And so it was that the great idea arose, the realization that there might be a way to know the world without the god hypothesis...."  --Cosmos p.175-176
+
+caption: "but i haven't seen this happen, so it must be ok"
+caption: "but this person/company who messed up does so many good things"
+caption: everything is not great, "meritocracy" is still a myth, and telling yourself any different is deterimental
+
+my ultimatum
+--
+we do not needh orrible people that happen to write good code in our communities. if we support everyone, and become ionia presiding over alexandria, the good code will follow.
+
+the spark of hope: johannes kepler
+--
+created the laws of planetary motion and began to discover the fundamental underpinnings of gravity
+was a light of sharing knowledge as nepotism (ed: missed line)
+
+you to can be kepler: call out the crap
+--
+yes it matters
+it can be private and simple
+yes it feels like screaming into the void
+
+what to do if you're called out on your crap
+--
+listen
+learn
+remember: it's criticism of your actions, not your character
+
+how else can i, a privileged person, help?
+--
+one of the most radical things you can do is to actually believe women when they talk about their experiences - anita sarkeesian
+that except extended to everyone from any marginalized group, especially if someone is confiding in you something that happened to them
+
+ref: broca's brain - carl sagan
+ref: the varieites of scientific experience - carl sagan
+
+@nodebotanist
+kassandra.perch@auth0.com
+

@@ -1,0 +1,43 @@
+panel: package managers, before and after npm
+Andre Arko, Bundler (panelist), Steve Klabnik, Cargo (panelist), Samuel Giddins, CocoaPods (panelist), Ashley Williams, npm (moderator)
+
+ref: cargo (rust) https://crates.io/
+
+how is it that you define the problem of dependency management, and what are the values taken from it in creating the ecosystem around it?
+
+steve: got cargo done before 1.0, got a lot of libraries out of the language and into the package system
+
+andre: rubygems is quite different (apologizes for past mistakes), rubygems predates everything else here, started in 2003 and it basically happened because ruby already existed and there were already 100s and 1000s of people actively developing on ruby and it was kind of the easiest and smallest amount of work that would let people share work easily. it didn't last long before it was no longer reliable enough to serve the needs of everyone. it seems interesting that package managers
+
+sam: it turns out when you have an existing community of users, they care a lot more about keeping their stuff working... i just had to toughen up and get used to it. the way cocoapods was designed, people in the apple ecosystem are reticent to use things not blessed by apple. so the first design decision of cocoapods was to make it possible to build packages outside of the pacaging source. so you could have cocoapods whose specs and metadata is maintained by people that didn't write the library, so that ... configuration decisions that wasn't necessary for us anymore, but were necessary back in 2011 when the idea of using OSS was laughable. the fact that you were shipping someone else's code and iOS
+
+steve: sinsce cargo is extremely learn, we were able to learn from the mistakes of other managers. cargo was largely inspired by bundler (bundlr? ??), but also got insights and influence from npm
+
+mod: what is your personal definition of dependency hell?
+
+andre: the way i got into rubygems was working on the dependency resolver. ... so cocoapods didn't have a proper dependency installer at first- the user would have to go in and fix everything. it took about three months but eventually i wrote something to fix that problem
+
+mod: what is that problem?
+
+andre: it depends, it depends on the type of language you're building in. so the original dependency problem comes from the microsoft world of dll hell, where you have multiple dynamic libraries conflicting at runtime. you have the ahead-of-time issue where everything exists in a global namespace and you can only have one version of a symbol at a time (ruby / cocoa)... 
+
+andre?: rails would depend on ??? support, which depended on rack, which would create conflicts (you can't use different versions of both at the same time).
+
+steve: what it means to me personally is dll hell, struggle of copying the correct dll over to the correct place. it's actually like the seven levels of dll hell. where do i get that library, how do i get it, how do i know it's reliable, etc. it's actually a multi-layered problem ... 
+
+mod: do you have any vignettes or stories about policies that you could share?
+
+andre: ruby's kind of interesting in that the packaging ecosystem kind of happened by accident. there's all these devs that keep writing things, and sharing: this is cool, check this out. and there was genuinely a time when the library ecosystem was the individual, links to blog posts, links to tar files, etc. so the ecosystem is a very reactive proscess, people saying yeah we should probably do something about that. learning from other people's mistakes, i guess, and 
+
+steve: these policies also come out of your principles. what are you trying to accomplish? so one of the policies we made with crate io is to store all the versions, because you might break something someone needs. we also set on a global namespace, what squatting means is hard to define, if someone takes a package name and doesn't update it for a while- we won't take it away from them. we got someone who created a bunch of packages that were generic: IRC, WebServer, etc. and squatting them. but it turned out not to be that bad, the namespacing thing occasionally comes back up but you have to work with the community to see if your rules and what matters. the code of conduct applies to package names- if someone makes a package that is named after a racial slur, we will definitely nuke that package and take it down.
+
+sam: one of the interesting thing about cocoa pods is it started as a very manual process, ... (something about a git repo and public repo) one time the git repo went down, so eventually needed to do auth. api for updating/deleting a pod, etc. a year ago twitter decided that cocoapods was cool and decided to support it, there was an existing fabric in the pod and somebody was maintainning, and was given to twitter, but it broke a lot of people's builds. we've sort of taken the anti-policy approach- we want to make as few decisions as possible. we're a small group of people, if that means having something a little bit worse or less consistent, that's fine w/us.
+
+mod: what is the biggest challenge your ecosystem is facing, and what is your dream feature?
+
+sam: biggest challenge is that people still dislike the existence of the project. it would be cool if, and more sort of justifying existence gets tiring. the feature i would like to see, more extensibility and pluggability. this ties into being small and hands off- want to push as much development onto other people, and support people taking their own initiative to support features they need.
+
+andre: time has solved the problem that ??? needs to justify its existing. my dream feature is to be able to keep undoing things that were in the past that were terrible without breaking everyone's builds. biggest challenge: definitely having to support from the past that are very difficult.
+
+steve: biggest challenge for cargo: let me tell you a story, there's a programming language that has a very small standard library. so people use the package manager ecosystem to build everything and there's too many duplicates and people are unsure which ones to use. that's cargo's biggest challenge oging forward, the team just announced what we thought would be the best idea to the community, but they disagreed. we'll see what happens, we'll go back to the drawing board. because rust is a statically typed language, when i say: chris.io here's a new package, have it look at all the type signatures in the old version and in the new version, and give errors or warnings, automatic validation of semver is my desired feature. just have to find the time.
+

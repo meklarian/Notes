@@ -1,0 +1,108 @@
+node.js and microsoft
+a love story about developer tools
+sara itani
+software engineer
+@mousetraps
+
+retrospective: wasn't always a fan of javascript
+
+slide: 3 axis graph: flexibility, speed, productivity
+
+on node
+----
+
+blazing fast
+--
+asynchronous and non-blocking by default
+built on chrome's v8 engine
+lightweight and optimized core
+
+rapid development
+--
+a little code goes a long way
+isomorphic applications
+npm and node.js community
+ingrained modularity
+so /many/ developers
+
+develop how you want
+--
+monolithic <-> microservices
+client <-> server
+...
+
+"why does microsoft care?"
+"why is microsoft excited for node?"
+
+it's not us, it's you
+
+hey microsoft!
+if node.js is so important, why don't you fix... « ... »
+
+why don't you fix MAX_PATH
+
+npm v3 released
+- installs maximally flat by default
+
+.net core improvements
+
+why don't you fix native modules on windows?
+
+slide: windows users are not happy (issue #629)
+speaker notes problems with broad titles on issue threads
+two primary issues: C/C++ is hard, hard to set machine configuration
+
+released visual c++ build tools (technical preview)
+simplified and consolidated build instructions
+
+>> npm install --global --production windows-build-tools
+
+why don't you fix the windows CLI?
+--
+turns out people really just wanted to use bash
+windows 10 cli improvements, WSL preview (native linux tools)
+
+we want you to be as productive as possible with node.js
+
+we want to bring the magic of visual studio to the community
+
+two different offerings
+visual studio code
+https://code.visualstudio.com/
+
+node.js tools for visual studio
+https://www.visualstudio.com/features/node-js-vs
+
+demo: visual studio code
+
+demo item: autocomplete, some intellisense
+
+code> function multiply(a,b) { return a*b; }
+code> var mult = multiply(1,2);
+code> mult.
+>>> at this point intellisense pops up relevant items for numbers
+
+demo item: coding twitter bot in node
+ref: https://twitter.com/waytogobot
+ref: https://twitter.com/mousetraps/status/759459980726591488 and similar tweets
+
+demo item: debugging node
+
+demo item: using typings (ref: https://github.com/typings/typings ), static analysis and such
+
+caption: Future.prototype = time-travel debugging
+nodechakra, instead of using v8 to power node, another host
+ref: https://github.com/nodejs/node-chakracore
+the concept of time-travel debugging has been around for 20 some years
+ref: https://channel9.msdn.com/blogs/Marron/Time-Travel-Debugging-for-JavaScriptHTML
+
+ref: https://aka.ms/bobbleheadApp
+
+https://github.com/Microsoft/nodejs-guidelines
+https://aka.ms/nodeTTD
+https://visualstudio.com/features/node-js-vs
+https://code.visualstudio.com
+
+@mousetraps
+https://github.com/mousetraps
+

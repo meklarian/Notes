@@ -1,0 +1,95 @@
+steve kinney
+the ins and outs of publishing a module to npm
+
+background: works for turing.io (ed: teaching students?), writing book in MEAP phase at manning on electron.js
+
+opener: retrospective on class course for students building an app with ember on npm, because ember likes promises and node likes callbacks, made a wrapper to glue the two together for his students
+
+caption: "how did you get permission to publish a module on npm?" - his students
+
+caption: npm has >250,000 registered users, ~4.5M total users
+caption: only 1.8% of people have published a module to the npm registry
+
+slide (graphic, unattributed): i am a tiny potato and i believe in you (  .) you can do the thing
+
+let's make a module
+
+option A: a scoped module (@Username/ModuleName)
+option B: anagram
+
+>> mkdir trance-leg
+> dir created
+>> cd trance-leg
+> entered dir
+
+caption: "steve, json is tedious, i'm afraid"
+caption: "fair enough"
+
+>> npm init
+> launches npm and interactive mode to build package.json
+
+name: (trance-leg)
+version: (1.0.0) -> 0.0.1
+description: a very important module for working with rectangles
+entrypoint: index.js
+test command: mocha
+git repository:
+keywords: rectangle, quadrilateral, geometry
+author: steve kinney
+license: (ISC) -> MIT
+
+caption: "do i have to type in my name every time?"
+caption: no
+
+>> npm set init.author.name "steve kinney"
+
+>> npm set init.author.email "...."
+
+caption: "but i don't want to enter the git url every time"
+
+if you start with a cloned git repo, npm will start using git info
+
+caption: "i just keep hitting enter- can i just skip all this"
+caption: "yes"
+
+>> npm init --yes
+
+slide: index.js for a rectangle library
+
+>> npm install mocha --save-dev
+(for development only)
+>> npm install mocha --save
+(always require mocha)
+
+caption: "what if we wanted to get fancy"
+
+ed: missed slide
+
+caption: "it's totally cool to write your code in another language, but you should target the widest possible audience"
+
+>> npm install babel-cli babel-preset-es2015
+
+slide: npm run build
+slide: npm scripts: publish, test, install, start
+slide: these come with other parts too: prepublish -> publish, pretest->test->posttest, preinstall->install->postinstall, prestart->start->poststart
+slide: npm run sandwich (implicitly runs npm run presandwich and npm run postsandwich too); hypothetical example
+problem: we want to commit our fancy es6 to git, but not have it visible in npm
+answer: .npmignore
+
+slide: don't forget to include a README
+
+>> npm adduser
+> creates an account
+>> npm publish
+> publishes to npm
+
+slide: npm version
+slide: 1.0.0
+slide: 1.0.1 <- npm version patch
+slide: 1.1.0 <- npm version minor (minor version bump)
+slide: 2.0.0 <- npm version major (potentially breaking change)
+
+demo: bumping version can create implicit commits and tags in git
+
+slide (graphic, unattributed): congratulations on a mammoth task
+

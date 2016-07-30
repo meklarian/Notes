@@ -1,0 +1,67 @@
+wolf rentzch
+
+tonic is where code starts
+
+demo: npm package browsing utility, featured using lodash
+quote: "require() and go"
+
+tonic
+--
+faster & easier
+- npm init -y no more
+more powerful
+- switch engines on the fly
+- babel+ built in
+- visualizers
+automatically saved
+sharable
+reusable
+
+data visualizers
+--
+undefined, null
+Oject, Function
+Boolean
+String, Date
+Number
+Error
+- special ones
+HTML
+Array
+Buffer
+URLs
+Regex
+GeoJSON
+
+demo: buffer - binary viewer
+demo: URLs - shows http info
+demo: geojson - shows maps and hits
+
+best possible javascript
+missed slide: js features and patterns that could use expanded visualizers
+
+
+slide: you can't step in the save river twice - heraculis
+
+demo: notebooks for repros
+speaker: if you run npm install fresh on different days, you will run the risk of not getting the same dependencies
+
+all of npm is already downloaded for you, including every package and every version of every package
+
+slide: stats
+--
+packages: 320,557
+versions: 1,949,603
+files: 162,001,887
+size: 3,363,849,924
+
+slide: require('*');
+
+more stats
+--
+,Mean,Max
+files stat'd,183,22275
+files opened,68,7813
+bytes read,565254,74410880
+
+slide: www.modulecounts.com
