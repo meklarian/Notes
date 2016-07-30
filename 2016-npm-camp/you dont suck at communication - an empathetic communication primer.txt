@@ -1,0 +1,125 @@
+﻿you don't suck at communication - an empathetic communication primer
+
+Sharon Steed
+
+@SharonSteed
+#EmpathyInTech
+https://twitter.com/hashtag/empathyintech?src=hash
+
+slide: speaker sharing insight that she has a speech impediment, a stutter
+
+a few fun (ed: !?) facts about stuttering
+
+slide: picture of speaker at age when she started to stutter (ed: ~4?)
+
+something like 85% of kids stutter between the ages of 3-5
+some of it is kinetic
+speaker's parents, siblings stuttered (brother?) but stopped stuttering by the time they were 10-12
+unfortunately, (spoiler alert?), speaker is now 32 and has to deal with this every day
+developed ways to cope with stuttering
+would try to conceal it
+would try to predict if there was a word she couldn't say fluently, she would switch it up before having to come up to it
+spent a lot of time demoralized and angry, despised the way she sounded
+came to a point where she decided she have to get some help
+sought out speech therapy
+her speech therapist told her that there is a conference for people who stutter
+organized by an organization that's called: the national stuttering association
+  because it has the interesting and confusing title of: NSA
+
+slide: that's right, i'm in the NSA (same image, replaced head with unicorn)
+
+was one of the first times she didn't feel ashamed about her impediment
+and realized she also had to think about the other people who were there
+and how to relate when they were communicating with her
+that conference and experience and thinking about other people completely changed her view of communication
+
+first thing we should know considering communication
+  at it's core should be an act of great empathy
+
+ed: missed excerpt
+
+a problem with how you are presenting your thoughts
+  it's completely self-focused
+  see the way you approach conversation is all about you
+  you want to see them love your thoughts the way that you do
+    slide: kanye west - "my greatest pain in life is that i will never be able to see myself perform live"
+this approach to conversation is a breeding ground for miscommunication
+so, what do you need to do?
+
+you have to think about the other person
+you need to be a tad bit more empathetic
+
+quote: empathy fuels connection - brene brown
+graphic: intersection diagram made of heads, labeled you and me
+empathetic communication drives collaboration
+when it comes to building companies and products and teams
+collaboration is one of the most important things
+we have a couple of problems
+  collaboration is done almost entirely on the internet
+    twitter, slack, etc.
+  slide: microblogs are killing email: slack is the fastest growing B2B SaaS business, Snapchat, Twitter, Texting
+so this is a truth we have to accept: technology cannot replace the social aspect of face-to-face communication
+here's another truth: the consistent failures of communication cannot be automated away
+  you must confront those failures eye-to-eye, not screen-to-screen
+when you take away slack, twitter, cellphones, and computers
+  you are left with a person
+  so, when you deal with people, you have to talk to them
+  people kind of hate talking to each other
+  it's difficult to talk to people
+  conversations where you have to talk about failure are incredibly hard conversations to have
+because of these things
+  collaboration is difficult
+  and collaboration fails
+
+collaboration fails because:
+  people are afraid of being wrong
+  people are afraid of being misunderstood
+
+people are afraid of being wrong
+--
+the fear of being wrong is basically the fear of being judged
+speaker mentions she personally has afraid of talking to people because she was afraid of being wrong, afraid of being judged
+you know if you've ever been a conversation and chose to be silent because you were afraid of being wrong, it happens every day
+so people are afraid people aren't going to totally get what they're trying to say
+i completely understand this because it terrifies me to talk to people
+and sometimes it takes two or three times to say what i need to say
+and people don't always get what i'm trying to say
+i can't tell you the number of times i've spoken to a developer, and he/she has been trying to tell me about a technical thing
+ - and i'm not a technical person
+and the conversation ends pretty abruptly becaues they have a hard time explaining, i have a hard time complaining, and they give up
+
+it's hard to give up, but:
+** Silence Kills Collaboration **
+
+listening to what another person has to say doesn't take- your ideas aren't any less valuable or valid because you are being quiet while another person is talking about a thing that they would like to discuss
+that actually enhances the conversation
+when you are speaking
+think about the listener
+what do they need to hear you in order to really embrace the thing that you're trying to communicate to them
+a thing to keep in mind here is that we're all on different planes intellectually and that's ok.
+when you are listening to a speaker that is having a difficult time communicating
+think about this day--
+  -- i know that it's challenging what i'm trying to say
+  you have to pay attention
+  you have to focus
+take that same approach when you're listening to your coworkers, your kids
+the main point is when you discuss your thoughts and feelings from a place of empathy
+and you listen to others from that same place
+you are going to create something that is bigger and better than anything you could have
+ever come up with on your own.
+that takes vulnerability.
+
+caption: empathic communication is vulnerable
+caption: empathic communication takes courage
+
+courage to listen to people when they are struggling to communicate their ideas
+the courage to be present when they are being vulnerable
+
+caption: the basis of collaboration is vulnerability, courage, and the most important of all: 
+
+caption: empathic communication is team building
+
+sharon@communilogue.com
+https://twitter.com/sharonsteed
+
+slide: think about the listener : tip: speak to them the way they need to be spoken to in order to receive your message
