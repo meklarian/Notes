@@ -1,0 +1,51 @@
+npm: state of the cli
+npm @ 3, stability, feature work, and beyond-
+
+katerina marchan | @maybekatz | npm, inc.
+https://github.com/zkat
+
+npm install @zkat/npmcamp-2016
+
+whatcha up to?
+- npm @3
+- stabilizing work
+- triaging, all the damn time
+- product-related work
+
+npm@3
+- it's a year old now!
+- works damn well now!
+- ships by default with node@6!
+- npm@2 around as LTS for a while
+
+right now
+- sustaining work
+- stabilize test suite, make Travis/Appveyor reliable
+- test suite passes on Windows (40% of userbase) (ed: wow!)
+- big bugs
+- npm shrinkwrap fixes
+- moved to monthly release cycles
+- reaching community? still trying things!
+
+don't need cygwin or other exotic shells on windows
+used to be on a semi-weekly release cycle
+  prefer monthly to have more time to do work and coordinate
+
+slide: despair (github tab: issues: 2,399 | pull requests: 84)
+
+the cli team's state of triage
+- we triage every damn day
+- regularly go through feature requests and decide what to prioritize -- lots of them get closed
+- bug bugs take priority over features
+- @KenanY/@kyild added as contributorss!
+- wanna help? Email forrest (don't actually email forrest) (definitely tweet at him)
+
+product? but the cli is a product!
+- npm cli team is FOSS-centered arm of npm, inc
+- (minimzed, opt-in, anonymized) analytics!
+- new login features! SSO! 2FA? (2FA/MFA for publishing!)
+- future stuff? frontend-oriented features?
+
+talk to us!
+npm install @zkat/npmcamp-2016
+

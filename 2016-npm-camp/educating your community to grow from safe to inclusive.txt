@@ -1,0 +1,45 @@
+﻿Educating Your Community to grow from Safe to Inclusive
+
+february keeney
+@ihavenotea
+
+works at github on the community safety team
+
+slide: safety, diversity, inclusivity
+
+speaker wishes to share some insights found
+  tools are not enough
+
+slide: why?
+
+slide: tale of two harassments
+
+on harassment, intent never matters, it's always the impact
+what it looks like and what the chance of redemption is
+
+example: somebody submits a PR, and someone else attacks right away with blatant racist remakrs
+example: someone submits a PR, and it gets really picked over and while observations may be correct, the volume is overwhelming
+
+response to each one should be very different
+
+first one: ban hammer, just block them, nothing of value being contributed
+second one: on microaggression, coaching, help people understand the impact of their actions
+
+when you attack the person directly (confrontation), that person will immediately dig in because your point comes across as an accusation
+  even if you are right
+  defensive: "no i'm not like that", etc.
+instead focus on the impact of their actions
+and how the action affected other people
+
+ex. "did you think how your actions came across to this person? how do you think your involvement came across?"
+
+offline example: someone tells a racist joke
+almost always a person will defend it immediately
+instead, point out an example of how that is harmful to other people
+
+slide: address the actions, address the impact they have, not the person
+if we avoid the identity attacks, we can help improve the situation
+we all have biases from upbringing, environment, experiences but we can rise above them
+
+slide: build beautiful communities
+slide: build beautiful software

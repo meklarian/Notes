@@ -1,0 +1,55 @@
+daijiro wachi
+@watilde
+https://github.com/watilde
+https://twitter.com/watilde
+
+asynchronous wombats
+
+report from colleague
+i get an error when i run npm on your registry
+thought it was a syntax error and version issue
+she followed the steps and it was resolved
+but for a global oss codebase, it could take weeks for a resolution
+
+ex: time differences
+turnaround time to get a npm debug log
+client could be going to bed as support is awake
+
+conversational ball
+the same issue that took 10mins to fix with someone sitting next to me could take 26hrs to resolve across the world
+
+language differences
+english: hello
+dutch: hallo
+japanese: (citation needed)
+
+feature requests are much more complicated
+
+new subcommabd
+new syntax
+update docs
+won't fix
+etc
+
+metcalfe's law:
+n*(n-1)/2
+
+mtcalfe(wombats)
+
+complexity = distance by language by network size
+
+asynchronous way
+js has promises to handle async situations
+
+tools
+documentation first
+readme
+contributing
+issue_template
+
+reproduce
+use the same environmeny as reporters AMAP
+same node, npm, platform
+
+leverage localisation community
+organization
