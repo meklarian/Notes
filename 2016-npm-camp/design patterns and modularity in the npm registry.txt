@@ -1,0 +1,141 @@
+design patterns & modularity in the npm registry
+C J Silverio
+
+C J Silverio, CTO @ npm
+@ceejbot
+https://github.com/ceejbot
+
+https://github.com/ceejbot/registry-design-patterns
+
+caption: human brains are pattern-detection machines
+
+the process of writing software is abstraction & pattern extraction
+
+patterns in code
+patterns in systems
+
+emergent patterns in npm's registry
+
+let's analyze them not just for how they scale but how they promote modularity
+
+what is the registry?
+registry, n: the system of services that manage package tar archives + metadata
+just the things that let you put things in the registry and get them back afterwards
+
+361,263 packages
+2,279,817 million tarballs
+medium data (fits on 1 disk)
+
+npm's largest engineering project & it's most obvious scaling challenge
+
+some patterns:
+monoliths
+microservices
+transaction logs
+message queues
+
+monoliths:
+everything in one big process
+like a rock, one rock
+ex. a website, a registry (early days of npm)
+monoliths are okay
+easy to write and change
+performance is more than good enough
+
+when you scale performance and team size
+monoliths are less okay
+
+it's easy to write highly-coupled code
+inside a non-modular monolith
+
+modularity: let's be less vague
+
+q: where does modularity come from?
+a: information hiding
+  this term comes from a paper i recommend to you all
+  "on the criteria to be used in decomposing systems into modules" - d.l. parnas, 1972
+ref: https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf
+
+hide info behind an interface
+so you can change it
+
+someone looking at what a module does, is looking at what it exposes to the outside [world]
+if nothing outside your module can see what is going on inside, you are free to change the inside without breaking users
+you're going to want to change things, because circumstances change
+
+the hot trend is rewriting monoliths as microservices
+
+you're forced to design an api and put implementation inside a service
+microservices can still mess up modularity
+services can know far too much about how data is structured 
+can scatter a task across services
+making retries & failures hard to cope with
+auth sets up package access on a publish
+as a side effect
+
+what happens if a service crashes
+or if validation rejects a pblish
+
+after publication, it's a different pattern
+
+transaction log
+write-ahead log (WAL)
+commit log
+the log: what every software engineer should know about real-time data's unifying abstraction
+
+couchdb's super power: the changes feed
+
+registry followers: consumers of couchdb's commit logs
+
+things we do when a package is published
+- distribute tarballs
+- invalidate our CDN's cache
+- populate postgresdb so website can see updates
+- index data in elasticsearc h
+- scan packages for security leaks
+- populate our registry mirror
+- fire webhooks
+
+each log consumer does one thing well
+
+estragon: let's fix publication
+vladimir: fine, but how?
+
+message queues
+
+message queues: inversion of control
+
+a messaging queue is a request for work
+
+workers consume messages & retry or unwind on failure
+a worker does one thing, and puts a new message back into the queue
+
+queue has to be reliable
+workers can crash
+ref: http://queues.io
+
+queue disadvantages
+we don't have them in production
+so infinite disadvantages (ed: laughter)
+
+what's the pattern that emerges from this discussion of patterns?
+there is no silver bullet
+there never is a silver bullet
+it's tradeoffs all the way down
+
+what problem are you solving?
+  do you understand the problem you are solving yet?
+  try something that lets you switch it around
+what tools do you have at hand?
+what is your team experienced with?
+
+you'll need to fight for modularity
+
+the upside is you can have modularity no matter what you pick
+
+make your users happy first, because that's the hard part
+
+know that you can change your systems
+
+we'll be changing ours
+you'll know in the next year how it went
