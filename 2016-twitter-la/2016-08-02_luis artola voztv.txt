@@ -1,0 +1,52 @@
+luis artola - voztv
+
+@luisartola Cofounder & CTO @voztvla
+Fabric for Content Apps
+
+slide: jerry maguire
+
+two paths for software:
+- living and existing
+- fading out into obscurity / dying
+
+initially released an app on parse / facebook, only to have the plug pulled on parse the day after first approval in the app store
+
+3 key pieces needed in their app
+- push notifications
+- analytics
+- ???
+
+not having analytics is like driving a car without a dashboard, or a plane without instrumentation. you could do it, but it's not the best experience.
+
+things needed from analytics for their app
+- are people consuming content
+- are they sharing content
+- what sports are they interested in
+
+after presentation in january (twitter Hello World presentation in Santa Monica), decided to give Fabric a shot. was initially going to build all the pieces in-house.
+
+used answers to instrument metadata for sports media (video) shown in the app
+
+slide: graphs from Answers dashboard, showing histograms and graphs of user engagement
+slides: breakouts of trends and user events by sport, etc., including projections
+
+backend uses sentry for monitoring
+sentry is a service to log errors, includes dashboard to show what's happening, can be attached to slack
+crashlytics is like sentry, but for mobile
+
+slide: showing crashlytics crash report (ed: speaker notes 0 crashes in the last two months)
+
+fabric has been a good solution for voztv
+easy to integrate
+solved problems in building the app
+simple api to use
+
+originally integrated branch before fabric, but might go all-fabric
+
+ed: speaker believes fabric is future-proof, given that twitter is committed to supporting it 
+ed: used branch for deep-linking
+
+plug:
+https://fisheye.video
+@fisheyevideo
+

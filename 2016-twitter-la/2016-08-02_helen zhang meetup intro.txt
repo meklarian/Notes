@@ -1,0 +1,13 @@
+helen zhang
+
+fabric
+suite of tools for iOS & Android
+
+fabric kits
+- crashlytics crash analytics / beta testing
+- answers
+- digits sign in
+- mopub monetization
+- twitterkit
+
+looking to bring more partner apis into fabric

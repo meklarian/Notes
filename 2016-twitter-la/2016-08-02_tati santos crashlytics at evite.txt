@@ -1,0 +1,60 @@
+tati santos
+
+senior director mobile development evite
+
+Crashlytics & Answers
+using fabric on a mobile dev flow
+
+some background
+#1 - never break user expectations
+
+current mobile dev landscape
+- agile methodology
+- SDK bloat
+- importance of user engagement for app success
+
+hard to find SDKs that are lightweight and easy to integrate
+apps are so hard for users to download
+- conversion points
+- many links/navigation steps to app
+- often skip reading the description
+- sometimes browse video/screenshot
+- looks at ratings
+- most people will 1-star an app if it crashes
+
+perf metrics
+we use crashlytics to help us pinpoint one of our major performance metrics, Crash Rate, as we aim to keep it very low.
+Crash Rate < 1%
+when the crash rate exceeds 1% they hustle to bring it back down
+
+adding crashlytics to dev flow
+2 week sprint
+feature releases = 2-3 sprints
+point release = 1 minor release = 1 sprint
+
+after a feature release
+plan 2-3 point releases
+first point release = crashlytics release
+
+slide: showing crashlytics dashboard showing before release issue, notes 3 crashes were QA team having discovered a crash
+
+dealing with crashes
+
+the same crash often affects more users on the subsequent release, if not fixed
+can QA repro it?
+- device type & orientation: ipad, iphone
+- operating systems: OS version
+- stacktrace
+
+YES: add scope to sprint
+NO: hope for the best
+
+slide: darth vader - "i have altered the product scope, pray i don't alter it further"
+
+answers metrics
+answers gives us real-time statistics so we can evaluate how our app is being used
+- active user numbers
+- session length
+- stability rating
+- retention
+
