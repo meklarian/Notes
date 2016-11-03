@@ -1,0 +1,251 @@
+developing for the rest of the world
+@EricFrohnheofer
+October 2016
+
+how do you reach every person on this planet?
+
+background: world on twitterkit, twitter, and digits
+
+twitter's localization issues: 34 languages in 40 locales
+
+agenda:
+* localization
+* RTL
+* testing
+* payments
+* performance matters
+
+-- Localization
+not everyone speaks english
+
+how do you get started?
+what are the steps to go from english to all markets?
+
+identify your target audience
+* market size and opportunity
+* competitive landscape
+* local pricing and financial factors
+
+click through rates are higher in the us than in other locales
+
+US Audience
+37.5M Spanish Speakers
+2.8M Chinese (Catonese & Mandarin speakers)
+2.1 Trillion spending by Hispanic and Asian households combined
+
+Brazil Audience
+205M Population
+82% are smartphone users
+8th largest economy in the world
+
+-- String Localization
+
+move all strings into strings.xml
+provide sufficient context for declared strings
+mark message parts that should not be translated
+
+in android, you can get string literal warnings on localization traps
+
+provide context for declared strings
+
+-- beware of special words: is the meaning ambiguous?
+
+example: demonstration
+a. an exhibition of how something works or should be performed
+b. a public meeting or march protesting against something
+
+-- provide limits for translators
+
+where is the string displayed?
+* app launcher
+* button
+* label
+* panel
+* title
+* etc.
+
+what are the layout constraints?
+buttons are usually more space constrained
+30 char limit for some apps, less on other platforms
+
+-- strings that should not be translated
+brand names
+certain proper names
+placeholders
+special unicode chars (Emoji)
+urls
+code
+
+-- localizing data
+what about dates, currency, numbers (decimals), phone numbers, and units of measure?
+
+many developers use features built on top of IBM's ICU libraries
+
+also, system provided formats: dates, decimals, strings, etc.
+
+note on strings, some systems use special comparers, some use collations.
+in english, one area of concern:
+A, a have secondary differences and often may be sorted together
+A, B have primary differences and should never be sorted together
+
+for units of measure, only 3 countries are officially imperial: United States, Myanmar, Liberia
+
+-- RTL
+audience - arabic speakers
+160M users
+80% phones shipped with android in the middle east
+0.8% web content in arabic
+
+RTL support
+4.0
+arabic fonts (2.3 gingerbread)
+arabic localized
+arabic reshaper
+(what's an arabic reshaper?
+arabic is a cursive language, so if you were to try and read it as a native reader with spaces, it would be slow to read. A reshaper adjusts words to be in cursive for a more natural experience.
+available since iOS 3
+
+4.1 android
+bidi support for textview and edittext
+4.2 android
+rtl layout mirroring
+improved fonts for intl. users
+4.3 android
+improved bidi support to handle mixed direction text
+
+demo: bidi support as tweet
+
+RTL mirroring
+automatic mirroring of layouts so that layouts are reversed right to left from left to right
+
+ViewPager
+no support for RTL
+ong standing request for support by community
+https://code.google.com/p/android/issues/detail?id=56831
+
+drawable mirroring
+mirroring your image assets
+
+-- Forced RTL layout
+
+easier to debug RTL layout issues without switching to RTL language
+
+-- RTL Support
+
+script types
+english and english-like (latin, greek, and cyrillic)
+dens (chinese, japanese, and korean)
+tall (south & SE asian and middle eastern languages)
+
+material design
+english: regular 14sp
+dense: regular 15sp
+tall: regular 15sp
+(guidelines from google material design)
+
+---- Testing Localization
+
+setup a test environment
+look for common localization issues
+review with native-language speakers
+
+-- common issues
+clipped text or text that overlaps the edge of the ui elements or screen
+bad line breaks
+
+fastlane
+screengrab - generate localized screenshots of your android app
+supply - upload screenshots, metadata and your app to the play store
+
+-- payments
+credit card penetration is extremely high in the US
+
+Ex: Middle East
+only 2% credit cards
+82% do not have bank accounts
+5% paypal market share in the middle east
+
+
+Payment Gateways
+Paypal
+availabe in all countries
+limited penetration
+usually linked to credit card or bank account
+
+Stripe
+not available in Middle East
+
+Carrier Billing
+billed to wireless account
+carrier charges a processing fee
+typically only used for digital goods
+
+Prepaid
+popular for young adults and those without credit
+value can be added at retail locations
+usually a fee associated with adding value to card or processing payment
+
+Tpay.me
+direct carrier billing provider
+charged to phone bill
+
+Cash U
+prepad card accepted by online retailers
+available in the middle east in north africa
+users load cards at POSs
+
+-- Performance Matters
+WebP/PJPEG Case Study
+
+We had an initiative at twitter to try and be the fastest app everywhere
+
+Audience: India
+300M wireless subscribers
+only 1M on 4G+
+800MB avg data used by 3G subs in a month
+
+WebP
+
+built by google
+lossy and lossless image compression developed by google
+open source, BSD licensed
+native support on android 4.0+
+28% reduction in size compared to pngs recompressed with pngcrush
+
+PJPEG
+progressive jpeg
+
+image is compressed in multiple passes of progressively higher detail
+no transparency support
+no native support on android
+
+Fresco
+image loading and display library from fresco
+support for PJPEG out of the box
+no feature gaps
+caching
+progress bars
+scaling
+resize and rotation
+
+Results - WebP
+images were 25% smaller compared to PNG or JPEG images
+increased user engagement, esp. in emerging markets
+
+Results - PJPEG
+25% decrease in image size vs jpeg or png
+9% decrease in p50 load times
+74% decrease in failures
+
+User Empathy
+2G Day
+throttled all employee accounts
+iOS and Android only
+didn't simulate network error rates
+
+Cost Notification
+currently iOS only
+provides employee with region specific costs for network usage
+
+@EricFrohnhoefer
+software engineer @Twitter
