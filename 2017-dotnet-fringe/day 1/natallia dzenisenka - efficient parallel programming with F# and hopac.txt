@@ -1,0 +1,139 @@
+natallia dzenisenka - efficient parallel programming with F# and hopac
+@nata_dzen
+
+https://github.com/Hopac
+
+terminology
+
+synchronous / serial / blocking
+all operations performed one by one
+
+asynchronous, non-blocking
+doing something useful while waiting, widely used for UI, may not provide performance benefits
+
+parallel
+execution of several tasks in the same time unit, providing performance benefits
+
+concurrent
+execution of several tasks (not necessarily in the same time unit)
+
+synchronous ex:
+
+compile code, wait completion, drink coffee
+
+asynchronous:
+
+compile code, sip coffee while compiling
+
+parallel: listening to music while writing code
+
+concurrent:
+
+texting your boss while coding
+
+why f#?
+
+F# has structures for asynchrnous programming
+
+async computation expression in F#
+
+let testAsync = async {
+  ...
+  let! result = someAsyncOperation
+  ...
+}
+
+why hopac?
+
+because it provides:
+
+cheap parallelism
+avoid memory allocations
+locks are held for short periods
+
+when is the best time to use hopac?
+
+large number of threads
+
+why "hopac"?
+
+legend of hopac: a national dance from ukrainian word (for chanting, couldn't discern the exact word - ED)
+
+dancers often perform in parallel, requires a lot of speed and energy to give a good performance
+
+let's code!
+
+matrix multiplication
+--
+slide: row x column MM example
+
+slide: regular MM vs async MM
+note from speaker: async.parallel not made for this type of straightforward parallel computation task
+
+slide: hopac matrix multiplication
+note from speaker: see Job.conIgnore (what is this job?), and job keyword
+
+slide: 10x10
+Serial > Task Parallel > Hopac > Async
+slide: 500x500
+Task Parallel > Hopac > Serial > Async
+slide: 1000x1000
+Task Parallel > Hopac > Serial > Async
+slide: 2000x2000
+(same)
+
+slide: graph showing relation of CPU/virtual codes vs problem size for MM
+
+a 2000x2000 matrix generates 2000 jobs for hopac
+
+another example: recursive sum of a binary tree
+
+slide: 1..n sum as tree
+
+serial or synchronous implementation of tree sum
+empty tree -> 0
+tree nodes: current plus sum of right tree plus sum of left tree (subtrees)
+
+async implementation of tree sum
+empty tree -> 0
+tree nodes: (missing snippet, uses start child - ED)
+
+slides: TPL vs Hopac
+hopac has a <*> infix operator for splitting work into potentially two tasks (at hopac's discretion)
+
+tree of depth 10:
+1,023 elements
+Serial > Async > Hopac > TPL
+
+tree of 32,767 elements:
+Serial > Hopac > Async > TPL
+
+1,048,575 elements
+Hopac > Serial > Async > TPL
+
+8,388,607 elements
+same, but Hopac is 8x better than Serial
+
+slide: graph of results vs complexity
+
+further examples: promises
+additional operators for infix and chaining
+
+channels
+--
+message passing primitives
+
+Ch.give achannel aValue
+Ch.take achannel
+
+do! Ch.give aChannel aValue
+let! aValue = Ch.take achannel
+
+negative acknowledgements
+--
+hopac has mechanisms for cancellation? (unsure about citation here - ED)
+
+Nack example
+a promise that yields a value when a job (associated? - ED) is canceled
+
+more: reactive programming, streams, etc.

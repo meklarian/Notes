@@ -1,0 +1,96 @@
+deren liao - gprc - high performance open-source universal RPC framework
+developer for google cloud C# and .net
+derenl@google.com
+http://github.com/deren-liao/
+
+agenda
+--
+gRPC basics - what is gRPC? design goals
+show me the code! - hello world
+gRPC benefits - HTTP/2, protobufs, multilanguage support, connection options
+show me more code! - streaming RPC sample and demo
+
+remote procedure call (RPC)
+
+in distributed computing, a remote procedure call (RPC) is when a computer program causes a procedure to execute in another address space ... etc.
+
+slide: sample of network/graph showing rpc call direction
+
+why not rest?
+
+for simple services, HTTP REST is probably enough
+HTTP verbs are rich enough
+REST semantics are well understood
+
+for more complex services where efficiency is important, RPC can help
+
+domain specific: imagine bank transfer scenario
+more strongly typed experience via stubs
+efficiency with HTTP/2, protobufs
+
+what is gRPC?
+
+stands for gRPC remote procedure calls
+
+a high perf oss gp standards based feature rich rpc framework
+
+opensource version of stubby RPC used at google
+actively developed and production-ready, continually released with new features, bug fixes
+
+motivation and design principles
+
+services, not objects
+messages not references
+converage and simplicity
+free and open
+
+http://grpc.io/
+
+
+interop and reach
+gp and performance
+layered
+etc.
+
+how does it work?
+
+a high level service definition is used to describe the API using protobufs
+
+client and server code generated from the service definition in 10+ languages
+
+efficiency in serialization with protobufs and connection with HTTP/2
+
+connection options: unary, service side streaming, client side streaming, bidi streaming
+
+authentication: ssl, token based
+
+at the high level
+slide: graph of gRPC stubs / services in a graph from device to device, service to device, etc.
+
+show me the code: 4 easy steps
+--
+step 1: create .proto
+step 2: generate client and server stubs
+
+for .net, Grpc.Tools nuget package has protoc.exe
+
+step 3: create server
+
+create a service implementation extending from generated base class
+create a server with port and using the service implementation
+start the server
+
+step 4: create client
+
+demo
+live code demo showing new project, nuget package inclusion, etc.
+
+main benefits
+
+http/2 low latency transport of content
+protobufs efficient communication
+etc.
+
+slides: HTTP/2 specs and benefits
+http://http2demo.io
+
