@@ -1,0 +1,165 @@
+caitie mccaffrey - distributed systems engineer @ twitter
+@caitie
+caitiem.com
+
+feral concurrency control
+"application-level mechanisms for maintaining database integrity"
+"db is no longer the source of truth, instead it is spread out in app code"
+
+example: reserving a hotel
+parts: hotel service, data store
+
+make a reservation
+book the hotel
+charge credit card
+secure reservation
+
+what happens if payment declines? then the system has to rollback, release reservation, etc.
+
+this system could expand to cover auto rentals, flights
+
+then the notion of trips could be added, bundling all of these
+
+lots of feral concurrency control mechanisms
+
+what happens if the trip service fails, etc.
+
+death star architectures
+
+
+can we do better than feral concurrency control?
+how do we make our lives easier?
+
+spanner: google's globally distributed database
+satisfies 5 dimensions of CAP theorem
+
+fb: challenges to adopter stronger consistency at scale
+"the biggest barrier is that consistency mechanisms must integrate across many stateful services"
+
+two phase commit
+phase 1: prepare, everyone checks in to coordinator (vote: can i do this thing / can i not)
+phase 2: commit, everyone must commit or abort based on votes
+
+henry robinson
+
+doesn't scale
+O(N^2) messages
+coordinator is a single point of failure
+reduced throughput due to lock proliferation
+
+
+distributed sagas
+a protocol for coordinating microservices
+
+sagas: "sagas are long lived transactinos [in a single relational database]"
+
+"a saga is a long lived transaqction that can be written as a sequence of transactions that can be interleaved
+all transactions in the sequence complete successfully or compensating transactions are run to amend a partial execution"
+
+a distributed saga is a collection of requests
+
+book hotel, book car, book flight, charge money
+
+and compensating requests
+
+cancel hotel, cancel car, cancel flight, refund money
+
+that represent a single business level operation
+
+requests can abort
+
+ex: can book a car, car service says no, can't reserve any
+
+requests must be idempotent
+
+if i make a request, and a timeout occurs, i want to be able to retry it and be sure it only happened once
+
+compensating requests
+semantically undoes the effect of a request
+ex: charge a card, then refund a card
+balance is semantically in the same state, but user sees both transactions
+
+compensating requests cannot abort
+must always succeed
+must be idempotent
+must be commutative with requests
+
+ex: book car + cancel car = no car; cancel car + book car = no car
+if there was a timeout, then maybe the first request to book a car may arrive after cancel request
+
+
+distributed saga guarantee
+all requests were completed successfully
+
+or a subset of requests and the corresponding compensating requests were executed
+
+distributed saga guarantee
+
+no atomicity
+no isolation
+
+visible before saga completes: book hotel, book car
+
+deine a distributed saga:
+a directed acyclic graph
+
+start saga -> car, hotel, flight -> payment -> end saga
+distributed saga vertex
+
+name: hotel
+request: book hotel
+compensating request: cancel hotel
+status: not started / in progress / etc
+
+saga execution coordinator (SEC)
+can have multiples of these per saga, doesn't have to be the same one through the lifetime of a saga
+
+executing a distributed saga
+
+log:
+start saga
+start hotel
+end hotel
+start car
+start flight
+end car
+end flight
+start payment
+end payment
+end saga
+
+-- failure of a distributed saga
+
+log:
+start saga
+start hotel
+end hotel
+start flight
+start car
+car service: no cars available
+abort car
+(( now start rollback recovery ))
+
+flip the DAG / graph of actions on rollback
+
+start comp saga -> undo payment -> undo car, undo hotel, undo flight -> end comp saga
+
+log:
+start saga
+start hotel
+end hotel
+start flight
+start car
+abort car
+comp hotel
+end flight
+comp flight
+end saga
+
+---- isolation of complex code with distributed sagas
+complex code is only in SECs
+whereas feral concurrent systems have it everywhere
+
+distributed sagas
+
+@caitie

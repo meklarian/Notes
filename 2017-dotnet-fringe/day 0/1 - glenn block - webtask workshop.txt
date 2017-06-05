@@ -1,0 +1,59 @@
+glenn block - webtask workshop / working serverless (abstraction)
+
+https://github.com/glennblock/webtask-workshop
+
+webtask is an offering by auth0, similar to aws lambda / azure functions
+
+web tasks can return more than just json, any http (transport) valid content (images, pdf, etc.) is acceptable
+
+aws lambda endpoints are containerized and are not necessarily hot, containers can be put to sleep or shut down during idle
+containers for webtask are already warm (docker container)
+
+launch editor / creator at: https://webtask.io/make
+
+example (by yours truly): https://wt-a39de83db7f4bc77f124e682ef7ca871-0.run.webtask.io/wt1
+{"hello":"Anonymous"}
+
+example #2: https://wt-a39de83db7f4bc77f124e682ef7ca871-0.run.webtask.io/wt1?name=foo 
+{"hello":"foo"}
+
+node source:
+
+module.exports = function(ctx, cb) {
+  cb(null, { hello: ctx.data.name || 'Anonymous' });
+};
+
+containers are not shared across tasks, everything runs in a self-enclosed container, containers get shutdown forcefully every 20 mins.
+
+http://webtask.io/cli
+command line interface for webtask
+
+--
+
+// create webtask profile
+wt init
+
+// (create file.js node source)
+
+// serve up local webtask
+wt serve file.js
+
+// serve up cloud webtask
+wt create file.js
+
+webtask has cron/cronjob support
+
+// view realtime logs
+wt logs
+
+
+(offtopic: sharelock.io for sharing secrets)
+(plug: jwt.io for json web tokens)
+
+webtasks can have multiple endpoints
+
+tehsis.github.io - can i require() on webtask.io?
+
+(plug: auth0.com/extend -> auth0.com/extend/samples/zerocrm )
+
+
