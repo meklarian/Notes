@@ -1,0 +1,28 @@
+lena hall - chandy-lamport snapshots
+@lenadroid
+
+prototyping
+
+snapshot
+
+checkpointing systems (missed quote)
+
+some are based on marker messages
+
+etc.
+
+prototyping in F#
+
+useful when understanding an unfamiliar algorithm, other reasons
+
+
+chandy-lamport snapshot
+--
+assumes that channels are fifo
+al nodes can reach each other
+all nodes are available
+basic messages for regular data
+marker messages for snapshots
+any node can initiate a snapshot at any moment
+
+diagram: banking model

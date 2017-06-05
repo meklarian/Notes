@@ -1,0 +1,28 @@
+alistair chapman - making builds a piece of cake
+@agc93
+
+what is cake?
+
+Cake (C# Make)
+
+build tool built in C#
+DSL based on C# (superset of C#)
+a script for Cake looks like C#
+
+scripts are written in C#
+fully cross-platform
+built for every CI system, including your laptop
+support for dozens of tools out of the box
+now with 150 community addins
+
+slide: example script
+
+cake is self-built
+
+can clean, patch, restore, build, run, copy, zip, package for nuget, etc.
+
+resources:
+http://cakebuild.net
+http://gitter.im/cake-build/cake
+http://github.com/cake-build/cake
+

@@ -1,0 +1,19 @@
+ted ??? - introduction to .net bytecode
+
+bytecode is what your code turns into
+
+example: source snippet with yield return
+
+static IEnumerable<string> GetNames()
+{
+  yield return "Ted";
+  yield return "Glenn";
+  yield return "Sara";
+}
+
+how do we peek at the il bytecode? use ILDASM!
+
+everything in IL works on an execution stack
+
+ex: ldstr "...." string reference
+

@@ -1,0 +1,2 @@
+presenter provided no slides
+talked about an observer for watching configuration changes in the whole over an entire enterprise deployment (MSDN)

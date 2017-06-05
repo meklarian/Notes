@@ -1,0 +1,17 @@
+embeddinator-4000 james montemagno
+
+can put .net everywhere
+iOS, android, etc.
+
+what if you're a developer writing objc, java, swift, C++
+
+how could you reuse all the .net greatness there
+all those amazing libraries
+do you give up your nuget addiction?
+etc.
+
+the embeddinator: turns any .net library into a native library
+
+demo: mac app, iOS app consuming .net library packaged from embeddinator 4000
+
+http://mono.github.io/embedinnator-4000

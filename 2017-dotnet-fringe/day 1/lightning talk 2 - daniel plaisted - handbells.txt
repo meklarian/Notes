@@ -1,0 +1,20 @@
+daniel plaisted
+
+handbells
+cost thousands for a set
+
+a cheap set is $150
+
+music scores annotated by color, can match color to bell
+
+inspired by rock band and guitar hero: how do we make this better?
+
+handbell hero
+
+demo: church kid choir playing
+demo: elderly group playing
+
+github.com/dsplaisted/handbellhero
+
+software doesn't need to be impressive on a technical level to make a difference
+

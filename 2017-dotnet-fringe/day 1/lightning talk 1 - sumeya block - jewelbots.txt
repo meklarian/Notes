@@ -1,0 +1,39 @@
+sumeya block - what are jewelbots?
+
+(missed slides)
+
+programmable (arduine ide)
+
+basic:
+
+void setup() {
+}
+
+void loop() {
+}
+
+example: source code of hello world
+
+four components
+
+led
+timer
+buzzer
+button
+
+example: pomodoro timer
+30 minute idle, then interruption to take a break before reset
+
+-- why do i love jewelbots?
+
+great way to learn about code
+can write more complicated code
+great community
+can code w/dad
+can wear it
+
+http://community.jewelbots.com
+community zine
+tacochada.wixsite.com/bocai
+
+resource: http://medium.com/@lauraandlouisaconwill
