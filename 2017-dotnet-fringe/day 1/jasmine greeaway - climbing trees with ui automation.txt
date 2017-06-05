@@ -1,0 +1,133 @@
+jasmine greenaway - climbing trees with UI automation
+@paladique
+
+background: works at github on tools that bring github data into your IDE
+
+various ways we test
+- unit
+- integration
+- peers (peer review)
+- manual
+
+the whole goal is to make sure what we're building is right
+
+manual testing
+how is this looking?
+(gif: jim carrey typing)
+
+reasons we manually test
+
+bug fixes/debugging - did you truly fix the bug that broke
+feature testing - is that new feature in the app?
+pre-release errors - smoke testing
+
+how much did you actually test?
+
+case study: editor tools' bugs
+
+demo: maintainer workflow (in Visual Studio)
+features: list, view, etc. pull requests, inline comments
+
+broken by yours truly
+
+coded UI - automated UI testing
+--
+not many people at github who write in C# all day
+QA engineer responsibility often split between teams
+
+F5 experience (manual)
+build and manually test whole application through the UI
+user interface -> biz logic -> database
+
+typical non-Cuit test 
+testing the whole application not through the UI (for example, unit tests)
+
+typical use of CUITs
+testing the whole application through the UIs
+
+(missing last part of diagram - ED)
+
+Coded UI
+tests driven by user interface
+support for: winforms, WPF, web, winphone, store apps
+generate tests or code your own framework
+
+page object model
+separated views accessible via na API
+build tests by doing actions throguh API
+actions alter state, not the tests
+actions lead to assertions
+
+non POM Structure
+ClassA (WebElement-Method) <-> Test Methods
+
+POM Based Structure
+ClassA (WebElement-Method) <-> ClassB (Test Methods)
+
+summary: don't let actors directly manipulate things, do everything through a uniform API
+
+Page Object Model Implemented:
+Confirm there's 0 Pull requests in a repo
+
+Open a repo with 0 Pull requests
+  get to the Team Explorer Connect PAge
+  Use the Local Repositories List to find the repo and open it
+View the Pull Requests Page
+  Open the Github Page
+  Show Pull Request List
+  Count the Pull Requests
+Confirm 0 pull requests
+
+(is this cucumber? - ED)
+
+thing about Code UI, when searching for controls, be very specific about what you want- otherwise you may get references that you don't want
+
+Coded UI looks for controls using BFS
+
+find controls that match all properties
+controls that match some properties
+return control closest to parent or give up
+
+make sure control is there before you use it
+
+slide: example wpf assertion check
+
+from manifest...
+"setting the target and source branch as the same branches disables the "Create Pull Request" button and displays an error message at the top of pane."
+
+to test case!
+(code snippet)
+
+what else?
+app usage tracking
+run some tests and count how many steps it took
+
+bug sniffing
+run some additional targeted tests and take some screenshots to simulate user input
+
+documentation
+do some actions and have coded ui take screenshots for you
+
+our wishlist
+
+chat command
+automate all the tests, or a set of tests through chat commands
+
+open source
+sharing is caring
+
+integrated in release process
+supplement manual testing during releases
+
+steady converate at 90%
+keep on top of established features and constantly test for regression
+
+clarity for QA
+engineers, specifically QA engineers can easily add tests because it makes sense
+
+dedicated virtual machine
+machine just for running tests, which can take some time
+
+http://github.com/paladique/talks
+http://github.com/github/visualstudio
+http://unity.github.com
