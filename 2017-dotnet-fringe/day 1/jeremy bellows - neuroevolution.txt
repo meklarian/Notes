@@ -1,0 +1,79 @@
+Jeremy Bellows - Neuroevolution (evolving neural topologies)
+https://twitter.com/JeremyBellows
+http://jeremybellows.com/
+https://github.com/JeremyBellows
+
+Where to start?
+
+Handbook to Neuroevolution through Erlang by Gene Sher (explores DXNN systems)
+F# Prototype - Neural fish (github.com/JeremyBellows/NeuralFish)
+Rebuilt in Elixir - Evolixir (github.com/JeremyBellows/evolixir)
+
+the neuron
+has inbound connections
+barrier, when full, calculates output synapse
+sends signal to outbound connections
+
+inbound weighted synapse = raw inbound synapse value * neural connection weight
+
+this is the basis for learning
+
+-- the sensor
+
+sensors have one job: synchronize
+pulls in data and pushes out into the network
+
+vector of data, send to neurons
+
+[5, 2, 8] -> 5 >> A; 2 >> B; 8 >> C (strongly ordered)
+
+A barrier takes its inputs, sums them, when full, calls an activation function, outputs connections
+
+the actuator: function flow
+
+has a barrier, receives synapses from neurons, passes signal when full to an action function
+
+-- neural networks
+sensors -> neural layer 1 -> neural layer 2 -> actuators
+
+most neural networks are recursive
+
+sensors -> [neural layer 1 <-> neural layer 2 <-> ... neural layer N] -> actuators
+
+---- evolution
+
+topology mutations
+add neuron
+add neuron outsplice
+add neuron insplice
+add outbound connection
+add inbound connection
+add sensor
+add actuator
+add sensor link
+???
+mutate activation function
+mutate weights
+??? (invert?) weights
+
+mutation: add neuron
+randomly selects a neuron to add a new neuron, adds connections in/out
+
+mutaion: add sensor
+add a sensor and attach its outputs into the graph, potentially introduced into the same paths as existing sensors
+
+-- life simulation
+
+basic artificial life simulation rules
+
+entities must have a finite lifespan
+entities have an energy cost for actions and time progression
+food is available
+
+exactly the right amount of food needs to be available
+enough for competition for food, not too much that everyone is satisfied and competiion ends
+
+(demo: dxnn video)
+
+plug: jeremybellows.com/newsletter
+

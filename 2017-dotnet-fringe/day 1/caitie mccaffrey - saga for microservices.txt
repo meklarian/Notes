@@ -2,6 +2,8 @@ caitie mccaffrey - distributed systems engineer @ twitter
 @caitie
 caitiem.com
 
+slides: https://speakerdeck.com/caitiem20/distributed-sagas-a-protocol-for-coordinating-microservices
+
 feral concurrency control
 "application-level mechanisms for maintaining database integrity"
 "db is no longer the source of truth, instead it is spread out in app code"
