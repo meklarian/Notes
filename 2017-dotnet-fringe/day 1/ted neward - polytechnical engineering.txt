@@ -1,0 +1,115 @@
+ted neward - polytechnical engineering
+http://blogs.tedneward.com/
+http://www.newardassociates.com/#/writing
+@tedneward
+http://www.newardassociates.com/#/about
+
+never wanted to be pigeonholed as a X developer (X being strictly C#, or strictly Java, etc.)
+
+we begin with the question you're all asking: what the ???? is "polytechnical careering?"
+
+polytechnical: poly = Many, technical = technologies
+
+in the beginning there was but one programming language
+and it was C
+and all the programmers were happy
+
+pfft. Hardly!
+
+C, Pascall, Fotran, Smalltalk
+before that: Lisp, FORTRAN, COBO,
+before that: different assemblers
+
+SQL still the big elephant in the room
+
+shell tools: DOS batch scripts, bash, zsh, ksh, csh, tcsh
+
+and let's not forget the platforms, .NET was not the first universal abstraction layer
+
+pascal P-code
+C-based native layer
+Component Object Model
+Java Virtual Machine
+Common Language Runtime (CLR)
+
+polytechnical approaches come with costs
+--
+increased complexity
+multiple languages mean more than dev has to know
+(who has the time to learn all of these that deeply)
+interoperability issues
+conflicting approaches
+
+how do you staff a team when banking on a polytechnical environment?
+
+consider the following scenarios:
+logic changes routinely / regularly
+problems are complex permutations of possibilities
+logic is best expressed by domain experts
+requirements don't fit one particular paradigm
+disparate team with wide range (and no unity) of skills
+
+solution: from each tool, to each problem
+
+logic changes on a regular basis
+--
+* it too slow to respond to user requests
+* users want to change logic on non-sprint cycles
+* users want to change logic without involving IT
+solution: embed a scripting language
+* ED: Boo.net / DSL
+
+complex permutations
+--
+* multiple variables collide in different ways, creating deep possibility trees
+* logic for individual components/rules easily declared
+* example: sudoku
+(speaker: prolog may make a comeback)
+solution: logic engines, languages
+
+login best expressed by domain experts
+--
+* attempting to translate is a bad game of "operator"
+* debugging needs to be done by domain experts, developers can't (shouldnt? - ED)
+* domain logic is (somewhat)independent of its representation
+solution: domain-specific languages (DSLs)
+
+requirements don't fit a particular paradigm
+--
+* some data wiill fit naturally into relationships
+* some data will need to connect to other data and track the connections
+* some data will be large blobs that cannot be indexed easily
+* some data will need to be categorized on the fly
+* example: youtube
+solution: multiple storage tools/tiers/engines
+
+disparate team with wide range of skills
+--
+* and absolutely no common unity of skillset
+* developers have deep knowledge in their respective areas
+* training to unify the skillset will take way too long/cost way too much
+solution: embrace the polytechnical
+
+many may say: this could never work
+counterexample: obama's election IT team
+
+being polytechnical: the "T-shaped" individual
+embrace an aggressive plan of self-education
+have some breadth
+formulate a personal ontology for technology
+pursue dissimilar angles
+create your own 'evaluation function' for new tech
+  * a pet project or example that is not too big and doesn't require much scale or expense that isn't a CRUD app. do something different and personal. try to build this thing with the tool in consideration and evaluate for yourself. you learn more from the failures than you do from the successes.
+don't be afraid - don't be afraid to give up
+
+being polytechnical: the team
+embrace polytechnical employees; encourage them
+establish formal dissent
+  * consensus sucks (crowd member: "i disagree!", audience laugh)
+set non-business technical goals and ocnstraints
+discover what is "core business" and what isn't
+accept that not all members are "the same"
+
+
+example: to learn about object oriented concepts, try smalltalk
+example: functional programming (as C#)? try F#
