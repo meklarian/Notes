@@ -1,0 +1,46 @@
+bobby johnson - zero to sixty with dotnetcorekoans - standing on the shoulders of everyday developers
+
+background: alt.net community in seattle metro area
+
+@notmyself
+http://iamnotmyself.com
+http://github.com/notmyself
+
+-- everyday developers
+
+on hero worship: the one thing that is consistent is that no matter where he worked (retrospective), his peers, so-called everyday developers, helped build his skills and career the most.
+
+plug: alex johnson
+helped bobby become a web developer, moving out from design and html and on to programming
+alex passed away in 2015, bobby mentions to make sure you talk to your mentors and let them know what they mean to you.
+
+plug: gene lemcool
+helped bobby with abstractions, object oriented programming, etc. first to treat bobby as a peer
+transition to .net
+
+plug: chris bilson
+taught bobby about agile development
+encouraged learning about other programming languages, ecosystems, approaches to solving programming
+encouraged interaction in local communities
+
+plug: jim weirich
+(tiny plug in the form of hero worship)
+was an rubyist, involved in software craftmanship
+passed away in 2014
+
+-- what do these folks have in common?
+
+they were all teachers and mentors above and beyond their everyday jobs
+could have been corner-of-the office isolates, just doing their 9/5
+
+from Jim: best known for being the author of Ruby Koans, a resource for learning Ruby
+
+-- .NET Core Koans
+
+https://github.com/NotMyself/DotNetCoreKoans
+
+Why .NET Core Koans?
+
+One of the barriers to entry to developing in .NET (ed: and MS stack) is the amount of stuff needed to get started, such as visual studio, sql server, etc.
+
+Closing Quote (slide): "anyone who stops learning is old, whether twenty or eighty"
