@@ -1,0 +1,73 @@
+ken egozi - devil's advocate
+@kenegozi
+
+demo: util class case
+common util class: string delimiter splitting
+evolution: util class per assembly, util assembly
+eventually, this may cause an acyclic graph dependency between two different consumers
+
+reuse => dependency and coupling
+need to find a balance
+
+string helpers, probably not important to share. copy and paste is probably fine
+
+best practices
+
+a best practice is a method or technique that has been generally accepted as superior to any other
+
+best practices?
+stored procedures??
+waterfall??
+SOAP??
+REST?!
+
+at a certain point in time, these were all the best practices for their time
+
+best practices are a myth
+
+bad practices:
+while(*p++=*q++);
+give interns unlimited admin access to prod
+use your phone while biking
+
+worst practices:
+not proactively practicing disaster recovery
+shutting your eyes while biking
+reversible passwords
+
+TDD?
+
+Red => Green => Refactor
+
+TDD is not a design tool
+
+you see, it is not TDD that creates bad designs, it is not TDD that creates good designs, it's you. TDD is a discipline, it's a way to organize your work.
+
+DHH: Test induced design damage
+uncle bob: bad designers induce design damage
+ken: tdd applied badly often leads to design damage
+
+when you have a bug, best way to fix it is prove it with a test, fix the bug, pass the test
+
+when are tests bad?
+sub-units, integration classes, excessive use of mocks, isolating stable code
+
+example: TDD on a prime number generator
+there's no possible stage that can be designed by TDD
+
+we are paid to deliver lasting business value
+we write high quality maintainable code
+we might write automated tests
+we aim at high coverage
+we can choose TDD as a discipline, or not
+
+service boundings are logical and can be physical
+decoupling is key
+
+upfront design? checking in libs to git?
+
+no best practices
+avoid the bad ones
+practices the good ones
+be intentional about your designs
+build good software
