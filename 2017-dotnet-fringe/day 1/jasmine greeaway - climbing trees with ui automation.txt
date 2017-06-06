@@ -1,5 +1,6 @@
 jasmine greenaway - climbing trees with UI automation
 @paladique
+https://github.com/paladique/Talks/tree/master/Not%20Lightning%20Talks/dotNetFringe
 
 background: works at github on tools that bring github data into your IDE
 

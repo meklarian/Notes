@@ -1,0 +1,78 @@
+alistair chapman - using docker to supercharge your .net development
+@agc93
+http://github.com/agc93
+
+Docker + .NET Core + Linux
+
+agenda
+--
+intro
+building with docker
+building for docker
+being a magpie developer 101
+
+a note on moving targets
+
+moby supersets docker
+1.1 to 2.0 preview on .net core
+
+docker
+--
+process and env isolation
+supported on linux, windows, and macOS
+currently undegoing a minor identity crisis
+
+.NET core
+--
+the next generation of the .net platform
+supported on windows, macOS, linux
+currently undergoing a minor identity crisis
+(primarily on ubuntu and centOS, will get better in 2.0)
+
+.NET core on linux
+
+demo: basic app on linux, hello world .cs file and .csproj
+
+adding docker to the mix
+
+use a dockerfile to build an image
+then run your image to run your app in a container
+your base image decides the environment
+
+demo: executing .net app without .net installed, just build against OS target
+
+building with docker
+--
+using containers for .net builds and continuous integration
+
+docker containers provide:
+isolation
+clean environments
+deterministic builds
+
+containers won't provide:
+real world usage
+security for untrusted code
+compatibility guarantees
+
+building for docker
+--
+building cloud-native apps in containers
+building knowing you want to target a docker environment
+(doing what the other cool kids are doing)
+
+requires a new approach to architecture
+
+loose coupling
+isolation
+etc.
+
+where to next?
+
+try it yourself
+check out windows containers
+develop futher with schedulers
+host on your platform of choice
+kubernetes
+
+http://blog.agchapman.com
