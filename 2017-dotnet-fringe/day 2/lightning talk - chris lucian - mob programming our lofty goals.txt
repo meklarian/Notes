@@ -1,0 +1,62 @@
+chris lucian - mob programming our lofty goals
+www.chrislucian.com
+@christophlucian
+
+used to define goals via retrospectives
+
+points:
+kindness, consideration, respect
+be vulnerable, show trust, appreciation
+psychological safety
+
+on kindness, consideration, respect
+a baseline
+
+vulnerability, trust, appreciation
+have to be able to trust and be vulnerable
+and appreciate other's contributions
+
+refer to problems as issues of learning, not of defect / inadequacy (cite?)
+
+no one between the code and production
+clean code
+zarroboogs
+
+on no one between the code and production
+make sure bugs get back to teams
+
+clean code
+clean code
+
+zarroboogs
+if there's a bug in prod, stop everything and fix it
+typically happens
+all the new code that gets written (??)
+
+deliver valuable working software to customers daily
+anyone can take a vacation at any time, zero silos
+effective interpresonal communication
+
+deliver valuable working software to customers daily
+anyone can push anytime
+we do have some product owner gates
+but get to prod level quality before moving forward
+
+anyone can take a vaction (zero silos)
+if you have four devs working computer-to-computer
+anyone can leave any time, take vacation anytime
+product owners always available
+
+continually develop lofty goals and practices
+experiment frequently
+develop software community
+
+on continually develop lofty goals and practices
+daily retrospectives (frequent)
+
+on experimenting frequently
+everything is on wheels, office can be rearranged anytime
+
+develop software community
+hold workshops, etc.
+

@@ -1,0 +1,7 @@
+nicholas myers - pagination with paginable collections
+
+paginablecollections is a lightweight cross platform pagination collection for .net
+
+slide: { «set of N numbers» }
+
+http://github.com/neekgreen/paginablecollections

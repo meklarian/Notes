@@ -1,0 +1,45 @@
+anna zietlow - git commit -m "morality"
+@annalogously_me
+
+as developers we don't have to consider this much day to day
+as tech becomes more intelligent
+this problem is going to come up more and more
+
+the trolley problem
+
+slide: trolley going down tracks, threatens 5 people
+you stand at the junction, you can throw a switch and change it to 1 person
+
+our problem
+substitute the entities with autonomous vehicles
+
+what if it's a 20% chance of harming 5 people vs 99.9% chance of harming 1 person?
+we're going to know more eventually, about who is in the car
+
+what if taking the customer's car, and harming them, is more favorable than harming others
+
+who makes these decisions? who decides what happens?
+corporations?
+
+kind of an optimization problem?
+number of lives to save?
+life expectancy?
+value of damage?
+
+what about pricing tiers?
+do we price value by tiers?
+
+we already pay more for safety
+slide: mini smartcar vs land rover SUV
+
+but is it okay when it looks like this?
+slide: two identical beetles
+
+so who is going to decide?
+government?
+academia?
+whom?
+
+as developers, in the end, our code is going to be running on these things. someday, it might be .net fringe 2025 and your code may be on the other side of the world running, making these decisions.
+
+decide now where you stand and how best to make these decisions.

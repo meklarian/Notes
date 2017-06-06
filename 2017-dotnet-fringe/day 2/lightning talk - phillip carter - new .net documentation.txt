@@ -1,0 +1,7 @@
+phillip carter - new .net documentation
+https://twitter.com/_cartermp
+
+demo: .net documentation browser
+
+http://github.com/dotnet/docs repo on github
+

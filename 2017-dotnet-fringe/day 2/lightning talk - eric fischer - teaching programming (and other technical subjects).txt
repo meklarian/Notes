@@ -1,0 +1,61 @@
+eric fischer - teaching programming (and other technical subjects)
+
+there's always someone who might want to learn
+son
+daughter
+new jr dev
+
+one key thing about programming and other technical skill
+
+you need motivation
+
+money
+a reward
+a risk of punishment
+a feeling of accomplishment
+recognition
+etc.
+
+punishment is not a good motivator
+
+money is similarly bad, one time motivator
+
+but if you enjoy learning, intrinsically you are likely to continue
+and to continue enjoying feeling of accompishment / recognition, etc
+
+i'll teach them the same way i learned!
+
+this is not always the right away
+
+for me, it looked like this (slide: classroom)
+
+more accurately, like this (slide: asleep classroom)
+
+get to accomplishing something ASAP
+the faster you actually get some reward or feedback of completion, the better
+
+everyone's mind works a little differently
+
+find multiple ways to relate (paraphrased - ED)
+
+if your learner looks like this, you need to explain it differently
+(slide: bored/confused child)
+
+"stuck" is the worst state a learner can be in, and quickly saps motivation
+
+toxic: we'll do it right from the start!
+you start wanting to teach MVC actions
+
+think of learning like eating
+keep things bite-sized, one thing at a time
+give time to process (repeat, practice, etc)
+don't give them too much
+and you can only do so much before you need a break
+
+never ever ever ever say:
+you just don't get it
+you can't
+you won't
+you failed
+you're wrong
+

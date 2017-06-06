@@ -1,0 +1,65 @@
+erick thompson - .net core build/deploy pipeline
+moving beyond hello world
+
+@erickthompson
+erick.thompson@gmail.com
+
+the cliff from dev to prod containerization is enormous
+sometimes a ton of problems
+
+goals
+high density cpu usage
+immutable deployment artifacts
+repeatable deployment
+
+tech
+aws (ecs, amazon linux)
+terraform
+octopus deploy
+teamcity
+proget
+
+pipeline (graph)
+bitbucket -> TC -> build nuget -> octopus deploy
+build nuget -> proget
+TC -> docker -> tag
+TC -> docker -> AWS
+
+octopus deploy:
+consistent version numbering
+terraform used to push to aws
+
+local dev: deploy to docker for windows
+
+awesome
+image layers result in super fast builds
+any build can be deployed at any time
+staging/qa is exactly like prod, just in a diff vpc
+getting a new project to production takes hours
+deployments of ctonainers can be part of other deployments
+machine density
+
+not so awesome
+different runtime
+diff os
+prod data vs test data still an issue
+ECS specific issues
+container lifecycle
+
+barriers
+
+container lifecycle
+container instnace thrashing
+errors at startup/shutdown hard to find
+
+performance diag
+app insights / new relic
+perf of container vs other containers on host
+
+starting from zero on tools
+no RDP
+no remote debug/fiddler/fusion log/ etc
+
+upside:
+a straightforward service (web api) went from new repo to 5 mil requests in less than a week
+on 3 containers with minimal hardware (paraphrased -ED)

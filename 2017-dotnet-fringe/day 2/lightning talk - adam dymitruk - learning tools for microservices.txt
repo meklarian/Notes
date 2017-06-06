@@ -1,0 +1,43 @@
+adam dymitruk - learning tools for microservices
+@adaptechsolutions.ca
+
+@adymitruk
+adaptechsolutions.net
+
+UI/API -> transactions -> Read Models
+
+why do we complicate this so much?
+people complain that we have insufficient scale or handling
+
+is there a good hello world for microservices?
+
+simplicity is synchronicity
+take away async
+
+command is executed
+event is stored
+event is published
+read models updated
+new information is shown
+etc.
+
+show that state transition is quickly satisfied
+
+go + git as a teaching tool
+
+go
+built in web server
+runs anywhere
+
+git repo
+store each success cycle in a commit capturing skills
+event streams
+projections
+merge conflict resolutions
+
+F# or C# or BASH??
+
+collaborate using your favourite language
+keep it simple
+don't get tempted by shiny frameworks, libraries
+
