@@ -1,0 +1,131 @@
+sergey bykov - the journey of orleans
+from "ruby on rails for the cloud" to "distributed actor-oriented database"
+@sergeybykov
+https://github.com/sergeybykov
+
+orleans started a long time from MS research
+
+goals and issues:
+distribution
+concurrency at scale
+failures are norm
+little to no downtime
+
+most developers are not "einstein developers", who thrive at writing difficult code (multithreaded/raced code, etc. - paraphrased - ED)
+
+"we could be heroes" - on einstein developers / experts
+can build distributed systems
+hard to find and hire
+expensive
+not immune to costly mistakes
+productivity is still rather low
+
+some of the initial ideas for orleans
+custom C#
+cloud <-> client (orleans client stretching between both)
+concept of grains
+
+gist of the orleans model:
+a system that supports unlimited distributed objects (actor model, but not called this due to confusion with other terminology) 
+objects that live somewhere
+these objects implement interfaces
+one requirement for these interfaces is that they're asynchronous (TPL)
+everything returns a Task<T>
+
+so, how do we get a grain?
+
+call a factory to get a grain with a given id (guid? - ED)
+using guids, emails, int, string, whatever
+the moment you call GetGrain()
+you get a proxy back for that grain
+because that proxy implements the very same interface
+we can make a call right away
+because the call is asynchronous, we can await the result sometime later
+
+when implementing a grain class
+we just extend a grain base class
+
+any method that executes in a grain always runs in a single threaded context
+
+a grain is a logical object
+there's a lifecycle
+somewhere in a store (db, kvstore, etc)
+the runtime creates an instance and loads state as needed
+if there's no work for it to do, then it gets deactivated and removed from memory
+
+difference is that this works on a cluster of servers
+
+diagram: frontends -> actor-based middle tier -> storage
+a sliding window of all possible grains: users, devices, sessions, etc.
+
+diagram: frontends -> orleans cluster -> storage
+orleans runtime transparently handles server failures and cluster reconfiguration
+
+orlenas is:
+distributed C#
+straightforward approach to building distributed high scale applications
+distributed virtual actor model
+
+mature codebase
+in production since late 2011
+a number of large scale internal and external customers
+growing number of plug-ins, extensions, and layers on top
+collection of patterns and best practic es
+strong telemetry with warning and hints about perf
+highly optimized messaging and ???
+
+"don't stop me now"
+geo-distributed orleans
+single node -> cluster -> multi-cluster
+new extensions for replicated actors
+
+-- lessons learned (as open source community: ED)
+
+reflections
+how to trick your brain into a better culture
+
+learn to remove egos from discussions
+no more "my code" or "your code", only "our code"
+dissent is important, but decisions and mistakes are owned by everyone
+very difficult to refrain from "told you so!"; try harder
+
+defensiveness comes in different forms, recognize them
+don't fall in love with your code, ideas, designs, decisions
+"let me explain this to you" is often a tell
+"it seemed like a good idea at the time" is a good non-defensive mantra
+
+be clear about core principles of the project
+everything else is negotiable and flexible
+lead with the roadmap
+
+genuine humility goes a long way
+humility is not easy
+listen and ask, don't assume
+"i think", "it seems to me", "probablyh", "likely" are powerful words
+
+the danger of subleties
+humans often assume the worst
+written language is not the same as spoken. skype is your friend
+always wach out for signs of tension or misunderstanding
+
+two-tier system (maintainers and contributors) is hard
+whom to promote to maintainers and when?
+what to do when a maintainer fades out?
+
+learn to deal with diversity of cultures
+language and communication
+major differences in how people debate issues
+
+people come because of tech, stay because of people
+smart people that you can constantly learn from
+nice personalities that you'd hang out with
+
+promote OSS contributions at work
+github is likely your future resume
+working on OSS and getting paid for that is a great deal!
+a way to get outside the bubble
+
+my definition of career
+measure your career progression not in bonuses and promotions,
+but in the number of people that think you are not an idiot
+
