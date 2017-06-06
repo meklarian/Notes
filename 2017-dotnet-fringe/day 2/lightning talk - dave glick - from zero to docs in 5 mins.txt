@@ -1,0 +1,13 @@
+wyam static content generator
+
+download wyam
+https://wyam.io/
+
+wyam new docs
+
+clone repo
+clone template
+
+wyam --preview
+
+https://daveaglick.com/posts/announcing-wyam

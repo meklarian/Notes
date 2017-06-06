@@ -1,0 +1,78 @@
+immo landwerth - .net standard, for class library authors
+
+history: used to be one .net framework / BCL
+
+later on: xamarin
+
+new: .net core
+
+app models: wpf windows forms asp.net | UWP ASP.NET Core | IOS OSX Android
+base libraries: .net framework BCL | .net core BCL | xamarin BCL
+
+challenges:
+
+difficult to reuse skills
+difficult to reuse code - need to target a small common denominator
+difficult to innovate - need implementations on each platform
+
+forthcoming: .NET Standard
+
+benefits:
+
+reuse skills: master 1 BCL, not a Venn diagram
+reuse code
+etc.
+
+what is .NET standard
+
+.net standard is a spec
+a set of APIs that all .net platforms have to implement
+
+no more guessing games on what the next platform will support
+
+another part: tooling components
+
+.net standard 2.0
+
+has much bigger API surface
+
+extended to cover interssection between .net framework and xamarin
+
+makes .net core 2.0 bigger as it implements .net standard 2.0
+
+can reference .net framework libraries
+
+compat shim allows referencing existing .net framework code without recompilation
+limited to libs that user PAIs that are available for .net standard
+
++20k more apis than .net standard 1.x
+70% of nuget packages are API Compatible
+
+demo
+
+difference to portable class libraries (PCL)
+
+pcls were an after thought, ie each platform could decide what APIs to include
+no systematic approach to versioning
+computed intersection profiles
+
+each PCL targets a specific set of platforms
+not compatible with newer platofrms
+hard to understand compatibility relationships
+
+versioning in .net standard
+
+higher versions incorporate all APIs from previous versions
+
+what versin should you target?
+the higher the version, the more APIs you have
+the lower the version, the more platforms support it
+
+target the lowest version you can get away with
+
+ref: https://blogs.msdn.microsoft.com/dotnet/2017/05/10/announcing-net-core-2-0-preview-1/
+ref: https://blogs.msdn.microsoft.com/dotnet/2016/06/27/announcing-net-core-1-0/
+
+https://aka.ms/netstandardfaq
+@terrajobst
+immol@microsoft.com

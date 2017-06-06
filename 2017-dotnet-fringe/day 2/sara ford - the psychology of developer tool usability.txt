@@ -1,0 +1,74 @@
+sara ford - the psychology of developer tool usability
+background: founder of codeplex (?)
+
+two ways of designing a product
+
+top-down, requirements driven
+
+ex: I need a thing to open a can of soup
+
+bottom-up, what's technologically possible, eg. enable all the things
+
+ex: A swiss army knife (a macguyver)
+
+another way to look at this
+
+prescriptive vs descriptive
+
+prescriptive: ikea, one way to build a bookcase
+
+descriptive: home depot, get the materials, tools, build a bookcase yourself if you know how
+
+a similar thing in developer tools
+
+quote: just because something is complex doesn't mean it can't be made usable - her graduate advisor
+
+simplicity => intelligence
+
+simplicity implies intelligence, we just have to allow ourselves to believe it
+
+cite: software development and tool usability - brian dillon and richard thompson (IEEE 24th IC on Program Comprehension 2016)
+
+case study: syntax warning highlight (the squiggly) in vs 2013 versus vs 2017
+
+cite: human-centric development of software tools - andrew j. ko, shriram krishnamurthi, gail murphy, janet siegman(n?)
+
+cite: software developers as users; developer experience of a cross-platform integrated development environment - kati kussinen
+
+slide: we design dev tools that are ideal for our own testing scenarios - sara ford's theory of developer tool un-usability
+
+sensation is objective
+perception is subjective
+
+color does not exist - it is a wavelength, an engineering process
+(herefore:) there's no way for us to exactly compare our subjective experiences
+
+plug: designing with the mind in mind - jeff johnson
+
+cite (from book): what we perceive is based on our experience
+... this sometimes confounds software designers, who expect users to see what is on the screen
+
+explicit vs implicit
+
+testing is implicit knowledge
+
+cite: wendy wood
+psychology researcher in habit
+univ southern california
+https://dornsife.usc.edu/wendywood
+
+how to break habit
+
+because triggers are part of implicit knowledge, you may not know what the trigger is
+instead you have to change the environment
+
+different from temptation, which is goal based
+
+seek feedback from diverse perspectives
+
+just because something is complex doesn't mean it can't be made usable
+
+@saraford
+https://saraford.net
+designing with the mind in mind
+https://git.io/DevTools - talk on github

@@ -1,0 +1,38 @@
+jon galloway - open source software foundations
+
+not totally boring, actually super awesome
+
+jon galloway
+@jongalloway
+i like .net
+i like open source
+now exec. directive of .net foundation
+
+most common way of communicating this way is by .gif
+slide: gifs of "boring" (open source software)
+
+from the dotnetfoundation.org website
+
+the .net foundation is an independent organization to foster open development and collaboration around the .net ecosystem. etc...
+
+what it's not
+
+not: marketing
+
+not: ombudsman
+well, some, but...
+
+so what problems were OSS foundations created to solve?
+
+1: community and commercial collaboration
+trust | shared ownership | governance
+
+see: http://github.com/dotnet
+
+2: community project membership
+sponsorship | governance | longevity
+
+case study: nuget succession policy
+
+case study: open live writer (open source .net foundation project)
+
