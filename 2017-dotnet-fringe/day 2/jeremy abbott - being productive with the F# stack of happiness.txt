@@ -1,0 +1,69 @@
+jeremy abbott - being productive with the F# stack of happiness
+@mrjabbott
+jeremyabbott.github.io
+
+the F# stack of happiness
+it has everything
+
+full F# stack with hot reloading on both the client and server
+
+make use of suave for the back end on .net core
+make use of fable for the front end clients, web, or mobile
+FAKE for builds
+paket for .NET dependencies
+shared code between server and client
+F# everywhere
+
+why?
+--
+moar F#
+pattern matching
+algebraic data types
+default immutability
+less js (but also more)
+what is ((this))
+shared code between client and server
+moar productivity
+
+suave
+simple web development library written for F#
+encourages you to think of your application as functions
+
+slide: hello world in suave
+
+slide: webparts in suave
+
+fable
+compile F# to javascript
+real static typing
+
+how it works
+F# -> Fable -> ES6 -> Babel -> ES5
+depends on webpack to work as of 1.0 beta
+integrates with existing js ecosystem
+fable lets you write F# and emit js you can be proud of
+
+demo: fable web app
+
+fable-suave-scaffold
+full stack F#
+edit, save, recompile workflow throughout
+leverages the elmish architecture on the client with react
+all you need is dotnet core and vs code
+no heavy tooling
+the fable-suave-scaffold was extracted from production code running today
+shoutout: steffen forkmann
+* paket, fable-suave-scaffold, amazing F#
+
+demo: react app with F#
+
+paket: alternative dependency manager for F# projects in .net
+depends on 3 different files
+packages.config => paket.references, paket.template, paket.lock
+
+refs:
+@suaveIO
+@fableCompiler
+@paketManager
+https://fsprojects.github.io/Paket/index.html
+@fsharpMake

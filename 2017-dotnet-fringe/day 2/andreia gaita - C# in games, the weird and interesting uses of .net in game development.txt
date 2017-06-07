@@ -1,0 +1,46 @@
+andreia gaita - C# in games, the weird and interesting uses of .net in game development
+@sh4na
+http://github.com/shana
+
+talking about scripting
+differences between games and apps
+
+app ui loop
+app waits for events
+
+while(true) { awaitMessage(); dispatchMessage(); } // paraphrased - ED
+
+game always runs
+
+while(true) { processInput(); update(); render(); }
+
+most game engines are in C/C++ for performance
+you need performance to be able to make games run well
+
+slide: Game Engines in C/C++ "performance, fps, ugh pointers, latency"
+almost all of this is written by programmers / developers
+
+slide: Game Content Is: "active story, sound, interactions, writing, mechanics"
+all of these things are written by designers and not programmers
+
+slide: designers create with code, CODE IS DATA "preventing crashes, saving game state, fast iteration"
+
+slide: different types of language "data definition languages, runtime languages"
+
+slide: runtime languages "transpiling, compiling to native code, VMs"
+
+slide: the borders get blurred, CODE IS DATA
+
+example: http://www.puzzlescript.net/
+
+another example: naughty dog
+makers of uncharted
+background in lisp
+scheme-like language with lambdas and continuations
+VM hosted by the engine
+
+slide: constraints breed creativity "experimentation is key, fast iteration times, ..."
+
+slide: component based programming
+
+demo: games in Unity

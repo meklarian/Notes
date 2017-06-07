@@ -1,0 +1,7 @@
+gad berger - a distributed, event-sourced task-based, workflow engine
+a saga-like framework for mixed agent and microservice operations
+@gadburger
+
+https://github.com/gmoshe27
+
+presentation (unable to read slides - ED)

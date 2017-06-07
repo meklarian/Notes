@@ -1,0 +1,8 @@
+scott hanselman - .net core
+@shanselman
+
+plug: https://hanselminutes.com/
+
+demo: .net core 2.0 / .net core 1.0 on ubuntu (? some flavor of linux - ED)
+
+shows using global.json (saved as global.j) and an isolated directory to get around auto-version upcasting

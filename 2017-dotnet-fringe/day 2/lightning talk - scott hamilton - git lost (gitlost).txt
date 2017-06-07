@@ -1,0 +1,9 @@
+scott hamilton - gitlost
+
+demo: git branch graph
+
+https://github.com/McLeopold
+
+uses gitlost at work to keep track of branches
+
+https://github.com/McLeopold/gitlost
