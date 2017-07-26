@@ -1,0 +1,44 @@
+* api platform announcement
+
+why an api platform
+unifying and investing
+api platform roadmap
+
+apr 6th announcement to reengage with the dev community and realign with their goals
+
+the twitter api encourages innovation that leads to a better experience for everyone on twitter
+
+example: sprout social
+example: likefolio - investment advisor based on twitter sentiment
+example: earthquake detection
+
+* driving business innovation
+
+harness the power of twitter for businesses
+create revenue across the ecosystem
+fund further development of the API platform
+
+* creating an integrated api platform
+
+unified api experience
+scalable access
+predictability
+
+there will be a free tier of service for POC / prototype apps
+tiers will ascend up to enterprise level product access
+a roadmap has been published
+
+trello board
+https://t.co/twitter-api-platform-roadmap
+
+three categories
+
+recently hatched - new apis
+incubating - things that might happen
+nesting - ideas and undeveloped concepts
+
+questions?
+
+ref: twittercommunity.com
+
+

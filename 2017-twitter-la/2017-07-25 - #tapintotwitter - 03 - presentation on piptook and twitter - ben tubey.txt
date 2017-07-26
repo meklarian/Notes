@@ -1,0 +1,78 @@
+ben tubey
+@piptookAU
+founder of Piptook
+
+background - worked with developers in the past, loves twitter
+
+piptook
+
+consumes powertrack 2.0 stream API
+API allows for real time updates to rules
+we can add or update a running rule and start receiving data immediately
+two connections are run in redundancy
+piptook allows for the captured tweets to be classified / tagged as necessary
+
+historical powertrack 2.0
+our window into the past catalogue of tweets
+we run our queries in batches 
+
+powertrack (other)
+
+compliance features
+
+
+* focus on twitter interactions (product VERO)
+
+model as a jelly fish
+body as focal point
+tentacles as relations to who you talk to, who calls activity to your brand, etc.
+
+* general sources overview
+
+hashtag tracking
+summary of interactions
+
+* vero interactions timeline
+
+showing when youre audience are most active
+not necessarily when they are liking your tweets or replying, but when they are posting to twitter and sharing
+
+* top shared domains
+
+* top shared content
+
+* twitter demographics
+
+* Vero - network analysis
+
+hubs: passive receivers of the most popular attention
+hub-engagers: both drivers and targets of related interactions, both popular and active accounts
+engagers: interacted with the largest number of other tweeters on the network
+
+* twitter gatekeepers
+
+chart: showing toplogy models (hubs/engagers), dimensions: username, topics of expertise, centrality, klout, network connections, virality
+
+twitter audience reports have a strong tendency to expose overwhelming preferences for sports programs across all audience in US markets ... etc.
+
+* example: UFC - twitter audience and network report
+built report showing audience overview: splits across the world, countries, areas, cities, etc.
+gender | age breakdown | interests
+tv genres | tv shows
+
+objective: find a principal to introduce your brand to other people in common interest pools (customers/viewers)
+
+chart: showing key influencers
+
+* piptook logo recon PLR allows us to enrich datasets we provide
+etc.
+
+* sponsors logo recognitions
+
+* logo exposure - overview
+
+example: eSports casts, showing exposure of sponsors and performance
+most popular tweets with logos
+showing distance and propogation of media
+images, how far did they get in the network, where did the interaction trail drop/die, etc. how to improve
+

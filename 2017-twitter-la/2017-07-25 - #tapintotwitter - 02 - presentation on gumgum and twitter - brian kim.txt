@@ -1,0 +1,98 @@
+brian kim @gumgum
+vp of product at @gumgum
+
+* about us
+250 gumgummers
+70% of fortune 100 companies
+16 offices in 4 continents
+90% CAGR since... 2009?
+
+* gumgum is an AI company with deep expertise in computer vision
+
+our mission is to unlock the value of images ... stuff on twitter (ed)
+
+* what we do
+advertising
+sports valuation
+social analysis
+
+invented in0image advertising to contextually serve ads in line with content users are actively engaged with
+help brands and rightsholders realize full media value across broadcast and social media
+scour media for all images and videos that relate to our clients
+
+* demo
+brand id measurement in video (holy shit - ed)
+measure engagement time, instances
+
+* where tv falls short
+65% of sponsors are dissatisfied with valuations
+2-6 weeks typical turnaround time
+>50% media value is not captured
+
+viewership is declining
+a lot of existing metrics are measured manually
+a lot of engagement is online, not in broadcast channels
+
+* value of signage is shifting to social media
+game highlights on social media now contribute more reach and engagement for sponsors than a live tv broadcast
+as much as 90% of this value is coming from non-owned accounts
+
+* benefits of cpaturing social media value
+persistent coverate, content decays very slowly on social media (posts from 12 years ago will still exist, etc.)
+traditional signage dollars are digital dollars
+not limited to a single video of game footage
+bring local broadcast to a national audience
+
+* key success: computer vision
+
+* introducing the media value percentage MVP methodology
+
+clarity 
+prominence
+visibility
+size
+placement
+share of voice
+=> MVP
+
+* gumgum & twitter data
+
+* what apis we leverage
+
+1. realtime powertrack APi
+2. twitter profile location enrichment
+3. twitter engagement API
+
+* how we use twitter's data APIs [Funnel]
+
+twitter powertrack API - hastag geotag account firehouse
+\/
+computer vision server - iddentifies sport and team
+\/
+logo detection server - identifies brands and placements
+\/
+twitter engagement API - ingests relevent stats
+\/
+media value algorithm (elasticsearch)
+
+* mavericks social media valuation
+home game when dirk hit 30k point mark
+
+* summary - by format
+diagram: report showing social media value (dimensions: format, exposures, duration, impressions, engagements, MVP, MVP EV in $, sponsor MV in $)
+
+* plug: we're hiring
+
+Q: how is MVP calculated?
+A: we have two values, MVP (EV) in $, equivalent to what a commercial would cost
+on social media, we calculate what it would cost to buy an equivalent ad (twitter sponsored tweet, IG ad, FB ad)
+
+Q: how do you charge?
+A: on a subscription basis. for sports teams, they pay for a season typically.
+
+Q: do you only do analysis, or do you also setup marketing plans
+A: we do both, but usually focus on analysis first. often they need to learn how to digest the massive quantity of info first and build out a strategy/adapt. (paraphrased - ed)
+
+Q (by me): do you do facial recognition?
+A: we do facial feature recognition, like snapchat filter (primitive), robust db of celebrities and people, can identify common celebrities like leonardo dicaprio, selena gomez, etc.
+

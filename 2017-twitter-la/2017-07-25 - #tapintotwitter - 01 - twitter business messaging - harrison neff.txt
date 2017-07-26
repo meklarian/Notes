@@ -1,0 +1,141 @@
+twitter business messaging - "always be happening"
+
+harrison neff
+@harris_0n
+
+examples: xerox spark
+first smartphone: simon (by IBM)
+
+the future of consumer tech is conversations
+
+build experiences that are rich, engaging, personlized, and shared
+
+venn diagram: mindset || platform || insights (full 3-way intersection)
+
+history: 13 years of historic data available
+
+people on twitter have a unique customer mindset
+
+82% of people actively engage with brands on twitter
+
+more people say they expect brands to have a presence on twitter than other social platforms
+
+reference tweet: amy worley @worleygirl to @southwestair (ten years ago)
+
+* mindset
+1. people expect brands to be on twitter
+2. people actively engage with business on twitter scale
+3. ??? (this is not a new thing??)
+
+* intelligent systems can get unique insights from conversational data
+
+reference tweet: jeff lesser @jefflesser - just pre-ordered the new @CHAInGANGOF1974 album which comes out 6/23. listen to the brand new single. it's great!
+reference tweet: jess lesser again, on film trailer
+cont. - profiling user @jefflesser's interests: photography, music, drones
+
+* insights
+
+1 build intelligent systems based on 11 years of historical data
+2 collect additional customer insights from the interaction
+3 ecosystem of intelligent systems to utilize insights
+
+* uniquely unified public and private conversational interfaces
+
+* message button (new feature in twitter app)
+prominently display a call-to-action on your profile to inform people they have the option to get help privately
+
+* public -> private interaction transition
+in the event that a conversation neds to be handled privately, you can handle it with a call-to-action button
+
+30% higher tweet-to-direct message conversion by having a public call to action button
+
+* direct message card
+
+make direct message experiences more discoverable with a new customizable card that can be used in promoted and organic tweets
+
+* welcome messages
+
+set context and greet people as they enter DMs
+guide them to the best ways to interact with a business, whether a human or bot
+
+* rich media in DMs
+create rich and engaging conversational experiences with native images, video, and GIFs, as well as player, moments audio, and summary cards
+
+* custom profiles
+
+emphasize when a human is conversing and indicate when a bot is interacting in direct messages
+ref: screenshot of a DM conversation showing an agent labeled in the DM conversation
+
+* location sharing
+
+connect direct messages to the real world by requesting and sharing locations
+
+* measure to improve
+
+customer feedback allows brands to solicit feedback about their service on twitter
+(new end-of-conversation card in-app/in-place that solicits feedback)
+
+60% leave feedback
+20% leave comments
+
+* new APIs
+receive activities: real-time account activity api, polled dm get rest endpoints
+respond to people: dm post rest endpoints
+
+* recent creative applications
+
+~ chat with @United to find deals, get answers to common questions, or talk to a human
+
+demo: showing features
+quick-reply dropdown/list
+map
+image reply
+NLP reply (not twitter, host implemented)
+
+~ @starbucks delivers ongoing offers and coupons to drive in-store visits
+
+~ engage with @wendys to build a march madness bracket and get updates
+
+demo: interactive quick-replies to build a bracket
+
+result: 8M organic impressions
+
+* platform
+
+1. rich engaging conversation interface
+2. seamless integratino of public and private messaging
+3. ecosystem patrners to build conversational interfaces
+
+* twitter is a unique network
+1. people on twitter have a unique customer mindset
+2. businesses can get unique insights from conversational data
+3. businesses can utilitze ... ???
+
+* #thanks!
+
+Q: is there way to do targeted demographics? eg. how do i find a drone-using young male skier? technology-enthusiasts?
+A: some of this exists in insights APIs but no way to locate users by these metrics, only tweets (build on historic/GNIP apis)
+
+Q: are there rules around companies not disclosing that you're talking to a bot
+A: there are no rules yet, but it is in a company's best interest to inform you that you are talking to a bot. there are no rules, but this is mostly a trust thing. most applications announce when you are talking to a bot. bots can handle a lot and are getting smarter, but there is more (to be done?)
+
+Q: can you setup the realtime API for a subject matter, or a context (subtweet), if someone did "Wendys" and not "@Wendys" or something more specific
+A: account related APIs only get stuff for a specific account. powertrack is an API that can do some things like that.
+
+Q: did you reach out to wendy's or did they reach out to you?
+A: we have an ecosystem now of partners, this was built out via a partner (acquisition?? - ed) called conversible
+
+Q: you showed one example of a user getting pulled into a private conversation, is there a reverse action (funnel - ed) that can get them to go back out and tweet in public?
+A: yes, this is supported by actions in quick-reply in DMs
+
+Q: are discussion threads in DMs retained?
+A: yes
+
+Q: is there end-to-end encryption planned for DMs?
+A: we don't have a secure channel within the context of DMs, just secure delivery (TLS, etc.)
+
+Q: is there going to be an ad-product for DMs? eg. a new push channel, for post engagement
+A: I don't know but it might be a possibility (ed - not sure what is being asked here?)
+
+Q: question about how likefolio works (as mentioned in intro)
+A: something about sampling groups and feedback loops
