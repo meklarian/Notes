@@ -1,0 +1,161 @@
+big data day la
+low latency streaming using heron
+karthik ramasamy
+@karthikz
+co-founder of Streamli
+
+slide: information age
+real time is key
+news, games, social, etc.
+
+* real time connected world
+internet of things
+health care
+machine data
+connected vehicles
+digital assistants
+augmented/virtual reality
+
+* value of data
+realtime: preventive, predictive
+seconds: actionable
+minutes: reactive
+hours+: historical (traditional batch business intelligence)
+
+(shown on graph, value of data to decisionmaking vs time unit)
+
+* introducing heron
+issues with apache storm
+scaling
+debugging
+consistent performance
+yet another system to manage
+
+* heron design goals
+consistent performance at scale
+easy to debug and tune
+fast efficient gp streaming engine
+storm api compatible
+latency/throughput configurability
+library, not a service
+
+* heron in production @ twitter
+completely replaced storm 3 years ago
+3x reduction in cores and memory
+significantly reduced operational overhead
+10x reduction in production incidents
+
+reduced deployment needs from 3600 nodes down to 1000 nodes
+
+* heron use cases
+realtime ETL
+realtime BI
+spam detection
+real time trends
+realtime ML
+real time OPS
+
+* open sourcing
+https://github.com/twitter/heron
+https://heron.io
+apache 2.0 license
+
+* heron core concepts
+topology
+- DAGs
+- vertices = computation
+- edges = streams
+spouts
+- source of data tuples for the tpology
+bolts
+- computation node that may fire more events
+
+* topology architecture
+graph: topology master <-> containers, ZK cluster
+ZK cluster <-> containers
+container = [stream manager, metrics manager]
+ZK cluster = logical plans, physical plans, execution state
+
+* stream manager - design goals
+core logic in one place
+super efficient
+pluggable
+transport (tcp, udp, shared memory)
+interlanguage data formats (protobufs, etc.)
+protocols (http, gRPC, custom, etc)
+...
+
+* stream manager - current implementation
+implements at most once and at least once
+written in C++ for efficiency
+uses tcp sockets
+...
+
+* stream manager - shortcoming
+transport shortcomings
+- tcp overhead
+- multiple memory copies
+protobuf shortcoming
+- serialization expensive
+core logic implementation
+
+* stream manger - performance analysis
+valgrid - too slow
+google protobufs analysis used instead
+
+* stream manager - optimization 1
+new/delete overhead
+protobuf sacficies speed for safety
+solutions:
+create protobuf pools at startup
+we do a "new" only when pool is exhausted
+the pool is bounded in size to avoid running out of memory
+
+* stream manager - optimization 2
+immutable pattern
+...
+* optimization 3
+eager deserialization
+protobuf deserializes the entire message even if we access just the header
+
+* optimization 4
+calculation of protobuf size
+problem: bytesize computation is expensive and ever time it is done from scratch
+...
+
+* benchmark settings
+
+dual intel xeon E5645@2.4Ghz, 72gb RAM, 500gb disk
+word count topology
+175k words
+
+throughput improved by factor of 5-6x
+improved to 117M tuples/sec
+
+latency improved by factor of 2-4x
+160ms->6-30ms depending on transport
+
+* real-toime is messy, unpredictable and hard
+
+twitter solution:
+ingestion API -> [[pulsar][heron][apache bookkeeper]] -> query API
+everything can handle 1ms turnaround latency
+
+* curious to learn more? papers
+twitter heron: stream processing at scale
+Streaming@twitter
+etc.
+distributedlog: a high perf replicated log service
+dhalion: self regulating stream processing in heron
+
+* questions?
+
+Q: it's not just about latencies, what about duplicate records?
+A: we support exactly-once delivery. it's slower in speed, but at most a 10% penalty. we penalize on the failure side. (optimistic processing, assume failures are rare). on failure, we roll back on async snapshots and replay up to the point of failure.
+
+Q: what OS can run heron?
+A: Mesos, Mesosphere, DC/OS, docker, etc.
+
+Q: how much latency is introduced via docker?
+A: about 2-3%
+

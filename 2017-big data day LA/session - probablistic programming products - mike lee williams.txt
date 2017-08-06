@@ -1,0 +1,124 @@
+big data day la
+probablistic programming products
+mike lee williams - fast forward labs
+@mikepgr - @fastforwardlabs
+slides: fastforwardlabs.com/slides/ppp ??
+
+probablistic programming: a commodization of bayesian inference
+
+bayesian inference is great in theory
+quantify risk
+insert institutional knowledge
+
+but it's slow if you're not careful
+being careful requires cleverness
+hamiltonian monte carlo with automatic differentiation and NUTS
+the cleverness is now ready to be absracted away
+
+* AB test
+layout A 4% conv rate
+layout B 5% conv rate
+
+but what if i told you, layout A had 25 visitors, and layout B had 20 visitors
+if i told you it cost $1M to deploy a new solution
+you'd be very worried about this
+
+what went wrong: we quantified this as a binary question
+graph: linear programming partition, A vs B
+
+really real reason this is all bad: bad data
+
+in this case: just not enough data
+conclusions derived are uncertain
+
+in data science it isn't enough to say
+layout A is better
+
+instead you must say
+layout A is better with confidence X% / p-value
+
+graph: beliefs -> model -> bayesian inference, data -> bayesian inference -> revised beliefs -> model, deployable model
+
+graph: scatter plot against linear programming partition, B vs A
+scatter plot shows B is better with confidence 85% over A, (B has 85% of dots)
+
+* use bayesian inference when you:
+need to quantify the probability of all possibilities, not just determine what is most likely
+want to make use of institutional knowledge
+want to do online learning
+want to do active learning
+want to use data to decide if a more complicated model is justified
+have several heterogeneous datasets
+need to explain you decisions to customers or regulators
+have sparse data with a shared or hierarchical structure
+
+* ref: probablistic programming from scratch 1: A/B testing with uncertainty (o'reilly series on youtube)
+
+* hamiltonian monte carlo
+explores efficiently ...
+
+naive way of doing bayesian inference is like being blindfolded and throwing darts at a board
+
+HMC is an efficient and elegant algorithm for bayesian inference
+
+problem with it is, requires the user to do calculus
+differentiate a relatively complex function
+
+HMC with autodiff
+... differentiates automatically ...
+
+not symbolic nor exact differentiation (calculus)
+autodiff application of chain rule at CPU instruction level
+
+HMC with autodiff and NUTS
+no u-turn sampler
+... and is idiot-proof
+
+* systems
+
+stan
+pyMC3
+
+bake in industrial strength, well tested implementations of HMC with NUTS
+
+a new way of expressing probabalistic ideas
+
+ex: random variables, statistical variations (?)
+
+uses a declarative style
+the language figures out the side effects and impact of having entities defined/declared
+
+* example: statistical vanilla regression, with measure of wrongness baked in
+
+* demo: loan officer simulator
+* demo: fastforwardlabs.com/pre - probablistic real estate
+
+* Stan
+great for offline analysis
+but it's very awkward to productize
+
+* pymc3
+algorithmically a half step behind (but catching up)
+much easier to build products with
+
+* others
+anglican - lisp
+edward - NN oriented
+figaro
+
+* Facebook Prophet
+time-series forecasting system
+used by their data scientists to predict the future with a given uncertainty
+
+* demo: prophet fit for CO2 concentration on mount ??? in hawaii
+
+* next steps
+fastforwardlabs.com/talks/ppp
+the NYC real estate prototype: fastforwardlabsl.com/pre
+probablistic programming from scratch (FFL/O'Reilly)
+the algorithms behind probabilsitic programming (FFL blog)
+
+* contact
+mike lee williams - @mikepgr - mike@fastforwardlabs.com
+fast forward labs - @fastforwardlabs - contact@fastforwardlabs.com - fastforwardlabs.com
+

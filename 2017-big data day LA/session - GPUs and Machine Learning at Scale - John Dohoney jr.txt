@@ -1,0 +1,130 @@
+big data la
+GPUs and Machine Learning at Scale (Sponsored)
+john dohoney, jr. solution architect, mesosphere
+
+what are GPUs?
+
+* GPUs are the tool of choice for many big-data cloud applications
+deep learning
+natural language processing
+genome sequencing
+
+* slide: GPU acceleration
+www.slideshare.net/datascienceMD/deep-learning-with-gpus
+
+* Why GPUs?
+Mesos users have been asking for GPU support for years
+first email asking for it can be found in the dev-list archives from 2011
+the request rate has increased dramatically in the last 9-12 months
+
+* docker
+extremely popular image format for containers
+build once -> run everywhere
+configure once -> run anything
+slide src: dockercon 2016 keynote by docker's CEO ben golub
+
+* nvidia-docker
+wrapper around docker to allow GPUs to be used inside docker containers
+
+machine learning rameworks
+support exists for many popular machine learning frameworks with nvdia-docker
+
+* overall goal
+test locally with nvidia-docker
+deploy to production with DC/OS
+
+* challenges
+without direct support for GPUs, there is no isolation guarantee
+no built-in coordination to restrict access to GPUs
+possible for multiple frameworks / tasks to access GPUs at the same time
+ad-hoc solutions have emerged to give access to GPUs, but they all rely on co-operative scheduling rather than true isolation
+
+* with apache mesos
+enterprise users currently partition clusters to make use of GPUs
+they'd like to consolidate them
+not willing to do so without isolation guarantees
+
+graph: Job Scheduler -> Mesos, Job Scheduler -> NVIDIA GPU
+
+* so what is apache mesos?
+an open-source distributed systems kernel (a.k.a cluster manager) for fine-grained management of cluster resources and tasks
+
+graph: framework/scheduler <-> Master/Leader Pool <-> ZooKeeper Quorum, Master/Leader Pool <-> Agent [Executor [Tasks]]
+
+mesos provides its own containerization technology called the meso containerizer
+it supports the standard docker image format, but relies on its own internal implementation for building containers
+a separate docker containerizer is also available
+
+* DC/OS enables modern distributed apps
+
+modern app components
+microservices (in containers) [functions & logic]
++
+big data + analytics engines
+analytics [streaming, batch, machine learning]
+databases [search, time series, SQL/NoSQL]
+
+presenter used term: smack stack? what is this? - ed
+
+Modern App Components => Datacenter Operating System => Distributed Systems Kernel (Mesos) => Any Infrastructure (Physical, Virtual, Cloud)
+
+* the basics
+dc/os is...
+- 100% OSS (ASL 2.0) (a big diverse community)
+- an umbrella for ~30 OSS projections (roadmap and designs, the build tool chain, docs and tutorials)
+- not limited in any way
+- familiar with a few new features
+
+* apache mesos and GPUs
+
+diagram:
+Mesos Agent
+---- containerizer api ----
+(unified) mesos containerizer
+---- isolator api ----
+[CPU] [Memory] [GPU]
+
+* dc/os GPU demos
+simple isolation demo
+single node tensorflow demo
+distributed tensorflow demo (future work)
+
+* simple isolated demo
+1 master, 1 agent - 8 GPUs
+
+http://github.com/aymericdamien/TensorFlow-Examples
+
+* future work
+integrate different machine learning rameworks with teh dc/os sdk
+https://github.com/mesosphere/dcos-commons
+
+distributed tensorflow with tfmesos
+https://github.com/douban/tfmesos
+
+distributed mxnet
+https://github.com/dmlc/mxnet
+
+one click install in the dc/os universe
+(the dc/os notion of an app-store)
+
+tpology aware scheduling
+gpu sharing (virtual GPUs)
+gpu contributions
+
+* questions and links
+
+apache mesos
+http://mesos.apache.org/
+
+open dc/os
+https://dcos.io/
+
+enterprise dc/os
+https://mesosphere.com/product
+
+gpu related documentation for mesos and dc/os
+https://github.com/apache/mesos/blob/master/docs/gpu-support.md
+https://dcos.io/docs/1.9/deploying-services/gpu/config
+
+* Demo: Mesosphere, client in browser
+* Demo: nvidia-smi to inspect GPUs

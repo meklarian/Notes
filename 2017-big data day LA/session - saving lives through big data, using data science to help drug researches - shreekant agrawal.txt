@@ -1,0 +1,96 @@
+big data day la
+saving lives through big data, using data science to help drug researches (sponsored)
+@shreekant agrawal
+shree_agrawal
+
+ed - missed slides due to transit time and standing room only issue
+
+* ???
+
+impact
+- what happens when something goes wrong?
+
+scale
+- millions of medicines mfg daily
+- $450B industry
+- much bigger industry than music and media
+
+* what does a manufacturing operation look like?
+bio-reactors or mixers are the main mfg equipment in pharmas
+different sets of sensors\probes are mounted on theirs bio-reactors
+- O2, CO2, pressure, temperature, production, etc.
+
+readings of these sensors are monitored on shop floor by technitions
+sensors have software installed to stream and store and save data in servers
+
+OSIsoft spark (?)
+
+there can be hundreds of BRs (bioreactors)
+operations can be spread out all over the world
+
+one case study: 600,000 sensors in a global production cluster
+
+* what is the power of this data?
+
+one big domain: mfg science, mfg research
+science for optimizing the mfg process
+
+this data can help scientists optimize mfg output
+
+operations and QA:
+technicians and QA resources analyze any adverse events or failed batches
+
+they log non-conformance to be processed and studied
+
+predictive analysis:
+data scientists to analyze pattern of the events that might have lead to failure
+
+* what are some challenges in doing analytics on this data?
+
+storage:
+high i/o capability to handle lage volumes. handle simultaneous and real-time read and writes.
+
+bringing data to common platform:
+data ingestion capabilities with high throughput
+
+analytics platform:
+how do we expose all of this data to be available in realtime to scientists?
+an "ultimate" analytics solution that would be able to process large data volumes
+
+* how did we solve these problems
+
+data generation & ingestion -> data storage & processing -> data access & visualization
+enterprise PI -> data lake -> presentation
+kafka -> spark streaming / axibase / hadoop -> data science tools / standard UI tools
+
+data exposed through ODBC and JDBC
+any platform that supports these can consume data
+axibase is the time-series db and it supports functions like interpolation
+data in hdfs is stored in form of files (allows file access)
+
+* scalable, accessible, cheap
+scalable: can we add parallel workers?
+accessible: can any tool be used by scientists for analysis?
+cheap:
+
+50,000msgs/s on 6 data node cluster to get this throughput
+
+* how has this solution impacted the life of scientists?
+- faster query response time
+axibase and hdfs provide high IO throughput
+
+- exposure to suite of data science tools
+pick whatever data science tool you prefer for analysis
+
+- real-time data ready for integration
+data is available in real-time and in a common platform. this helps in integration.
+
+* what are some other trends for Data Science in healthcare?
+
+other areas in healthcare where DS plays a crucial role:
+clinical data
+real world evidence - electronic medical records
+multi channel marketing
+
+every single minute saved in a redundant activity empowers scientists and engineers in concentrating on drug research
+

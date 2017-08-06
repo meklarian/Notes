@@ -1,0 +1,131 @@
+big data day la
+opening the black box: attempts to understand the results of machine learning models
+michael tiernay
+R&D Data Scientist, Edmunds.com
+
+* what's the problem?
+
+there's two objectives: trying to understand the relationship between two outcomes, or just making a prediction
+a tradeoff between models you can choose
+
+* inferential models might be bad
+
+graph: pressure vs temperature, showing model doesn't fit data
+
+* non-parametric models are hard to understand
+
+* graphic: google's inception model (NN, 23 levels deep)
+
+* local vs. global interpretability
+1. local interpretability - focus on how a model works around a single or cluster of similar observations
+2. global interpretability - focus on how a model works across all observations (ie. coefficients from a linear regression)
+
+* why do we want local interpretability?
+understand how a specific prediction is made
+trust individual predictions - people are more likely to act when they understand how predictions are made
+provide guidance for intervening strategies (ie. the cancer is predicted to be caused by X, which can be treated by Y)
+
+presenter: trust is key for getting people to commit money to an action
+
+* why do we want global interpret.
+understand in a general sense how the features related to the outcome
+hypothesis generation: model can help generate new ideas that can be tested experimentally
+this problem has not received much attention in the machine learning literature
+
+* LIME (locally interpretable Model-agnostic Explanations)
+
+mainly created for images and text
+model agnostic
+focus on one observation (x) at a time
+sample other observations (z) weighted by distance to x
+compute f(z) (the predicted outcome)
+select K features with LASSO then compute least squares
+coefficients from LS are 'local effects'
+
+* lime demo
+
+* lime explaining photos
+example: labrador playing guitar
+model detected: acoustic guitar, electric guitar, labrador
+
+example: husky classified as wolf (misclassified)
+model feature strayed: detected snow, snow + canine = wolf
+
+* let's look at a toy example
+
+* logistic regression example
+survival chance by age/sex/etc. for titanic characters
+
+titanic Effects (men)
+sex: M, age: 35, Pclass: 2
+being M makes you significantly less likely to survive
+age, class: small beneficial effects
+
+another male:
+sex: M, age: 35, Passenger Class: 3
+likely to die
+
+Sex: F, age: 26, Pclass: 2
+survived
+
+Sex: F, age: 24, Pclass: 3
+died
+
+* lime's major conclusions
+women survive at a higher rate than men
+class has the same effect for women and men
+
+* an alternative: simple simulations
+
+* simulations for binary features: gender
+
+* flip females to males and vice-versa
+how does probability of survival change?
+
+median effect of switching F <-> M: 40%
+
+* simulations for binary features
+trivial simulation
+local interpretability
+see how much the prob/value changes when binary feature is changed
+global interpretability
+flip the values for binary feature and see what changes
+
+* change from 3rd to 2nd class
+interaction effect: tends to favor survival for women
+* change from 2nd to 1st
+very little effect for women, large effect for men
+
+simulations for categorical features
+not so trivial simulation (esp. with many levels)
+local
+see how much the p/v changes with every other lebel
+global
+simulate changes to every level for every obs (or random sample)
+
+* simulations for numerical features
+simulate a 1 year change in age
+simulate a 1 year decrease in age
+
+combine both effects: a "coefficient"
+some people are responsive to age changes
+but for another subset of the pop, no effect
+
+simluate every age for every passenger
+partial dependence plots = take the average
+see the effect of age over the entire population
+downside: washes out local effects
+
+* impresions of lime
+good out of the box solution that reuqires little thought
+probably works good with images/text
+doesn't allow control over defining 'local space'
+doesn't provide different effects for up/down changes in features
+
+* simple simulations reveal a lot
+
+* avenues for future research
+how to learn from sims of the entire population?
+how to model interaction terms?
+
+Q/A: EU has a provision that all models need to be explainable.

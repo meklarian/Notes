@@ -1,0 +1,73 @@
+big data day la
+legal intake & machine learning
+brendan herger
+machine learning engineer
+center for machine learning @ capital one
+slide deck: https://goo.gl/CVKkeM
+
+founder of new division in capital one, center of machine learning
+started out looking for NLP projections that they could work on
+lots of processes around documents requiring people to read, sign/markup, and pass along
+
+started helping a team in legal and bring them into automation capabilities
+the legal would get buckets of mail daily, requiring people to read and stuff
+
+lots of subpoenas
+500+ different formats that incoming requests could take
+
+some parties just handwrite fields
+but most have gotten to the point of typewritten letters
+
+* agenda
+intro
+project features
+Q+A
+
+* intro
+currently, capitalone receives 10,000s of subpoenas a  year
+
+* intro
+client: legal intake team
+previous process: highly manual, heuristic doc sorting, triaging, and info extraction
+new process: automated, normalized doc sorting, triage, and info extraction
+
+fixing this reduced staff, freed up expensive legal time (lawyers)
+
+* product features
+mail -> scanner -> network drive
+
+network drive <-> [extract -> transform -> load]
+
+network drive -> intake analyst -> investigator
+
+extract = doc rendering, ghostscript and OCR (tesseract)
+transform = regex with OCR confidence, python, text processing NLTK, model prediction: SKLearn
+load = summary doc (reportlab), output summary: yaml
+
+proof of concept was done in spark,  but moved back to python because spark was just too burdensome / overkill for needs and integration
+
+benefits of tesseract: confidence scoring for words
+YAML: preferred for future expansion and context free doc relation unit
+
+* product features
+(CSV)
+feature, outputs, output ferquency, confidence level, comment
+risk bucketing, high risk / mod risk, one output per doc, probability from naive bayes classifier
+entity served, capital one bank (US) / etc, zero or more outputs per doc, none, regex match, based on normalized text
+document type, grand jury / credit verification / witness / summons, one output per document, probability from naive bayes classifier
+customer identifier, SSN /EIN/acct number, zero or more outputs per doc, minimum OCR char confidence
+
+* naive bayes
+text processing
+hyper-parameter selection (grid search + cv)
+metrics evaluation
+
+* regex with ocr confidence
+ocr with per word confidence
+format into table w/index, character, confidence
+find indices of matches
+- match text is the text between these indicies
+- match confidence is an aggregate of the confidences between these indices
+
+* Q+A
+

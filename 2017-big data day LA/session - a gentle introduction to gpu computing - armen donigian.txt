@@ -1,0 +1,183 @@
+big data day la
+a gentle introduction to gpu computing
+armen donigian
+@armjan
+data science engineer, zestfinance
+
+zestfinance - our technology platform, ZAML
+
+we want to change how credit decisions are made
+
+ZAML is our solution for credit underwriting
+
+analyzes non-traditional credit data to increase approval rates and reduce the risk of credit decisions
+explains data modeling results to measure business impact and comply with regulatory environments
+
+* objectives
+1. motivation
+2. intro to parallel computation patterns & cuda
+3. related programming models
+
+* why the world has gone parallel
+graph: feature size vs year, feature size has decreased year by year
+
+* clock rates remain constant
+graph: clock frequency (mhz) vs year, clock frequencies have plateaued
+
+* how can we dig more holes? analogy to processor design
+option 1: dig faster
+option 2: dig more (more productive shovel)
+option 3: add more diggers (dig in parallel)
+
+* example: latency vs throughput
+2 people, 200km/h
+latency = 4500/200 22.5 hrs
+throughput = 2 / 22.5 = .089 people/hr
+
+40 people, 50km/h
+latency = 4500/50 = 90 hrs
+throughput = 40/90 = .45 people/hr
+
+* CPU
+CPUs latency oriented design
+optimized to decrease the amount of time to achieve a single task
+powerful ALUs
+large Caches
+sophisticated control
+
+* GPU
+GPUs: throughput oriented design
+small caches
+simple control
+energy efficient ALUs
+require massive number of threads to tolerate latencies
+
+* finally, 3 key ingredients
+big data + relationship/modeling + nvidia/CUDA
+
+* 3 main ways to take advantage of GPU computing
+1. accelerated libraries (easy + performant)
+- high quality implementations of general purpose functions (efficient math operations)
+- linear algebra libraries
+  - deep neural network library (cuDNN), Fast Fourier Transform (cuFFT), Linear Algebra (cubLAS), SPARSE (cuSPARSE) from NVIDIA, Matrix (CUSP)
+- numerical & math libraries
+  - cuRAND + MathLib
+- algorithms libraries: Thrust
+- visual processing: NVIDIA NPP
+2. compiler directives thru OpenACC (Easy + Portable)
+3. write code in CUDA (Performant + Flexibility)
+
+* sort using thrust
+example: code snippet in C++x0
+
+steps: allocate data, copy cpu->gpu, do work, copy gpu->cpu
+CUDA 9 supports unified memory
+
+* part 2: parallel computation patterns & intro to CUDA
+
+* what is parallel computing
+many threads solving a problem by working together
+models:
+- threads reading from same memory location
+- threads read/write form same memory location
+- threads exchanging information
+
+* pattern: Map
+Map: tasks read from and write to specific data elements
+
+* pattern: Gather
+each calculation gathers input from different palces to compute an output result
+
+looks at input set and neighbor sets
+output set is 
+
+stencil: fixed pattern of Gathering (convolutional kernel)
+
+2nd von neuman: + sign in 3x3, 2D moore: 3x3 full
+
+* pattern: scan
+scan operation takes a binary associative operator delta and array of n elements
+and returns the array
+
+applications of scan: fastest gpu sort, collision detection, graph traversals, data compression, tree operations, histograms, lexical analysis
+
+input {13 7 16 21 8 20 13 12}
+exclusive scan { 0 13 20 36 57 65 85 98 }
+inclusive { ... }
+
+* pattern: histogram sectioned partitioning
+(weak hash?)
+
+* pattern: reduce
+takes binary operator to reduce input sequence to a single value
+there is no required order of processing elements in a data set (associative and commutative)
+partition the dataset into smaller chunks
+have each thread compute its chunks
+...
+
+* parallel sum reduction example
+
+* read-modify-write
+data race issue if threads become interleaved
+
+scenario 1: thread 1 runs first, completes, thead 2 runs second, completes
+scenario 3:
+
+gpu programming languages
+numerical analysis: matlab, labview
+fortran, c, c++: cuda
+numba: python
+@jit decorator
+ - take annotated code, make a kernel that can run in parallel
+
+numba compiles to LLVM
+
+* cuda parallelism: threads
+threads in different blocks don't interact
+threads within a block cooperate via shared memory, atomic operations, and barrier synchronization
+
+* structure of a GPU program
+1) create data and alloc storage on GPU
+2) copy from CPU to GPU
+3) launch kernels on GPU
+4) copy from GPU to CPU
+
+* grid, block, & threads
+simplifies memory addressing when processing multidimensional data
+
+all threads in a grid run the same kernel code
+single program, multiple data
+each thread uses indicies to decide what data to work on
+
+* CUDA NVCC: hello world
+nvidia provides a CUDA-C compiler (nvcc)
+
+nvcc compiles device code then forwards code onto host compiler (g++)
+
+* additional tools
+cuda-gdb
+NSIGHT ide (vs and eclipse, etc.)
+
+* vector addition: sequential
+* vector addition: parallel
+
+* pyCUDA wrapper for CUDA in python, uses C extensions
+produces machine code that can run in parallel
+
+* openACC
+directive based programming model
+ease of use: less programming, compiler takes care of parallel management & data movement
+portable: code is generic, portable across multiple multi-code architectures
+...
+
+* in summary
+emerging use cases
+deep learning & AI
+data mining and analytics
+big data visualization
+gpu based databases
+multi-gpu mapreduce
+
+if all else fails, you've got a great gaming rig
+
+* related programming model: MPI

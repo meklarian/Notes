@@ -1,0 +1,88 @@
+big data day la
+deep learning frameworks using spark on YARN
+vartika singh
+field data science architect, cloudera
+
+** big data and DNN
+
+* an overview of ML pipeline
+
+graph: raw data (many sources, formats, validation levels) -> data engineering (cleaning, merging, filtering) -> well formatted data (training, validation, test data) -> data science (model building, model training, hyper-param tuning) -> validated ML models -> data engineering (pipeline execution, production operation) -> end user (consumption for analysis)
+ongoing data ingestion -> data engineering nodes
+
+* deep learning in big data
+
+a major source of difficulty in many real-world artificial intelligence applications is that many of the factors of variation influence every single piece of data we can observe
+deep learning solves this central problem via representation learning by introducing representations that are expressed in terms of other, simpler, representations
+
+* deep learning in hadoop
+diagram too complex to annotate
+
+* analysis pipeline
+diagram too complex to annotate
+
+* DL at scale
+
+a significant amount of effort has been put into developing deep learning systems that can scale to very large models and large training sets
+large models in the literature are now top performers in supervised visual recognition tasks
+can even learn to detect objects when trained from unlabeled images 
+...
+
+* when to do it?
+distributed training isn't free
+setup time
+continue to train your networks on a single machine, until the training time becomes prohibitive
+
+* scaling out and up
+using multiple machines in a large cluster
+leveraging GPUs
+
+* GPUs
+the user of GPUs is a significant advance in recent years that makes the training of modestly sized deep networks practical
+a known limitation of the GPU approach is that the training speed-up is small when the model does not fit in GPU memory (typically less than 6gb)
+to use a GPU effectively, researches often reduce the size of the data or parameters so that the CPU <-> GPU transfers are a smaller bottleneck
+
+* parallelism
+within machines: multithreading, GPUs
+
+across machines: message passing
+
+* model parallelism
+in model parallelism, different machines in the dist. system are responsibilble for the computations in diff parts of a single network. for example: each layer in the NN may be assigned to a different machine
+
+bottleneck: communication networks
+
+* data parallelism
+in data parallelism, different machines have a complete copy of the mode, each machine simply gets a different portion of the data, and results from each are somehow combined
+
+(speaker went way off slides here, missing a lot of information on how spark is used)
+
+** typical considerations in the cloud
+
+* driver libraries
+cuDNN, intel MKL
+one of the primary goals of driver libraries is to enable the community of NN frameworks to benefit equally from its APIs
+the lib exposes a host-callable C language API, but requires that the input and output data be resident on the GPU
+the lib is thread-safe and its routines can be called from different hostthreads
+the convolution routines in cuDNN provide competitive performance with zero auxiliary memory required
+
+* CPUs and GPUS
+the most important feature for DL perf is memory bandwidth
+GPUs are optimized for memory bandwidth while sacrificing memory access time
+...
+
+* AWS EBS
+use volumes that are attached to an EBS-optimized instance or an instance with 10gb network conn
+EC2 intestances that do not meet this criteria offer no guarantee of network resources
+
+* optimized EBS
+EBS-optimized connections are full-duplex and can ...
+
+* AWS EC2
+physical proximity of EC2 instances
+EC2 instance MTUs
+size of the EC2 instance
+EC2 enhanced network support for Linux
+placement groups
+
+(end of slides, have to travel to next sessions :( )

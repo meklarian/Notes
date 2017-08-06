@@ -1,0 +1,152 @@
+big data day la
+real-time analytics in transactional applications
+brian bulkowski, CTO and Founder, Aerospike
+
+what is aerospike?
+large-scale dHT database O(1) get/put
+
+high availability clusterin & rebalancing
+hybrid memory - provides either persistent DRAM or Flash
+KVS++ provides query, predicate filters, table/columns, aggregations
+cloud-saavy, etc.
+
+* traditional architecture has significant limitations
+
+Challenges
+- complex
+- maintainability
+- durability
+- consistency
+- scalability
+- cost ($)
+- data lag
+
+mysql is 5-10k tx/s consistent worst case (100% cache miss) (ed- by what measure?)
+
+concept: hybrid memory database, powered by high performance noSQL
+
+bottleneck: many websites take 50-100 internal requests to satisfy one web request
+
+* non-relational real-time
+
+500 business tx/s x 5000 calculations per business tx = 2.5M DB tx / sec
+
+actual activity: credit card processing -> 5k business tx/s
+
+* to summarize
+(presenter has a weird slide with a mish-mash of... stuff)
+
+* keys to success
+use application frameworks, and write code
+- allow multiple examples
+
+...
+
+* adtech - real-tiome advertisement optimization
+challenge
+- rapid customer algorithm deployment
+- low read latency (ms)
+- scale from 100k to 5m operations/s
+- ensure 100% uptime with global data
+
+performance requirement
+- 1-6B cookies tracked
+- 5.0 auctions/s
+- 100m ad rendering. 50ms real-time bidding, 1ms db access
+- 1.5kb median object size
+
+selected nosql
+- flash economics
+- faster algo development
+- easy partner onboarding
+
+diagram: stack
+web request <-> publishers <-> ad networks & ssps <-> ad exchanges, data management platforms
+ad exchanges <-> demand side platform -> data management platforms
+demand side platform <-> brands/agencies/buyers
+
+* fraud prevention beyond the rules engine
+
+challenge
+- rapid customer algorithm deployment
+- overall sla 750ms
+- plan for 10x growth
+- every payment transaction requires 100s of DB r/w
+
+need to scale reliably
+10-> 100TB
+10B -> 100B objects
+200k -> 1M+ TPS
+
+selected noSQL
+- flash economics with dram performance
+cross data center (XDR) support
+
+invert pattern of detection for card-not-present fraud detection
+maintain records by IP, not by rule
+
+* retail trading
+
+challenge
+- realtime exchange monitoring
+- per-account risk calculation
+- global risk calculation
+- in-flight trade analysis
+- memcache + db/2 has data inconsistency
+
+need to scale reliably
+3->13TB
+100->400M objects
+200k -> 1M TPS
+
+selected NoSQL
+built for flash
+predictable low latency at high throughput
+immediate consistency, no data loss
+cross data center (XDR) support
+
+* machine learning - data and model storage (online learning example)
+
+unique user data store
+53 servers across 4 DCs
+specs:
+512gb
+cpu: e5-2620v2
+disk: intel s3710 (13-15x 1.2TB SSDs)
+aggregated 10gb NICs
+2-namespaces
+
+online learning (models store)
+9 servers across 3 DCs
+specs:
+32gb ram
+e5-2620 dual socket
+disk: 1-240gb SSDs
+network: aggregated 1gb NICs
+1-namespace
+
+* similar use cases
+risk recalculation in minutes, not hours
+immediate post-trade analytics
+internet cache replacement / session management
+telecom integrated real-time billing and routing
+ account status determines routing, traffic shaping
+retail predictive analytics
+gaming and gambling
+social messaging
+
+* to summarize
+focus on more KVP lookup patterns
+stateless components as much as possible
+
+* questions?
+
+aerospike open source at
+https://github.com/aerospike/aerospike-server
+
+Q: what are some databases that work in this system?
+A: databases that work in this paradigm are based in KVP pattern
+redis
+cassandra - interesting because it can be column-store AND row-store
+dynamoDB
+google bigtable - note the concepts introduced in how to use bigtable. big tables! independent rows.
