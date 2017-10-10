@@ -1,0 +1,30 @@
+build a chatbot
+
+briana swift
+
+assumptions
+know what a chatbot is
+have a github account
+have your computer
+
+you might
+know how to code
+have chatbot experience
+have specific ideas or needs for a chatbot
+
+what to expect
+guided through code an integrations
+hands on
+all bots start from a single fork
+working in our own slack chat rooms
+
+choose your own adventure
+if it's too easy, that's ok
+set your own speed
+add your own functionality and ask questions in the room
+
+https://github.com/universeworkshops/universe-bot
+
+https://glitch.com
+
+ed - instructions in README at the repo work. got all the way to stage 4, did not bother with heroku integration at this time.

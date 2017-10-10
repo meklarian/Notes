@@ -1,0 +1,129 @@
+creating an innersource culture
+matt desmond and james garcia, github
+
+ED - missed first 20 mins
+
+** tenets of innersource
+
+* open
+having a culture where everyone can speak up
+ex. unlike the emperor's new clothes tale
+ex. could a junior developer raise the alarm on an implementation issue without fear of retribution?
+
+culture should beat strategy
+
+* transparency (transparent)
+decoupling the process from time and space
+ex. in a restaurant, a restaurant is open if they allow you to enter through their doors, but a restaurant is truly open if they let you see how their sauce(s) are made
+ex. slide - apache foundation
+ex. issues created by having tribal knowledge. a key person might go on vacation, freezing or taking offline information that the organization needs to continue work
+
+* participation (participative)
+basics: readable code, commit messages, style guides, a good readme/contrib file, documentation, and chat ops
+moving from email conversations to chat converations, this facilitates getting things into the open faster
+ex. slide - git repo example
+- 1 commit, 99 issues
+- solo contributor
+- empty readme
+
+* collaboration (collaborative)
+
+ex. designing a car engine always requires references to prior art and prior works
+if you're the owner of a project, let your team help you out
+you don't have to do it all alone
+(plug: github flow)
+
+https://git.io/how-to-write-the-perfect-pull-request
+
+* governance (govern)
+directing, guiding, and educating the community
+
+** slide: the stack
+
+project architects
+trusted commutters
+contributors
+users
+
+(side: executive sponsor)
+
+** exercise: what is preventing you from adopting this way of working today?
+(group discussions)
+
+roadblocks:
+scale
+inter-related teams
+silos
+entrenched management / lacking support
+tribal knowledge
+everything's a snowflake
+dinosaurs / resistance to change
+sheer complexity
+fear
+NIH syndrome / not invented here
+siloed communication
+breaking silos is hard - especially modernizing old applications
+"developers use github, not managers" attitude
+customers don't use git (context specific)
+
+** exercise: what would it mean to successfully adopt this way of working today?
+
+payoffs:
+faster release times
+reduced ramp up time / on boarding
+flexibility between teams, devs, move devs to where they need to be
+metrix for success: lower turnover, better code quality (fewer bug reports) (ed- ??), job satisfaction, retention improved
+building your resume for you
+increased trust
+increased code ownership by developers
+dependencies across projects have more visibility
+less duplication better reuse
+better centralization (ed - ?) better insight
+optimization / do more with less
+consistency
+better readability
+fewer broken windows - explained: less frustration with issues that have no clear path to a fix (outside of the innersource/opensource model)
+reduced rampup time
+improved integration for remote workers
+
+** where do you start?
+
+slide: webcomicname.com "different" cartoon
+https://twitter.com/dorrismccomics/status/796391240514342912
+
+* start small
+move daily communication to chat channel
+
+* technology adoption curve
+
+* start with the sympathizers
+limit the scope
+prove value early
+broadcast success
+generate momentum
+
+** exercise: what small change could you make today to introduce this way of working?
+
+add pull requests to your workflow - get conversations started early - DO IT EARLY
+communicate this change early / get buy-in / executive sponsorship
+show people how bad it currently is and how it could be improved | optimizing projects
+upwardly mobile development process to bring experienced developers into different teams
+succeed with small projects in ways that can be applied to bigger prjoects
+encourage chat platform use
+push current tooling especially on dinosaurs
+discourage private messages - get in the habit of talking in chat
+encourage attendance to anybody that is interested as opposed to small CC drives
+
+** 5 step framework
+discover
+setup
+launch
+measure
+scale
+
+developers key to innovation and growth
+ed - missed slide
+
+q: how do you fix the problem where a lot of people try to fix everything with code and try to stay out of code discussion?
+a: we don't structure official code reviews, but we rely a lot on automated deployments and automated tests
+
