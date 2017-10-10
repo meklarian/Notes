@@ -1,0 +1,74 @@
+electron, start to finish - eric hollenberry and nathan henderson
+@hollenberry
+@nathos
+
+** agenda
+
+double-check those prerequisites
+what is electron?
+hands on - let's build some apps!
+better than hello world
+electron weather
+
+** repositories
+
+ref: https://github.com/universeworkshops/electron-weather
+ref: https://github.com/universeworkshops/electron-codepen
+
+https://github.com/electron/electron-quick-start/issues/127
+
+** examples of apps published by other people
+https://electron.atom.io/apps/
+
+** background: reciting information on the state of javascript, chrome, v8 js engine, node, npm, etc.
+
+slide: atom (history at github)
+under the hood, uses node.js
+
+slide: electron
+framework initially used to build atom
+extracted out
+
+electron is a framework for building cross-platform desktop apps with js, html, and css
+
+** how does electron work?
+
+two processes: main process, renderer process
+main process: application lifecycle
+renderer process: web page
+
+main process:
+browser-window
+ipc
+node.js
+menu & dialog
+
+renderer process:
+ipc
+DOM
+remote
+node.js
+
+ownership graph:
+main process (1) -> renderer processes (1..N)
+
+** example: github desktop application
+is an electron application
+
+ref: https://githubengineering.com/how-four-native-developers-wrote-an-electron-app/
+
+mention: coffeescript, typescript
+
+** let's build!
+
+first exercise: electron codepen
+
+ed - got project working, takes a while to setup via instructions on a slow connection
+ed - ref: https://github.com/universeworkshops/electron-codepen#how-to-use
+
+ed - diversion: https://scotch.io/tutorials/creating-desktop-applications-with-angularjs-and-github-electron
+ed - curious about whether anyone has had any success using angular in electron
+
+second exercise: electron weather
+
+ed - got project working, at various stages in the exercise, the window may not appear properly in place on windows. after the menubar installation to replace all the existing initialization code with menubar, the window displays correctly relative to the windows bar. on the presenter's laptop, the app works correctly out of the box because in macOS (darwin+), the menu bar is at the top and intialization code is working off of the correct assumptions.
