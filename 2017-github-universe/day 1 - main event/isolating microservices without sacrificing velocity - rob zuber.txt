@@ -1,0 +1,212 @@
+isolating microservices without sacrificing velocity
+rob zuber, cto @ circleCI
+
+how did we get here? (also why)
+we currently run 5M builds a month
+we're a little over 6 years old
+at the time i joined, middle of 2014
+circleCI was entirely a monolith
+it was the right solution at the time
+still figuring out our business
+basically using a single piece of code to do everything we do
+and this was great
+we were able to move relatively quickly
+but as we progressed we started to reach the limits of that architecture
+we eventually grew to the point where adding machines made builds run slower, and our throughput decreased and we actually did less builds than before
+in july 2015 we had a massive outage
+and realized we had a lot of tech and arch debt we really needed to address in our platform
+and we were on a path that was heading towards a local maximum
+
+so we needed some big changes
+to think about how we could do this better
+
+graph slide: github -> api -> [1.0, 2.0] -> results
+
+so we started to look at how we could transition and address performing builds between 1.0 and 2.0
+to be honest we didn't really have a plan
+we had a couple of really talented engineers
+the best where you just get out of their way to get things done
+we were able to get results for the business
+move quickly
+and they really able demonstrated some of the value we could get by moving to microservices
+the work of just learning the full context of changes to be made to the entire system hampered the ability of new developers to board and contribute
+
+slide: caution!
+we started out creating microservices that didn't address the right pieces of our architecture
+we're 4-5 years into our operation as a company
+we were just trying to scale this thing and scale our engineering teams
+
+so what happens?
+immediately the wheels come off the wagon
+and everything ground to a halt
+we spend every day thinking about how to apply CD and CI value to our customers
+this was an identity crisis for us
+
+slide: this is too hard, let's just build this in the monolith
+so i started to hear things like this
+
+one thing that really came out of this process
+is that it's about the shaded regions (in diagram in context slide)
+
+a lot of the work in retrying calls, etc.
+in microservices, this boilerplate could be 75% of the code in a microservice
+and then you've gone from the monolith small time, and now are mired in the microservopolis, the big city of microservices crammed together
+
+we identified three key sources of friction
+
+slide: 3 sources of friction
+decision making
+novelty
+repetition
+
+** decision making
+
+at a high level, there's some overhead just to get to making a decision
+in my 3rd/4th year in my career i was working on a really large C project
+and this was the code style that i showed up and saw
+which was super weird to me
+and the great thing is that you think you know everything, though not knowing anything
+the good news for me was that i was super intimidated by the lead dev and wondered if maybe he was doing something right or not
+then i found i could emulate this with my IDE
+and suddenly this overhead of thinking of code formatting disappears
+and then i just concentrated on what i'm trying to achieve with my code
+
+so
+we are a clojure shop
+we used GRPC as our comms proto
+we are gonna use postgresql and kubernetes and docker
+
+well
+there are a lot of decisions to be made in software dev, it turns out
+
+for example, we used to use a library called schema
+it's effectively a typing system to enforce the shape of your data structures
+since that had come out and since circleCI had used it
+but a new set of patterns and such were introduced to the clojure language
+but let's try that... but then we need to move from 1.7 to 1.8...
+and then all this compounds
+and the value add of all that work, again, compared to shipping features to your customers is very very low
+
+reduce your decision making to exceptions
+
+slide caption: REDUCE DECISIONS TO EXCEPTiONS
+
+ref: jeff bezos disagree and commit pattern - even if an individual disagrees, we take the consensus so we can move onto the things that matter
+
+** novelty
+
+if we were scientists...  well, we don't realize sometimes how many variables we change at once just to test our software
+every single change compounds to create an environment that you know nothing about
+
+has anyone ever been through the process of backing out 3 or 10 or however many changes to get to the one that made the difference
+
+so a few examples of this and thought we were making sense
+
+mongoD?B, we use it massively at circleCI, we know it well, we've been using it a long time
+but as we moved to microservices, let's take this opportunity to go back to postgres
+
+so
+it turns out we have actually been using mongo for a really long time, our devs... switching to postgres, in mongo, you never deadlock; in postgres you deadlock frequently
+so now we have to help engineers these old tools that we used to use every day
+
+* docker
+so when we moved to docker.. we had to spin up everything, a docker environment and pod and spin it up on a laptop and need to understand what we're doing
+and my day to day  job of just writing code got encoumbered with this new requirement
+
+slide caption: TAKE SMALL STEPS
+
+invest in how you expand tools from one project to all projects. everyone was trying to solve the same issues independently and hitting the same problems
+
+slide caption: minimize external dependencies
+communication is very effective in a small team, but very poor across teams
+so we reassigned roles so there was always someone with the right skillset in your team that had the same objective as your main objective
+
+** repetition
+
+we've all heard it, don't repeat yourself (DRY)
+so the first code smell in fowler's refactoring: repetition
+
+so we do this (handle) very well in the small
+we understand how to take our code
+and eliminate all the duplication
+and all the overhead of the duplication
+and learn how all of these things are going to fail us
+i sort of wish that there was an update that existed in 2017
+that just adds an asterisk: also applies to microservices
+
+we didn't think this was going to be a problem going in, just like everything else
+we thoughe everyone is going to communicate, and that somehow everyone would find each other and talk about common problems and come up with common solutions
+
+slide: telephone stock image (old style rotary)
+so we have a lot of remote folks, and a reduced likelyhood that we're going to bump into each other and realize, oh hey, i'm working on the same problem (w/my machine) etc, and collaborate.
+
+slide: GRPC
+one thing about being a clojure shop is nobody builds the clojure library for their new tooling first
+th e GRPC tooling is great in java, but there's nothing wrapped around it in clojure
+they have an aesthetic in java
+and we decided- it would be nice to write a layer to adapt it and write a library to deal with the differences and idiomatic use in clojure
+then then we went and realized three different solutions were created and had to take it all back and consolidate it all into one
+and this is not how you get stuff done on time for customers
+
+also i mentioned moving to postgresql
+and sometimes you skim a pr and just see something that you know: this is going to go badly
+then you consider.. can we go through this whole conversation? or just let it go.. it's only 10 lines of code...
+
+but then, we also have a cloud version
+we're 8 days from deployment
+and it turns out, the other ways we connect to postgres connections don't always account for this one case
+then now we have to go back to each of our microservices, customize the fix, and go back and reimplement the handling of their postgresql connections
+so implementing something in 5 different ways that will need to be handled 5 different ways is not the way to go
+
+slide: CREATIVE OWNERSHIP AND TIME FOR SHARED COmPONENTS
+
+so one takewawy is that you need shared components
+you need to recognize investment and create ownership
+so someone knows, i'm going to invest in all the tooling that will help our teams be successful
+and focus on the things we really know how to do
+
+we created a team
+it's called the backplane team
+and it's basically all the shared components
+all the stuff that makes your microservice successful
+they handle all of it
+so if you need a specific item or tooling and you  don't recognize for things that need to get built for your success
+well
+they'll get built anyways
+but going outside and building them yourself, they'l get built poorly
+
+slide: make cross-team collaboration a habit
+
+the big question in all of this is was it worth it?
+the answer from me is a resounding yes
+i talked previously about how we created additional capacity and ended up with lower utilization
+now we're running at 5 times the utilization of the old platform
+and growing solidly
+and all of those operational concerns have disappeared
+we're seeing the same effects in terms of our actual delivery
+
+caption: it's not time to make a change,, just sit back and take it slowly
+
+you should all think about this for yourself
+ref: cat stevens fan of the song: father and son
+the reality is, you need to think about yourself, what matters to you, and whether this is the right path to go on
+
+caption: if they were right, i'd agree ... (missed caption)
+
+summary
+1. take small steps
+2. share early with clear ownership
+3. minimize communication dependencies
+  - make decisions about where you want the fast channels of communicatino to be
+  - make sure you do your best to get that cross-team communication too
+4. make cross-team collaboration a habit
+5. reduce decisions to exceptions
+  - get together early, decide how you're going to do things
+  - only choose to do other things when your main decisions fail you
+  - only choose to think about alternatives if you can't make your current path work
+  - don't do work that you really shouldn't be doing that impairs delivering value to your customers
+6. iterate!
+
+**** thank you
+@z00b
+

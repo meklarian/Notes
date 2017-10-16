@@ -1,0 +1,215 @@
+building a better browser engine on github
+e.dunham
+@qedunham
+
+https://talks.edunham.net/githubuniverse2017/
+
+** background
+devops at mozilla
+rust, servo, vr+ar
+foss background, osuosl
+
+** audience question
+software users?
+software contributors?
+software maintainers?
+community foss?
+enterprise foss?
+enterprise proprietary?
+
+** history
+rust arose out of a need to make a safer language than c/c++
+started by one person at mozilla
+but now a community driven project
+
+** rust
+rust-lang.org
+safe, concurrent, fast
+systems programming, fewer footguns
+hack without fear
+
+** community
+"the rust community seems to be populated entirely by human beings. i have no idea how this was done."
+
+** conduct
+"please be kind and courteous"
+"please keep unstructured crritique to a m inimum"
+"dedicated moderation team"
+"we will exclude you from itneraction if you insult demean or harass anyone"
+
+** communication
+weekly updates
+mandatory RFC process
+consistent pr review
+distributed team & public discussions
+
+** servo
+servo browser engine is built in rust
+
+slide: doge
+
+** servo.org
+12 fulltime engineers
+612 code contributors
+21k commits into servo/servo
+4% of contributors, 25% of commits from @mozilla.com
+
+** how did this get built? (image: foundation)
+
+** diagram, 5 success strategies
+open the pipeline
+mentor new contributors
+communicate issue state
+automatically maintain a repository of code that always passes all the test
+code in public
+
+** servo's success strategies
+what
+why
+how did we
+how you can too
+
+** code in public
+this is a core company value
+coding in public keeps you honest
+you act differently if you know someone is watching
+fast environments tend to create code written sloppily fast (paraphrased - ed)
+
+** why github? 2012
+adequate functionality
+easy for developers
+extensible
+everyone has accounts
+  - setting up a new contributor is easy because of this
+  - fewer drive by contributors
+
+coding in public means getting the most eyes as possible on your code
+if you have secrets scattered about your code that you can't share outside of the team
+this is a huge issue for sound reliable code
+
+coding in public isn't enough. you still have to write good code.
+
+** automatically maintain a repository of code that always passes all the tests
+http://graydon.livejournal.com/186550.html
+
+if you're not always passing all your tests, you can't bisect your history to see where the issue was introduced
+
+if it's not automatic, and you are manually maintaining passing tests, you are creating extra work for people doing manual tests
+
+** bors & homu
+"would the tests pass if we landed this?"
+github.com/servo/homu
+
+** how to pass the not rocket science rule
+write tests
+run the tests
+run them early
+often
+automatically
+
+use your ci/cd tools
+
+use the results
+
+** protect branches
+pick your branches to protect, require status checks and other guards, and require them to be up to date before merging
+
+** communicate issue state
+
+** highfive the robot
+this robot greets new contributors
+
+** file -> discuss -> implement
+correct issue lifecycle
+doing this right leaves a record showing how you found it, what was discussed, and how it was fixed
+
+** use issue & PR templates
+use templates to clarify what the discussion is going to need
+a template is a lot easier and cleaner than going back and forth with people
+standarrdize noting what code gets touched, what is changed etc
+
+** enable notifications
+make sure you know what is happening
+there's no one size fits all
+find out what works for you
+also turn them off for stuff you would rather ignore
+don't let spurious notifications train you to ignore by default
+
+** manage expectations
+people need to know what/when/how things are to be done
+and what is expected
+
+manage your own expectations as well
+realistically know your own limitations
+so you don't overpromise or underdeliver, avoid scope creep, overcommitments, burnout
+
+** categorize issues
+
+** communicate issue state
+
+** mentor new contributors
+human lives are finite
+patience is finite for things that happen day over day
+just as you may not stick with every project you've ever touched
+most communities interact with dozens or hundreds of driveby contributors before finding a few long-term
+first and foremost is to value mentorship
+not everone in your project has to be a mentor
+but everyone should show they value mentorship
+and try to help the lives of those who do mentoring
+
+** documentation gardening
+keep docs in good shape
+writing them once and never touching them again
+is the same as planting a garden and doing no maintenance
+sure a few things may survive the season
+but abandoned documentation gets more inaccurate and even dangerous to users as time goes on
+treat reports of difficulty with your docs or inaccuracy with them as seriously as you would a bug
+
+** slide image: bite sized bugs (image of candy lollipops with scorpions in them)
+heuristic to think about bite sized bug
+file them
+and let someone new handle them
+
+** starters.servo.org
+helps keep easy bugs surfaced and get attention
+average lifecycle of an easy bug is about a day (!! - ed)
+
+** open the pipeline
+open the pipeline of contributors
+give more people from all over the world
+with all kinds of backgrounds and experiences
+the opportunity to find their way into your project and mkae it even better
+your project only gets one shot to get a good impression across to a new contributor
+
+** meaningful mission
+figure out why your project matters to people who aren't already working on it
+make sure when a potential contributor comes to our site or project page for the first time
+that you explain the mission in a way that makes sense to them where they see it
+
+** hacktoberfest.digitalocean.com
+site issue aggregators
+
+** openhatch.org
+
+** offer internships
+paid internships can reach people who do not necessarily have the privilege to code in their free time (or are already sponsored) ex. sole head of household, single parents, etc.
+
+** outreachy.org
+
+** code in public
+code like everyone is watching
+
+** automatically maintain a repo of code that always passes all the tests
+set yourself up for technical success
+
+** communicate issue state
+maintain an issue lifecycle of conversation before implementation
+
+** mentor new contributors
+create an environment where people want to mentor
+
+** open the pipeline
+use whatever resources you have available to make it accessible to people even outside the demographic to be able to do it for free
+
+@qedunham
+universe2017@edunham.net

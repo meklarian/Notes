@@ -1,0 +1,250 @@
+interop's labyrinth
+sharing code between electron and web apps
+machiste quintana
+engineer at slack
+
+slide:
+web app -> electron -> ??? -> profit?
+
+what is the missing piece? Interop
+
+this is the piece that allows you to glue your web app with your electron app together
+
+** overview
+1. why
+2. path 1 shortcut
+3. remote isolation
+4. local resources
+5. hybrid
+6. summary
+
+** why are you building a desktop app when you already have a web app
+
+think about: what capabilities your app can never have as a standard web app
+ex. having control over native notifications, app task tray and task bar, etc.
+
+if you are just displaying a website in a dedicated window, a chrome app will be a more secure option
+
+if it's to build a browser-like app to visit arbitrary websites, electron is not the right choice
+
+** path 1: shortcut - what could possibly go wrong?
+
+just load your remote web app into electron, like a browser
+
+note that electron is node and chromium together in one runtime
+
+diagram: main process -> renderer process
+
+architecture:
+create a new electron browserwindow object
+point this browserwindow at your remote web app, loadURL
+web app will now load with full access to node and electron APIs
+
+slide: code example
+
+slide: it's a trap!
+
+slide: path 1: boons
+simplest approach
+many tutorials will have you try this out
+
+lots of pitfalls
+
+ask yourself, what are you trusting? what does that trust expose you to?
+
+trusts remote and local content
+in this case, it's the remote content that needs a second look
+this remote web app has full access to node - which gives it access to everything
+probably things you don't wnat your app doing
+but could lead to terrible case scenarios
+
+it's not done by default, you have to verify stuff yourself
+
+don't trust remote content, even if it's from a trusted source
+
+verdict: just load your remote web app into electron, easiest and fastest, but so insecure it's a nonstarter
+
+** path 2: remote isolation - or not-so-solitary-confinement
+
+problem is: our first approach, it had full access to node, which normally runs on a server, which would have full access to everything the server would have access to
+need to be mindful when doing this
+do we want that same level of trust?
+do we want to extend that to the rmeote web app
+
+gate access to node by loading your remote web app into a gated context
+what we can do is define an interop api in a pre-load script
+then in this pre-load script, we can have access to node, and expose some functionality from node, but not all
+
+load your remote web app inside of a browserwindow, or an electron container, webview/browserview
+
+disable node integration and enable context isolation so node built-ins can't be access from within the guest page
+
+expose a desktop interop api to the guest page via a global defined in a preload script (window.interop)
+
+preload script is run before loading the remote guest page
+preload script has access to node built-ins
+design an API that has only the features that are needed
+
+slide: code example (note preload is a script specified by path in webPreferences for browserwindow)
+
+slide: code example for interop api
+
+const {remote} = require('electron');
+
+window.interop = {
+  setBadgeCount(count) {
+    return remote.app.setBadgeCount;
+  }
+};
+
+...
+
+if(window.interop) { window.interop.setBadgeCount(1); }
+
+** path 2: boons
+
+* maintainability
+shares the same client as your web app
+you get to take advantage of your remote web app's continuous deployment
+your elecctron app "should" have feature parity with your web app
+
+* security
+doesn't trust remote content, still trusts local content
+restricts access to node built-ins like require and 3rd party dependencies
+if compromised, the worst your remote webapp could do is abuse your interop api
+
+** path 2: pitfalls
+
+* performance
+adds some CPU & memory overhead, every electron container is its own separate process
+misues of IPC message passing/remote method calls can block threads
+
+* maintainability
+really difficult to re-use parts of your remote web app - it's all or nothing
+encourages implicit dependencies on the global scope
+depending on which isolated context approach you choose, you may be creating a source of endless bugs
+
+* a sampling of webview bugs
+render process crash on drag-and-drop
+imes rendering at one corner of the screen instead of at user input
+when resizing the window, the webview may lag or not even resize
+navigation events firing inconsistently
+constant cpu usage kills battery life
+
+* security
+must be extremely mindful when designing interop API
+threat model how methods could be abused
+don't expose references to node modules, built-ins, or generic IPC interfaces
+to get full true node context isolation, you have to fiddle with a lot of knobs and levers
+make sure you server your remote web app over https
+define a robust content security policy
+reaqd through the entire electron security guide
+https://electron.atom.io/docs/tutorial/security
+
+path 2: verdict
+better than path 1
+
+** path 3: local resources - or, the cloister of trials
+
+build your desktop app as a separate client composed of shared local resources
+
+diagram: complex component/version chart
+
+* architecture
+decouple front-end client from back-end server
+  - pretty difficult to re-use parts of your web app and desktop app if state is injected
+decouple ui components from data models
+decouple front-end client from globally-scoped 3rd party dependencies
+  - ex. avoid jQuery models that mutate global scope, etc.
+extract code to be shared to discrete well-defined commonjs/es2015 modules
+  - keep in mind electron is chromium+node combined
+publish modules to some secure location that's accessible from your electron app's repo
+  - package registry, etc.
+import these modules as regular ol' dependencies to create a separate desktop client
+ship these modules and other shared resources in your electron app bundle
+boot the app via a new browserwindow pointing to local resources
+
+slide: code example
+some imports from remotes
+
+** path 3: boons
+
+* maintainability
+de-duplication of efforts
+  - example: desktop only code paths that would've had to duplicate components / logic from the web app
+encourages building loosely-coupled, encapsulated modules as building blocks for your apps
+well-defined functional modules should be much easier to test
+
+* performance
+much faster cold boot startup time
+requires no network connection to boot
+less cpu/memory overhead and fewer processes spawned
+
+* security
+avoids remote content, trusts local content
+
+** path 3: pitfalls
+
+* maintainability
+requires engineers to adopt a package publishing and versioning workflow
+will force you to make a call between many repos and a monorepo
+
+* updates
+bye bye continuous deployment
+your electron app will always lag behind your web app
+
+* granularity
+how granular do you want to get?
+  - every ui component extracted and published to import in your electron app?
+  - import only your root ui component extracted and published to import in your electron app
+
+* how do you maintain interfaces / communicate breaking chanegs for shared modules
+adhere to semantic versioning (Semver) it'll help, but... humans
+use static type checking to warn engineers if they break a module's api contract
+
+* what if you have shared components that need to do/render different things in desktop land?
+  - check for presence of the desktop model in your module
+
+* security - remote content
+does your app pull in remote data? not just remote assets? is that data user-generated?
+do you need to handle SSO?
+you might still need to run in an isolated context
+
+** path 3: verdict
+there are many prerequisites and considerations to covercome, and some tradeoffs, but the boons are worth it
+
+** path 4: hybrid - i heard you like labyrinth
+
+ship a local snapshot of common resources, and update them remotely with background delta updates in an isolated context
+(like path 2 and 3 with background updates)
+
+* architecture
+ship the most current versions of shared modules at build time in your app bundle
+check for updates in the background (via custom updater or a service worker) and verify
+download a delta update (only what's changed) and hot load changes
+
+** path 4: verdict
+aim to strike a balance between remote isolation and local resources
+a(n exciting) work in progress
+
+** summary
+
+path 1: shortcut app
+no
+
+path 2: remote isolation
+only if you are on path 1
+
+path 3: local resources
+give it a shot
+
+path 4: hybrid
+probably?
+
+in interop's labyrinth we must all face the choice between what is right and what is easy
+
+for more info on electron app architecture, check out: slack.engineering
+
+**** thank you
+we're hiring
+slack.com/careers

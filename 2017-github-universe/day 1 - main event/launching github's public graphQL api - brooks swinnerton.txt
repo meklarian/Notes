@@ -1,0 +1,261 @@
+launching github's public graphQL api
+brooks swinnerton, github
+
+history
+march 2008 api v1
+april 2009 api v2
+april 2011 api v3
+may   2017 api v4
+
+slide: rest apis return resources
+slide: example json data
+
+slide: hypermedia (v3)
+machine readable links to forward to other resources
+hypermedia is a way to navigate related data in an api
+
+slide: how can we put API consumers first?
+
+slide: enter graphQL
+
+graphQL: a data query language for your APIs
+think SQL, not Neo4j
+graphQL is a specification
+originally created by FB to help with the data needs of their mobile client (clients?)
+
+slide: node example
+{
+  viewer {
+    name
+    email
+  }
+}
+
+name, email are fields, selection set of the object
+
+{
+"data": {
+"viewer" {
+"name": ...
+"email": ...
+}
+}
+}
+
+note that the query shaped the data returned by the api
+
+{
+user(login: "defunkt") {
+name
+bio
+}
+}
+
+this query includes an argument
+
+slide: features of the query language
+
+caption: graphQL is typed
+behind the scenes, there is a schema
+
+/// for
+{
+  viewer {
+    name
+    email
+  }
+}
+
+/// schema
+type RootQuery {
+viewer: user
+}
+
+type User {
+name: String
+email: String 
+}
+
+notation is IDL
+
+// another example schema snippet
+
+type RootQuery {
+  user(login: String) : User
+}
+
+{
+licenses {
+name
+nickname
+url
+}
+}
+
+type RootQuery {
+licenses: [Licenses]!
+}
+
+type License {
+name: String!
+nickname: String
+url: URL!
+}
+
+! denotes a non-nullable field
+
+{
+{
+user(login: "defunkt") {
+name
+bio
+}
+user{login: "bswinnerton") {
+name
+bio
+}
+}
+
+this kind of query could return a key conflict in json, but to get around this we can use aliases
+
+to avoid repetition bloat, fragments allow you to define substitutions and are included at the end of a query
+
+fragment UserInfo on User {
+name
+bio
+}
+
+{
+chris: user(login: "blah") {
+... UserInfo
+}
+chris: user(login: "blah") {
+... UserInfo
+}
+}
+
+there's an implicit keyword that is optional
+
+query {
+}
+
+the query keyword can take args
+
+query($login: String!) {
+user(login:$login) {
+name
+bio
+}
+}
+
+caption: mutations
+
+mutation {
+createProject(input: {ownerId: ...}) {
+}
+}
+
+caption: Relay
+
+extension to graphQL that ... ? (something about paging and graph related navigations - ed)
+example: edge traversal, node selection
+
+{
+viewer {
+repositories(first: 2) {
+edges {
+node {
+name}
+}
+}
+}
+
+
+{
+viewer {
+repositories(first: 2) {
+edges {
+cursor
+node {
+name}
+}
+}
+}
+
+presence of the cursor allows the server to resume from a given waypoint in a paging query
+
+caption: documentation and client generation, are free
+
+slide: graphiQL
+https://developer.github.com/v4/explorer/
+
+graphiQL also has an inline graphical documentation explorer
+
+demo: querying with graphiQL
+
+slide: history of feature
+march 20, 2016 proposal submitted
+april 6th, 2016 proof of concept
+april     12th, 2016 new team created
+september  4th, 2016 early access
+may 22, 2017: api v4
+
+slide: rest api, 5,000 requests/hr
+how do we also implement rate limits for graphQL
+
+a single request to a graphQL has the potential to return too much data
+
+graphQL: 500,000 node count per query
+graphQL: 5,000 point score
+
+you can ask for rate limits, using dryRun
+
+rateLimit(dryRun: true) {
+nodeCount
+}
+
+{
+"data": {
+"rateLimit": {
+"count": ...
+}
+}
+}
+
+*** Schema Driven Development
+
+traditional
+UI Development -> Staff Ship -> Production -> REST API
+
+now
+graphQL from the start
+graphQL -> UI Development -> Staff Ship -> Production -> REST API
+
+this allows us to build a true public api, a true platform
+
+ref: github/graphql-client (repo)
+exchange a query for ruby objects
+collocate our queries in our views
+
+demo slide: ruby template
+
+ref: github/scientist (repo)
+a tool to verify that data returned from graphQL is correct and valid
+
+demo slide: control/candidate testing
+resource -> [legacy REST, graphQL to REST] -> compare outputs
+
+also compares speed of execution
+
+gjtorikian/graphql-docs (repo)
+
+shipped an automatic changelog
+
+caption: what's next for the graphQL api
+gaining confidence in schema coverage
+github apps integration
+looking to better integrate fine grained authorization with fine grained data access (due to OAuth way of requesting access to resources)
+
+slide: thank you
+@bswinnerton
+

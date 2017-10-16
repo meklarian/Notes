@@ -1,0 +1,213 @@
+microsoft <3's open source: becoming the biggest contributor
+edward thomson, microsoft
+@ethomson
+
+history: microsoft in the 70s, 80s, etc.
+bill gates
+
+in the mid 1970s, bill gates went to albuquerque, to the maker of the altair 8800
+
+MIDs was making a computer anyone could put together
+
+microsoft started out building interpreters
+
+the people using the altair 8800s had a community
+they collaborated for support
+and shared software
+and you can imagine, this did not go over well with bill gates
+
+quote: "as the majority of hobbyists must be aware, most of you steal your software."
+bill gates - "an open letter to hobbyists" feb 3rd, 1976
+
+this didn't change for many years
+in the 1990s
+the workstations were getting dethroned
+intel machines were getting powerful enough to run NT, linux
+
+quote: "there is this thing called the GPL, wihch we disagree with." - bill gates
+
+quote: "linux is a cancer." - steve ballmer
+
+slide: satya in front of a slide: "Microsoft <3s Linux"
+
+slide: organizations with the most open source contributors (Microsoft at #1)
+
+slide: 2009 Microsoft acquires Teamprise (a small company with 4 engineers). Teamprise worked on enterprise version control systems across platforms; microsoft acquired them to fill in the gap.
+
+slide: microsoft was shocked to discover that we (teamprise) used open source software.
+(angry(?) Gnu icon)
+
+teamprise software was eventually used (led to?) TFS
+
+slide: TFS leads the magic quadrant report
+
+slide: team foundation server
+had its own CVCS
+checkout /edit/ checkint VCS
+inspired by source depot
+ideal for very large projects
+not so great for small ones
+had lock / edit / alter / unlock semantics
+
+customers not really thrilled with this
+
+in 2012, a change:
+edit / merge / commit version control system
+good for large projects, okay for small noes
+a lot like subversion
+
+slide: quotes of complaints about TFS
+
+caption: "Team Frustration Server"
+
+slide: why aren't we using a distributed version control system? (context: tfs team was spread out)
+
+caption: we eat our own dogfood
+
+slide: why aren't we writing a distributed version control system
+
+this was a challenging idea for us; lots of features don't work very well in DVCS (at the time).
+we were really concerned about this.
+
+ref: "the innovator's dilemma" - clayton m christensen
+
+slide: sustaining innovations vs disruptive innovations
+
+slide: TFDVCS WTFBBQ? (image of clippy saying: "looks like you're trying to rebase some changes?")
+
+slide: embracing GIT
+we decided we had to put GIT into MSVS, and into TFS, and Visual Studio Team Services
+VSTS - cloud hosted collaboration platform
+
+the problem with putting git into all of these places is that they were all established technologies
+we had built an architecture already on top of SQL server, sql azure, azure blob storage
+
+if you want to host a git repo, this isn't a way to do it
+
+all of the git repos on a server are identical to what you see locally, complete with a .git folder, etc
+
+a solution for us: libgit2
+instead of requiring things to go to the filesystem, we could inject dependencies to run on top of azure 
+we started hacking on it, built out a prototype, allowing you to host a git repo in azure
+you could push, clone, and we were really happy with the solution
+so we worked on pull requests- we got it running
+but then realized, libgit2 didn't have a way to close PRs
+we could absolutely build merge code into libgit2
+but!
+the problem was the license
+it was under GPL
+if we build this merge code
+we would have to upstream/give it back
+and other users of libgit2 could use it
+even github
+we knew we could do things in memory, with fewer resources, in memory, faster than what could be done on a filesystem
+(we suddenly cut the resources required by github to do merges)
+
+slide: graph of PR activity and utilization, showing a big drop from control to candidate
+
+we were really worried about contributing back this merge code to libgit2
+
+but!
+libgit2 isn't our competitive advantage
+end users aren't ever going to notice
+
+open source is not a zero-sum game
+slide image: SHALL WE PLAY A GAME (wargames ref?)
+
+we had to convince other people that we could be successful with this
+like our [LAWYERS]
+
+we went back, told them we wanted to use git
+and this GPL code
+
+our lawyer blew us away- he was a software engineer, active user of git, would love to push to a MSFT repo
+
+other people to convince: unfortunately, steve ballmer
+
+quote: "open source shows the characters of communism."
+
+slide: video clip of developers rant (steve ballmer)
+
+eventually steve came around and everything got the green light (paraphrased - ed)
+slide: visual studio team services, positive feedback quotes
+
+martin went on to open source a ton of technologies, such as the .net platform (.NET foundation)
+roslyn
+ASP.NET
+etc.
+
+slides: .net in 2015 / .net in 2017, showing explosion in growth of activity and contributors
+
+slide: msft open sources .net as headhline on both /., reddit, and HN
+
+slide: microsoft org chart satire (the famous gun-show / internal mafia euphemism)
+
+before 1ES and VSTS
+slide: grain silos
+everything used to be its own silo and business unit
+
+despite the interdependencies even internal to MSFT, there is not a lot of collaboration
+
+story: bug in C++ was circumvented by just rolling back and targeting an older version of the C++ compiler
+
+satya made a decree
+microsoft was going to go down the road of adopting one engineering system
+
+one engineering system ("1ES") is our effort to move every engineer within MSFT into git hosted by VSTS, and generally use the best tools possible
+
+slide: after inner source
+source code is public within the company
+hosted in git repos in VSTS
+accepting PRs from anyone
+
+windows code base is 300gb (?? mb? - ed)
+we went down this path of building an innersource system
+all 4,000 devs on the windows codebase
+are checking into a git repo all the time
+
+story: the ms office team moved to git, a CI pipeline, until it was time to move their apps over
+they started to build the CI pipeline for their apps... then wanted to code sign
+to get into an app store
+you need to be code signed
+
+turns out we had no mechanism to do code signing at the end of a build
+
+and we couldn't offer it to do it
+
+so they went and added it themselves
+support for android and iOS
+opened a PR, we went back and forth on it
+some changes, tweaks
+then merged it
+and deployed it
+we deploy VSTS every 3 weeks
+and then it was live, not just for the office team
+but for everyone
+so the office team improved the lives of all developers on vsts
+
+we've been seeing an increase in velocity to bring our code to market
+so much easier to deploy now when we're all using very similar system
+the deployment pipelines that are there are excellent for us
+we can stop trying to reinvent the world
+so important to us to use best of breed technologies
+
+so happy to go down this path
+that we never thought we would go down at microsoft
+that started with the realization
+that we couldn't build everything
+and by taking off the shelf components
+and improving them
+even with our competitors (motions around) like here, github, google, etc. (paraphrased - ed)
+
+all these things we were espousing publically, we also needed to do privately
+
+thanks so much for coming out
+my name is eward thomsen
+there's a lot of us
+
+slide: thank you!
+
+edward thomson, program manager
+MSFT VSTS
+twitter: @ethomson
+@allthingsgit

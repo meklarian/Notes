@@ -1,0 +1,247 @@
+building inclusion from the inside out
+merrit anderson, vp, employee experience & engagement @ github
+jared jones, bizdev program manager @ github
+danielle leong, app engineer @ github
+
+intro
+merritt intro
+background, joined github's legal team
+was pregnant when she started @ github
+left behind kaiser permanente
+to join github
+what she did understand about github
+github embraces, even encourages the whimsical and delightful
+despite experiencing imposter syndrome at the time
+happy to have joined and come to the realization that she (could succeed here? - missed phrase - ed)
+
+** out goal
+goal at github
+is to empower and help developers to grow
+we want github to be the platform where you can build, learn, create, explore, and grow
+we take great pride in our platform and recog. that we are in an incredibly (powerful?) position to help developers to grow
+
+to be this leader
+we need to be the best, most inclusive, most diverse workplace in the industry as well
+we believe in the diversity and identity not only make us (missed phrase - ed)
+
+we're empowering employees to create, tinker, and bring (??? - ed) to the platform
+
+we went out and created a new function
+it is called employee experience and engagement
+
+slide: EEE exists to improve the employee experience for people from all backgruond and amplify our commitment to diversity inclusion and bellonging while bringing deeper value drive meaning and purpose to working at github
+
+there is nothing that i want more than for every employee to wake up, whether morning or night, and to be able to contribute their best.
+
+say hello to the EEE organization
+it is an intentional coming together of established teams
+learning, dev, and workplace operations
+with newly formed teams
+experience, advocacy, and inclusion/belonging
+it is brought into one umblreaa to intensify our commitment to the employee (teams? -ed)
+
+we partnered with everrise to provide metorship opportunites inside and outside of github
+and are grateful to have a learning portal for curated resources (and etc.)
+
+from the minute one decides to beomce  a hubber, we want those inspirational pillars of support to build them up to be able to do the best work of their lives
+whether new or established employees
+we always want them to end every day knowing they made a 100% best decision to become a githubber
+
+whether it is shipping a big project or welcoming a new octakitten to the family...
+
+the experience team hanresses its passion for our employee into creating experiences in programs that recog empathize, support and celebrate all of us
+in doing this we are far bigger than ourselves, far more than our individual selves, etc.
+excited to see what this will bring us
+
+mentioning spaces in various offices and also supporting remote workers
+
+we have gender inclusive bathrooms
+dedicated spaces to forster organic connections and conversation
+
+we also know a bit about the ppace of growth at startups
+and the burnout that is so real for many
+with these things in mind
+we designed and constructed a prayer and meditation room for peace and quiet (etc.)
+in these spaces we hope that hubbers can think, refresh, and go back to their big ideas.
+
+(interactive question line demonstrating the value of employee advocacy)
+
+the employee experience is multilayered
+complex and very dynamic
+as an advocate, she is one of teh many layers
+an additional channel and open space for feedback
+and complementary to colleagues in HR
+hubbers have a sounding board and thought partner to ensure they are heard, engaged, and aligned with decisionmaking at the company and aligned with values and objectives
+this funciton is a work in progress, we are shaping it as the needs of employees arise
+it is critical to our success because it embodies and amplifies the voice of our people
+the people that work daily to build an construct an inclusive github experience
+
+** diversity, inclusion, belonging
+
+we believe and have seen that when people can show up
+bring their whole self to work
+and do their best work
+we all benefit
+we integrate inclusion and belonging into how we work together
+how we build ourp roduct
+and how we grow our communities
+
+real talk, tho: we don't always get it right
+we don't have it all figured out
+we want to do it well
+and it is that comitment to it
+knowing that we all come to this from different places
+...
+being able to have conversations to improve
+
+in the spirit of github is to make good on the promise
+the promise of diversity and inclusion
+the spirit of belonging at github (paraphrase? - ed)
+
+we can set the universal standard for the industry
+all together
+let's go together
+make sure everyone is included in the conversation
+etc.
+
+(intro to next two speakers in session)
+
+*** blacktocats
+jared jones
+bizdev at github 
+blacktocats
+employee resource group
+
+blacktocats attract and empower black lives in tech
+
+* the start
+before they existed
+github published its first ever diversity report
+in that report
+only 2 percent identified as black or african american
+shortly after that
+we decided that we are more than just black employees
+and with the support of leadership  and others
+in 2017, since then, github has doubled its percentage from 2 to 4%
+
+* our mission
+attract the best black talent
+promote black career development at github
+facilitate the black tech community's participation in softare development
+connect internal and external communities with blacktocat initiatives
+
+26 members strong
+10 different states
+and 2 international blacktocats
+last night, we got to come together
+at HQ, we got together with some of our black contemporaries
+we heard from tony with gv
+about what he is investing in outside of tech
+and we heard a panel on pressing issues of today
+etc.
+the blacktocats are extremely geographically diverse
+but we are also sovling a incredibly diverse class of problems at github
+we are product managers
+building world class dev tools
+layers defending oss policy
+and leaders in ensuring all of the ways it transcends code
+
+* initiaed the blacktocats charter
+define a roadmap
+had a mini meetup in miami
+had the privilege to server breakfast at the chapman center, serving homeless in miami
+
+partnereed with greater than, providing software dev and IT skills to previously incarcerated citizens
+did a half day workshop in baltimore to train and inform people on the basics such as code and text editors
+
+we will be hosting black tech events
+focused primarily on black engineers
+we'll be at career fairs
+working with the EEE team at github to work on an inclusive pipeline at github
+
+twitter @blacktocats
+github @blacktocats
+blacktocats@github.com
+
+(next intro)
+
+**** 
+community and safety
+danielle leong
+application engineer
+
+works on community and safety team
+caption: diversity and inclusion needs to be more than a buzzword
+
+but unfortunately, these words have become buzzwords
+it is important for people not only at github
+but everyone that uses github as a platform
+it needs to be more than reports and graphs
+needs to be more than a survey we send out
+it needs to be more than all this
+inclusion and user safety needs to be built into the product itself
+
+** inclusion and user safety need to be built into the product itself
+
+** biases in products make life miserable for marginalized people
+
+caption: it's not enough to assume people will be nice
+
+we all know that in today's world, on the net, toxic communities exist
+in offoline communities, such as a conference
+we have social norms and mods to ensure people are on their best behavior
+if i ere to punch someone in the face
+i would get ejected
+probably fired
+and be made an example on the net for this 
+
+caption: 79% of americans believe online platforms have a responsibility to take care of harassment
+
+caption: platforms need to build moderation and safety features
+
+captions:
+women are more than twice as likely to have their pull requests merged if they hide their gender
+46% of black people experience harrassment on a regular bases
+women experience twice as many death and rape threats as men
+
+build systems that empower inclusive and healthy communities and encourage good online citizenship
+discourage behavior that is destructive or threatens personal safety
+
+*** tiered moderation tools
+one example: the banhammer
+but the problem with it, it's not nuanced enough
+what if we missed acontext
+so we wanted to make it so that we can handle a multitude of possible interactions
+
+slide: temporary interaction limits
+
+** easier to grow communities
+
+OSS is fantastic
+but it is really scary to get started
+so we introduced first time contrib badges
+to help welcome new people into the community
+
+also want to make it as easy as possible to add a COC to your project
+
+*** user safety
+
+example: atom repo, blocked user badge
+shows when someone you have blocked has contributed to a project
+
+build consensual software that asks for permission
+not for forgiveness
+
+want to make sure you are aware of what kind of data we have on you, and also that you want to interact with this (sic, slide) feature
+
+cpation: communities on github and safe and inclusive, composed of diverse users acting as model online citizens
+
+but we can't do it alone
+
+employee experience and ERGs help hubbers grow and be their authentic self to build the best product for you
+
+we are here to put in the hard work to make that happen
+not here to just throw buzzwords and graphs and numbers
+we're here to do the hard work to provide the best experience possible
+
+*** thakn you

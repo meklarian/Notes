@@ -1,0 +1,166 @@
+inclusion for leaders
+bianca escalante
+senior manager of social impact at github
+works on community engagement, inclusion, leveraging for social good
+
+bienvenidos!
+
+exercise 1: (context: speaker is now speaking in spanish)
+
+started workshop in spanish
+survey: how many understood completely?
+
+speaker question: how did it feel?
+
+one answer: felt privileged to be able to understand, this doesn't happen every day
+
+speaker question: for those who couldn't participate?
+
+one answer: strange
+another: alienation - feeling excluded
+another: angry - knew enough spanish just to be confused
+
+speaker question: for those who could participate, who were able to speak up, why didn't you advocate for those who were in the room?
+
+one answer: oh i feel bad now
+
+speaker: we don't always notice or remember that this is different for other people, for those who are excluded, and even those who are included may be (selfish) and looking to just get the most out of the interaction (ed - paraphrased)
+
+speaker: this was a cut & dry example. language as a barrier to participation is a cut & dry example. but, sometimes there are other more subtle barriers. could anyone give me an example?
+
+one answer: my company has people with different levels of experience and capability, and not everyone is able to comprehend and participate.
+
+speaker: why care about inclusion?
+it can lead to folks feeling alienated
+it can lead to folks not participating
+it can lead to a group not making progress (paraphase? - ed)
+
+ed - missed question
+answers: different cultures can solve different problems in different ways. diverse teams create diverse solutions. feeling included produces happy workers. why would we hire someone and not allow them to participate? you might have someone who didn't hire despite them having appropriate or excellent skills (lack of cultural or language fit).
+
+** why care about inclusion?
+
+speaker: diversity and inclusion are not the same thing, you could technically have one and not the other, but they are like two wheels on a bike. you need to have both to get them working together. (ex. diverse crowd, but speaking in one minor language excludes everyone).
+
+speaker: this world is shrinking. we are more and more capable of interacting and collaborating with more cultures and timezones and languages than ever before. (paraphrased - ed). if we don't embrace inclusion, our relationships, our productivity will not live up to their potential, at the very least, if they don't suffer.
+
+speaker: mckinsey report - diversity at all levels of a company can increase profits by 10%, inclusion by 35%.
+
+speaker: the moral argument - building inclusion is just the right thing to do. it makes people happy- it makes people feel good. one thing i can't stress enough is that this (waves about) is all people work. technology is amazing, but at the root of all this, this is all built by people. ... we can forget about people behind the code, at the end of the day, we need to remember that this is all about people.
+
+slide: doctor slide time is wibbly-wobbly, timey-wimey
+humans are.. feely-weely, messy-wessy
+
+** story time!
+
+speaker: when i was a kid, my dad would often come to me on father's day and ask: "am i a good day?"
+i was taken aback a lot and wondering ... why would my dad be asking me? weird right?
+he wasn't always doing great. that's the truth. my father tried very hard, i appreciated that he was asking me. but i couldn't always answer truthfully.
+but we know, he wasn't always doing great. but he tried.
+my dad died in a car accident 4 weeks ago.
+my mind went back to those conversations, i wondered if maybe i had wasted opportunities in not providing feedback to him.
+to audience: "why do you think my dad asked me this question?"
+one response: "he was probably questioning himself."
+another: "we all need validation, of who we are, what we do."
+speaker: "yes! even from our kids"
+another: "looking for something for our kids."
+speaker: "he wants to improve, he wants to be a better father."
+another: "to learn about my (our) perspective."
+speaker: when i was speaking in spanish, i limited the capacity of the group. some answers i received were not present in spanish, some were not in english.
+
+speaker: does asking like this provide a good platform for feedback?
+speaker: is this really a good platform for feedback? after all, gee whiz, this is my dad.
+audience: he could have provided more context
+audience: he could have created a trust and honesty framework in advance to make sure you could be open and honest with him.
+
+speaker: why do you think i couldn't tell him the truth?
+audience: because there was a fear that maybe telling him, even being honest, it might be disrespectful or hurt his feelings.
+audience: fear for negative consequence, whether for you, or for him.
+speaker: i want to stress that this type of work, that this stuff is really hard. we should never underestimate how much we have to work at it, to research it, etc. ex. this dialogue with my dad didn't create the best environment.
+
+speaker: three reasons why i started with spanish
+1. wanted to try something different
+2. despite being 4 years since, talking about this, talking about my dad is easier in spanish for me (it is the language he and i communicated in, the language that i grew up with). even if people were wondering, it is very personal. we live in a world where i don't feel comfortable speaking in spanish in public anymore.
+3. i wanted folks to feel exclusion, and like i said- language is pretty cut & dry, but even this is something folks still experience; ex. they're traveling, try to read signs, and have no idea what is going on
+
+speaker: why do you think it is important to understand how it feels to be excluded, to feel exclusion in work?
+audience: ultimately it's about building a better workplace, and enabling your (peers) to be able to transform your company. and, ultimately, change the world. (paraphrased heavily - ed)
+
+speaker: often times it's not until we understand what it feels like that we can take steps to work at this.
+ref - example about a video about a rally (1940's?) where the crowd was into exclusion except for one member who suddenly had a change of heart when the topic included him. (ref2: something about "let's get rid of the masons")
+
+** what are some qualities that might help you foster inclusion?
+
+audience: sharing stories about yourself. being vulnerable, openness, promoting trust.
+audience: starting with where you hire, hiring from diverse cultures and backgrounds.
+audience: empathy - seeing others' perspective
+audience: on hiring, purposeful hiring sounds good, but sometimes you can inadvertently create an environment where others feel excluded. hiring into buckets can be problematic.
+speaker: it's a zero-sum game when you're looking at this (the big picture) when hiring for diversity.
+audience: make it ok to fail, make it ok to be wrong
+speaker: good- create that space, build that trust
+speaker: let's continue to be curious, curious about other folks.
+speaker: one thing i ask in interviews, and one thing i ask is "what can you bring to the culture, how can you add to openness?"
+speaker: a lot of times people call these soft skills- i call it something different: SKILLS
+speaker: on empathy - I talked about context, the great thing about empathy is to provide learning without experiencing something. you can pay attention to what other folks are going through, you can understand what they're feeling and what their emotions are.
+
+** how to start fostering inclusion?
+
+- think outside your experience
+> when you are thinking outside of your experience, and are unsure how to engage, don't. just listen. listen to what others are saying. expand your network. spend time with people who are doing something different. there was a study, most white folks have 75%+ white social networks. in tech, we tend to spend a lot of time with people like us.
+
+- set the tone w/your team/group.
+> another way to set a different experience for this session would be if i had gone around the room, introducing myself to each person in the room.
+
+- establish / reinforce inclusive group norms.
+> project aristotle (sp?) at google found that the aura/condition of safety is huge to productivity within teams.
+
+** activity time!
+
+this work requires practice and introspective
+think of a group that you are currently part of. it can be anything: team at work, family group, online group, etc.
+
+- think outside your experience
+  - do you spend time seeking perspectives different from your own?
+  - do you center marginalized voices?
+- set the tone w/your team/group
+  - do you spend time setting precedents? how might this gruop benefit from that?
+- establish inclusive group norms
+  - how do you make people feel safe, welcome, heard, valued?
+
+* on codes of conduct
+
+CoCs are important. they set the standards for behavior; i (speaker) used to believe that people were just going to behave the way they do, but i saw that CoCs really work.
+
+** maintaining an inclusive culture
+
+- think of a time you went out of your way to accomodate someone. what was it over? how did you feel?
+- think of a time someone went out of their way to accomodate you? what was it over? again, how did you feel?
+
+experience from speaker: at github, unlike many other places, the legal team starts from yes. this has transformed how things get done at github. i encourage you all to try and work from this position: start from yes.
+
+* tips
+
+research & implement inclusive language / communication
+  - avoid phrases like "you guys", think about pronouns
+welcome wagon
+  - speaker: one time i started a new job, and there was a plant at my desk.
+  - buddy system
+ensure that your physical spaces are accessible to all who visit
+hire experts to teach you all the things
+invest in trainings for team members
+  - investing in people not only keeps them happy, helps them grow, helps them stay, etc.
+child care, nursing rooms, prayer rooms, closed-captioning
+
+** exercise: self-reflection time
+
+this work requires a lot of practice, a lot of introspection, and a lot of awareness.
+remember: we all mess up. nobody will ever completely get this right. try to get things right.
+
+- where might i be falling short as a leader when it comes to inclusion?
+- what would the most marginalized person on my team say about my leadership style when it comes to inclusion?
+- what are some personal/professional habits i can put in place that will foster inclusion on my team?
+
+quote: "i've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel." - maya angelou
+
+twitter @biancacreating
+github @bescalante

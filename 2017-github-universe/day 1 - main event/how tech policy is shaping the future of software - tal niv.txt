@@ -1,0 +1,116 @@
+how tech policy is shaping the future of software
+tal niv, github
+@talniv, VP Law @ Policy, Github
+
+tough questions about policy and legal matters come up all the time
+
+caption: tech policy
+shaping the future of software
+
+policies are present for their ??? value
+technology challenges existing ??? institutions and causes change
+
+example: one policy that has led to good outcomes for us is net neutrality
+
+what we are seeing now is the sequel to the net neutrality debase
+earlier this year the FCC showed its intent to reclaim (strike?) this order
+
+crowd survey: who is aware of this reversal in policy? who is aware of the impact? who has contributed to fighting for open internet.
+
+the EU is voting on copyright review
+article XIII of the EU copyright directive
+platforms that provide open access to code
+must gate and filter access to code
+as a result, all users will have their code restricted and may be abused by content publishers
+if implemented, would prevent devs from using specific software and tools
+
+*** policy & universe talks
+
+(ed note: speaker is speaking too fast and has few slides)
+
+policy has influenced the entire lineup of talks at universe
+
+ex. regulated industries, limitless possibilities: how capital one, box, deutsche borse, and accenture federal services stay compliant and innovative
+
+ex. balancing identity & privacy: building tools to help users
+
+ex. algorithmic biases in AI and ML
+
+ex. no excuses: if government can open source, so can you
+
+*** why it matters
+
+** impacts developer work and outcomes
+barriers/cost of entry
+worker/entrepreneur mobility
+ability to learn, transfoer skills
+innovation, interesting work
+extortion/blocking, risk level
+industry reputation/contribution
+vs.
+IP
+censorship
+employment
+privacy
+surveillance
+research
+
+** github policy - collective action & representation
+
+...
+
+* policy as a service
+aiming towards policy optimization in three distinct ways
+
+- impacting laws and regulation
+- listening, researching, analyzing, explaining
+- driving new standards, modeling best practices
+
+we make a genuine effort to drive (... the best standards)
+
+* public and private regulation interplay
+- industry self regulation: transparency & substance
+- reduce need for aggressive an dpossibly bad public regulation
+- light path for further self regulation innovation & increase probability of good public regulation
+
+*** open sourcing policies
+site policy: BEIPA
+
+balanced employee IP agreement
+
+github/site-policy
+github/balanced-employee-ip-agreement
+
+** site-policy
+21 site policies open sourced
+open licensed + public repo
+issues, pull requests, feedback and release cycle
+substantial community engagement
+
+** site-policy benefits
+open and continuous iteration
+transparency + trust + legitimacy
+knowledge diffusion on policies needed, good approaches
+
+** balanced-employee-IP-agreement, BEIPA
+open source IP agreement used at github
+recognizes employee's IP rights in work unrelated to business
+impacts mobility
+
+** BEIPA benefits
+acknowledges how developers actually work, minimizes creative friction
+promotes innovation, creativity, mobility
+all time #1 HN story about github is the BEIPA launch
+
+** let's get to work
+policy@github.com
+
+q: are there tools devs can build to make this all easier?
+a: definitely (?? nonanswer?)
+
+q: how do you distinguish between users who do part and part, how do you tell what is user IP and company IP?
+a: i encourage you to look at our policy repos so you can see how we solved this, and see if you think our solution makes sense
+
+q: do you have anything for law firms, basically anyone who has to work in private, any of the tools that you used to collaborate internally? do you have a place where you talk about your internal legal tooling?
+a: tomorrow we have a talk about the legal team's use of github, and it will talk about how we use github for our internal legal needs. certainly there are use cases that require private repos for offline work. law firms are a different story, of course, there are reasons for them to keep things in private, never public. but tomorrow's presentation will touch upon this.
+
