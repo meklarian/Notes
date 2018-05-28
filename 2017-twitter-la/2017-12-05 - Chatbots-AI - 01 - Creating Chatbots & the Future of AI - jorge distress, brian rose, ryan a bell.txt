@@ -1,0 +1,164 @@
+Creating Chatbots & the Future of AI
+@jorge_distress | @BrianRose | @ryan_a_bell
+December 5th, 2017 | TwitterLA
+
+--- Chatbots @ twitter
+
+1. who am i (@jorge_distress)
+
+employee at twitter boulder
+Nick / Nicholas
+been with twitter for 1.5 years
+currently on the bbc (?) team
+before that, worked on notification pipeline, revamping discovery tab content, user trends, and abuse handling
+
+2. why chatbots on twitter
+people on twitter have a unique customer mindset
+build deep rich personalized and shareable content experiences
+chatbots aren't the why, they're the how- a tool to build something interesting
+a power native canvas for creative expression
+
+3. what's working
+demo: video from api strategy team
+(wendy's partner video on bracket builder bot)
+key metrics: 2M DMs, 100M impressions, 5mins interactivity time
+
+turn people into advocates:
+dm card in a tweet
+button to tweet
+customize tweet
+tweet with dm card
+
+Areas of Brand Investment
+Marketing:
+  Content Discovery
+  Brand Engagement
+  Product Configuration
+  Quizzes
+  Social Games
+  Lead Generation
+Loyalty:
+  News Subscriptions
+  Product Annoucements
+  Coupons
+  Movie Trailers
+  Exclusive Content
+Customer Care:
+  Automated Support
+  Service Alerts
+  FAQs
+  Bill Payment
+  Flight Check-In
+  Order Updates
+
+things that don't work well:
+online ordering
+ex. ordering a shirt: sizes vary per vendor, etc.
+
+personal anecdote: great interaction with spotify
+
+chat with @United to find deals, get answers to common questions, or talk to a human
+
+samsung australia 
+created product fit by delivering personalized tv recommendations
+
+89% of people who started completed the experience
+1:31 mm:ss average engagement time with chatbot
+1/4 the cost/lead compared to traditional channel cost for samsung
+
+
+4. getting started
+
+chat apis fall into two categories: discovery, and messaging experience
+
+discovery:
+direct message card
+direct message deeplink
+profile button
+buttons on websites
+
+dm card:
+drive people into DMs frmo promoted and organic tweets
+supports multiple "welcome" messages (button/ui labels)
+
+dm deeplink
+include a deeplink in replies for smooth transitions into DMs
+
+profile button:
+display a prominent call-to-action on a business or chatbot profile
+-> t.co/message-button
+
+messaging experience:
+
+welcome messages
+quick replies
+buttons on messages
+custom profiles
+
+welcome message:
+set context and greet people as they enter DMs
+deeplink to specific chatbot flows
+
+quick replies:
+make it fast and easy for people to interact with a structured dialog
+
+buttons on messages (call to action):
+buttons make it easy for people to take actions outside the conversation
+
+custom profiles:
+emphasize when a human is conversing and indicate when a bot is interacting in Direct Messages
+
+Measure to improve
+NPS net promoter score
+customer feedback allows brands to solicit feedback about their service on twitter
+60% leave feedback
+20% leave comments
+
+Developer Platform
+1. Account Activity API (webhooks)
+2. POST direct_messages/events/new
+  Quick Replies (incl. location)
+  Buttons
+  Media Attachments
+3. POST direct_messages/welcome_messages/new
+
+In Practice
+configure your welcome message
+a user opens up a DM with your account
+your welcome message will automatically be inserted into the conversation
+the user types a response
+you will receive this message as a web hook via the account activity api
+
+Getting Access
+many of these features are a part of the new API public beta
+most features are free as in beer
+some features are behind an approval process during the public beta
+  NPS
+  AAA
+
+this beta round will end sometime next year
+
+get the docs: http://t.co/dm-api
+
+Questions?
+
+Q: Is there a premade template or api for building bots?
+Partner: Sprinkler (sp?) has an API for drag and drop bot building
+
+---- #ChatBotChat
+
+Brian Rose - background
+10 years at google
+currently working in incubator: area120.com
+worked with niantic
+works on conversational systems, etc.
+
+ed: round table on chatbots and ai
+ed: not particularly interesting
+
+Q: are there any lessons from fields or areas where people prefer talking to people even though interaction with a bot is more convenient or even better?
+A (Nick): humans are really bad at taking a step back and acknowledging our own biases; this is really important in our world. as we build machines to take on more and more of our tasks or augment our function, one thing you start to see is that we start to build these algorithms (things) in our own image. one example: xbox kinect, the first version really only recognized white people. what does this say about us (developers)?
+Q: they work great for the group that it's biased for
+A (room): *laughter*
+A (Brian): one thing that concerns me is that humans are also becoming more bot-like. customer service reps are often trained to just read back from a script, just as we would do with a bot. also, bots are not good at sarcasm, and this tends to trip up chatbots, as they're trained to read (interpret) things plaintext.
+
