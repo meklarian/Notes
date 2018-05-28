@@ -1,0 +1,97 @@
+﻿solving flappy bird with deep reinforcement learning - kaleo ha'o
+
+machine learning is learning by examples, not by hardwritten rules
+reinforcement learning is learning by experience
+
+quality function
+
+Q(s,a) = r + ymax of Anext * Q(Snext, Anext)
+
+Q(s,a) = r
+s = Scenario, a = action
+r = reward
+
+*** slide: cake or death
+
+** problem: getting stuck in local minima
+
+example: can't make sacrificial moves
+
+new quality function
+
+Q(s,a) = r1 + r2 + r3 ... rN
+
+** problem: what if there's no maximum value for a reward
+
+example: in flappy bird, infinite score theoretically possible
+
+*** slide: pick your gamma
+
+0 < y < 1  (discount factor)
+
+Q(s, a) = r1 + y * r2 + y^2 * r3 ... y ^ (n-1) * rN
+
+example: donut (+10) or Salad (+4)?
+
+not discounted: simple choice -> donut
+
+add: sleep -> donut (+5) or salad (+3)
+
+still leaning towards donut
+
+add: next day -> donut (-20) or salad (+10)
+
+if you have a very low discount factor, you might not get to this point and will hit the -20
+if you have a very large discount factor, you might end up with a salad
+
+now we can have an algorithm that is more of a long-term thinker
+
+refactor:
+Q(s,a) = r1 + y * (r2 + y ^ 2 * r3 + ... y ^ (n-2) * r (N-1))
+
+Q(s,a) = r1 + y * Q(sNext, aNext)
+
+caveat: externality -> y should be yMax, we're going to choose an action that leads to the best possible Q score
+
+Q(s,a) = r1 + yMax * Q(sNext, aNext)
+
+*** deep learning tl;dr
+
+Input -> GMF (Giant Mathematical Function) -> Output (Q-value), 7.43 (can be a probability, price, etc. other unit)
+Video Feed -> Artificial Brain / Neural Net (Nodes / Edges each a formula of some kind) -> 
+
+At the start, the outputs will be bad, many networks are initialized with random weights
+
+Error Function
+Error = GMF - Qactual
+
+Note: GMF is not our Q function!
+
+Why do we need an error function? If we have one, we can work on minimizing it. As accuracy goes up, error goes down.
+
+"It's a simple calculus." - Thanos (audience laughs)
+
+Derivative calculates slope of a line; we can use this to find a zero for slope and the minimum.
+
+Training
+
+1. GMF
+2. Error Function
+3. Calculus to Minimize Error Function
+
+New Error Function
+Error = GMF - Q()
+Again: Q -> reward + discounted future reward
+
+Error = GMF - (r + yMax GMFNext)
+technically both sides of the function are wrong
+but the right hand side is less wrong, and repeated updates improve it and it gets closer and closer and closer
+
+what do you need
+<s, a, r, s next>
+scenario, action, reward, next scenario!
+all of these variables are experienced during gameplay
+
+github.com/06kahao
+improved Q learning in multiple environments
+google Deepmind

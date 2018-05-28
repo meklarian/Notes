@@ -1,0 +1,72 @@
+﻿machine learning for accessibility
+suz hinton
+
+** pop quiz: what is U+267F? (answer: unicode symbol for accessibility)
+
+ref sara hendren: artist, design researcher, and writer
+
+original icon for accessibility was designed by koefoed / monton
+new suggested icon is by Hendren / Glenney
+adopted by NYC as universal access icon
+apple emoji changed to show this version of the icon
+
+refs:
+all technology is assistive
+an ethics for the future of genetic testing
+the white cane as technology
+etc.
+
+machine learning in the context of guerilla accessibility
+
+how do we do this for the web?
+how do we apply this to the decentralized web
+
+quote: "... for me, coding has always been a critical design tool to help me ask what if?
+if the code doesn't do that, then frankly I don't find it that interesting (sic?)"
+missed ref
+
+** What if?
+
+XSS + ML?
+an experiment
+
+** insta-caption
+
+background: IMG tags use alt text to make images accessible
+not many sites do this, twitter supports it but not by default
+
+insta-caption on instagram, looks up images on another service that is ML-augmented to try and suggest alt text for images
+
+github.com/noopkat/insta-caption
+
+codepen.io/sdras/full/jawPGa
+organically generated alt text
+
+** live closed caption injection
+
+on youtube
+on twitch
+
+** problem: these efforts are not web scale
+
+it isn't just that we can't create new accessible content, it's that we have so much prior content that isn't accessible.
+
+** let's get weird
+
+seti @ home
+
+** let's replace bitcoin mining with guerilla accessibility
+
+how do we store all of these descriptions and get them back to people
+
+ref: paper accessible images (AIMS): a model to build self-describing images
+
+"close up photo of a lion facing to the left"
+
+store code points (speaker says ascii - ed) as binary, and encode them into the image
+
+steganography
+
+** new tech should find ways to assist, not ignore or widen the gap
+
+"rethink the default bodily experience" - sarah hendren "all technology is assistive"

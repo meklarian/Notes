@@ -1,0 +1,79 @@
+﻿a machine learning win at github .. and so can you!
+clair j sullivan
+
+cj2001@github.com
+@cjlsALock
+
+*** github stats
+67,000,000 repos
+53,000,000 monthly users (MAU)
+1,500,000,000 commits in the last year
+0.5 petabytes of data
+
+*** repository recommendations
+mid october 2017 -> new tab: discover repositories
+
+*** machine learning is a tool that should enable people
+* do no harm
+* do good
+* make good
+
+*** on recommendation engines
+how do i find similarities such that i can recommend something that you would be interested in hearing about
+
+*** making the sausage
+github: we would like to put repos in front of people that might benefit from their involvement or might benefit the user
+
+user page view activity -> find similar repositories -> repository scoring -> serve top N for each score
+
+what data we use
+
+the five key element
+quality of the repo
+repos you starred or watched
+repos starred or watched by people you follow
+repos that are trending
+repos that are popular
+
+>>> only for public repos and users that are not hidden. privacy matters!
+
+quality of repository
+use more than 30 metrics to evaluate this
+weights for these were determined using random forest model
+
+two most important are
+does repository have a README (per speaker: even a blank one is a positive signal - ed)
+how responsive is the repostitory?
+
+12 metrics for responsiveness
+median time from pr open to first review
+median time from pr open to merge/close
+median time from mopening an issue until receiving its first comment
+median number of comments per issue
+ratio of open:merged and open:closed PRs
+
+repository size influences the result!
+
+example 3rd party: GH Archive, makes data available
+
+*** sample problem
+
+SELECT repo name, type FROM [githubarchive:month.201712] WHERE actor.login = 'cj2001';
+
+SELECT DISTINCT actor.login FROM [githubarchive:month.201712] WHERE repo.name = 'scipy/scipy' AND type = 'WatchEvent';
+
+(112 new watches in Dec 2017)
+
+SELECT DISTINCT repo.name, repo.id FROM `githubarchive.month.201712` WHERE actor.login IN (SELET actor.login FROM `githubarchive.month.201712` WHERE repo.name = 'scipy/scipy' AND type = 'WatchEvent') AND type = 'WatchEvent`)
+
+*** could do a few things from here
+* look for overlap from my watches and the other 111 other users
+recommend things they are watching that i am not
+* look at sequences -> those who watched scipy next watched _____?
+
+*** general take aways (particularly for folks new to ML)
+* before beginning, really ask yourself what is the goal of your model(s)
+* 75% of being a data scientist is being a data janitor (doing things with NULLs, NaNs, etc)
+* model at the end
+* basic machine learning methods versus newer ones
+

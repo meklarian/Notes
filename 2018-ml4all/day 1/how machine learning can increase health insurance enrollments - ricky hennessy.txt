@@ -1,0 +1,49 @@
+﻿how machine learning can increase health insurance enrollments
+ricky hennessy
+fjord, data+design
+austin, tx
+
+** toc 
+obamacare
+state-run exchanges
+the problem: churn
+the data
+getting the data
+feature extraction
+training & validation
+next steps
+
+** obamacare
+the landmark legislation that impacted the health insurance industry nationally
+
+top 3 goals
+make affordable health ins available to more people
+expand the medicaid program to cover low income adults
+support medical care delivery methods designed to lower costs
+
+important provisions:
+insurance mandates
+employers w/50+ employees required to provide ins
+
+anyone at 133% of poverty line eligible for medicaid
+established the creation of healthcare exchanges in all 50 states
+(or use the federally facilitated marketplace)
+
+** the problem: churn
+
+state run marketplaces lose 50% of consumers due to churn
+
+people drop and qualify for medicaid
+people end up qualifying for employer ins
+
+* predicting churn can help plan for enrollment, ensure continuity of care, and reduce uninsurance
+
+** the data - what is collected and how is it stored?
+
+healthcare exchange data warehouse
+individual
+eligibility
+plan (ins plan)
+enrollment
+
+** poc demo on oracle dataset, python+pandas
