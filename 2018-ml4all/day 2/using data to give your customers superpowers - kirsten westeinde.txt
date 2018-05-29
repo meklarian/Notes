@@ -1,0 +1,48 @@
+﻿using data to give your customers superpowers
+kirsten westeinde
+senior software engineer
+@kmkwestteinde
+shopify
+
+step 1: identify a problem
+--
+"when you have a hammer, everything looks like a nail" - abraham maslow
+
+definitions
+two types of machine learning problems
+supervised & unsupervised
+
+two types of supervised learning problems
+classification & regression
+
+if you can frame your problem as a classification or regression problem with consistent input features
+it is a very good candidate to solve with machine learning
+
+examples
+--
+order fraud detection
+deciding eligibility for shopify capital cash advances
+classifying merchants by industry
+
+step 2: frame your problem as a machine learning model
+
+an ML algo needs
+prediction target
+labelled data
+features
+acceptance criteria
+
+models: linear regression, neural networks, random forest, support vector machines SVMs decision trees
+
+step 4
+productionize your model
+
+requirements for ml products:
+understand problem domain
+holistic knowledge of ml process
+software engineering/cs core concepts
+curiosity to experiment
+
+not required:
+degree in Math/stats
+formal data science training

@@ -1,0 +1,157 @@
+﻿your first nlp machine learning project - peaks and pitfalls of unstructured data
+anna widiger
+@widiger_anna
+
+overview
+1. intro to nlp
+2. recipes with spaCy
+ a. emoji and syntax in a tweet
+ b. named entities in a yelp review
+ c. multilingual topic modeling
+3. takeaways
+
+nlp and ml
+from text to tokens
+diagram: blob (text) hammer (tools) => blob being hammered
+
+what can you do with tokens?
+label & vectorize
+
+nlp and deep learning
+slide: deep learning > classification > clustering => gold
+
+nlp pyramid of sadness
+linguist view of the world
+pragmatics > semantics > syntax > morphology > phoenetics
+each layer built on the last
+
+nl view of the world
+pragmatics < semantics < syntax < morphology < phoenetics
+where is the money (semantics) and how hard is the problem
+
+syntactic parsing
+"this party is gonna be lit"
+
+gon
+party > this
+is
+be
+  na
+  lit
+
+nlp pitfalls
+garbage in, garbage out (Special chars and encoding)
+sometimes have special chars (extended latin, etc.)
+
+sounds and meaning (homonyms)
+tear in your eye / a dress will tear
+
+word forms and noun phrases
+this agreement is about a principled compromise, not a principle compromised - john hume
+
+nlp: data divide
+big data: law of large numbers, annotation tools
+smal data: every word counts, pre-processing tools
+
+nlp pipelines with spacy
+
+text -> nlp [ tokenizer -> tagger -> parser > ner (???) -> ... ] -> doc
+img from spaCy pipeline documentation
+
+
+recipe 1: anatomy of a tweet
+mara averick -> @dataandme
+doesn't really use whole sentences, lots of emojis and hashtags
+
+1. tokenization: word boundary != whitespace
+income tax return [US] = <german word, single long word> [gr]
+2. pos tagging, syntactic parsing, and emoji
+3. chunking (nice to have, improves accuracy)
+[chocolate bar], [bar exam], [wine bar], [space bar]
+
+adding your own features/labels to tokens/chunks
+... looking at your data may previde interesting insights
+
+slide: parse tree for tweet
+
+nlp pitfalls
+encoding
+...
+
+best practices
+do: identify language
+do: filter or remove non-alphas
+ncie to have: custom dictionary
+nice to have: chunking/noun phrases
+
+do not: assume all text is in clean and simple english
+do not: rely on pre-trained models for POS tags
+
+recipe 2: sentiment of a yelp review
+src: https://www.yelp.com/biz/dandelion-chocolate-san-francisco?hrid=G24-l-IvBCdQ1JR5f6H-mg&utm_campaign=www_review_share_popup&utm_medium=copy_link&utm_source=(direct)
+"We drove 30min out of our way to get some dessert and ordered a ton to go... Only to find that they didn't give us what we ordered. What we did get was not good. We called and they refunded us $4.... Ridiculous. Don't waste your time or money here. Sixth Course right around the corner is WAY better."
+
+1. normalization -> it's = it is, drove = drive, $5 = five dollars
+2. stop word removal
+3. named entity recognition (NER)
+portland [GPE], may 1st [DATE]
+
+recipe 3: stemming vs lemmatization
+stemming:
+running: run
+runs: run
+employee:employe
+wolves: wolve
+
+lemmatization
+running: run
+runs: run
+ran: run
+employee:employee
+employer:employer
+wolves:wolf
+
+stemming sometimes works for english but fails elsewhere
+
+back to recipe 2: named entities in a yelp review
+slide: python code for tokenization
+
+nlp pitfalls
+spell check suggestions
+mango chili chocolate -> mange child chocolate
+
+named entity recognition vs lowercase
+a rose by any other name
+US: united states
+us: we
+
+recipe 2: best practices
+do: named entity recognition before lowercase
+optional: expand contractions before tokenization
+
+do not: mess up the order of ops in the pipeline
+do not: rely on pre-trained models for NER
+do not: ignore domain knowledge (like local cafes)
+
+recipe 3: topic modeling
+src: https://www.kdnuggets.com/2018/05/getting-started-spacy-natural-language-processing.html
+
+bag of words
+order is not important
+doc2bow
+
+word embedding
+context is important
+doc2vec
+
+do: use ngrams
+do: use tf-idf: term frequency, inverse doc freq instead of chi squared test or log likelihood ratio tests
+
+nlp projects takewawys
+text blobs are messy and words != numbers
+looking at your input and output is helpful
+customize nlp pipelines if needed
+domain knowledge is important
+lots of nlp tools out there, pick the right one!
+
+github.com/widiger-anna
