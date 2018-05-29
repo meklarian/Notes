@@ -1,0 +1,76 @@
+﻿when bias in product design means LIFE or DEATH
+carol e reiley
+
+exercise:
+imagine a shoe
+slides: various shoes, converse, clogs, etc.
+bias determines how we pick a shoe
+not necessarily a bad thing but it affects how we pick something
+
+rise of machine learning
+slide: input layer -> hidden layers -> output layer
+
+AI is often called the new electricity (because of its reach and likelihood that it will touch every field)
+... ai brings out the best and worst in humans
+
+problems with AI today
+bias
+offensive (offensiveness? - ed)
+ethical (ethics - ed)
+jobs
+
+slide: weapons of math destruction
+
+1. bias
+prejudice in favor of or against one thing person or group compared with another, usually in a way considered to be unfair.
+
+attention on bias
+slide: xkcd cartoon on bias, enature infographic on bias
+summary: bias is on the rise
+
+safety critical: life or death
+speaker: speaking about prior experience at drive.ai
+
+nlp
+speaker: speaking about how in graduate school, they had to bring a male colleague to do a demo because the api wouldn't recognize a female voice.
+speaker: also mentioned the voice activated barbie with the same problem
+
+speaker example: crash test dummies, predominantly male (75% of avg) until 2011
+
+2. building offensive products
+challenge: building things that are more socially acceptable and culture-aware
+example: tay, the ms chatbot, showed that AI exposes us to our own biases
+speaker concern: interacting with assistants like alexa, where manners aren't necessary; these habits might spill over to interactions with humans
+example: "are women" autocomplete query on google.
+
+3. Ethics: Trolly Problem
+slide: ned flanders at the helm of a train track switch, a trolley is incoming that could kill homer at fork A, or the family guy family at fork tine B.
+
+pipeline
+machine learning
+input -> feature extraction (human) -> classification -> output
+deep learning
+input -> feature extractor + classification -> output
+
+is bias bad?
+
+rage against the machine
+learning bias
+stereotype
+recognition
+underrepresentation
+denegration
+interaction bias
+latent bias
+selection bias
+etc.
+
+global issues
+inclusiveness
+protection
+
+Solutions
+so much of the bias is not even in ai
+example: bmw had voice activated feature once; got poor reviews because the voice was female. scored reviews improved immediately once the voice was switched to a male.
+
+think of ai being more than amplifying our human features but being capable of improving our empathy and understanding.

@@ -1,0 +1,98 @@
+﻿addressing machine bias
+mary ann brennan
+
+what is machine bias?
+
+machine bias, or algorithmic bias, occurs when machine intelligence exhibits bias against groups of people, usually systematic and unfair
+algorithmic fairness ...
+
+human bias
+slide: captions - "unconcious bias, motherhood penalty, racial/gender bias, positive bias, ableism, bernie bros, fatherhood bonus, etc."
+
+machines are seen as impartial
+"machine learning is like money laundering for bias"
+"it's a clean mathematical apparatus that gives the status quo the aura of logical inevitability" - maciej ceglowski
+
+predpol - predictive policing
+slide: map + caption: higher observed crime rates in an area
+
+a feedback loop, observed crime rate -> additional policing -> additional observation of crimes (due to police presence) -> further observed crime rate
+leads to eroding of responsibility
+
+COMPAS - risk assessment
+slide: chart on white vs black X higher risk / lower risk of reoffending
+report by ProPublica
+
+slide: showing comparison table based on counterclaims
+
+demo: https://bit.ly/BIAS4ALL
+
+study:
+compas: 65.2
+average human: 62.8
+pooled humans: 67
+
+a popular algorithm is no better at predicting crimes than random people - the atlantic - jan 17th, 2018
+https://www.theatlantic.com/technology/archive/2018/01/equivant-compas-algorithm/550646/
+
+protected attributes
+age and gender might seem like they can be taken out without correlation but weaker correlations can still influence the outcome.
+examples: zipcode -> race, college major -> gender, fav movie genre -> age/gender, etc.
+
+over-sampling
+ex. phone polls tend to skew older due to land lines
+
+data augmentation
+ex. image processing, using transforms to increase number of item cases
+
+more diverse teams
+a more diverse team will likely test with a wider variety of data
+members of diverse gruops are more likely to find biases in code
+this is a good idea anyway
+
+other ways to uncover bias
+community policing: allow users to report biased results
+algorithmic auditing: analyze performance on different inputs
+ask for help! algorithmic justice league offers to help detect bias, ORCAA consulting firm
+
+word embeddings
+
+apple juice
+orange juice
+grapefruit juice
+
+analogies: 
+mother : father :: king : ??? (queen)
+mother : father :: doctor : ??? (nurse !?)
+
+google translate is sexist
+turkish:
+o bir doktor -> he is a doctor
+o bir hemsire -> she is a nurse
+o evli -> she is married
+o bekar -> he is single
+
+demo: showing how it can be possible to reproject words to gender neutrality or gender equidistance to the neutral plane.
+
+what can we do?
+what happens when an algorithm cuts your health care - the verge mar 21 2018
+(speaker: actually, PEOPLE cut health care)
+
+support tools, standards, and regulation!
+GDPR, algorithmic impact assessment, new NYC laws, etc.
+
+talk about these issues with your communities!
+
+resources
+databasewe
+COMPAS analysis on github
+deep learning on coursera
+weapons of math destruction cathy o'neil
+automating inequality irginia eubanks
+confs: FATML, Fat conf
+Consulting: ORCAA
+project implicit
+@pdxlawgrrrl
+@shaunking, @data4blacklives, etc
+hiremorewomenintech.com
+orgs: algorithmic justice league, ai now, algorithm watch, AFOG (berkeley), fairness.haverford.edu
