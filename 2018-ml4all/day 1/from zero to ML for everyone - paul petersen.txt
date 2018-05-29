@@ -1,0 +1,131 @@
+﻿from zero to ML for everyone
+paul petersen
+CIO, bigML
+
+sounds doubtful?
+a key component of ML for everyone is to make it easy to use
+
+ZERO -> ML in a few clicks?
+
+modeling home prices
+
+dataset from redfin
+
+demo: importing into bigML
+
+step: cleaning up csv import
+ex. zipcode is not a number
+
+demo: street name tag cloud
+demo: histogram for imported data (useful!)
+
+demo: build a model that determines sale price
+
+step: configure a model -> last sale price
+demo: decision tree showing facet breakdown
+(ed - does this really need to be based on ml?)
+
+demo: predictions screen
+demo: echo dot driven demo - ask bigML to make a prediction
+(ed - demo failed, insufficient bandwidth at venue?)
+home data -> ml -> model -> prediction: price = 418k
+demo: trying again
+
+single decision tree was easy to understand
+could we build something stronger?
+there are 100s of algos
+
+single decision trees
+logistic regression
+decision forest
+random decision forest
+boosted trees
+deepnets exist
+
+deepnets structure
+4 features -> hidden layer -> 3 classes
+
+the success of a deepnet is dependent on getting the right network structure for the dataset
+but there are too many params
+nodes, layers, activation functions, learning rate
+setting them takes sinificant exper knowledge
+solution: metalearning (a good initial guess)
+solution: network search (try a bunch)
+
+model choices
+demo: change to ensemble technique
+demo: change to DNN (deep neural network)
+
+choosing the algo
+slide: graph on algo comparison -> increasing data size / complexity X decreasing interpretability / better representation / longer training
+early stage [single tree model / logistic regression] -> mid stage [decision forest / random decision forest] -> late stage [boosted tree, deepnets]
+
+slide: optiML
+each resource has several params that impact quality
+rather than trial and error, we can ues ML to find ideal params
+why not make themodel type, etc. a param
+
+ML workflows
+real world ML applications are workflows
+slide: big graph of metas (input networks to make decisions, multiple models to models, etc.)
+often require unsupervised learning
+
+let's build a recommender
+typical way to shop for a home: bathrooms, sq ft, lot size, etc.
+
+recommender idea
+take all homes for sale -> show samples -> generate preference data -> ml -> preference model
+
+recommender problem #1
+what if there are really unusual homes in the data?
+a mansion with 20 bathrooms
+a home with no bedrooms
+a lot size smaller than the home
+
+how do we detect these?
+build a model for anomaly score
+
+demo: using anomaly score to clean dataset
+presenter note: often these are problems with missing data. housing listing with high price, example, they might omit details to wait for inquiry
+
+ML to fix missing data
+slide: missing data
+backfill data with a prediction algo for missing data, eg. missing bedrooms
+
+demo: whizzML repl
+first class manipulation of datasets
+
+recommender problem #2
+how can we avoid showing the same house over and over
+demo: clustering?
+modern homes, lots of land, etc.
+great! but what if we don't know how to group them
+another ML-solvable problem: grouping
+
+recommender problem #3
+there is much more interesting information than just the number of beds, baths, etc.
+remarks not available in the redfin download
+adding them to the dataset requires web crawling
+cleaning this field takes up 70% of the effort (need citation? - ed)
+
+tag cloud: kitchen mentioned often in the remarks
+demo: trying to generate words people use to describe their homes
+demo: showing results with grouping by "topic"
+presenter labeled some topics as out of town, in town, etc.
+
+what just happened?
+extended the home dataset with syndicated remakrs text field
+built a model to predict sale price and explained how keywords impact price
+topic modeling
+extended data etc.
+
+basic recommender idea
+take all homes
+cluster them
+sample per cluster
+use y/n to build preferencem odel
+???
+profit
+
+final demo: skill on echo dot again
+(ed - demo is pretty neat, actually worked this time)

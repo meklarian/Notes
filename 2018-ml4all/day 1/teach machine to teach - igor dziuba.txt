@@ -1,0 +1,33 @@
+﻿teach machine to teach
+igor dziuba
+igorock/teach-machine-to-each (github)
+
+classification
+identifies which category a new observation belongs
+uses a training set of data container observations with known categories
+
+diagram: puppies -> kittens -> raccoons -> baby raccoon
+
+logistic regration
+supervised classification algorithm
+determines if observations belongs to some category: yes/no
+for multiple categories, return yes/no for each category
+
+diagram: logistic regression, showing partitions by category
+
+diagram: spark ml workflow
+
+training -> load data -> extract features -> train model -> evaluate
+training -> load data -> extract features -> predict using model -> evaluate
+
+diagram: spark ml pipeline
+
+indexer -> tokenizer -> stopwords remover -> TF-IDF (term frequency):(? document frequency) -> logistic regression -> index to string
+
+collaborative filtering
+learns without information about users or product attributes
+learns by collecting interactions between users and products
+
+ex. recommended restaurants near my location, recommend songs played by other users which played (bought) the same ones as me
+
+collaborative filtering cannot be used for the first case (location is an invalid dimension on user), but can be used on the second

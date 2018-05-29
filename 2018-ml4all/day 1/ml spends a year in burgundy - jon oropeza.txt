@@ -1,0 +1,71 @@
+﻿ml spends a year in burgundy
+jon oropeza
+
+the job of a winemaker is to express a place and a year in a liquid medium
+
+wine variables
+grape varietal - what is grown
+vineyard site - where it's grown
+weather conditions - when it's grown
+
+wine specifics
+wines are 'rated' by well-known critics, providing publically available scores 1-100
+wines are giving tastings by a broad audience which are published through social media
+red wine vintages are often released a year and a half before the year
+
+grapevine annual cycle
+bud break
+flowering
+fruit set
+veraison
+harvest
+
+all of these are pure functions of the weather (growing degree days, cumulative amount of heat received)
+
+why burgundy
+grape varietal
+vineyard site
+weather conditions
+farmer artifice - how it is grown
+winemaker artifice - how it's made
+
+with a big enough data set, everything can be in control except weather data
+
+in a variable-rich problem space
+looking for variables you can control
+can give you the framework you need to learn
+
+wine and tech are similar in the generous nature of their communities, i can only hope to pay it forward
+
+steps to using ml
+1. is our problem appropriate for machine learning?
+
+clear, predefined sequence of steps? - not so much
+unknown patterns of predictability - potentially
+
+2. gather raw data
+
+3. transform (map & reduce) data
+
+ML: unsupervised learning, supervised learning, reinforcement learning
+
+4. pick a model/algo
+
+5. decide on an implementation
+machine learning examples and libraries are available for many languages
+
+3 levels of abstraction
+1. do all the fiddly bits for me, please (using a ml as a service)
+2. let's go to the library (using libraries, and owning the model that is returned)
+3. i love linear algebra (implement everything for yourself)
+
+1. ml by recipe
+2. ml using shaman.js
+3. ml using aws
+
+libraries both make it easier to get started, but can be hard to diagnose when something goes wrong
+
+something learned: in the wine space, can't really know anything about the output until late summer (to see if the weather holds up in a desirable way - ed)
+
+"the goal of the ml4all conference is to make applied machine learning accessible to the average software developer or enthusiast"
+

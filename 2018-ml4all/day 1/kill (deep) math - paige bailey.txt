@@ -1,0 +1,139 @@
+﻿kill (deep) math
+paige bailey
+@DynamicWebPaige
+
+the power to understand and build predictive models should not be dependent upon learning ... symbols
+
+*** toc
+theory
+building intuition
+code
+
+*** making math less painful
+
+fourier transforms: applications
+
+slides: visual example about how a fruit smoothie (complex waveform) is made up of fruits (basic waveforms)
+slide: visual diagrams on spinning a wave in the time domain in the frequency domain (polar graph)
+slide: time domain -> amplitude vs time, freq domain -> frequency vs time
+
+
+*** intro to deep learning
+
+* what is artificial intelligence?
+any technique that enables computres to mimic human behavior
+
+* what is machine learning
+ability to learn without being explicitly programmed
+
+supervised learning (what do you want to predict?)
+
+unsupervised learning (clustering, do you want to group the data?)
+
+supervised -> classification | regression
+SVM, KNN, CART, LASSO, etc.
+
+* what is deep learning
+learn underlying features in data by using neural networks
+
+* why is deep learning so popular recently?
+deep learning can now be more accurate than humans
+FPGAs
+we have lots and lots of data
+open source tools
+
+** let's try an example
+
+imagine you work at a cheese factory
+your boss would like for you to predict cheddar cheese quality based on data you've obtained from factory sensors
+
+acetic acid
+H2S
+lactic acid
+taste
+
+data: csv file with the first three and a taste score
+data source: david moore and george mccabe
+
+example: linear regression of data model
+(example shown noting no detection of interaction effects)
+
+neural networks are extremely good at dealing with high dimensional data
+
+deep learning = many layers of nodes
+
+forward propagation
+back propagation
+gradient descent
+
+
+acetic, h2s, lactic -> hidden layer -> output layer (taste)
+
+forward propogation perceptron
+
+* activation function
+linear / nonlinear functions
+ReLU -> rectified linear activation
+negative values -> 0
+positive values (x) -> x
+
+takewaway: deep learning
+neural network automatically creates weights that interpret patterns to make better predictions
+
+predicted: 15.356, actual: 12.3, error = 3.056
+
+higher dimensions: predicting gets hard
+
+slide: 3 hidden layers, 7 nodes/layer
+
+150 parameters to tune and tweak
+
+summary: sum of weight * value of node, fed into an activation function
+
+slide: matrix operation, plus summation with bias matrix
+
+rec: tensorflow playground
+
+* performance: loss function
+aggregates errors in predictions from many data points into a single number to measure the model's predictive performance
+
+concept: gradient descent
+going opposite a slop means moving to lower numbers
+1. start at a random point
+2. find the slope
+3. take a tiny tiny step
+4. repeat until you're at the lowest point
+
+via slope:
+slope of the loss function at the node you feed into
+value of the node that feeds into the weight
+slope of the activation functino at the value you feed into
+
+concept: backpropagation
+trying to estimate the slope of the loss functino with respect to each weight
+helps us better estimate weights
+
+start at some random set of weights
+use fwd propagation to make a prediction
+use backward to calculate the slope of the loss function with regard to each weight
+multiply that slope by the learning rate and subtract form the current wieghts
+keep going until everything is flat
+
+a neural network with a hidden layer has universality: given enough hidden units, it can approximate any function - chris olah
+
+rec: tensorflow with keras
+www.tensorflow.org
+
+what is keras?
+high level NN api that is capable of running on top of CNTK theano or tflow
+
+notebooks.azure.com/dynamicwebpaige
+
+** sources and inspirations
+
+chris olah blog
+bret victor's kill math
+3 blue 1 brown
+a student's guide to maxwell's equations
+tensorflow playground
+

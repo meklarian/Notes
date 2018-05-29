@@ -1,0 +1,114 @@
+﻿barriers to accelerating the training of neural networks
+"a systemic perspective"
+manny muro, technology learning labs, llc
+manny@techlearninglabs.com
+
+intro/review of NN
+history/origins
+nn development starting back in 1943
+warren mcculloch and walter pitts while doing research into understanding how the brain works
+mc and pitts came up with a mathematical model of neurons which is the basis for a significant portion of the current progress in AI today
+
+applications of NN
+business analytics (fraud detection, loan analysis, consumer trends, etc.)
+nlp
+speach recog
+image analysis
+many more things not listed here and more to come
+
+the neuron - building blocks for NN
+
+neuron model's activation function
+tend to be functions which we can take the derivative
+
+a NN system
+
+input layer -> hidden layer -> output layer
+the most important part is the activation function
+
+training of NN
+finding the optimal values for all the weights and bias for a given NN struct to achieve a targetted analysis objective
+
+training methods/approach
+linear regression
+gradient descent - stay away from Genetic Algos
+ - back propagation equation
+analysis of the back propagation equation is at the heart of this presentation
+DATAsets it is ALL about the data
+training data set - this is the data set with the input data along with the desired answers for the outpus of the nn which is used to guide the training process to find the optimal parameter values of a given nn
+test data set
+...
+
+the back propagation equation
+(slide: mathematical formula)
+
+systematic barriers to accelerating NN
+large data sets
+in the quest for a more generalized solution, some NN training techniques can cause large data sets to become larger, by 4X or more
+large number of params to solve for
+the optimal number of nodes in a NN system is still a TBD, industry-wide
+the sheer moving of training data performs zero work towards getting results, but it is a necessary thing to do, so minimize it as much as possible
+
+lots of weights and biases to solve for
+based on my experiences, it is my belief that the weights and bias values that result from ML will, in all likelihood, become the new "software"
+
+NN training data movement hierarchy
+
+network attached devices <-> network interface <-> data exchange networks <-> network interface <-> local storage <-> storage interface <->main system memory <-> high perf memory <-> compute engines
+network attached devices + data exchange networks on internet
+everything else on computing platform (desktop, laptop, mobile, tablet, cloud)
+slower <---> faster (speed)
+larger <---> smaller (capacity)
+higher <---> lower (power)
+cheaper <---> expensive ($/area sq ft)
+congested <---> open access (traffic)
+(ed - in relation to the above graph)
+
+current best case loop for training -> main system memory <> high perf memory <> compute engines
+typical case loop -> with local storage
+worst case loop -> internet device inclusion/access
+
+approaches to mitigate the NN training barrier
+tech improvements (everything faster and better)
+parallelization (without complexity)
+new algorithms, think mathematically ie. DSP: DFT => FFT
+new system level architectures
+memory, data path, domain specific details
+reduce looping time for training by placing data closer to the faster resources
+only having to read a given data set ONCE during training (excluding read passes needed to do normalization calculations)
+
+looking backwards and forward
+microprocessor / cpu - generalized computations
+FPU - floating point unit / math coproc
+DSP - signal processing calc (freq analysis centric)
+GPU - lots of data in / out (video centric)
+FPGA - generalized hardware implementation
+data flow processor (DFP) -> globs of data in, small amounts of data out (AI/ML centric) ideally returning weights and biases
+ - significantly improves training time and power consumption
+ - shares training resources with the interference of any general NNsys
+ - algorigthmically reduces iterations over the data sets to a single pass
+
+ideally, DFP -> high performance memory <> compute engine
+
+how does the DFP compare
+first off, what is THE benchmark to do the comparison with
+unfortunately, there is not one, at least not a specific and well established benchmark (see www.MLPERF.org proposal)
+good benchmark candidate -> MNIST handwriting recognition ANN ("gradient based learning applied to document recognition")
+
+reference point
+structure: 28x28 500 -> 150 -> 10 => 588,000,000 weights and 660 bias values
+iterations: 20
+data set size: 60,000
+training time: 2-3 days on a SGI 2000 server with 2000mhz R10k proc
+2.4-3.6 hrs per training iteration
+
+adjusting to a modern tech standard
+assume the same processor, or comparable could run at 2ghz instead of 200mhz
+adjusted training time: 4.8 to 7.2hrs => 14.4 to 21.6 mins per training iteration
+
+conclusion & summary
+vision path: only by looking at the training from multiple levels and multiple perspectives could this new approach to solving the nn training problem be realized
+key takeaways:
+looping over the data set once is ideal
+moving the repitive elements of the training algo closer to the compute engine as possible, since moving data around only burns time and power without doing any actual work
+
